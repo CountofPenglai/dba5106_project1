@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from numpy.testing import assert_allclose
 
-from portfolio.data import load_returns
+from portfolio.data import load_returns, preprocess_returns
 from portfolio.splits import split_returns, rolling_windows
 from portfolio.model import fit_linear
 from portfolio.losses import weighted_mse
@@ -23,17 +23,17 @@ class DataTests(unittest.TestCase):
         content = """File metadata can have variable length.
 
 Average Value Weighted Returns -- Daily
-,A,ME9 BM10,B
-20260101,90,90,90
+,A,ME9 BM10,B,BIG HiBM
+20260101,90,90,90,90
 
 Average Equal Weighted Returns -- Daily
-,A,ME9 BM10,B
-20260101,1,-999,-2
-20260102,-99.99,-999,3
+,A,ME9 BM10,B,BIG HiBM
+20260101,1,-999,-2,-99.99
+20260102,-99.99,-999,3,-999
 
 Number of Firms in Portfolios
-,A,ME9 BM10,B
-20260101,100,200,300
+,A,ME9 BM10,B,BIG HiBM
+20260101,100,200,300,400
 """
         with tempfile.TemporaryDirectory() as d:
             path = Path(d) / "returns.csv"
@@ -43,6 +43,22 @@ Number of Firms in Portfolios
         assert_allclose(result.iloc[0], [0.01, -0.02])
         self.assertTrue(np.isnan(result.iloc[1, 0]))
         self.assertEqual(result.index[-1], pd.Timestamp("2026-01-02"))
+
+    def test_preprocessing_drops_named_assets_before_numeric_conversion(self):
+        # Non-numeric excluded values must never enter the numeric cleaner.
+        raw = pd.DataFrame({" BIG HiBM ": ["missing", "missing"],
+                            "A": [1.0, 2.0], "ME9 BM10": ["bad", "bad"],
+                            "B": [-2.0, 3.0]}, index=[20260701, 20260702])
+        original = raw.copy(deep=True)
+        result = preprocess_returns(raw)
+        self.assertEqual(list(result.columns), ["A", "B"])
+        assert_allclose(result.to_numpy(), [[0.01, -0.02], [0.02, 0.03]])
+        pd.testing.assert_frame_equal(raw, original)
+
+    def test_preprocessing_accepts_already_removed_assets_and_custom_exclusions(self):
+        raw = pd.DataFrame({"A": [1.0], "B": [2.0]}, index=[20260701])
+        self.assertEqual(list(preprocess_returns(raw).columns), ["A", "B"])
+        self.assertEqual(list(preprocess_returns(raw, drop_assets=("B",)).columns), ["A"])
 
     def test_split_preserves_gap_and_empty_test(self):
         r = pd.DataFrame({"A": np.arange(10)}, index=pd.date_range("2026-01-01", periods=10))
