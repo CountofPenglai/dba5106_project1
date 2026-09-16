@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from portfolio import Regularization, backtest, fit_portfolio, load_returns, summarize
+from portfolio import Regularization, backtest, fit_portfolio, fit_portfolio_cv, load_returns, summarize
 from portfolio.weights import exponential, shrink_to_equal
 
 
@@ -18,6 +18,13 @@ def portfolio_strategy(**options):
     """Adapt the richer FitResult to backtest's history -> weights interface."""
     def strategy(history):
         return fit_portfolio(history, **options).weights
+    return strategy
+
+
+def cv_portfolio_strategy(kind, **options):
+    """Same idea, but pick alpha by cross-validation fresh in every window."""
+    def strategy(history):
+        return fit_portfolio_cv(history, kind=kind, **options).weights
     return strategy
 
 
@@ -37,6 +44,8 @@ def main():
         "MinVar": portfolio_strategy(),
         "LASSO": portfolio_strategy(regularization=Regularization("lasso", 1e-5)),
         "Ridge": portfolio_strategy(regularization=Regularization("ridge", 1e-4)),
+        "LASSO_CV": cv_portfolio_strategy("lasso"),
+        "Ridge_CV": cv_portfolio_strategy("ridge"),
     }
     if args.weighted:
         strategies["RidgeWeighted"] = portfolio_strategy(

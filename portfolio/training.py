@@ -5,7 +5,7 @@ from dataclasses import dataclass
 import pandas as pd
 
 from .losses import weighted_mse
-from .model import LinearModel, RegressionProblem, fit_linear
+from .model import LinearModel, RegressionProblem, fit_linear, fit_linear_cv
 from .regularization import Regularization
 from .weights import uniform, validate_portfolio_weights
 
@@ -17,6 +17,7 @@ class FitResult:
     weights: pd.Series
     training_loss: float
     objective: float
+    alpha: float | None = None
 
 
 def fit_portfolio(history, *, regularization=Regularization(), sample_weights=uniform,
@@ -44,4 +45,31 @@ def fit_portfolio(history, *, regularization=Regularization(), sample_weights=un
         weights=pd.Series(adjusted, index=history.columns, name="weight"),
         training_loss=loss,
         objective=loss + regularization.penalty(model.coefficients),
+    )
+
+
+def fit_portfolio_cv(history, *, kind, alphas=None, cv=5, sample_weights=uniform, adjust_weights=None):
+    """Like fit_portfolio, but select alpha by cross-validation on this window.
+
+    Re-run inside every rolling window so lambda tracks the current data
+    instead of staying fixed at one guessed value for the whole backtest.
+    """
+    if not isinstance(history, pd.DataFrame) or history.columns.has_duplicates:
+        raise ValueError("History must be a DataFrame with unique asset names")
+    problem = RegressionProblem.from_returns(history)
+    observation_weights = sample_weights(len(history))
+    model, alpha = fit_linear_cv(problem.X, problem.y, kind=kind, alphas=alphas, cv=cv,
+                                 sample_weight=observation_weights)
+    raw = problem.portfolio_weights(model.coefficients)
+    validate_portfolio_weights(raw, history.shape[1])
+    adjusted = raw.copy() if adjust_weights is None else adjust_weights(raw.copy())
+    adjusted = validate_portfolio_weights(adjusted, history.shape[1])
+    loss = weighted_mse(problem.y, model.predict(problem.X), observation_weights)
+    return FitResult(
+        model=model,
+        raw_weights=pd.Series(raw, index=history.columns, name="weight"),
+        weights=pd.Series(adjusted, index=history.columns, name="weight"),
+        training_loss=loss,
+        objective=loss,
+        alpha=alpha,
     )
