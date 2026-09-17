@@ -13,6 +13,7 @@ python -m pip install -r requirements.txt
 python run_example.py
 python run_example.py --weighted --output results
 python run_example.py --weighted --growth --output results/growth_252
+python run_tuning.py --output results/parameterized_lasso_252
 python -m unittest discover -s tests -v
 ```
 
@@ -36,6 +37,7 @@ CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定�
 | `weights.py` | `uniform`、`exponential`、`shrink_to_equal` | 两类权重的独立变换 |
 | `training.py` | `fit_portfolio`、`fit_portfolio_cv`、`fit_portfolio_growth` | 连接模型、损失、正则项和权重接口 |
 | `evaluation.py` | `backtest`、`summarize` | 通用策略回测与日频评价 |
+| `selection.py` | `GrowthParameters`、`SearchConfig`、`search_growth` | 有限参数搜索、完整批次早停与结果选择 |
 
 ### 一次训练
 
@@ -128,6 +130,49 @@ print(fit.diagnostics)  # 方差、增长率、奖励、正则项、约束限额
 
 实验评价仍使用 2026-01-02 至 2026-06-30，主验证指标为负 Sharpe，同时比较累计收益、波动、回撤和实际总敞口。提高训练期对数收益不保证提高未来累计收益；训练波动上限也不保证未来波动不超过 EW。最终 2026-08-01 至 2026-08-30 测试集不参与参数选择。
 
+### 带参数的 LASSO + 约束 + 收益奖励
+
+`run_tuning.py` 使用同一个线性模型，只选择收益奖励强度 eta 和总敞口惩罚强度 gamma。训练窗口默认 252 天，LASSO 强度固定为 `1e-5`。训练目标为：
+
+```text
+variance(R @ w) + 1e-5 * sum(abs(beta))
+- eta * mean(log1p(R @ w))
++ gamma * variance(R @ EW) * max(0, (sum(abs(w))-1)/(gross_limit-1))**2
+```
+
+gamma 默认为零，因此原来的 `run_example.py --growth` 和历史方法保持不变。这里的 gamma 是训练中的总敞口惩罚强度，与旧策略事后向 EW 混合的系数不同。固定总敞口上限 1.5 时，归一化惩罚在总敞口 1、1.25、1.5 分别为 0、0.25、1；乘以训练窗口的 EW 方差用于控制量级。总敞口上限设为 1 时，硬约束已经禁止空头，定义额外惩罚为零，避免除零。三个原有硬约束继续保留。
+
+```python
+fit = fit_portfolio_growth(
+    history,
+    regularization=Regularization("lasso", 1e-5),
+    loss=LogGrowthLoss(reward_strength=0.003, exposure_strength=0.1),
+    constraints=PortfolioConstraints(),
+)
+```
+
+`training_loss` 包含方差、收益奖励和敞口惩罚；`objective` 另外包含 LASSO 项。每日诊断单独导出 `exposure_unit_penalty`、`exposure_scale` 和 `exposure_penalty`。
+
+默认选参流程：
+
+1. 在 2025-07-01 至 2025-12-31 的历史开发期评价九组粗网格：eta 为 `0, .003, .01`，gamma 为 `0, .1, 1`。每一天仍使用此前完整 252 天拟合。
+2. 在 2026-01-02 至 2026-06-30 验证集重新评价两个旧对照、历史选择及其单项消融配置。历史得分不混入验证排名或停止计数。
+3. 围绕当前累计收益最高的配置，对单个正系数减半/加倍；从零出发用对应最小正粗网格值的一半。eta 不超过 .03，gamma 不超过 3。完整评价一个邻域批次后再判断停止，不截短任何候选的回测。
+4. 默认最多尝试 15 组不同参数：历史粗网格 9 组，验证期最多额外评价 6 组。相同参数在两个时期的评价分别记录，因此评价次数可超过 15。若剩余预算不足以完成下一批，直接停止。
+5. 累计收益改善至少 .002（**0.2 个百分点**）才重置停止计数；默认一轮完整邻域搜索无足够改善就停止。初始批次不受早停影响。比较接近（距最高累计收益不超过 .002）时，依次优先较小 eta、较低实际平均总敞口，最后以较小 gamma 确定同分顺序。
+
+这是**参数搜索早停**，每次凸优化仍正常求解，不是神经网络式 epoch 早停。它限制搜索次数，不能保证全局最优，也不能证明消除了验证集过拟合。eta 和 gamma 可以为零，允许退回已有简单方法。lambda 不参与搜索。
+
+配置冻结后，对比 EW、原始 LASSO、约束版、固定奖励版、所选 eta 的仅奖励版、所选 gamma 的仅惩罚版，以及联合选择版。最后两个消融只用于解释结果，不反馈给搜索。选择指标为验证累计收益，同时报告课程主指标负 Sharpe、波动、回撤和实际总敞口。验证期已经参与选参，必须标记为开发成绩；最终八月测试在冻结方案且数据齐备后独立执行。
+
+入口支持 `--screen-start/--screen-end`、`--validation-start/--validation-end`、`--window`、`--max-candidates`（9–15）、`--min-improvement`、`--patience`。所有日期必须使用完整的 `YYYY-MM-DD` 格式，避免年份或月份字符串扩大数据切片范围。验证结束日期必须早于保留测试期起点 `2026-08-01`；即使手动修改日期，也会在读取数据和训练前拒绝进入测试期或其后的调参区间。后续实验修改这些配置也属于调参，需要如实报告。每次使用新的或空的 `--output` 目录：
+
+```bash
+python run_tuning.py --output results/parameterized_lasso_252
+```
+
+输出含两个时期的搜索记录、每个成功候选的完整收益/权重/训练诊断、七种比较结果、选中与原始最高分配置、停止原因和运行元数据（代码/数据哈希、软件版本、数据区间）。阶段内的 `candidate_attempts.csv` 每次评价后保存，即使全部初始候选失败而中止也保留错误记录。失败配置不重复求解；若对照或消融无法求解，summary 和 metadata 会标记失败，不用 EW 替代。没有最终 metadata 的输出目录不能视为完成的实验。日历区间中的周末和节假日不产生持仓行，元数据同时记录请求日期与实际首末交易日。
+
 ### 扩展方式
 
 - **样本权重**：新增 `weight_fn(n) -> numpy.ndarray`，按历史行顺序返回 n 个有限非负权重，至少两个为正；传给 `sample_weights`。指数衰减按交易观察数计算半衰期。
@@ -153,3 +198,4 @@ print(fit.diagnostics)  # 方差、增长率、奖励、正则项、约束限额
 ## 实验记录
 
 - [固定 LASSO 的对数收益奖励实验（252 天窗口）](docs/experiments/log-growth-252.md)：完整 11 策略比较、约束对照、累计收益与总敞口图。
+- [带参数的 LASSO、约束与收益奖励（252 天窗口）](docs/experiments/parameterized-lasso-252.md)：有限验证搜索、停止原因、单项消融和与原方法的比较。

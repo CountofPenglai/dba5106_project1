@@ -43,6 +43,13 @@ def fit_growth(problem, *, regularization=Regularization("lasso", 1e-5),
     objective = variance + penalty
     if loss.reward_strength > 0:
         objective -= loss.reward_strength * (a @ cp.log(1 + returns))
+    if (loss.exposure_strength > 0 and constraints.leverage_limit > 1
+            and ew_variance > 0):
+        normalized_exposure = cp.pos(
+            (cp.norm1(portfolio) - 1) / (constraints.leverage_limit - 1)
+        )
+        objective += (loss.exposure_strength * ew_variance
+                      * cp.square(normalized_exposure))
     restrictions = [cp.norm1(portfolio) <= constraints.leverage_limit,
                     1 + returns >= constraints.wealth_floor]
     if variance_limit == 0:
@@ -88,7 +95,21 @@ def fit_growth(problem, *, regularization=Regularization("lasso", 1e-5),
                 or min_wealth < constraints.wealth_floor - 1e-8):
             attempts[-1] += " (constraint check failed)"
             continue
-        diagnostics = {**terms, "penalty": regularization.penalty(coefficients),
+        if constraints.leverage_limit == 1:
+            exposure_unit_penalty = 0.0
+        else:
+            normalized_exposure = max(
+                0.0, (gross - 1) / (constraints.leverage_limit - 1)
+            )
+            exposure_unit_penalty = normalized_exposure**2
+        exposure_penalty = (loss.exposure_strength * ew_variance
+                            * exposure_unit_penalty)
+        training_loss = terms["loss"] + exposure_penalty
+        diagnostics = {**terms, "loss": training_loss,
+                       "exposure_unit_penalty": exposure_unit_penalty,
+                       "exposure_scale": ew_variance,
+                       "exposure_penalty": exposure_penalty,
+                       "penalty": regularization.penalty(coefficients),
                        "gross_leverage": gross, "ew_variance": ew_variance,
                        "variance_limit": variance_limit, "min_wealth": min_wealth,
                        "solver": solver, "solver_status": optimization.status,

@@ -25,10 +25,13 @@ class LogGrowthLoss:
     """
 
     reward_strength: float = 0.01
+    exposure_strength: float = 0
 
     def __post_init__(self):
         if not np.isfinite(self.reward_strength) or self.reward_strength < 0:
             raise ValueError("Reward strength must be finite and nonnegative")
+        if not np.isfinite(self.exposure_strength) or self.exposure_strength < 0:
+            raise ValueError("Exposure strength must be finite and nonnegative")
 
     def components(self, returns, sample_weight=None):
         r = np.asarray(returns, dtype=float)
