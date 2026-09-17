@@ -8,6 +8,9 @@ from .losses import weighted_mse
 from .model import LinearModel, RegressionProblem, fit_linear, fit_linear_cv
 from .regularization import Regularization
 from .weights import uniform, validate_portfolio_weights
+from .constraints import PortfolioConstraints
+from .losses import LogGrowthLoss
+from .optimization import fit_growth
 
 
 @dataclass
@@ -18,6 +21,7 @@ class FitResult:
     training_loss: float
     objective: float
     alpha: float | None = None
+    diagnostics: dict | None = None
 
 
 def fit_portfolio(history, *, regularization=Regularization(), sample_weights=uniform,
@@ -73,3 +77,24 @@ def fit_portfolio_cv(history, *, kind, alphas=None, cv=5, sample_weights=uniform
         objective=loss,
         alpha=alpha,
     )
+
+
+def fit_portfolio_growth(history, *, regularization=Regularization("lasso", 1e-5),
+                         loss=LogGrowthLoss(), constraints=PortfolioConstraints(),
+                         sample_weights=uniform):
+    """Fit fixed-strength regularization with a log-growth reward and limits.
+
+    No CV or post-fit EW mixing is performed. Both loss and constraints act on
+    the portfolio that is returned. All estimates use the supplied history.
+    """
+    if not isinstance(history, pd.DataFrame) or history.columns.has_duplicates:
+        raise ValueError("History must be a DataFrame with unique asset names")
+    problem = RegressionProblem.from_returns(history)
+    model, diagnostics = fit_growth(problem, regularization=regularization, loss=loss,
+                                   constraints=constraints, sample_weight=sample_weights(len(history)))
+    weights = pd.Series(problem.portfolio_weights(model.coefficients),
+                        index=history.columns, name="weight")
+    return FitResult(model=model, raw_weights=weights.copy(), weights=weights,
+                     training_loss=diagnostics["loss"],
+                     objective=diagnostics["loss"] + diagnostics["penalty"],
+                     diagnostics=diagnostics)

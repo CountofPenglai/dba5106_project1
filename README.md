@@ -12,12 +12,13 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 python run_example.py
 python run_example.py --weighted --output results
+python run_example.py --weighted --growth --output results/growth_252
 python -m unittest discover -s tests -v
 ```
 
 CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定。`--start`、`--end` 和 `--window` 控制滚动评价区间和历史窗口。
 
-首版使用固定的示例正则化强度，比较 EW、MinVar、LASSO、Ridge。`--weighted` 增加一个同时启用两类权重的 Ridge 示例。这些参数用于演示接口，未经过寻优。原来的 `5106_assignement_01.py` 保留作为参考，新入口为 `run_example.py`。
+默认使用 252 个交易日的训练窗口，比较 EW、MinVar、固定强度 LASSO/Ridge，以及每日重新选参的 LASSO_CV/Ridge_CV。`--weighted` 增加 RidgeWeighted、LASSO_CV_Weighted、Ridge_CV_Weighted，均同时使用 63 日半衰期的时间权重和 25% 的 EW 混合。原来的 `5106_assignement_01.py` 保留作为参考，新入口为 `run_example.py`。底层 `backtest`/`rolling_windows` 的默认窗口仍为 126；直接调用它们时请显式传 `window=252`。
 
 ## 模块与数据流
 
@@ -28,10 +29,12 @@ CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定�
 | `data.py` | `load_returns`、`preprocess_returns` | 按表名读取、清洗、转换单位 |
 | `splits.py` | `split_returns`、`rolling_windows` | 按时间分割与逐日滚动 |
 | `model.py` | `RegressionProblem`、`fit_linear`、`LinearModel` | X/y 构造、固定线性结构、系数到权重映射 |
-| `losses.py` | `weighted_mse` | 定义归一化平方损失 |
+| `losses.py` | `weighted_mse`、`LogGrowthLoss` | 定义平方损失、方差与对数收益奖励，报告分项 |
 | `regularization.py` | `Regularization` | 无正则、LASSO、Ridge |
+| `constraints.py` | `PortfolioConstraints` | 总敞口、相对 EW 波动和财富下界约束 |
+| `optimization.py` | `fit_growth` | 真正优化新损失的凸求解器 |
 | `weights.py` | `uniform`、`exponential`、`shrink_to_equal` | 两类权重的独立变换 |
-| `training.py` | `fit_portfolio`、`FitResult` | 连接模型、损失、正则项和权重接口 |
+| `training.py` | `fit_portfolio`、`fit_portfolio_cv`、`fit_portfolio_growth` | 连接模型、损失、正则项和权重接口 |
 | `evaluation.py` | `backtest`、`summarize` | 通用策略回测与日频评价 |
 
 ### 一次训练
@@ -86,7 +89,44 @@ print("Test data available:", not parts.test.empty)
 
 `split_returns` 提供互不重叠的固定区间，供单次训练或未来调参使用。滚动评价则每天重新取得此前 126 个交易日；已经发生的验证收益可进入随后日期的训练。`backtest` 使用完整历史矩阵作为输入，但每次只把当前日期之前的窗口交给策略函数。策略函数自身不应从闭包或外部文件读取未来数据。
 
-`rolling_windows` 的起止日期应落在已有数据覆盖范围内；对超出末日的区间会报错，避免静默缩短评价期间。最终测试数据齐备并冻结方案后，才使用测试集的实际首末交易日回测。首版没有自动交叉验证或批量搜索；后续可用分割接口，在训练窗口内部选择参数再完整重拟合。
+`rolling_windows` 的起止日期应落在已有数据覆盖范围内；对超出末日的区间会报错，避免静默缩短评价期间。最终测试数据齐备并冻结方案后，才使用测试集的实际首末交易日回测。
+
+现有 CV 策略在每个滚动窗口内使用 5 折和 `np.logspace(-8, 8, 21)`；当前 LassoCV 评分为 MSE，RidgeCV 的 `cv=5, scoring=None` 默认评分为 R²。本次增长实验保留原有评分方式，以保证现有九个策略的比较口径不变。课程要求的 MSE 选参口径需要作为单独变更对齐，不能把当前两者都描述为 MSE。
+
+### 固定 LASSO 的对数收益奖励实验
+
+`--growth` 在原有策略之外新增两个可比较的实验：
+
+- `LASSO_Constrained`：固定 LASSO `strength=1e-5`，添加约束，收益奖励 `eta=0`。
+- `LASSO_LogGrowth`：相同 LASSO 强度和约束，固定收益奖励 `eta=0.01`。
+
+损失为 `variance(R @ w) - eta * mean(log(1 + R @ w)) + strength * sum(abs(beta))`，保留 `w = EW - N @ beta`。收益奖励使用实际组合收益 `R @ w = y - X @ beta`，不减去回归截距。截距由平均组合收益确定，所以方差项与原来的含截距平方损失一致。模型仍是线性的，求解器改为 CVXPY/Clarabel；只修改损失显示函数不会改变训练。
+
+本次两个实验均使用均匀样本权重，不做 CV、不调 LASSO 强度、不进行事后 EW 混合。默认约束：
+
+- `sum(abs(w)) <= 1.5`，即全额投资组合的总空头最多 25%。
+- 训练窗口内的组合波动不超过同一窗口 EW 的波动（训练方差使用归一化样本权重，ddof=0）。
+- 每个历史场景的 `1 + R @ w >= 1e-6`，保证对数定义域，不裁剪非法收益。
+
+`--reward-strength`、`--leverage-limit`、`--volatility-limit` 可以显式指定新实验设置，程序不会搜索它们。损失项尺度不同，因此 `eta` 不能与 LASSO 的 `strength` 混为一谈。`eta=0` 只在相同约束下退化为基线；新增约束本身也可能改变原有 LASSO 结果。
+
+```python
+from portfolio import fit_portfolio_growth, Regularization, LogGrowthLoss, PortfolioConstraints
+
+fit = fit_portfolio_growth(
+    history,
+    regularization=Regularization("lasso", 1e-5),
+    loss=LogGrowthLoss(reward_strength=0.01),
+    constraints=PortfolioConstraints(leverage_limit=1.5, volatility_limit=1.0),
+)
+print(fit.diagnostics)  # 方差、增长率、奖励、正则项、约束限额和求解状态
+```
+
+输出包含每日收益、权重、两个实验的逐日训练诊断、`summary.csv`，以及记录数据/代码 SHA-256、软件版本和全部实验参数的 `run_metadata.json`。诊断按实际持有日对齐，`history_end` 记录训练末日。优先使用 Clarabel；若发生数值失败、精度不足或约束复核不通过，用 SCS 重解同一个目标。仅返回状态为 optimal 且通过实际约束复核的解，`solver` 和 `solver_attempts` 记录求解过程。所有求解均失败则中止，不用 EW 静默替代。
+
+每次导出使用新的或空的目录，已有文件的目录会被拒绝，避免失败运行与旧的 summary/metadata 混在一起。只有全部策略完成后才会生成 summary 和 metadata；缺少它们的目录是未完成的运行。
+
+实验评价仍使用 2026-01-02 至 2026-06-30，主验证指标为负 Sharpe，同时比较累计收益、波动、回撤和实际总敞口。提高训练期对数收益不保证提高未来累计收益；训练波动上限也不保证未来波动不超过 EW。最终 2026-08-01 至 2026-08-30 测试集不参与参数选择。
 
 ### 扩展方式
 
@@ -107,3 +147,9 @@ print("Test data available:", not parts.test.empty)
 ## 验证重点
 
 测试涵盖 CSV 表段与单位、时间边界、解析加权 LASSO/Ridge、协方差 MinVar 等价性、样本权重缩放不变性、组合调整、未来信息隔离以及收益评价。真实数据检查使用文档的六资产 2026-01-02 权重和单日收益。
+
+新损失测试还覆盖独立两资产最优解、收益奖励、三类组合约束、零奖励退化、求解器恢复和完整导出流程。
+
+## 实验记录
+
+- [固定 LASSO 的对数收益奖励实验（252 天窗口）](docs/experiments/log-growth-252.md)：完整 11 策略比较、约束对照、累计收益与总敞口图。
