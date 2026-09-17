@@ -33,7 +33,7 @@ def main():
     parser.add_argument("--csv", type=Path, default=Path(__file__).parent / "100_Portfolios_10x10_Daily.csv")
     parser.add_argument("--start", default="2026-01-02")
     parser.add_argument("--end", default="2026-06-30")
-    parser.add_argument("--window", type=int, default=126)
+    parser.add_argument("--window", type=int, default=252)
     parser.add_argument("--weighted", action="store_true", help="Also run Ridge with both weighting hooks")
     parser.add_argument("--output", type=Path, help="Optional directory for returns, weights and summary CSVs")
     args = parser.parse_args()
@@ -50,6 +50,16 @@ def main():
     if args.weighted:
         strategies["RidgeWeighted"] = portfolio_strategy(
             regularization=Regularization("ridge", 1e-4),
+            sample_weights=partial(exponential, half_life=63),
+            adjust_weights=partial(shrink_to_equal, strength=0.25),
+        )
+        strategies["LASSO_CV_Weighted"] = cv_portfolio_strategy(
+            "lasso",
+            sample_weights=partial(exponential, half_life=63),
+            adjust_weights=partial(shrink_to_equal, strength=0.25),
+        )
+        strategies["Ridge_CV_Weighted"] = cv_portfolio_strategy(
+            "ridge",
             sample_weights=partial(exponential, half_life=63),
             adjust_weights=partial(shrink_to_equal, strength=0.25),
         )
