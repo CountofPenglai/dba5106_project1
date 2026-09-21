@@ -53,7 +53,7 @@ def run(l1_ratio):
 
 if __name__=='__main__':
     rows={}
-    for ratio in (0.25,0.5,0.75):
+    for ratio in (0.25,0.5,0.75,0.8,0.85,0.9,0.95,0.975,0.99,0.995,1.0):
         label=f'ElasticNet_l1ratio_{ratio:g}'
         rows[label]=run(ratio)
     print(pd.DataFrame(rows).T.to_string(float_format=lambda x:f'{x:.8f}'))
