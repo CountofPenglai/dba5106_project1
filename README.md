@@ -10,42 +10,50 @@
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python run_example.py
-python run_example.py --weighted --output results
-python run_example.py --weighted --growth --output results/growth_252
-python run_tuning.py --output results/parameterized_lasso_252
+python -m experiments.regularized_baselines --weighted
+python -m experiments.regularized_baselines --weighted --growth
+python -m experiments.lasso_training_windows --presets 252d 3y --start 2026-01-02
+python -m experiments.lasso_reward_exposure_search
 python -m unittest discover -s tests -v
 ```
 
 CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定。`--start`、`--end` 和 `--window` 控制滚动评价区间和历史窗口。
 
-默认使用 252 个交易日的训练窗口，比较 EW、MinVar、固定强度 LASSO/Ridge，以及每日重新选参的 LASSO_CV/Ridge_CV。`--weighted` 增加 RidgeWeighted、LASSO_CV_Weighted、Ridge_CV_Weighted，均同时使用 63 日半衰期的时间权重和 25% 的 EW 混合。原来的 `5106_assignement_01.py` 保留作为参考，新入口为 `run_example.py`。底层 `backtest`/`rolling_windows` 的默认窗口仍为 126；直接调用它们时请显式传 `window=252`。
+默认使用 252 个交易日的训练窗口，比较 EW、MinVar、固定强度 LASSO/Ridge，以及每日重新选参的 LASSO_CV/Ridge_CV。`--weighted` 增加 RidgeWeighted、LASSO_CV_Weighted、Ridge_CV_Weighted，均同时使用 63 日半衰期的时间权重和 25% 的 EW 混合。原始作业源码保存在 `examples/original_assignment.py`，`5106_assignement_01.py` 保留为兼容启动器。推荐入口为 `python -m experiments.regularized_baselines`。底层 `backtest`/`rolling_windows` 的默认窗口仍为 126；直接调用它们时请显式传 `window=252`。
 
 ## 模块与数据流
 
 `CSV → 收益矩阵 → 历史窗口 → 回归问题 → 线性拟合 → 组合调整 → 样本外评价`
 
-| 模块 | 主要接口 | 职责 |
-|---|---|---|
-| `data.py` | `load_returns`、`preprocess_returns` | 按表名读取、清洗、转换单位 |
-| `splits.py` | `TrainingWindow`、`split_returns`、`rolling_windows` | 交易观察值/日历年窗口与逐日滚动 |
-| `config.py` | `TrainingConfig`、`TRAINING_PRESETS` | 可复用的训练窗口与样本权重设置 |
-| `model.py` | `RegressionProblem`、`fit_linear`、`LinearModel` | X/y 构造、固定线性结构、系数到权重映射 |
-| `losses.py` | `weighted_mse`、`LogGrowthLoss` | 定义平方损失、方差与对数收益奖励，报告分项 |
-| `regularization.py` | `Regularization` | 无正则、LASSO、Ridge |
-| `constraints.py` | `PortfolioConstraints` | 总敞口、相对 EW 波动和财富下界约束 |
-| `optimization.py` | `fit_growth` | 真正优化新损失的凸求解器 |
-| `weights.py` | `uniform`、`exponential`、`shrink_to_equal` | 两类权重的独立变换 |
-| `training.py` | `fit_portfolio`、`fit_portfolio_cv`、`fit_portfolio_growth` | 连接模型、损失、正则项和权重接口 |
-| `evaluation.py` | `backtest`、`summarize` | 通用策略回测与日频评价 |
-| `selection.py` | `GrowthParameters`、`SearchConfig`、`search_growth` | 有限参数搜索、完整批次早停与结果选择 |
+当前目录按数据、模型、决策、执行流程和评估分层；实验入口集中在 `experiments/`。
+完整文件职责与所有保留方法见 [架构与方法索引](docs/architecture/portfolio-framework.md)。
+
+| 主要位置 | 职责 |
+|---|---|
+| `portfolio/data/` | 预处理、时间窗口、训练样本权重 |
+| `portfolio/models/` | 最小方差回归、收益预测、约束拟合、Elastic Net/PCA/市场 Beta |
+| `portfolio/decisions/` | 候选组合、混合决策和直接 LP |
+| `portfolio/engine/` | 拟合组装、逐日执行、参数搜索和求解器调用 |
+| `portfolio/evaluation/` | 指标、结果导出、目录规则和可复现性检查 |
+| `portfolio/losses.py`、`regularization.py`、`constraints.py` | 损失、正则化和约束定义 |
+| `portfolio/config.py` | 126 天、252 天与三年窗口等可复用训练设置 |
+| `experiments/` | 每个探索方向的配置与运行入口 |
+
+新入口默认保存到 `results/<实验名>/<UTC运行时间>/`，按 `metrics`、`returns`、`weights`、
+`predictions`、`diagnostics`、`config`、`search` 等目录分类，根目录的 `artifact_manifest.json`
+记录各文件的位置。使用 `--output` 指定运行根目录、`--layout flat` 切换为平铺格式。
+路径规则、读取示例与历史结果说明见 [输出目录说明](docs/output-layout.md)。
+
+原来的 `run_*.py` 和探索脚本保留为兼容入口，默认仍使用平铺格式；下文的旧命令仍然可用。
+旧模块导入同样保留，但新增代码应使用上表中的规范位置。
 
 ### 一次训练
 
 ```python
 from functools import partial
 from portfolio import Regularization, fit_portfolio, load_returns
-from portfolio.weights import exponential, shrink_to_equal
+from portfolio.data.observation_weights import exponential
+from portfolio.decisions.holding_weights import shrink_to_equal
 
 returns = load_returns("100_Portfolios_10x10_Daily.csv")
 history = returns.loc[:"2025-12-31"].tail(126)
@@ -182,7 +190,7 @@ python run_weight_tuning.py --output results/lasso_3y_weight_tuning
 python run_weight_tuning.py --half-lives 126 252 504 --output results/lasso_3y_weight_tuning_alternative
 ```
 
-继续复用 `TrainingConfig`、现有拟合/回测函数，以及 `run_lasso_windows.py` 的策略适配和指标导出辅助函数。
+继续复用 `TrainingConfig`、现有拟合/回测函数，以及 `portfolio/engine/lasso_window_strategy.py` 的策略适配和公共评估函数。
 训练方差和 EW 风险限额使用同一组归一化样本权重；验证收益按真实日收益计算，不使用近期加权。
 收益奖励、额外敞口惩罚、EW 混合均关闭，LASSO 强度和约束上限不参与搜索。
 候选网格固定，不在看到成绩后扩展搜索；每个候选使用完整验证期，没有逐日挑选当日赢家。
@@ -298,8 +306,12 @@ python run_tuning.py --output results/parameterized_lasso_252
 
 ## 实验记录
 
-- [固定 LASSO 的对数收益奖励实验（252 天窗口）](docs/experiments/log-growth-252.md)：完整 11 策略比较、约束对照、累计收益与总敞口图。
-- [带参数的 LASSO、约束与收益奖励（252 天窗口）](docs/experiments/parameterized-lasso-252.md)：有限验证搜索、停止原因、单项消融和与原方法的比较。
+- [最新统一 252 天结果](docs/experiments/unified-252-2026-09-22.md)：八类实验、65 条配置与对照，包含约束、收益奖励、敞口惩罚及全部其他探索方向。
+- [结果保留清单](docs/results-retention.md)：唯一活动 252 天结果、三年研究例外、缺失的历史窗口结果和清理记录。
+- 保留的历史报告（当前缺少可运行实现）：[Turnover](turnover-252.md)、[Grid smoothness](smoothness-252.md)、[Covariance shrinkage](shrinkage-252.md)。它们及配图均保留，但不混入最新重跑成绩。
+- [三年窗口与近期加权](docs/experiments/lasso-windows-5y.md)、[三年约束 LASSO](docs/experiments/lasso-windows-3y-constrained.md)、[三年权重选择](docs/experiments/lasso-3y-weight-tuning.md)：保留的三年研究。
+
+最新对比将拟合、预测、风险估计和混合决策训练统一为 252 个交易观测。下文二阶段 CLI 的历史默认值仍使用三年风险窗口，用于保留三年研究方向；这些结果与全 252 天结果分开保存。126 天及三年训练设置继续可用。
 
 ## Two-stage LASSO forecasting and fixed portfolio mixtures
 
@@ -344,8 +356,8 @@ These are linear-programming risk measures. They are **not** standard deviation,
 
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_direct_lp.py \
-  --reference results/two_stage_lasso_20260922 \
-  --output results/direct_lp_20260922
+  --reference results/window_studies_3y/forecast_mixture_20260922 \
+  --output results/window_studies_3y/forecast_lp_20260922
 ```
 
 `--reference` is optional. When supplied, old forecasts/mixtures/direct-U/legacy baselines are compared only after checking data, dates, forecast settings, relevant code hashes, and reconstructing returns from saved weights. The default experiment has fixed risk settings and does not tune them on validation. Both historical-mean forecast controls and EW are evaluated. Alpha calibration remains before August 2024. The default run solves portfolios only for the January–June 2026 validation period (123 trading days); earlier history is still used for rolling LASSO training and risk constraints. Because the LP has no trained decision coefficients, it does not need a development-period portfolio backtest. Add `--include-development` only when that extra historical comparison is wanted.
@@ -356,7 +368,7 @@ The reserved test requires all 20 August 3–28 trading dates and the unchanged 
 
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_direct_lp.py \
-  --frozen results/direct_lp_20260922/frozen_decisions.json \
+  --frozen results/window_studies_3y/forecast_lp_20260922/frozen_decisions.json \
   --output results/direct_lp_final_test
 ```
 

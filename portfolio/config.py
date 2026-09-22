@@ -5,8 +5,8 @@ from numbers import Real
 
 import numpy as np
 
-from .splits import TrainingWindow
-from .weights import exponential, uniform
+from portfolio.data.history_windows import TrainingWindow
+from portfolio.data.observation_weights import exponential, uniform
 
 
 @dataclass(frozen=True)

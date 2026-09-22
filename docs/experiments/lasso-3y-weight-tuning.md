@@ -1,5 +1,8 @@
 # 三年加权约束 LASSO：验证集选择近期权重
 
+> 保留的三年窗口研究记录。清理后仅保留涉及三年训练、预测或风险窗口的研究产物；重复的纯 252 天回归对照已从结果目录和汇总表移除。正文与原图中的对照数值保留为当时的研究背景，当前 252 天结果请以[最新统一报告](unified-252-2026-09-22.md)为准。原始元数据/冻结配置未改写；历史审计记录描述清理前的完整实验，保留子集另有清理核验。
+
+
 实验日期：2026-09-22。目标是在三年训练窗口和原有硬约束下，通过调整近期样本权重改善累计收益。
 下面的成绩来自用于选择半衰期的验证集，存在选择偏差，不能视为独立测试结果。
 
@@ -110,7 +113,7 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python run_weight_tuning.py --output re
 python -m unittest discover -s tests -v
 ```
 
-`results/lasso_3y_weight_tuning_20260922/` 包含每个候选/对照的收益、持仓、训练诊断、汇总表、运行元数据和独立复核 `verification.json`。
+`results/window_studies_3y/lasso_recency_20260922/` 包含每个候选/对照的收益、持仓、训练诊断、汇总表、运行元数据和独立复核 `verification.json`。
 选中配置保存在 `selection.json`，可以保持原训练流程并复用：
 
 ```python
@@ -118,7 +121,7 @@ import json
 from pathlib import Path
 from portfolio import TrainingConfig, TrainingWindow
 
-selected = json.loads(Path("results/lasso_3y_weight_tuning_20260922/selection.json").read_text())
+selected = json.loads(Path("results/window_studies_3y/lasso_recency_20260922/selection.json").read_text())
 settings = selected["training"]
 config = TrainingConfig(TrainingWindow(**settings["window"]), half_life=settings["half_life"])
 # 继续将 config.window 交给 backtest，config.sample_weights 交给现有约束拟合函数。

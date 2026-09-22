@@ -1,19 +1,14 @@
-"""Walk-forward execution and daily-return evaluation."""
-
+"""Causal daily execution of history-to-holdings strategies."""
 from dataclasses import dataclass
-
 import numpy as np
 import pandas as pd
-
-from .splits import rolling_windows
-from .weights import validate_portfolio_weights
-
+from portfolio.data.history_windows import rolling_windows
+from portfolio.decisions.holding_weights import validate_portfolio_weights
 
 @dataclass
 class BacktestResult:
     returns: pd.Series
     weights: pd.DataFrame
-
 
 def backtest(returns, strategy, *, start, end, window=126):
     """strategy(history) returns an asset-indexed Series of portfolio weights.
@@ -41,19 +36,3 @@ def backtest(returns, strategy, *, start, end, window=126):
     index = pd.DatetimeIndex(dates, name="date")
     return BacktestResult(pd.Series(daily, index=index, name="return"),
                           pd.DataFrame(holdings, index=index, columns=returns.columns))
-
-
-def summarize(returns):
-    """Daily Sharpe = mean/std, ddof=1; max_drawdown is a negative fraction."""
-    r = np.asarray(returns, dtype=float)
-    if r.ndim != 1 or len(r) < 2 or not np.isfinite(r).all():
-        raise ValueError("Metrics need at least two finite daily returns")
-    mean = float(r.mean())
-    # Floating-point averaging can give identical nonzero values a tiny std.
-    std = 0.0 if np.all(r == r[0]) else float(r.std(ddof=1))
-    sharpe = mean / std if std > 0 else float("nan")
-    wealth = np.r_[1.0, np.cumprod(1 + r)]
-    drawdown = wealth / np.maximum.accumulate(wealth) - 1
-    return {"mean": mean, "volatility": std, "sharpe": sharpe,
-            "negative_sharpe": -sharpe, "cumulative_return": float(wealth[-1] - 1),
-            "max_drawdown": float(drawdown.min())}

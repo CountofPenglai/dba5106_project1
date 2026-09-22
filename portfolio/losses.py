@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from .weights import normalize_sample_weights
+from portfolio.data.observation_weights import normalize_sample_weights
 
 
 def weighted_mse(y, prediction, sample_weight=None):

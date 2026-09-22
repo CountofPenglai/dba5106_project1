@@ -69,7 +69,7 @@ class TuningCliTests(unittest.TestCase):
                 end=str(dates[-1].date()), window=4, output=Path(temporary),
                 constraints=run_tuning.PortfolioConstraints())
             candidates = [GrowthParameters(0, 0), GrowthParameters(.01, 0)]
-            with patch.object(run_tuning, "fit_portfolio_growth", side_effect=RuntimeError("numerical failure")) as fit:
+            with patch("portfolio.engine.growth_search_evaluation.fit_portfolio_growth", side_effect=RuntimeError("numerical failure")) as fit:
                 with redirect_stdout(io.StringIO()), self.assertRaisesRegex(RuntimeError, "All initial"):
                     search_growth(evaluator, config=SearchConfig(max_candidates=2), initial_parameters=candidates)
                 attempts_path = Path(temporary) / "candidate_attempts.csv"
@@ -105,7 +105,7 @@ class TuningCliTests(unittest.TestCase):
                     raise RuntimeError("control solver failed")
                 return real_fit(history, **options)
 
-            with patch.object(sys, "argv", argv), patch.object(run_tuning, "fit_portfolio_growth", side_effect=fail_control), redirect_stdout(io.StringIO()):
+            with patch.object(sys, "argv", argv), patch("portfolio.engine.growth_search_evaluation.fit_portfolio_growth", side_effect=fail_control), redirect_stdout(io.StringIO()):
                 run_tuning.main()
             metadata = json.loads((output / "run_metadata.json").read_text())
             self.assertIn("LASSO_Constrained", metadata["comparison_failures"])

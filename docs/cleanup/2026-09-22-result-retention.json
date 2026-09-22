@@ -1,0 +1,471 @@
+{
+  "latest_and_source_files_unchanged": true,
+  "protected_files": 414,
+  "retained_portfolio_streams": 43,
+  "max_retained_return_reconstruction_error": 4.996003610813204e-16,
+  "removed_result_directories": [
+    "growth_252",
+    "growth_252_incomplete",
+    "parameterized_lasso_252"
+  ],
+  "removed_reports_and_figures": [
+    "docs/experiments/log-growth-252.md",
+    "docs/experiments/log-growth-252.png",
+    "docs/experiments/parameterized-lasso-252.md",
+    "docs/experiments/parameterized-lasso-252.png"
+  ],
+  "trimmed_pure_252_control_files": 20,
+  "moved_three_year_studies": 5,
+  "model_algorithms_changed": false,
+  "new_model_runs": false,
+  "backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz",
+  "archive_sha256": "ce28f9ca11bdbb3e6a8ac1c757129f277b12190046fffdd70d68dc8b0f9d775b",
+  "restoration_note": "Archive contains exact pre-cleanup relative paths. Review the manifest before restoring to avoid overwriting later edits.",
+  "missing_saved_results": [
+    "126-day trained baseline results",
+    "three-year plain Ridge results"
+  ],
+  "retained": {
+    "lasso_windows_5y_20260922": {
+      "record_type": "retained_historical_study_subset",
+      "source_directory": "results/lasso_windows_5y_20260922",
+      "retained_reason": "Three-year forecast/training or risk window",
+      "data_refitted": false,
+      "original_metadata_unchanged": true,
+      "removed_strategy_files": [
+        "LASSO_252d_diagnostics.csv",
+        "LASSO_252d_weights.csv",
+        "LASSO_252d_returns.csv"
+      ],
+      "filtered_summary_rows": {
+        "summary.csv": [
+          "LASSO_252d"
+        ],
+        "validation_summary.csv": [
+          "LASSO_252d"
+        ]
+      },
+      "replacements": {
+        "LASSO_252d": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        }
+      },
+      "historical_audit_scope": "Original full run; removed controls are recoverable from the external backup. Current retained holdings are separately rechecked.",
+      "external_backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz"
+    },
+    "lasso_windows_constrained_5y_20260922": {
+      "record_type": "retained_historical_study_subset",
+      "source_directory": "results/lasso_windows_constrained_5y_20260922",
+      "retained_reason": "Three-year forecast/training or risk window",
+      "data_refitted": false,
+      "original_metadata_unchanged": true,
+      "removed_strategy_files": [
+        "LASSO_252d_Constrained_diagnostics.csv",
+        "LASSO_252d_Constrained_weights.csv",
+        "LASSO_252d_Constrained_returns.csv",
+        "LASSO_252d_diagnostics.csv",
+        "LASSO_252d_weights.csv",
+        "LASSO_252d_returns.csv"
+      ],
+      "filtered_summary_rows": {
+        "summary.csv": [
+          "LASSO_252d",
+          "LASSO_252d_Constrained"
+        ],
+        "validation_summary.csv": [
+          "LASSO_252d",
+          "LASSO_252d_Constrained"
+        ]
+      },
+      "replacements": {
+        "LASSO_252d": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        },
+        "LASSO_252d_Constrained": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO_Constrained",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        }
+      },
+      "historical_audit_scope": "Original full run; removed controls are recoverable from the external backup. Current retained holdings are separately rechecked.",
+      "external_backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz"
+    },
+    "lasso_3y_weight_tuning_20260922": {
+      "record_type": "retained_historical_study_subset",
+      "source_directory": "results/lasso_3y_weight_tuning_20260922",
+      "retained_reason": "Three-year forecast/training or risk window",
+      "data_refitted": false,
+      "original_metadata_unchanged": true,
+      "removed_strategy_files": [
+        "LASSO_252d_Constrained_diagnostics.csv",
+        "LASSO_252d_Constrained_weights.csv",
+        "LASSO_252d_Constrained_returns.csv"
+      ],
+      "filtered_summary_rows": {
+        "summary.csv": [
+          "LASSO_252d_Constrained"
+        ]
+      },
+      "replacements": {
+        "LASSO_252d_Constrained": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO_Constrained",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        }
+      },
+      "historical_audit_scope": "Original full run; removed controls are recoverable from the external backup. Current retained holdings are separately rechecked.",
+      "external_backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz"
+    },
+    "two_stage_lasso_20260922": {
+      "record_type": "retained_historical_study_subset",
+      "source_directory": "results/two_stage_lasso_20260922",
+      "retained_reason": "Three-year forecast/training or risk window",
+      "data_refitted": false,
+      "original_metadata_unchanged": true,
+      "removed_strategy_files": [
+        "Baseline_252d_Constrained_returns.csv",
+        "Baseline_252d_Constrained_weights.csv",
+        "Baseline_252d_returns.csv",
+        "Baseline_252d_weights.csv"
+      ],
+      "filtered_summary_rows": {
+        "baseline_summary.csv": [
+          "Baseline_252d",
+          "Baseline_252d_Constrained"
+        ],
+        "comparison.csv": [
+          "Baseline_252d",
+          "Baseline_252d_Constrained"
+        ]
+      },
+      "replacements": {
+        "Baseline_252d": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        },
+        "Baseline_252d_Constrained": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO_Constrained",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        }
+      },
+      "historical_audit_scope": "Original full run; removed controls are recoverable from the external backup. Current retained holdings are separately rechecked.",
+      "external_backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz"
+    },
+    "direct_lp_20260922": {
+      "record_type": "retained_historical_study_subset",
+      "source_directory": "results/direct_lp_20260922",
+      "retained_reason": "Three-year forecast/training or risk window",
+      "data_refitted": false,
+      "original_metadata_unchanged": true,
+      "removed_strategy_files": [
+        "reference_Baseline_252d_Constrained_returns.csv",
+        "reference_Baseline_252d_Constrained_weights.csv",
+        "reference_Baseline_252d_weights.csv",
+        "reference_Baseline_252d_returns.csv"
+      ],
+      "filtered_summary_rows": {
+        "comparison.csv": [
+          "Baseline_252d",
+          "Baseline_252d_Constrained"
+        ]
+      },
+      "replacements": {
+        "Baseline_252d": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        },
+        "Baseline_252d_Constrained": {
+          "run": "results/unified_252/20260922T122949.119118Z/baselines",
+          "strategy": "LASSO_Constrained",
+          "available_start": "2026-01-02",
+          "available_end": "2026-06-30"
+        }
+      },
+      "historical_audit_scope": "Original full run; removed controls are recoverable from the external backup. Current retained holdings are separately rechecked.",
+      "external_backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz"
+    }
+  },
+  "portfolio_checks": [
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "EW",
+      "days": 123,
+      "max_return_error": 1.2836953722228372e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "LP_LASSO_252d",
+      "days": 123,
+      "max_return_error": 1.0061396160665481e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "LP_LASSO_3y",
+      "days": 123,
+      "max_return_error": 9.80118763926896e-17
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "LP_Mean_252d",
+      "days": 123,
+      "max_return_error": 1.0061396160665481e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "LP_Mean_3y",
+      "days": 123,
+      "max_return_error": 1.0148132334464322e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_Baseline_3y_Constrained",
+      "days": 123,
+      "max_return_error": 1.1145598333150986e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_Baseline_3y",
+      "days": 123,
+      "max_return_error": 1.1535911115245767e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_LASSO_252d_ReturnVolatility",
+      "days": 123,
+      "max_return_error": 1.0018028073766061e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_LASSO_252d_Sharpe",
+      "days": 123,
+      "max_return_error": 1.0039712117215771e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_LASSO_252d_U",
+      "days": 123,
+      "max_return_error": 1.0137290312739466e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_LASSO_3y_ReturnVolatility",
+      "days": 123,
+      "max_return_error": 9.963817965141786e-17
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_LASSO_3y_Sharpe",
+      "days": 123,
+      "max_return_error": 9.8879238130678e-17
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_lp_20260922",
+      "strategy": "reference_LASSO_3y_U",
+      "days": 123,
+      "max_return_error": 1.0408340855860843e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Baseline_3y_Constrained",
+      "days": 123,
+      "max_return_error": 1.1145598333150986e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Baseline_3y",
+      "days": 123,
+      "max_return_error": 1.1535911115245767e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_252d_E",
+      "days": 479,
+      "max_return_error": 4.996003610813204e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_252d_ReturnVolatility",
+      "days": 479,
+      "max_return_error": 1.0408340855860843e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_252d_Sharpe",
+      "days": 479,
+      "max_return_error": 1.0451708942760263e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_252d_U",
+      "days": 479,
+      "max_return_error": 1.0408340855860843e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_252d_V",
+      "days": 479,
+      "max_return_error": 1.1102230246251565e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_3y_E",
+      "days": 479,
+      "max_return_error": 4.996003610813204e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_3y_ReturnVolatility",
+      "days": 479,
+      "max_return_error": 1.0755285551056204e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_3y_Sharpe",
+      "days": 479,
+      "max_return_error": 1.0408340855860843e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_3y_U",
+      "days": 479,
+      "max_return_error": 1.0755285551056204e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "LASSO_3y_V",
+      "days": 479,
+      "max_return_error": 1.1102230246251565e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_252d_E",
+      "days": 479,
+      "max_return_error": 4.996003610813204e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_252d_ReturnVolatility",
+      "days": 479,
+      "max_return_error": 1.0928757898653885e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_252d_Sharpe",
+      "days": 479,
+      "max_return_error": 1.0234868508263162e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_252d_U",
+      "days": 479,
+      "max_return_error": 1.0408340855860843e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_252d_V",
+      "days": 479,
+      "max_return_error": 1.1102230246251565e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_3y_E",
+      "days": 479,
+      "max_return_error": 4.996003610813204e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_3y_ReturnVolatility",
+      "days": 479,
+      "max_return_error": 1.0581813203458523e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_3y_Sharpe",
+      "days": 479,
+      "max_return_error": 1.0928757898653885e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_3y_U",
+      "days": 479,
+      "max_return_error": 1.0061396160665481e-16
+    },
+    {
+      "directory": "results/window_studies_3y/forecast_mixture_20260922",
+      "strategy": "Mean_3y_V",
+      "days": 479,
+      "max_return_error": 1.1102230246251565e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_constraints_20260922",
+      "strategy": "LASSO_3y_Constrained",
+      "days": 479,
+      "max_return_error": 1.1145598333150986e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_constraints_20260922",
+      "strategy": "LASSO_3y",
+      "days": 479,
+      "max_return_error": 2.636779683484747e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_recency_20260922",
+      "strategy": "LASSO_3y_Constrained",
+      "days": 123,
+      "max_return_error": 1.1145598333150986e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_recency_20260922",
+      "strategy": "LASSO_3y_HL126_Constrained",
+      "days": 123,
+      "max_return_error": 1.2847795743953228e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_recency_20260922",
+      "strategy": "LASSO_3y_HL252_Constrained",
+      "days": 123,
+      "max_return_error": 9.71445146547012e-17
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_recency_20260922",
+      "strategy": "LASSO_3y_HL504_Constrained",
+      "days": 123,
+      "max_return_error": 1.0603497246908233e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_windows_20260922",
+      "strategy": "LASSO_3y_weighted",
+      "days": 479,
+      "max_return_error": 3.2612801348363973e-16
+    },
+    {
+      "directory": "results/window_studies_3y/lasso_windows_20260922",
+      "strategy": "LASSO_3y",
+      "days": 479,
+      "max_return_error": 2.636779683484747e-16
+    }
+  ],
+  "retained_historical_reports": {
+    "turnover-252.md": "e46b3d009bae4fa461c4ee9d5c827b499715cf421223aa7a8de374b25d559af4",
+    "turnover-252.png": "9c18797187aec62ed8f71de25efc4ae3a3d7c82fe8745f30004483b34a9011b4",
+    "smoothness-252.md": "335dedb3c1d24c17908376563b7a7fe2affbc5172d3f9fd71fe2b699c66736ba",
+    "smoothness-252.png": "105d99e44d2f362f99bf321e2c88ea19b51e580349067bdb818b66c5af75b5d1",
+    "shrinkage-252.md": "b75c410bd2062a15e941478e0f116d0fe21d218e97f3925d5c22be1dbc537a2e",
+    "shrinkage-252.png": "0397c7d25273942e5c59ce2a5fcbf82cb9d4427f397897be619d8936e264be64"
+  },
+  "retention_amendment": "User explicitly requested retaining turnover, smoothness and shrinkage reports. Reports and figures are preserved byte-identically; no implementations were added."
+}

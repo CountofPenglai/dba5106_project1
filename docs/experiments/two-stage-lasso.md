@@ -1,5 +1,8 @@
 # 两阶段 LASSO 预测与线性组合决策实验
 
+> 保留的三年窗口研究记录。清理后仅保留涉及三年训练、预测或风险窗口的研究产物；重复的纯 252 天回归对照已从结果目录和汇总表移除。正文与原图中的对照数值保留为当时的研究背景，当前 252 天结果请以[最新统一报告](unified-252-2026-09-22.md)为准。原始元数据/冻结配置未改写；历史审计记录描述清理前的完整实验，保留子集另有清理核验。
+
+
 实验日期：2026-09-22。目标是把下一日收益预测与组合决策分开训练，在保持模型可解释性的同时，比较直接优化 Sharpe 和优化收益减波动两种决策目标。
 本次使用原验证期进行开发比较和 gamma 选择，不能视为独立测试成绩。现有 CSV 截至 2026-07-31，尚无保留的八月测试数据。
 
@@ -158,7 +161,7 @@ gamma 为 0、0.025、0.05、0.1 时，三年模型的权重和成绩几乎相�
 
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_two_stage.py \
-  --output results/two_stage_lasso_20260922
+  --output results/window_studies_3y/forecast_mixture_20260922
 ```
 
 输出目录必须为空或不存在。保存的内容包括预测、CV 分数、候选和最终持仓、逐日收益、求解诊断、每个 gamma 的训练系数与验证成绩、比较表、环境版本、数据/代码哈希以及 `frozen_decisions.json`。
@@ -169,7 +172,7 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_two_stage.py \
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_two_stage.py \
   --csv 100_Portfolios_10x10_Daily.csv \
-  --frozen results/two_stage_lasso_20260922/frozen_decisions.json \
+  --frozen results/window_studies_3y/forecast_mixture_20260922/frozen_decisions.json \
   --output results/two_stage_lasso_final_test
 ```
 
