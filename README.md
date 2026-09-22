@@ -28,7 +28,8 @@ CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定�
 | 模块 | 主要接口 | 职责 |
 |---|---|---|
 | `data.py` | `load_returns`、`preprocess_returns` | 按表名读取、清洗、转换单位 |
-| `splits.py` | `split_returns`、`rolling_windows` | 按时间分割与逐日滚动 |
+| `splits.py` | `TrainingWindow`、`split_returns`、`rolling_windows` | 交易观察值/日历年窗口与逐日滚动 |
+| `config.py` | `TrainingConfig`、`TRAINING_PRESETS` | 可复用的训练窗口与样本权重设置 |
 | `model.py` | `RegressionProblem`、`fit_linear`、`LinearModel` | X/y 构造、固定线性结构、系数到权重映射 |
 | `losses.py` | `weighted_mse`、`LogGrowthLoss` | 定义平方损失、方差与对数收益奖励，报告分项 |
 | `regularization.py` | `Regularization` | 无正则、LASSO、Ridge |
@@ -94,6 +95,106 @@ print("Test data available:", not parts.test.empty)
 `rolling_windows` 的起止日期应落在已有数据覆盖范围内；对超出末日的区间会报错，避免静默缩短评价期间。最终测试数据齐备并冻结方案后，才使用测试集的实际首末交易日回测。
 
 现有 CV 策略在每个滚动窗口内使用 5 折和 `np.logspace(-8, 8, 21)`；当前 LassoCV 评分为 MSE，RidgeCV 的 `cv=5, scoring=None` 默认评分为 R²。本次增长实验保留原有评分方式，以保证现有九个策略的比较口径不变。课程要求的 MSE 选参口径需要作为单独变更对齐，不能把当前两者都描述为 MSE。
+
+### 可配置训练窗口与五年历史 LASSO 比较
+
+`run_lasso_windows.py` 只比较固定强度 `1e-5` 的 LASSO。历史数据限定为
+2021-08-01 至 2026-07-31，默认在前三年预热后评价 2024-08-01 至 2026-06-30；
+另外单独输出原 2026-01-02 至 2026-06-30 验证区间的成绩。
+最终 2026-08-01 至 2026-08-30 测试区间保持不变，不由此入口评价。
+
+```bash
+# 默认：252 天 baseline、三年等权、三年近期加权
+python run_lasso_windows.py --output results/lasso_windows_5y
+
+# 只需改 --presets，就能选择训练配置；126 天依然可用
+python run_lasso_windows.py --presets 126d 252d 3y_weighted --output results/lasso_windows_alternative
+
+# 只复现原来的半年验证区间
+python run_lasso_windows.py --start 2026-01-02 --end 2026-06-30 --output results/lasso_windows_validation
+```
+
+| 预设 | 每次训练窗口 | 样本权重 |
+|---|---|---|
+| `126d` | 此前 126 个交易观察值 | 等权 |
+| `252d` | 此前 252 个交易观察值 | 等权 |
+| `3y` | 此前三个日历年 | 等权 |
+| `3y_weighted` | 此前三个日历年 | 指数加权，半衰期 252 个交易观察值 |
+
+`TrainingWindow` 只负责窗口边界，`TrainingConfig` 组合窗口与样本权重；模型和回测仍使用原函数。
+按年窗口包含三年前对应日期、排除预测当天，实际交易日数可变；不足三年时允许较短历史，
+但三年预设至少需要 252 个观察值。默认评价起点已预留完整三年历史。
+这项最小样本数是防止意外短窗口的运行保护，不是额外选参。
+
+```python
+from portfolio import TRAINING_PRESETS, Regularization, backtest, fit_portfolio
+
+config = TRAINING_PRESETS["3y_weighted"]  # 改这一行即可切换窗口及权重配置
+
+def strategy(history):
+    return fit_portfolio(
+        history,
+        regularization=Regularization("lasso", 1e-5),
+        sample_weights=config.sample_weights,
+    ).weights
+
+result = backtest(returns, strategy, start="2026-01-02", end="2026-06-30", window=config.window)
+```
+
+自定义时可使用 `TrainingConfig(TrainingWindow(years=2, min_observations=252), half_life=252)`；
+窗口以日历年为单位，半衰期以交易观察值为单位，二者不混用。
+旧的 `backtest(..., window=126/252)`、底层默认 126 天、`run_example.py` 默认 252 天及
+`run_tuning.py` 均保留。原有 CV 方法也不受影响；默认固定 LASSO 比较不引入 CV、收益奖励、
+总敞口限制或事后 EW 混合。
+
+输出包括每日收益、持仓、训练日期/样本数/有效样本数/目标值，以及数据和代码哈希。
+`summary.csv` 对应完整请求区间；仅当完整覆盖原半年验证期时，才另外生成
+`validation_summary.csv`。指标直接使用逐日真实组合收益，评价阶段不采用训练样本权重。
+已有结果目录不允许覆盖；拟合不收敛会中止运行，不静默接受近似结果。
+
+实验设计、完整结果与解释见 [五年历史 LASSO 窗口实验](docs/experiments/lasso-windows-5y.md)。
+
+使用 `--constrained` 可为每个所选窗口增加原有硬约束版本，并保留同窗口无约束对照：
+
+```bash
+python run_lasso_windows.py --presets 252d 3y --constrained --output results/lasso_windows_constrained
+```
+
+约束为总敞口 `sum(abs(w)) <= 1.5`、训练波动不超过同窗口/同样本权重的 EW、
+所有训练场景财富倍数 `1 + R @ w >= 1e-6`。模型仍固定 LASSO `1e-5`，
+显式设置 `reward_strength=0` 和 `exposure_strength=0`，不进行参数搜索。
+直接复用 `fit_portfolio_growth` 和原求解器的可行性检查；`_Constrained` 结果额外导出
+求解器状态、约束实际值和目标分项，各策略的具体限额记录在元数据中。
+三年等权加约束的实验结果见 [三年 LASSO 与原有约束](docs/experiments/lasso-windows-3y-constrained.md)。
+
+
+
+### 三年加权约束 LASSO：验证集选择半衰期
+
+`run_weight_tuning.py` 固定三年日历窗口、LASSO `1e-5` 和原硬约束，只调整指数样本权重的半衰期。
+默认预先指定 `126 / 252 / 504` 个交易观察值三档，在原 2026-01-02 至 2026-06-30 验证期逐日拟合，
+全部候选完成相同日期后选择累计收益最高的一档；收益精确相同时优先较长半衰期。
+252 天等权约束版和三年等权约束版作为对照，不参与半衰期选择。
+
+```bash
+python run_weight_tuning.py --output results/lasso_3y_weight_tuning
+# 修改候选配置即可，无须修改拟合或回测流程
+python run_weight_tuning.py --half-lives 126 252 504 --output results/lasso_3y_weight_tuning_alternative
+```
+
+继续复用 `TrainingConfig`、现有拟合/回测函数，以及 `run_lasso_windows.py` 的策略适配和指标导出辅助函数。
+训练方差和 EW 风险限额使用同一组归一化样本权重；验证收益按真实日收益计算，不使用近期加权。
+收益奖励、额外敞口惩罚、EW 混合均关闭，LASSO 强度和约束上限不参与搜索。
+候选网格固定，不在看到成绩后扩展搜索；每个候选使用完整验证期，没有逐日挑选当日赢家。
+
+输出 `summary.csv`、每个候选/对照的逐日收益、持仓与约束诊断，以及 `run_metadata.json`。
+`selection.json` 包含选中的半衰期、可复用训练设置和模型约束。
+旧 `3y_weighted` 预设仍保留半衰期 252，不会被此次选择自动覆盖。
+命令只允许原验证区间内的日期，七月和最终八月测试都不进入选择；任一拟合失败会中止，不输出完成的选择结果。
+
+**选中配置在该验证期的成绩具有选择偏差，不能当作独立测试表现。**
+最终八月测试仍需在冻结参数并获得完整数据后评价。
+详见 [三年加权约束 LASSO 的权重选择实验](docs/experiments/lasso-3y-weight-tuning.md)。
 
 ### 固定 LASSO 的对数收益奖励实验
 
@@ -199,3 +300,64 @@ python run_tuning.py --output results/parameterized_lasso_252
 
 - [固定 LASSO 的对数收益奖励实验（252 天窗口）](docs/experiments/log-growth-252.md)：完整 11 策略比较、约束对照、累计收益与总敞口图。
 - [带参数的 LASSO、约束与收益奖励（252 天窗口）](docs/experiments/parameterized-lasso-252.md)：有限验证搜索、停止原因、单项消融和与原方法的比较。
+
+## Two-stage LASSO forecasting and fixed portfolio mixtures
+
+`run_two_stage.py` adds a separate forecasting experiment. The existing minimum-variance regression and its 126-day, 252-day, and three-year runners keep their behavior.
+
+The new forecasters use six lagged return/risk features and predict each asset's next daily return. Each forecast window (252 complete trading samples or at most three calendar years) selects one shared LASSO alpha using three chronological 21-day folds ending in July 2024. Alpha then stays fixed while forecast coefficients are refitted daily. Both variants use equally weighted training observations.
+
+A common three-year Ledoit–Wolf risk estimate produces three daily candidate portfolios: maximum predicted return, minimum estimated variance, and equal weight. Each candidate satisfies full investment, gross leverage <= 1.5, estimated volatility <= EW, and the historical wealth floor. The second stage learns a nonnegative mixture of these candidates, either maximizing historical Sharpe or maximizing mean return minus gamma times **standard deviation**. It trains on actual returns from candidates constructed out of sample; it does not train on fitted predictions from the same observations.
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_two_stage.py \
+  --output results/two_stage_lasso
+```
+
+The output directory must be new or empty. The default run uses decision training from August 2024 through December 2025 and development validation from January through June 2026. Mixture weights remain fixed throughout validation. Only gamma is selected from five predeclared candidates using validation cumulative return; all candidate fits are retained. The run includes historical-mean forecast controls, the individual candidate portfolios, and the existing 252-day/three-year LASSO baselines with and without constraints.
+
+Outputs include `comparison.csv`, `validation_summary.csv`, `prediction_validation.csv`, `decision_fits.csv`, `gamma_validation.csv`, per-strategy weights/returns/diagnostics, prediction CV scores, data/code provenance, and `frozen_decisions.json`. Saved decision-training returns describe in-sample mixture performance; validation has been used for development and is not an untouched final test. Results exclude transaction costs and use daily Sharpe with risk-free rate zero. Turnover diagnostics account for drifted holdings.
+
+The default run excludes August even when the source file contains it. Once the complete reserved August data are available, evaluate a saved model explicitly without recalibrating alpha or refitting/reselecting decision parameters:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_two_stage.py \
+  --csv 100_Portfolios_10x10_Daily.csv \
+  --frozen results/two_stage_lasso/frozen_decisions.json \
+  --output results/two_stage_lasso_final_test
+```
+
+This path checks the frozen development-data fingerprint and all 20 reserved trading dates (August 3–28, 2026). Missing or changed history fails explicitly. See [the two-stage design](docs/superpowers/specs/2026-09-22-two-stage-lasso-decision-design.md) for the model and time boundaries.
+
+The [September 22 experiment report](docs/experiments/two-stage-lasso.md) records the full comparison and independent audit. The selected three-year model gains little cumulative return over the old constrained 252-day LASSO while taking substantially more realized risk; the experiment does not establish an overall improvement.
+
+## Direct asset allocation with linear programming
+
+`run_direct_lp.py` uses the same causal 252-day and three-year LASSO forecasters, then directly solves all 98 daily asset weights with SciPy HiGHS. The decision stage has no trained mixture coefficients, regression, or epochs. Earlier runners remain available.
+
+The LP maximizes predicted next-day return. Its fixed defaults require full investment, gross leverage at most 1.5, each absolute position at most 5%, historical daily wealth at least `1e-6`, and two historical risk limits relative to EW in the same three-year window:
+
+- **MAD:** mean absolute deviation of portfolio daily returns around their historical mean.
+- **Uncompounded absolute drawdown:** the largest decline in the cumulative **sum** of historical simple returns, including the initial zero cumulative return.
+
+These are linear-programming risk measures. They are **not** standard deviation, a Sharpe constraint, or the compounded relative drawdown used to report performance. The runner separately evaluates actual daily Sharpe/volatility, compounded return, relative max drawdown, exposure and turnover. A historical risk constraint does not guarantee future realized risk. The secondary LP chooses holdings nearest to EW in L1 distance while preserving primary predicted return to a daily tolerance of `1e-10`; this does not train an EW mixture.
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_direct_lp.py \
+  --reference results/two_stage_lasso_20260922 \
+  --output results/direct_lp_20260922
+```
+
+`--reference` is optional. When supplied, old forecasts/mixtures/direct-U/legacy baselines are compared only after checking data, dates, forecast settings, relevant code hashes, and reconstructing returns from saved weights. The default experiment has fixed risk settings and does not tune them on validation. Both historical-mean forecast controls and EW are evaluated. Alpha calibration remains before August 2024. The default run solves portfolios only for the January–June 2026 validation period (123 trading days); earlier history is still used for rolling LASSO training and risk constraints. Because the LP has no trained decision coefficients, it does not need a development-period portfolio backtest. Add `--include-development` only when that extra historical comparison is wanted.
+
+To change LP limits explicitly, use `--position-limit`, `--mad-ratio`, and `--drawdown-ratio`, or pass `LPConstraints` through the API. Such changes are new experiments; infeasibility raises an error instead of substituting another portfolio. The output directory must be new or empty. Outputs include per-strategy forecasts, weights, returns, feasibility/turnover diagnostics, period summaries, provenance and frozen settings.
+
+The reserved test requires all 20 August 3–28 trading dates and the unchanged development history, frozen source code and numerical dependency versions:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python run_direct_lp.py \
+  --frozen results/direct_lp_20260922/frozen_decisions.json \
+  --output results/direct_lp_final_test
+```
+
+The frozen path refits daily forecast coefficients with the saved alpha and solves new asset holdings, but does not reselect alpha or risk limits. See the [direct-LP report](docs/experiments/direct-lp.md) for definitions, validation results and limitations.
