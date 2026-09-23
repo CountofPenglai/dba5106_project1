@@ -44,7 +44,7 @@ CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定�
 记录各文件的位置。使用 `--output` 指定运行根目录、`--layout flat` 切换为平铺格式。
 路径规则、读取示例与历史结果说明见 [输出目录说明](docs/output-layout.md)。
 
-原来的 `run_*.py` 和探索脚本保留为兼容入口，默认仍使用平铺格式；下文的旧命令仍然可用。
+原来的 `run_*.py` 和探索脚本保留为兼容入口；四个新增敏感性实验入口默认使用分类目录，其余旧命令仍然可用。
 旧模块导入同样保留，但新增代码应使用上表中的规范位置。
 
 ### 一次训练
@@ -306,9 +306,12 @@ python run_tuning.py --output results/parameterized_lasso_252
 
 ## 实验记录
 
-- [最新统一 252 天结果](docs/experiments/unified-252-2026-09-22.md)：八类实验、65 条配置与对照，包含约束、收益奖励、敞口惩罚及全部其他探索方向。
+- [最终模型汇总（英文）](docs/experiments/final-model-summary.md)：汇总两轮统一验证结果、代表配置与 2026 年 7 月最终测试。
+- [2026 年 7 月最终测试（英文）](docs/experiments/final-test-july-2026.md)：预先选定六个配置，22 个交易日的一次性留出结果与核验。
+- [统一 252 天原始结果](docs/experiments/unified-252-2026-09-22.md)：原八类实验、65 条配置与对照。
+- [四项新增敏感性实验与扩展榜单](docs/experiments/unified-252-sensitivity-2026-09-23.md)：同一验证设置下，换手率、网格平滑、协方差收缩和持仓集中度；合并后共 71 条。
 - [结果保留清单](docs/results-retention.md)：唯一活动 252 天结果、三年研究例外、缺失的历史窗口结果和清理记录。
-- 保留的历史报告（当前缺少可运行实现）：[Turnover](turnover-252.md)、[Grid smoothness](smoothness-252.md)、[Covariance shrinkage](shrinkage-252.md)。它们及配图均保留，但不混入最新重跑成绩。
+- 历史报告原样保留：[Turnover](turnover-252.md)、[Grid smoothness](smoothness-252.md)、[Covariance shrinkage](shrinkage-252.md)；相应方法现在由共享敏感性实验流程重新运行，最新结果见上方扩展报告。
 - [三年窗口与近期加权](docs/experiments/lasso-windows-5y.md)、[三年约束 LASSO](docs/experiments/lasso-windows-3y-constrained.md)、[三年权重选择](docs/experiments/lasso-3y-weight-tuning.md)：保留的三年研究。
 
 最新对比将拟合、预测、风险估计和混合决策训练统一为 252 个交易观测。下文二阶段 CLI 的历史默认值仍使用三年风险窗口，用于保留三年研究方向；这些结果与全 252 天结果分开保存。126 天及三年训练设置继续可用。

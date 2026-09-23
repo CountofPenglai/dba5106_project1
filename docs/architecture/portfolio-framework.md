@@ -14,7 +14,7 @@ Constrained objectives are visible in `portfolio/models/constrained_regularized_
 | Directory | Responsibility | Main files |
 |---|---|---|
 | `portfolio/data` | Read raw returns, remove excluded assets, preserve missing values, select history, weight observations | `returns_loader.py`, `preprocessing.py`, `history_windows.py`, `observation_weights.py` |
-| `portfolio/models` | Regression, forecasting and exploratory mathematical formulations | `min_variance_regression.py`, `constrained_regularized_portfolio.py`, `lasso_return_forecast.py`, `elastic_net_portfolio.py`, `pca_regularized_portfolio.py`, `market_beta_portfolio.py` |
+| `portfolio/models` | Regression, forecasting and exploratory mathematical formulations | `min_variance_regression.py`, `constrained_regularized_portfolio.py`, `lasso_return_forecast.py`, `elastic_net_portfolio.py`, `pca_regularized_portfolio.py`, `market_beta_portfolio.py`, `portfolio_variants.py` |
 | `portfolio/decisions` | Turn forecasts into holdings, or adjust existing holdings | `candidate_portfolios.py`, `portfolio_mixture.py`, `linear_program_allocation.py`, `holding_weights.py` |
 | `portfolio/engine` | Assemble fitting, iterate causally, search parameters, run decision workflows and solvers | `portfolio_fit.py`, `rolling_backtest.py`, `parameter_search.py`, `growth_search_evaluation.py`, `lasso_window_strategy.py`, `forecast_mixture_workflow.py`, `forecast_lp_workflow.py`, `convex_solver.py` |
 | `portfolio/evaluation` | Metrics, result records, artifacts and reproducibility checks | `portfolio_metrics.py`, `experiment_result.py`, `artifact_store.py`, `result_export.py`, `provenance.py`, `reference_comparison.py` |
@@ -39,16 +39,17 @@ Run canonical recipes as `python -m experiments.<name>`. The old entrypoints rem
 | LASSO/Ridge with historical market-beta bounds | `market_beta_constraints` | `market_beta_cvxpy_test.py` |
 | Causal LASSO/mean forecasts, max-return/min-variance/EW candidates, learned Sharpe or return-volatility mixtures | `lasso_forecast_mixture` | `run_two_stage.py` |
 | Causal LASSO/mean forecasts, direct asset LP with MAD/drawdown/holding limits and secondary EW tie-break | `lasso_forecast_lp` | `run_direct_lp.py` |
+| Turnover, Size-BM smoothness, Ledoit-Wolf shrinkage and concentration-cap sensitivity | `portfolio_sensitivity` | `run_turnover.py`, `run_smoothness.py`, `run_shrinkage.py`, `run_concentration.py` |
 | Raw sentinel audit by column and period | `python -m tools.audit_missing_values` | `audit_missing_values.py` |
 | Original teaching demonstration (historical CSV path/row offsets/units retained) | `examples/original_assignment.py` | `5106_assignement_01.py` |
 
-The last example is original course material, not an active experiment. Standalone turnover, grid-smoothness and covariance-shrinkage reports/images are retained at the user’s request. Their runners are currently absent, so they remain historical reports rather than runnable experiment entries. Ledoit-Wolf risk estimation within the two-stage pipeline remains implemented. All runnable method implementations, compatibility entrypoints and 126-day/three-year presets remain available. See [the retained-result inventory](../results-retention.md).
+The last example is original course material, not an active experiment. Standalone turnover, grid-smoothness and covariance-shrinkage reports/images are retained as historical records. Their new runners share the portfolio-variant model and sensitivity workflow; concentration capping uses the same path. Ledoit-Wolf risk estimation within the two-stage pipeline remains implemented. All runnable method implementations, compatibility entrypoints and 126-day/three-year presets remain available. See [the retained-result inventory](../results-retention.md).
 
 ## Conventions deliberately retained
 
 - Baseline fixed penalties keep project strength-to-sklearn scaling. Legacy 5-fold LassoCV uses MSE and RidgeCV uses its existing R-squared default. The forecasting model uses its separate late chronological 3-by-21 CV design.
 - PCA's historical Ridge alpha convention is retained, even though it differs from the general regression adapter.
-- The three standalone explorations historically dropped incomplete rows. Their adapters still call the shared loader followed by `.dropna()`; the core framework still preserves missing values and rejects incomplete training windows.
+- The four sensitivity runners use the shared loader and reject incomplete training or validation windows; no rows are silently dropped.
 - Market-beta results still accept `OPTIMAL_INACCURATE` under the historical policy. Expected CVXPY `SolverError` falls back to SCS; unrelated programming errors are no longer suppressed.
 - LP remains direct optimization, without decision-model training, and defaults to validation only. Learned mixtures keep their separate decision-training period. Risk definitions, original test boundaries and frozen-mode checks remain intact.
 
