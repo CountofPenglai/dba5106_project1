@@ -26,6 +26,22 @@ results/lasso_forecast_lp/20260922T120000.123456Z/
 
 Only categories actually written by a run are created. This refactor does not add automatic charts or console-log capture. Search candidate files remain grouped by phase under `search/screen/` and `search/validation/`. CSV filenames and their numerical columns remain unchanged. `market_beta_results.csv` is a metrics artifact.
 
+`lasso_forecast_lp_risk` writes a separate run under `results/lasso_forecast_lp_risk/`:
+`search/gamma_search.csv` contains the training-period candidates;
+`metrics/validation_summary.csv` contains only the frozen choice and controls.
+Files prefixed `tuning_` describe training-period candidate paths. Other strategy
+weights/returns describe January–June validation. Return files include gross return,
+cost and net `return`; both gross and net metrics are exported. Historical unified
+252-day results and July final-test results are not overwritten.
+
+`lasso_forecast_lp_stability` follows the same layout in its own run family.
+`search/ew_penalty_search.csv` records the predeclared training guardrails and
+fallback choice. `metrics/training_block_summary.csv` and
+`metrics/validation_block_summary.csv` retain the contiguous-period comparisons;
+`metrics/fee_stress_summary.csv` and `metrics/prediction_stress_summary.csv` describe
+diagnostic sensitivity checks, not additional parameter selection. Full prediction
+perturbation records are saved under `diagnostics/`.
+
 The root manifest records layout version and maps each logical filename to its stored relative path. Failed runs may leave diagnostic files but do not receive a completed manifest. Keep metadata and frozen decisions together with the result directory.
 
 Read files without depending on their physical placement:

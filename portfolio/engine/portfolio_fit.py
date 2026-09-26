@@ -9,7 +9,8 @@ from portfolio.models.min_variance_regression import LinearModel, RegressionProb
 from portfolio.regularization import Regularization
 from portfolio.data.observation_weights import uniform
 from portfolio.decisions.holding_weights import validate_portfolio_weights
-from portfolio.constraints import PortfolioConstraints
+from portfolio.constraints import CoefficientConstraint, PortfolioConstraints
+from portfolio.models.coefficient_constrained_regression import fit_coefficient_constrained
 from portfolio.losses import LogGrowthLoss
 from portfolio.models.constrained_regularized_portfolio import fit_growth
 
@@ -91,3 +92,14 @@ def fit_portfolio_growth(history, *, regularization=Regularization("lasso", 1e-5
                      training_loss=diagnostics["loss"],
                      objective=diagnostics["loss"] + diagnostics["penalty"],
                      diagnostics=diagnostics)
+
+
+def fit_portfolio_coefficient_constrained(history, *, constraint: CoefficientConstraint,
+                                          sample_weights=uniform):
+    """Fit minimum variance with an explicit coefficient budget, no penalty."""
+    problem, observation_weights = _prepare_history(history, sample_weights)
+    model, diagnostics = fit_coefficient_constrained(
+        problem.X, problem.y, constraint=constraint, sample_weight=observation_weights)
+    result = _fit_result(history, problem, model, observation_weights)
+    result.diagnostics = diagnostics
+    return result

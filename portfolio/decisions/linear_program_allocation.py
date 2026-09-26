@@ -69,6 +69,22 @@ class LPConstraints:
 
 
 @dataclass(frozen=True)
+class LPObjective:
+    """Daily return less MAD, trading-cost and distance-from-EW penalties."""
+
+    mad_penalty: float = 0.0
+    transaction_cost: float = 0.0
+    ew_penalty: float = 0.0
+
+    def __post_init__(self):
+        for name in ('mad_penalty', 'transaction_cost', 'ew_penalty'):
+            value = _finite_number(getattr(self, name), name)
+            if value < 0:
+                raise ValueError(f'{name} must be nonnegative')
+            object.__setattr__(self, name, value)
+
+
+@dataclass(frozen=True)
 class LPContext:
     history: np.ndarray
     equal_weights: np.ndarray
@@ -122,6 +138,11 @@ def _history_values(history):
     return values, assets
 
 
+def _mad_scale(centered, mad_limit):
+    scale = float(np.max(np.abs(centered)))
+    return float(np.sqrt(mad_limit * scale)) if mad_limit > 0 and scale > 0 else max(scale, 1.0)
+
+
 def _primary_problem(history, centered, cumulative, constraints, mad_limit, drawdown_limit):
     dates, assets = history.shape
     eye_assets = sparse.eye(assets, format="csr")
@@ -147,11 +168,7 @@ def _primary_problem(history, centered, cumulative, constraints, mad_limit, draw
     )
     rhs.append(np.array([constraints.leverage_limit]))
 
-    centered_scale = float(np.max(np.abs(centered)))
-    if mad_limit > 0.0 and centered_scale > 0.0:
-        mad_variable_scale = float(np.sqrt(mad_limit * centered_scale))
-    else:
-        mad_variable_scale = max(centered_scale, 1.0)
+    mad_variable_scale = _mad_scale(centered, mad_limit)
     centered_matrix = sparse.csr_matrix(centered / mad_variable_scale)
     rows.extend(
         [
@@ -381,40 +398,83 @@ def _verified_weights(context, result, stage):
     return weights, actual
 
 
-def solve_linear_portfolio(context, expected_returns):
-    """Maximize predicted return, then choose the closest optimum to EW in L1."""
+def solve_linear_portfolio(context, expected_returns, *, objective=LPObjective(),
+                           previous_weights=None):
+    """Maximize return less MAD/cost/EW penalties; break utility ties toward EW.
+
+    Cost is a one-way rate times sum(abs(target - pretrade weights)). The
+    caller supplies drifted pretrade holdings; no turnover budget is imposed.
+    Zero penalties retain the original return-only LP.
+    """
     if not isinstance(context, LPContext):
         raise TypeError("context must be an LPContext")
     expected = np.asarray(expected_returns, dtype=float)
     asset_count = context.history.shape[1]
     if expected.shape != (asset_count,) or not np.isfinite(expected).all():
         raise ValueError(f"Expected returns must be finite with shape {(asset_count,)}")
+    if not isinstance(objective, LPObjective):
+        raise TypeError('objective must be an LPObjective')
+    if previous_weights is None and objective.transaction_cost > 0:
+        raise ValueError('previous_weights are required for transaction costs')
+    previous = (context.equal_weights if previous_weights is None
+                else _weight_values(context, previous_weights))
+    if abs(previous.sum() - 1) > 1e-8:
+        raise ValueError('previous_weights must sum to one')
     variable_count = context._a_ub.shape[1]
-    objective = np.zeros(variable_count)
-    objective[:asset_count] = -expected
+    cost_vector = np.zeros(variable_count)
+    cost_vector[:asset_count] = -expected
+    dates = len(context.history)
+    cost_vector[2*asset_count:2*asset_count+dates] = (
+        objective.mad_penalty * _mad_scale(context._centered, context.mad_limit) / dates)
+    a_ub, b_ub, a_eq, bounds = context._a_ub, context._b_ub, context._a_eq, context._bounds
+    for rate, center in ((objective.transaction_cost, previous),
+                         (objective.ew_penalty, context.equal_weights)):
+        if rate == 0:
+            continue
+        # Auxiliary q >= abs(w - center), shared by trading and EW penalties.
+        identity = sparse.eye(asset_count, format='csr')
+        padding = sparse.csr_matrix((asset_count, variable_count - asset_count))
+        a_ub = sparse.vstack([
+            sparse.hstack([a_ub, sparse.csr_matrix((a_ub.shape[0], asset_count))]),
+            sparse.hstack([identity, padding, -identity]),
+            sparse.hstack([-identity, padding, -identity]),
+        ], format='csr')
+        b_ub = np.r_[b_ub, center, -center]
+        a_eq = sparse.hstack([a_eq, sparse.csr_matrix((a_eq.shape[0], asset_count))], format='csr')
+        bounds = (*bounds, *((0.0, None),) * asset_count)
+        cost_vector = np.r_[cost_vector, np.full(asset_count, rate)]
+        variable_count += asset_count
+
+    def utility(weights, actual):
+        cost = objective.transaction_cost * float(np.abs(weights - previous).sum())
+        ew_cost = objective.ew_penalty * float(np.abs(weights-context.equal_weights).sum())
+        return float(expected @ weights - objective.mad_penalty * actual['mad'] - cost - ew_cost), cost
+
     primary = _solve(
-        objective,
-        a_ub=context._a_ub,
-        b_ub=context._b_ub,
-        a_eq=context._a_eq,
+        cost_vector,
+        a_ub=a_ub,
+        b_ub=b_ub,
+        a_eq=a_eq,
         b_eq=context._b_eq,
-        bounds=context._bounds,
+        bounds=bounds,
         stage="primary",
     )
-    primary_weights, _ = _verified_weights(context, primary, "primary")
+    primary_weights, primary_actual = _verified_weights(context, primary, "primary")
     primary_return = float(expected @ primary_weights)
+    primary_utility, _ = utility(primary_weights, primary_actual)
+    if abs(primary_utility + primary.fun) > 5e-10:
+        raise LinearPortfolioError('primary LP utility failed independent verification')
 
     secondary_a = sparse.hstack(
         [
-            context._a_ub,
-            sparse.csr_matrix((context._a_ub.shape[0], asset_count)),
+            a_ub,
+            sparse.csr_matrix((a_ub.shape[0], asset_count)),
         ],
         format="csr",
     )
     return_row = sparse.hstack(
         [
-            sparse.csr_matrix(-expected.reshape(1, -1)),
-            sparse.csr_matrix((1, variable_count - asset_count)),
+            sparse.csr_matrix(cost_vector.reshape(1, -1)),
             sparse.csr_matrix((1, asset_count)),
         ],
         format="csr",
@@ -439,17 +499,17 @@ def solve_linear_portfolio(context, expected_returns):
     new_rows, new_rhs = _normalize_rows(
         sparse.vstack([return_row, distance_positive, distance_negative], format="csr"),
         np.r_[
-            -(primary_return - _PRIMARY_RETURN_TOLERANCE),
+            -(primary_utility - _PRIMARY_RETURN_TOLERANCE),
             context.equal_weights,
             -context.equal_weights,
         ],
     )
     secondary_a = sparse.vstack([secondary_a, new_rows], format="csr")
-    secondary_b = np.r_[context._b_ub, new_rhs]
+    secondary_b = np.r_[b_ub, new_rhs]
     secondary_eq = sparse.hstack(
         [
-            context._a_eq,
-            sparse.csr_matrix((context._a_eq.shape[0], asset_count)),
+            a_eq,
+            sparse.csr_matrix((a_eq.shape[0], asset_count)),
         ],
         format="csr",
     )
@@ -460,15 +520,16 @@ def solve_linear_portfolio(context, expected_returns):
         b_ub=secondary_b,
         a_eq=secondary_eq,
         b_eq=context._b_eq,
-        bounds=(*context._bounds, *((0.0, None),) * asset_count),
+        bounds=(*bounds, *((0.0, None),) * asset_count),
         stage="secondary",
     )
     weights, actual = _verified_weights(context, secondary, "secondary")
     predicted_return = float(expected @ weights)
-    secondary_gap = float(primary_return - predicted_return)
+    final_utility, transaction_cost = utility(weights, actual)
+    secondary_gap = float(primary_utility - final_utility)
     if secondary_gap > _PRIMARY_RETURN_TOLERANCE + 5e-12:
         raise LinearPortfolioError(
-            "secondary LP degraded predicted return beyond the 1e-10 tolerance"
+            "secondary LP degraded utility beyond the 1e-10 tolerance"
         )
     diagnostics = {
         "solver": "scipy.optimize.linprog(highs)",
@@ -477,6 +538,12 @@ def solve_linear_portfolio(context, expected_returns):
         "secondary_solver_status": "optimal",
         "primary_return": primary_return,
         "predicted_return": predicted_return,
+        "primary_utility": primary_utility,
+        "utility": final_utility,
+        "mad_penalty": objective.mad_penalty,
+        "transaction_cost": transaction_cost,
+        "ew_penalty": objective.ew_penalty,
+        "ew_distance": float(np.abs(weights-context.equal_weights).sum()),
         "secondary_gap": secondary_gap,
         "primary_iterations": int(primary.nit),
         "secondary_iterations": int(secondary.nit),

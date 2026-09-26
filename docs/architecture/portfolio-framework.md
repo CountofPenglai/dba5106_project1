@@ -9,14 +9,22 @@ Two distinct uses of LASSO are intentionally separate:
 
 Constrained objectives are visible in `portfolio/models/constrained_regularized_portfolio.py`. `portfolio/losses.py`, `regularization.py`, and `constraints.py` define the reward, penalty and feasible region. Solver retries are in `engine/convex_solver.py`; the model retains its independent holdings/variance/wealth checks.
 
+The six basic models share `portfolio/engine/baseline_strategies.py`: EW, MinVar,
+LASSO/Ridge with explicit coefficient budgets, and LASSO/Ridge with loss penalties.
+The recommended root entry is `python run_baselines.py --window 126` (or `252`).
+Coefficient-constrained fitting lives in `models/coefficient_constrained_regression.py`;
+it minimizes MSE without adding a penalty. The historical penalty solver and other
+portfolio-risk-constrained experiments retain their behavior. See
+[baseline architecture and window verification](baseline-models.md).
+
 ## Responsibilities
 
 | Directory | Responsibility | Main files |
 |---|---|---|
 | `portfolio/data` | Read raw returns, remove excluded assets, preserve missing values, select history, weight observations | `returns_loader.py`, `preprocessing.py`, `history_windows.py`, `observation_weights.py` |
-| `portfolio/models` | Regression, forecasting and exploratory mathematical formulations | `min_variance_regression.py`, `constrained_regularized_portfolio.py`, `lasso_return_forecast.py`, `elastic_net_portfolio.py`, `pca_regularized_portfolio.py`, `market_beta_portfolio.py`, `portfolio_variants.py` |
+| `portfolio/models` | Regression, forecasting and exploratory mathematical formulations | `min_variance_regression.py`, `coefficient_constrained_regression.py`, `constrained_regularized_portfolio.py`, `lasso_return_forecast.py`, `elastic_net_portfolio.py`, `pca_regularized_portfolio.py`, `market_beta_portfolio.py`, `portfolio_variants.py` |
 | `portfolio/decisions` | Turn forecasts into holdings, or adjust existing holdings | `candidate_portfolios.py`, `portfolio_mixture.py`, `linear_program_allocation.py`, `holding_weights.py` |
-| `portfolio/engine` | Assemble fitting, iterate causally, search parameters, run decision workflows and solvers | `portfolio_fit.py`, `rolling_backtest.py`, `parameter_search.py`, `growth_search_evaluation.py`, `lasso_window_strategy.py`, `forecast_mixture_workflow.py`, `forecast_lp_workflow.py`, `convex_solver.py` |
+| `portfolio/engine` | Assemble fitting, iterate causally, search parameters, run decision workflows and solvers | `baseline_strategies.py`, `portfolio_fit.py`, `rolling_backtest.py`, `parameter_search.py`, `growth_search_evaluation.py`, `lasso_window_strategy.py`, `forecast_mixture_workflow.py`, `forecast_lp_workflow.py`, `convex_solver.py` |
 | `portfolio/evaluation` | Metrics, result records, artifacts and reproducibility checks | `portfolio_metrics.py`, `experiment_result.py`, `artifact_store.py`, `result_export.py`, `provenance.py`, `reference_comparison.py` |
 | `experiments` | Explicit experiment recipes and CLI options | Table below |
 | `tools` | Dataset inspection | `audit_missing_values.py` |
@@ -28,8 +36,9 @@ Constrained objectives are visible in `portfolio/models/constrained_regularized_
 
 Run canonical recipes as `python -m experiments.<name>`. The old entrypoints remain thin forwarders. Original imports such as `portfolio.training` still resolve to the canonical implementation; new internal code uses canonical paths.
 
-| Direction / preserved methods | Canonical recipe | Legacy command |
+| Direction / preserved methods | Canonical recipe | Root / compatibility command |
 |---|---|---|
+| Six basic models: EW, MinVar, coefficient-constrained and penalty LASSO/Ridge | `regularized_baselines --baselines-only` | `run_baselines.py` (recommended) |
 | EW, MinVar, fixed LASSO/Ridge, legacy CV, exponential observation weighting, shrink-to-EW; optional hard constraints/log growth | `regularized_baselines` | `run_example.py` |
 | Fixed LASSO at 126/252 days or three calendar years, with optional weighting/hard constraints | `lasso_training_windows` | `run_lasso_windows.py` |
 | Constrained three-year LASSO; validation selects recency half-life | `lasso_recency_weight_search` | `run_weight_tuning.py` |
@@ -39,6 +48,8 @@ Run canonical recipes as `python -m experiments.<name>`. The old entrypoints rem
 | LASSO/Ridge with historical market-beta bounds | `market_beta_constraints` | `market_beta_cvxpy_test.py` |
 | Causal LASSO/mean forecasts, max-return/min-variance/EW candidates, learned Sharpe or return-volatility mixtures | `lasso_forecast_mixture` | `run_two_stage.py` |
 | Causal LASSO/mean forecasts, direct asset LP with MAD/drawdown/holding limits and secondary EW tie-break | `lasso_forecast_lp` | `run_direct_lp.py` |
+| Reused 252-day LASSO forecasts; LP return-minus-MAD-minus-cost objective; training-only gamma selection followed by frozen validation | `lasso_forecast_lp_risk` | — |
+| Cost-aware LP stability: lower leverage, EW-distance penalty, training-block risk selection and sensitivity checks | `lasso_forecast_lp_stability` | — |
 | Turnover, Size-BM smoothness, Ledoit-Wolf shrinkage and concentration-cap sensitivity | `portfolio_sensitivity` | `run_turnover.py`, `run_smoothness.py`, `run_shrinkage.py`, `run_concentration.py` |
 | Raw sentinel audit by column and period | `python -m tools.audit_missing_values` | `audit_missing_values.py` |
 | Original teaching demonstration (historical CSV path/row offsets/units retained) | `examples/original_assignment.py` | `5106_assignement_01.py` |
@@ -56,3 +67,17 @@ The last example is original course material, not an active experiment. Standalo
 ## Extension points
 
 A traditional strategy is `history -> indexed holdings`; `rolling_backtest.backtest` manages dates and realized returns. `portfolio_fit` assembles the regression, sample weights and result. A new decision algorithm consumes the existing forecasts/risk context and returns holdings; it does not need to copy preprocessing or export code. Shared source inventories recurse into canonical packages, so moving an implementation cannot make it disappear from provenance.
+
+The risk-penalized LP keeps `LPConstraints` and adds `LPObjective` in
+`decisions/linear_program_allocation.py`. `engine/lp_risk_tuning_workflow.py` owns
+chronological tuning, shared forecasts, per-strategy drifted holdings and fee-adjusted
+evaluation. Its `LPRiskTuningConfig.window` controls both forecast and risk history.
+The original LP workflow still defaults to zero objective penalties. The secondary
+EW tie-break preserves the full primary utility when penalties are enabled.
+
+`engine/lp_stability_workflow.py` reuses that forecast/rollout/metric machinery to
+compare three versions. `LPObjective.ew_penalty` prices full L1 distance to EW in
+the primary objective. The shared rollout accepts per-strategy constraints, so
+the 1.2-leverage control does not change limits for other strategies. Training-only
+selection and diagnostic stress checks live outside the LP solver. No final-test
+entrypoint is provided by this experiment.

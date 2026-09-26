@@ -10,16 +10,40 @@
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+python run_baselines.py --window 252
 python -m experiments.regularized_baselines --weighted
 python -m experiments.regularized_baselines --weighted --growth
 python -m experiments.lasso_training_windows --presets 252d 3y --start 2026-01-02
 python -m experiments.lasso_reward_exposure_search
+python -m experiments.lasso_forecast_lp_risk --forecast-reference results/unified_252/20260922T122949.119118Z/lp
+python -m experiments.lasso_forecast_lp_stability --forecast-reference results/unified_252/20260922T122949.119118Z/lp
 python -m unittest discover -s tests -v
 ```
 
 CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定。`--start`、`--end` 和 `--window` 控制滚动评价区间和历史窗口。
 
-默认使用 252 个交易日的训练窗口，比较 EW、MinVar、固定强度 LASSO/Ridge，以及每日重新选参的 LASSO_CV/Ridge_CV。`--weighted` 增加 RidgeWeighted、LASSO_CV_Weighted、Ridge_CV_Weighted，均同时使用 63 日半衰期的时间权重和 25% 的 EW 混合。原始作业源码保存在 `examples/original_assignment.py`，`5106_assignement_01.py` 保留为兼容启动器。推荐入口为 `python -m experiments.regularized_baselines`。底层 `backtest`/`rolling_windows` 的默认窗口仍为 126；直接调用它们时请显式传 `window=252`。
+基础模型推荐入口是 `python run_baselines.py`，默认使用 252 个交易日，运行下方列出的六个基础模型。原 `python -m experiments.regularized_baselines` 入口仍比较 EW、MinVar、惩罚形式的 LASSO/Ridge，以及每日重新选参的 LASSO_CV/Ridge_CV。`--weighted` 增加 RidgeWeighted、LASSO_CV_Weighted、Ridge_CV_Weighted，均同时使用 63 日半衰期的时间权重和 25% 的 EW 混合。原始作业源码保存在 `examples/original_assignment.py`，`5106_assignement_01.py` 保留为兼容启动器。该入口继续用于原有扩展实验。底层 `backtest`/`rolling_windows` 的默认窗口仍为 126；直接调用它们时请显式传 `window=252`。
+
+## 基础模型：系数约束版与惩罚版
+
+推荐直接使用项目根目录的 [`run_baselines.py`](run_baselines.py)，一次运行六个基础模型：
+EW、MinVar、LASSO 系数约束版、Ridge 系数约束版、LASSO 惩罚版、Ridge 惩罚版。
+完整定义与配置集中在 [`portfolio/engine/baseline_strategies.py`](portfolio/engine/baseline_strategies.py)。
+
+```bash
+python run_baselines.py --window 126
+python run_baselines.py --window 252
+python run_baselines.py --window 252 --lasso-coefficient-budget 1 --ridge-coefficient-budget 1
+```
+
+约束版只优化 MSE，分别要求 `Σ|β| ≤ t₁` 和 `Σβ² ≤ t₂`，默认预算均为 1，可修改，未调参。
+惩罚版保持 `MSE + λΣ|β|`（λ=`1e-5`）和 `MSE + λΣβ²`（λ=`1e-4`）。
+这些限制作用于回归系数 β；与旧 `LASSO_Constrained` 的持仓、波动约束是不同方法。
+只改 `--window` 即可切换训练窗口；也可通过 `TrainingConfig` 使用三年窗口和样本加权。
+
+默认验证区间为 2026-01-02 至 2026-06-30，结果保存在 `results/baselines/<运行时间>/`。
+`regularized_baselines --baselines-only` 同样运行上述六模型；不传该选项时保留原有实验组合和命名。
+[基础模型说明](docs/architecture/baseline-models.md) 包含公式、文件职责、使用示例与验证结果。
 
 ## 模块与数据流
 
@@ -43,6 +67,16 @@ CSV 默认放在项目根目录，也可以用 `--csv /path/to/file.csv` 指定�
 `predictions`、`diagnostics`、`config`、`search` 等目录分类，根目录的 `artifact_manifest.json`
 记录各文件的位置。使用 `--output` 指定运行根目录、`--layout flat` 切换为平铺格式。
 路径规则、读取示例与历史结果说明见 [输出目录说明](docs/output-layout.md)。
+
+`lasso_forecast_lp_risk` 复用已固定的 252 天 LASSO 预测配置，为直接 LP 加入组合 MAD
+波动惩罚与单边 5 bps 交易费用。在 2025 年 7–12 月的历史开发数据中选择一个惩罚系数，
+冻结后仅评估 2026 年 1–6 月验证集，不使用 7 月测试集。旧 LP 入口和结果保留。
+配置、时间顺序与费用约定见 [实验说明](docs/experiments/lp-mad-cost-2026-09-24.md)。
+
+`lasso_forecast_lp_stability` 比较当前成本感知 LP、1.2 倍杠杆上限，以及加入 EW
+偏离惩罚的 LP。在 2025 年三个连续区间中选择 EW 惩罚，优先考虑回撤，并要求收益
+保留和波动达标；冻结后评估 2026 年上半年，同时检查预测扰动与 10 bps 费用压力。
+具体规则和结果见 [稳定性比较](docs/experiments/lp-stability-2026-09-24.md)。
 
 原来的 `run_*.py` 和探索脚本保留为兼容入口；四个新增敏感性实验入口默认使用分类目录，其余旧命令仍然可用。
 旧模块导入同样保留，但新增代码应使用上表中的规范位置。

@@ -1,100 +1,182 @@
-# Portfolio Model Validation and Final-Test Summary
+# Portfolio Optimization: Final Report Outline
 
-Updated: 2026-09-23. The main text shows one representative per modeling idea; the appendix preserves every result from both unified 252-day validation rounds. The one-time July 2026 final test is summarized below and detailed in the [final-test report](final-test-july-2026.md).
+Updated: 2026-09-24. This is an **outline**, not the final report prose. Each modeling idea has one subsection in its primary category. Each subsection gives its location in *DBA5106 GP.docx*, a brief method description focused on overfitting or estimation risk, and its observed result. The document is a source for the experiment history; current figures come from the [unified 252-day validation](unified-252-2026-09-22.md), [sensitivity rerun](unified-252-sensitivity-2026-09-23.md), [cost-aware LP study](lp-mad-cost-2026-09-24.md), [LP stability comparison](lp-stability-2026-09-24.md), and [July final-test results](../../results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv). Appendix A retains all 71 original validation rows; Appendix B preserves every evaluated July configuration on the same gross reporting basis.
 
-## Evaluation basis and consolidation rule
+## 1. Dataset overview
 
-- Both rounds used the same 98 retained Size-BM portfolios and 2026-01-02 to 2026-06-30 validation interval (123 trading days). Rolling model, forecast and risk histories used 252 prior trading observations; the portfolio-mixture decision layer used a separate earlier 252-observation training period.
-- Cumulative return is compounded. Daily Sharpe is mean daily return divided by sample daily standard deviation (`ddof=1`), without annualization or a risk-free rate. Max drawdown includes initial wealth 1. Reported performance excludes transaction costs.
-- **Within each modeling idea, the representative is the configuration with the highest daily Sharpe**, the course evaluation metric. Exact or near-exact aliases use the clearer configuration name. The number in parentheses after each idea is the number of result rows consolidated, including repeated controls where applicable.
-- Fixed LASSO and Ridge, hard constraints, reward/exposure changes, and the two mixture training objectives remain separate ideas. The LASSO and Ridge beta-constrained models also remain separate because their portfolio behavior differs. Candidate-only mixture U/V components are shown in the appendix, not treated as full decision methods.
-- The validation period has already informed model development. Choosing a winner from these rows is descriptive and introduces selection bias. The user designated July 2026 as the final test after the six candidates were selected; July outcomes were not used to retune them.
+The equal-weighted daily-return section of the Size–Book-to-Market 10 × 10 portfolio dataset contains 100 portfolio return series and 26,296 dates from 1926-07-01 to 2026-07-31. These series represent characteristic-sorted portfolios, not individual stocks. The report uses 98 retained series after the specified exclusions. **Source in GP document:** the unnumbered “Regarding the dataset” paragraph.
 
-Source records: [Round 1 report](unified-252-2026-09-22.md), [Round 2 report](unified-252-sensitivity-2026-09-23.md), and [complete 71-row CSV](unified-252-expanded-2026-09-23.csv).
+## 2. Data: preprocessing and chronological splits
 
-## Representative results — Round 1
+### 2.1 Preprocessing and missingness
 
-Round 1 contained 65 rows across eight experiment families. EW had the highest cumulative return (**16.933%**). Conservative-beta Ridge had the highest daily Sharpe in that round (**0.15110**), while direct LP using LASSO forecasts came closest to EW in cumulative return (**16.719%**). The selected exposure-penalized LASSO used zero return reward, so its gain cannot be attributed to the reward term.
+Preprocessing first removes `ME9 BM10` and `BIG HiBM`, converts `-99.99` and `-999` to missing values, and changes percentage-point returns to decimal returns; it does not impute returns. The five-year historical extract begins in **2021**, with its first trading date on **2021-08-02**, and ends on 2026-07-31. It has **1,255 dates**. Before the two columns are removed, this extract has **272 missing cells**: 250 in `ME9 BM10` and 22 in `BIG HiBM`. After exclusion, the **1,255 × 98** panel has **zero missing cells and zero incomplete dates**. Earlier retained assets have historical missing values, so this completeness claim applies to the stated five-year extract, not the full 1926–2026 file. [Data-quality audit](../data-quality/missing-values-2026-09-22.md).
 
-| Modeling idea | Representative configuration | Cumulative return | Daily Sharpe | Daily volatility | Max drawdown | Avg. gross exposure |
-|---|---|---:|---:|---:|---:|---:|
-| EW benchmark (5) | EW | 16.933% | 0.13253 | 0.9974% | -8.632% | 1.000 |
-| Unregularized MinVar (1) | MinVar | 2.936% | 0.03677 | 0.7074% | -4.612% | 8.921 |
-| Fixed LASSO (2) | LASSO | 6.979% | 0.09951 | 0.5673% | -4.828% | 3.036 |
-| Fixed Ridge (1) | Ridge | 5.104% | 0.07778 | 0.5389% | -4.933% | 3.125 |
-| CV-selected regularization (2) | LASSO_CV | 4.737% | 0.06589 | 0.5981% | -4.860% | 3.800 |
-| Recency + EW overlay (3) | LASSO_CV_Weighted | 6.476% | 0.09629 | 0.5452% | -4.892% | 3.177 |
-| Hard-constrained LASSO (3) | LASSO_Constrained | 8.804% | 0.12233 | 0.5743% | -4.400% | 1.500 |
-| Log-growth reward (2) | LASSO_LogGrowth | 8.073% | 0.11330 | 0.5716% | -4.512% | 1.500 |
-| Soft exposure penalty (2) | LASSO_Selected † | 11.248% | 0.14723 | 0.6010% | -4.191% | 1.015 |
-| Recency-weighted LASSO (5) | LASSO_252d_HL504_Constrained † | 8.508% | 0.11976 | 0.5678% | -4.598% | 1.500 |
-| Elastic Net (11) | ElasticNet_l1ratio_0.95 | 7.012% | 0.10011 | 0.5664% | -4.811% | 3.069 |
-| Rolling PCA (12) | Ridge_PCA_15 | 6.081% | 0.08645 | 0.5742% | -4.931% | 3.607 |
-| Market-beta LASSO (3) | LASSO_market_like_0.8_1.2 | 14.028% | 0.13901 | 0.7904% | -6.435% | 1.328 |
-| Market-beta Ridge (3) | Ridge_conservative_0.5_0.9 | 11.001% | 0.15110 | 0.5725% | -5.429% | 1.500 |
-| Sharpe-trained mixture (2) | Mean_252d_Sharpe | 9.167% | 0.12817 | 0.5690% | -4.803% | 1.500 |
-| Return-volatility mixture (2) | LASSO_252d_ReturnVolatility † | 9.167% | 0.12818 | 0.5690% | -4.804% | 1.500 |
-| Direct asset-level LP (2) | LP_LASSO_252d | 16.719% | 0.12841 | 1.0195% | -8.820% | 1.500 |
+### 2.2 Training, validation, and final-test chronology
 
-† identifies a validation-selected configuration or a descriptive equivalent of one. The recency row names the explicit HL504 configuration that produced the same holdings as its selected alias. The mean- and LASSO-forecast Sharpe mixtures are numerically indistinguishable; their tiny tie-break difference is not evidence that one forecast is better. The EW-like E components and the U/V mixture controls are omitted from the representative table but remain in Appendix A.
+The five-year extract is an available history, **not** a five-year fit at every date. Historical studies compared 126 trading observations, 252 trading observations, and up to three calendar years (about 750–755 observations), including recency-weighted variants. The latest common comparison uses **252 preceding trading dates** for rolling fits, forecasts, and risk estimates; the separate mixture decision layer also uses 252 earlier training observations. All fits use information available before their holding date.
 
-## Representative results — Round 2
+The common development validation is **2026-01-02 to 2026-06-30** (123 trading days). Predictor regularization for the two-stage models was calibrated before evaluation using three late, chronological 21-day folds ending by 2024-07-31. The final-test period is **2026-07-01 to 2026-07-31** (22 trading days). The original six configurations were fixed before its first evaluation. The current cost-aware LP was developed after those July results had been reviewed; its settings were frozen before the present run and were not retuned on July. Consequently, the current LP result is not evidence from a newly untouched test. Earlier validation results informed model development, so they are comparative evidence rather than an untouched test. Daily Sharpe is mean daily return divided by sample daily standard deviation (`ddof=1`), with zero risk-free rate and no annualization. The original representatives were chosen using validation performance and control roles; the current cost-aware specification represents the LP family in the main table, with the original LP retained in Appendix B. All reported cumulative returns, daily Sharpe ratios, volatility and drawdown use **gross returns before transaction costs**, consistently across validation and the final test. A trading-cost penalty inside an optimization objective does not change this common reporting basis. Cost-adjusted diagnostics are retained in the saved experiment outputs but are not used for the report ranking. [Window study](lasso-windows-5y.md) · [Final-test protocol](final-test-july-2026.md).
 
-Round 2 added six non-control variants under the same validation dates and 252-day window. The four studies changed only turnover penalty, Size-BM grid smoothness, covariance estimator, or a 10% absolute asset-weight cap. Their EW and selected-LASSO controls exactly matched Round 1 holdings.
+## 3. Baseline models
 
-| Modeling idea | Representative configuration | Cumulative return | Daily Sharpe | Daily volatility | Max drawdown | Avg. gross exposure |
-|---|---|---:|---:|---:|---:|---:|
-| Turnover penalty (2) | LASSO_Turnover_0p1 | 10.380% | 0.13245 | 0.6209% | -5.072% | 1.014 |
-| Size-BM grid smoothness (2) | LASSO_Smooth_0p1 | 11.275% | 0.14751 | 0.6012% | -4.191% | 1.015 |
-| Covariance shrinkage (1) | LASSO_LedoitWolf | 11.003% | 0.14317 | 0.6057% | -4.376% | 1.015 |
-| Single-asset weight cap (1) | LASSO_WeightCap_10pct | 12.702% | 0.15611 | 0.6359% | -5.494% | 1.016 |
+### 3.1 Equal-Weight Portfolio (EW)
 
-The 10% cap achieved the highest daily Sharpe of all 71 rows (**0.15611**) and improved cumulative return over the uncapped selected LASSO (**12.702% versus 11.248%**), but its maximum drawdown was deeper (**-5.494% versus -4.191%**). Grid smoothing at `rho=0.1` changed performance only marginally. Ledoit-Wolf covariance shrinkage and the turnover penalties did not improve Sharpe over the selected LASSO.
+- **GP source:** unnumbered “basemodel” and “Current situation” sections.
+- **Method:** Allocate equally to the retained portfolios; this estimation-free benchmark avoids fitting noise.
+- **Result:** January–June validation cumulative return **16.933%**, daily Sharpe **0.13253**—the highest validation return among the original representatives, before the cost-aware LP update.
 
-## Representative models close to or ahead of EW
+### 3.2 Minimum-Variance Portfolio (MinVar)
 
-No distinct model exceeded EW’s **16.933% cumulative return**. The following screens apply to the 21 representatives above, excluding duplicated EW controls. They are presentation rules, not statistical tests or new training rules.
+- **GP source:** unnumbered “basemodel” and “Current situation” sections.
+- **Method:** Fit the original minimum-variance regression without LASSO or Ridge shrinkage, exposing sensitivity to noisy estimates.
+- **Result:** Validation return **2.936%**, Sharpe **0.03677**, and average gross exposure **8.921**.
 
-### Close to EW in cumulative return
+### 3.3 Fixed-Penalty LASSO
 
-Here, “close” means within **3.00 percentage points** of EW’s cumulative return (at least **13.933%**).
+- **GP source:** unnumbered “Current situation” and “Adaptation of Lambda” sections.
+- **Method:** Penalize coefficients in the contemporaneous minimum-variance regression, then map them to holdings; this is **not** a next-day return forecast.
+- **Result:** Validation return **6.979%** and Sharpe **0.09951**, above MinVar but below EW.
 
-| Representative model | Cumulative return | Gap vs EW | Daily Sharpe | Daily volatility | Max drawdown |
-|---|---:|---:|---:|---:|---:|
-| LP_LASSO_252d | 16.719% | -0.214 pp | 0.12841 | 1.0195% | -8.820% |
-| LASSO_market_like_0.8_1.2 | 14.028% | -2.905 pp | 0.13901 | 0.7904% | -6.435% |
+### 3.4 Fixed-Penalty Ridge
 
-`LP_LASSO_252d` was only 0.214 percentage points behind EW in return, but its Sharpe, volatility and drawdown were slightly worse. `LASSO_market_like_0.8_1.2` had a larger return gap but improved on EW’s Sharpe, volatility and drawdown. The mean-forecast LP is in the full appendix: it was close in return but had lower Sharpe than the LASSO-forecast LP, so only the latter represents this idea in the body.
+- **GP source:** unnumbered “Current situation” and “Adaptation of Lambda” sections.
+- **Method:** Use L2 coefficient shrinkage in the same minimum-variance portfolio construction to stabilize estimates.
+- **Result:** Validation return **5.104%** and Sharpe **0.07778**.
 
-### Better risk-adjusted validation performance than EW
+## 4. Loss: objective and soft-penalty changes
 
-This screen requires **daily Sharpe > EW**, **daily volatility < EW**, and **a shallower max drawdown than EW**. Every model listed here still had lower cumulative return than EW.
+### 4.1 Log-Growth-Reward LASSO
 
-| Representative model | Cumulative return | Gap vs EW | Daily Sharpe | Daily volatility | Max drawdown |
-|---|---:|---:|---:|---:|---:|
-| LASSO_WeightCap_10pct | 12.702% | -4.231 pp | 0.15611 | 0.6359% | -5.494% |
-| Ridge_conservative_0.5_0.9 | 11.001% | -5.932 pp | 0.15110 | 0.5725% | -5.429% |
-| LASSO_Smooth_0p1 | 11.275% | -5.658 pp | 0.14751 | 0.6012% | -4.191% |
-| LASSO_Selected † | 11.248% | -5.685 pp | 0.14723 | 0.6010% | -4.191% |
-| LASSO_LedoitWolf | 11.003% | -5.930 pp | 0.14317 | 0.6057% | -4.376% |
-| LASSO_market_like_0.8_1.2 | 14.028% | -2.905 pp | 0.13901 | 0.7904% | -6.435% |
+- **GP source:** §5, “Improving Cumulative Returns through Loss Function Optimization.”
+- **Method:** Reward historical log growth within hard-constrained LASSO; the reward can fit historical return noise, so it is compared with the matched constraints-only model.
+- **Result:** At fixed reward strength, validation return **8.073%**, Sharpe **0.11330**, below Hard-Constrained LASSO's **8.804%** and **0.12233**.
 
-The capped LASSO leads on daily Sharpe. The selected exposure-penalized LASSO and smoothed LASSO have shallower drawdowns, while market-like beta LASSO is the only representative that also lies within three percentage points of EW return. These trade-offs should be stated before a final strategy is chosen.
+### 4.2 Exposure-Penalized LASSO with Tunable Return Reward
 
-## July 2026 final test (22 trading days)
+- **GP source:** §6, “Parameterized LASSO with Constraints and Return Reward.”
+- **Method:** Search a small reward/exposure-penalty set, retaining hard constraints and early stopping in parameter refinement; the added exposure penalty aims to curb unstable long–short holdings.
+- **Result:** The selected `LASSO_Selected` uses reward weight **η = 0** and exposure-penalty weight **γ = 2**: validation return **11.248%**, Sharpe **0.14723**, average gross exposure **1.015**. Improvement cannot be credited to a positive reward.
 
-Six existing configurations were fixed from the validation results before the July test. The table below reports the one-time result; the [full report](final-test-july-2026.md) and [unrounded CSV](final-test-july-2026.csv) include the selection rule, risk measures, turnover, saved artifacts and verification.
+### 4.3 Elastic Net Portfolio
 
-| Preselected model | July cumulative return | July daily Sharpe | July daily volatility | July max drawdown |
-|---|---:|---:|---:|---:|
-| EW | -0.841% | -0.05186 | 0.6952% | -2.135% |
-| LASSO_Selected | **2.017%** | **0.16073** | 0.5748% | -1.296% |
-| LASSO_WeightCap_10pct | 1.667% | 0.15531 | **0.4915%** | **-1.103%** |
-| Ridge_conservative_0.5_0.9 | 1.289% | 0.10612 | 0.5629% | -1.331% |
-| LASSO_market_like_0.8_1.2 | 0.451% | 0.03451 | 0.6508% | -1.549% |
-| LP_LASSO_252d | 0.200% | 0.01629 | 0.7043% | -1.926% |
+- **GP source:** §12, “Use of Elastic Net Regularization Method.”
+- **Method:** Combine L1 and L2 coefficient penalties to reduce dependence on a noisy sparse selection among correlated portfolios.
+- **Result:** Best validation configuration, L1 ratio **0.95**, returned **7.012%** with Sharpe **0.10011**; its gain over fixed LASSO was marginal.
 
-The uncapped selected LASSO led on July return and Sharpe; the 10% cap produced the lowest volatility and shallowest drawdown but did not retain its validation Sharpe lead. July contains only 22 observations, so this ranking is descriptive, and it was not used for a further model search. The former August target has no records in the current CSV.
+### 4.4 Turnover-Penalized LASSO
+
+- **GP source:** §7, “Reducing Portfolio Instability through Turnover Penalty.”
+- **Method:** Penalize changes from the previous holdings to reduce sensitivity to small rolling-sample changes.
+- **Result:** The representative `LASSO_Turnover_0p1` returned **10.380%**, Sharpe **0.13245**, below the selected unpenalized exposure model's **11.248%** and **0.14723** before trading costs.
+
+### 4.5 Size–BM Grid-Smoothed LASSO
+
+- **GP source:** §8, “Fused LASSO (Size–Book-to-Market Structure).”
+- **Method:** Softly penalize weight differences between adjacent Size–BM portfolios to reduce cross-sectional fitting of noise; the penalty acts on **portfolio weights**, not LASSO coefficients.
+- **Result:** `LASSO_Smooth_0p1` returned **11.275%**, Sharpe **0.14751**, only slightly above the selected exposure model.
+
+## 5. Structure: information and decision-design changes
+
+### 5.1 Cross-Validated Regularization
+
+- **GP source:** unnumbered “Adaptation of Lambda” section.
+- **Method:** Select regularization strength within each rolling window. This addresses arbitrary fixed penalties, but a fold score need not align with portfolio Sharpe; the legacy five-fold LASSO uses MSE and Ridge uses its default R² score.
+- **Result:** `LASSO_CV` returned **4.737%**, Sharpe **0.06589**; `Ridge_CV` returned **3.759%**, Sharpe **0.05681**, both below their fixed-penalty counterparts.
+
+### 5.2 Recency Weighting and Shrink-Toward-EW Overlay
+
+- **GP source:** unnumbered “Adaptation of Lambda,” `_Weighted` variants.
+- **Method:** Give recent training observations more influence, then blend fitted holdings toward EW to limit unstable deviations; these are overlays, not a third lambda-selection rule.
+- **Result:** The representative `LASSO_CV_Weighted` returned **6.476%**, Sharpe **0.09629**, improving on `LASSO_CV` but not fixed LASSO's **0.09951** Sharpe.
+
+### 5.3 Training-Window Length and Recency-Weighted LASSO
+
+- **GP source:** §14, “Three-Year LASSO Training Window”; the 126-to-252-day comparison also appears in unnumbered “Attempts.”
+- **Method:** Compare shorter and longer rolling histories, then downweight older observations when using longer histories. More samples can reduce estimation noise, while aggressive recency weighting can overfit recent regimes. The 126-day implementation remains available, but no comparable saved 126-day LASSO/Ridge result is present.
+- **Result:** In the historical January–June comparison, three-year equal-weighted LASSO returned **8.46%**, Sharpe **0.1192**, versus 252-day fixed LASSO's **6.98%**, **0.0995**; three-year weighted constrained LASSO returned **8.11%**, **0.1159**. Under the latest uniform 252-day rerun, the representative recency-weighted constrained LASSO returned **8.508%**, **0.11976**. These are distinct window settings, not a single pooled ranking. [Three-year study](lasso-windows-5y.md) · [Weighted constraints](lasso-3y-weight-tuning.md).
+
+### 5.4 Rolling PCA with LASSO or Ridge
+
+- **GP source:** §11, “Use of Principal Component Analysis (PCA) to reduce features.”
+- **Method:** Estimate a lower-dimensional return representation within each rolling training window before regularized fitting, aiming to reduce 97-dimensional adjustment noise.
+- **Result:** Representative `Ridge_PCA_15` returned **6.081%**, Sharpe **0.08645**, below fixed LASSO and EW in the latest rerun.
+
+### 5.5 Ledoit–Wolf Covariance Shrinkage
+
+- **GP source:** §9, “Covariance Estimation using Ledoit–Wolf Shrinkage.”
+- **Method:** Shrink the noisy sample covariance estimate within the selected LASSO formulation; this changes risk estimation, not the asset universe or decision model.
+- **Result:** `LASSO_LedoitWolf` returned **11.003%**, Sharpe **0.14317**, below the matched sample-covariance model's **11.248%**, **0.14723**.
+
+### 5.6 Two-Stage Sharpe-Trained Mixture
+
+- **GP source:** no dedicated DOCX chapter; §15 supplies the related prediction/decision separation.
+- **Method:** Forecast next-day asset returns, form return-seeking, minimum-risk, and EW candidates, then train a low-dimensional mixture for sample daily Sharpe rather than 98 free decision weights.
+- **Result:** Representative `Mean_252d_Sharpe` returned **9.167%**, Sharpe **0.12817**; the LASSO-forecast mixture was numerically indistinguishable, so the results do not establish a forecasting advantage.
+
+### 5.7 Two-Stage Return–Volatility-Trained Mixture
+
+- **GP source:** no dedicated DOCX chapter; §15 supplies the related prediction/decision separation.
+- **Method:** Use the same low-dimensional candidate mixture but train its weights on mean return minus a volatility penalty, limiting decision-layer complexity.
+- **Result:** Representative `LASSO_252d_ReturnVolatility` returned **9.167%**, Sharpe **0.12818**, effectively the same risk-adjusted outcome as the Sharpe-trained mixture.
+
+### 5.8 LASSO Forecast + Direct Linear Programming
+
+- **GP source:** §15, “Two-Stage Portfolio Construction with Linear Programming.” The cost and stability refinements extend this design.
+- **Design:** Separate prediction from allocation. A causal LASSO predicts next-day returns from lagged features, using 252 preceding observations and a shared alpha fixed at **0.0025118864**. A linear program directly chooses 98 holdings. To limit overfitting and unstable exposure, weights sum to one, gross exposure is capped at **1.5**, absolute asset weights at **5%**, and historical portfolio MAD and uncompounded drawdown at their EW levels; historical daily wealth must remain positive. MAD is a linearizable measure of portfolio fluctuations, not standard deviation or a guarantee about future risk.
+- **Implementation:** The current objective is `maximize predicted_return(w) − 0.0005 × sum(abs(w − w_pretrade))`, where previous holdings are adjusted for market drift. Absolute-value auxiliary variables preserve linear programming. An EW-distance tie-break selects among nearly equal objective values; there is no turnover budget or trained decision-layer coefficient vector. The cost term guides allocation, while reported performance follows the common gross-return convention.
+- **Optimization process:** The original return-only LP had **18.300%** average daily validation turnover. Adding a fixed **5 bps** one-way cost penalty reduced this to **2.434%**. A six-value MAD-penalty search on July–December 2025 selected **gamma = 0**, using the previously specified fee-adjusted training Sharpe criterion. Thus the result supports cost-aware decisions rather than a positive MAD penalty; the hard MAD constraint remains. Subsequent stability checks compared a **1.2** gross cap and a training-selected EW penalty of **0.0001**. The lower cap reduced validation risk with **17.540%** gross return, while EW anchoring returned **18.531%** and worsened drawdown. The **1.5-cap, zero-MAD-penalty, zero-EW-penalty** version remains the current specification; those two alternatives were not evaluated on July.
+- **Result:** Current LP validation return **19.659%**, daily Sharpe **0.14834**, compared with the original LP's **16.719%** and **0.12841**. July did not reproduce this improvement: current LP returned **−0.410%** with Sharpe **−0.02264**, versus the original LP's **0.200%** and **0.01629**. It traded less and had a shallower July drawdown, but did not improve July return or Sharpe. Full final-test comparisons appear in §7 and Appendix B. [Cost study](lp-mad-cost-2026-09-24.md) · [Stability study](lp-stability-2026-09-24.md).
+
+## 6. Constraint: feasible-holdings changes
+
+### 6.1 Hard-Constrained LASSO
+
+- **GP source:** §4, “Improving Cumulative Returns through Portfolio Constraints.”
+- **Method:** Keep the fixed LASSO loss while limiting gross exposure to 1.5, training-window volatility to EW's level, and historical daily wealth to a positive floor. These limits act on **holdings and their historical returns**, separately from LASSO's coefficient penalty.
+- **Result:** `LASSO_Constrained` returned **8.804%**, Sharpe **0.12233**, versus fixed LASSO's **6.979%**, **0.09951**; average gross exposure fell from **3.036** to **1.500**.
+
+### 6.2 Market-Beta-Constrained LASSO
+
+- **GP source:** §13, “Introducing Market Beta to Daily Portfolio Allocation.”
+- **Method:** Estimate beta relative to EW and constrain the final portfolio's market sensitivity, controlling an exposure that coefficient regularization alone does not target.
+- **Result:** Market-like beta range **0.8–1.2**, `LASSO_market_like_0.8_1.2`, returned **14.028%**, Sharpe **0.13901**; the conservative **0.5–0.9** LASSO variant returned **10.160%**, **0.13725**.
+
+### 6.3 Market-Beta-Constrained Ridge
+
+- **GP source:** §13, “Introducing Market Beta to Daily Portfolio Allocation.”
+- **Method:** Apply the same portfolio-beta bounds to the Ridge base, retaining a separate comparison because L1 and L2 fits produce different holdings.
+- **Result:** Conservative `Ridge_conservative_0.5_0.9` returned **11.001%**, Sharpe **0.15110**; its market-like variant returned **13.438%**, **0.13224**.
+
+### 6.4 10%-Capped Exposure-Penalized LASSO
+
+- **GP source:** §10, “Applying a 10% Single-Asset Weight Cap Constraint.”
+- **Method:** Add `|w_i| ≤ 0.10` to the selected exposure-penalized LASSO to prevent concentration that aggregate leverage control can leave untouched.
+- **Result:** `LASSO_WeightCap_10pct` returned **12.702%**, Sharpe **0.15611**—the highest validation Sharpe among the 71 saved rows. The cap's separate July outcome appears in §7.
+
+## 7. Selected methods and July 2026 final test
+
+EW is the benchmark; the remaining methods represent strong validation Sharpe, return, or explicit exposure control. Each idea retains one representative in the main table. January–June validation contains 123 days and July contains 22, so cumulative returns are **not horizon-matched**. Every metric below is calculated from **gross portfolio returns, before transaction costs**, matching the original comparison.
+
+Gross daily return is `r_t = sum(w_i,t × asset_return_i,t)`; cumulative return is `product(1 + r_t) − 1`. No trading-cost deduction enters this table's cumulative return, Sharpe, volatility or drawdown. The current LP still uses its fixed 5 bps trading-cost penalty when choosing holdings. Each July path starts from EW, then uses only earlier observations for subsequent decisions. Original model results are reused from their saved holdings without refitting or reselection.
+
+| Method | Validation return | Validation daily Sharpe | July return | July daily Sharpe | July daily volatility | July max drawdown |
+|---|---:|---:|---:|---:|---:|---:|
+| EW | 16.933% | 0.13253 | -0.841% | -0.05186 | 0.6952% | -2.135% |
+| Exposure-Penalized LASSO | 11.248% | 0.14723 | 2.017% | 0.16073 | 0.5748% | -1.296% |
+| 10%-Capped Exposure-Penalized LASSO | 12.702% | 0.15611 | 1.667% | 0.15531 | 0.4915% | -1.103% |
+| Conservative-Beta Ridge | 11.001% | 0.15110 | 1.289% | 0.10612 | 0.5629% | -1.331% |
+| Market-Like-Beta LASSO | 14.028% | 0.13901 | 0.451% | 0.03451 | 0.6508% | -1.549% |
+| LASSO Forecast + Direct LP (cost-aware) | 19.659% | 0.14834 | -0.410% | -0.02264 | 0.7159% | -1.771% |
+
+Exposure-Penalized LASSO retains the best July return and Sharpe, while its 10%-capped counterpart has the lowest July volatility and smallest drawdown. Current LP loses less than EW (**−0.410% vs. −0.841%**), with a smaller drawdown (**−1.771% vs. −2.135%**), but slightly greater daily volatility (**0.7159% vs. 0.6952%**). Its strong validation return therefore does not establish superior out-of-sample performance. The original LP and all saved July configurations remain in Appendix B. [Combined gross results](../../results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv) · [Verification](../../results/final_test_july_2026_20260924/config/verification.json) · [Original selection protocol](final-test-july-2026.md).
+
+## 8. Interpretation to develop in the final prose
+
+- **Overfitting and stability:** MinVar's extreme gross exposure motivates regularization and explicit holdings limits. LASSO, soft exposure control, beta limits, and a position cap each target a different source of estimation or decision instability. A constraint satisfied on training history cannot guarantee the same future risk bound.
+- **What held up:** Exposure-Penalized LASSO led July return and Sharpe; the capped variant had the lowest volatility and shallowest drawdown. The selected exposure model had **η = 0**, so these outcomes do not validate the proposed return reward. The cap's validation Sharpe lead over the uncapped model did not repeat in July.
+- **What weakened:** Conservative-Beta Ridge remained positive but its July Sharpe fell from validation's **0.15110** to **0.10612**. Market-Like-Beta LASSO had limited gains while EW was negative; exposure is a plausible mechanism, not a proven causal explanation. The current LP's cost penalty reduced July average daily turnover from the original LP's **12.708%** to **3.434%**, but return fell from **0.200%** to **−0.410%**. This difference reflects changed holdings, not a deduction of fees from reported returns. Penalizing trades can retain positions whose subsequent returns disappoint; forecast errors and the flexibility of 98 decision weights remain possible sources of overfitting. Lower turnover and a shallower drawdown need not coincide with higher return.
+- **Inference limit:** July contains only 22 returns. The earlier validation period was repeatedly used in development, and the current LP was developed after the original July results were visible, as recorded in §2.2. The results describe this observed period; chronological fitting does not restore an untouched test. Reported performance excludes transaction costs, slippage, market impact, borrowing and financing costs, so it is not an estimate of fully implementable net profit.
 
 ## Appendix A — complete results from both rounds
 
@@ -236,3 +318,19 @@ The tables below preserve all **65 Round 1 rows and six new Round 2 rows**. Repe
 | LASSO_WeightCap_10pct | 12.702% | 0.15611 | 0.6359% | -5.494% | 1.016 |
 
 The four Round 2 output directories also contain their rerun EW and selected-LASSO controls; those eight repeated controls are omitted from the 71-row combined table because their holdings match Round 1 exactly. The July final-test period is not included in either validation round.
+
+## Appendix B — complete July final-test results
+
+All seven saved configurations, including both stages of the LP design, are retained below. Gross results for the original six are unchanged. All metrics follow the report's gross-return convention; average daily turnover is half the L1 change from drifted holdings. No original model was retrained for this comparison.
+
+| Configuration | Cumulative return | Daily Sharpe | Daily volatility | Max drawdown | Avg. daily turnover | Avg. gross exposure |
+|---|---:|---:|---:|---:|---:|---:|
+| EW | -0.841% | -0.05186 | 0.6952% | -2.135% | 0.328% | 1.000 |
+| LASSO_Selected | 2.017% | 0.16073 | 0.5748% | -1.296% | 5.272% | 1.016 |
+| LASSO_WeightCap_10pct | 1.667% | 0.15531 | 0.4915% | -1.103% | 4.361% | 1.016 |
+| Ridge_conservative_0.5_0.9 | 1.289% | 0.10612 | 0.5629% | -1.331% | 6.255% | 1.500 |
+| LASSO_market_like_0.8_1.2 | 0.451% | 0.03451 | 0.6508% | -1.549% | 2.425% | 1.236 |
+| LP_LASSO_252d | 0.200% | 0.01629 | 0.7043% | -1.926% | 12.708% | 1.500 |
+| LP_Current | -0.410% | -0.02264 | 0.7159% | -1.771% | 3.434% | 1.500 |
+
+The [saved run](../../results/final_test_july_2026_20260924/) contains daily returns, current-LP holdings and forecasts, frozen settings, source fingerprints, and evaluation scripts. Its `report_final_test_summary.csv` reproduces the gross figures in this report; the combined CSV also retains explicitly labeled `net_*` diagnostics, which are not used for ranking. The audit checked 22 LP allocations, 22 causal forecast windows and return/cost accounting for 154 portfolio-days across seven paths. Every checked LP allocation met its historical constraints. Original results and Appendix A remain unchanged.
