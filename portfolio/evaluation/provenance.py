@@ -31,39 +31,16 @@ def package_versions():
 
 
 def source_paths():
-    """Include nested implementations and compatibility entrypoints, not tests."""
+    """Fingerprint active code and fixed configurations, excluding tests."""
     paths = [PROJECT_ROOT / 'requirements.txt', *PROJECT_ROOT.glob('*.py')]
-    for directory in ('portfolio', 'experiments', 'tools', 'examples'):
+    for directory in ('portfolio', 'tools'):
         paths.extend((PROJECT_ROOT / directory).rglob('*.py'))
+    paths.extend((PROJECT_ROOT / 'configs').glob('*.json'))
     return sorted({path.resolve() for path in paths if path.is_file()})
 
 
 def code_hashes():
     return {path.relative_to(PROJECT_ROOT).as_posix(): file_digest(path) for path in source_paths()}
-
-
-def verify_code_hashes(stored):
-    """Support portable and old absolute keys without collapsing same basenames."""
-    if not isinstance(stored, dict):
-        raise ValueError('Source fingerprints must be a dictionary')
-    # Absolute inventories carry their original checkout root via requirements.txt.
-    roots = {Path(name).parent for name in stored
-             if Path(name).is_absolute() and Path(name).name == 'requirements.txt'}
-    normalized = {}
-    for name, digest in stored.items():
-        path = Path(name)
-        if path.is_absolute():
-            if len(roots) != 1 or not path.is_relative_to(next(iter(roots))):
-                raise ValueError('Ambiguous reference source root')
-            path = path.relative_to(next(iter(roots)))
-        relative = path.as_posix()
-        if relative in normalized:
-            raise ValueError('Duplicate reference source path: ' + relative)
-        normalized[relative] = digest
-    for relative, expected in code_hashes().items():
-        if normalized.get(relative) != expected:
-            raise ValueError('Reference source code differs: ' + relative +
-                             '; use its original repository revision to reproduce historical artifacts')
 
 
 def run_provenance(source_csv):

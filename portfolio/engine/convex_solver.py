@@ -31,12 +31,3 @@ def solve_checked(problem, variable, check, *, solvers=None, stop_on_infeasible=
         except (cp.error.SolverError, ValueError) as exc:
             attempts.append(f'{solver}: {type(exc).__name__}: {exc}')
     raise RuntimeError(error_label + ': ' + ' | '.join(attempts))
-
-
-def covariance_factor(covariance):
-    """Return B with B.T@B=covariance; tolerate roundoff, not a non-PSD input."""
-    cov = np.asarray(covariance, dtype=float)
-    eigenvalues, vectors = np.linalg.eigh((cov+cov.T)/2)
-    if eigenvalues.min() < -1e-10*max(1., np.max(np.abs(cov))):
-        raise ValueError('Covariance must be positive semidefinite')
-    return np.sqrt(np.maximum(eigenvalues, 0))[:, None]*vectors.T

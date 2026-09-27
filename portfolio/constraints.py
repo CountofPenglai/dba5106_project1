@@ -17,6 +17,8 @@ class PortfolioConstraints:
     leverage_limit: float = 1.5
     volatility_limit: float = 1.0
     wealth_floor: float = 1e-6
+    weight_limit: float | None = None
+    beta_bounds: tuple[float, float] | None = None
 
     def __post_init__(self):
         if not np.isfinite(self.leverage_limit) or self.leverage_limit < 1:
@@ -25,6 +27,12 @@ class PortfolioConstraints:
             raise ValueError("Volatility limit must be finite and nonnegative")
         if not np.isfinite(self.wealth_floor) or not 0 < self.wealth_floor <= 1:
             raise ValueError("Wealth floor must be in (0, 1]")
+        if self.weight_limit is not None and (not np.isfinite(self.weight_limit) or self.weight_limit <= 0):
+            raise ValueError("Weight limit must be positive and finite")
+        if self.beta_bounds is not None:
+            if (len(self.beta_bounds) != 2 or not np.isfinite(self.beta_bounds).all()
+                    or self.beta_bounds[0] > self.beta_bounds[1]):
+                raise ValueError("Beta bounds must be finite and ordered")
 
 
 @dataclass(frozen=True)

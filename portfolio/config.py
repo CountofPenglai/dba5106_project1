@@ -35,6 +35,11 @@ class TrainingConfig:
 TRAINING_PRESETS = {
     "126d": TrainingConfig(TrainingWindow(observations=126)),
     "252d": TrainingConfig(TrainingWindow(observations=252)),
-    "3y": TrainingConfig(TrainingWindow(years=3, min_observations=252)),
-    "3y_weighted": TrainingConfig(TrainingWindow(years=3, min_observations=252), half_life=252),
 }
+
+# The July period is an explicit reproduction of previously evaluated data.
+EVALUATION_PERIODS = {
+    'validation': ('2026-01-02', '2026-06-30'),
+    'july_test': ('2026-07-01', '2026-07-31'),
+}
+HISTORY_START = '2021-08-01'

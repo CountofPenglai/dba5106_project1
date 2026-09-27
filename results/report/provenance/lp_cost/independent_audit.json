@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checked_lp_portfolios": 1137,
+  "forecasts_checked": 251,
+  "no_test_evaluation": true,
+  "common_cost_rate": 0.0005,
+  "legacy_max_weight_difference": 3.044099694538005e-12,
+  "legacy_max_prediction_difference": 0.0,
+  "checks": [
+    "recomputed daily gross/net returns and drifted turnover",
+    "recomputed all net metrics",
+    "recomputed all LP hard constraints",
+    "verified forecast/risk chronology and 252 observations",
+    "confirmed frozen coefficient matches training selection",
+    "matched previous LP and forecasts"
+  ]
+}

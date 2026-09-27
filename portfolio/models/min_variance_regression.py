@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 
 import numpy as np
-from sklearn.linear_model import Lasso, LassoCV, LinearRegression, Ridge, RidgeCV
+from sklearn.linear_model import Lasso, LinearRegression, Ridge
 
 from portfolio.regularization import Regularization
 from portfolio.data.observation_weights import normalize_sample_weights
@@ -66,28 +66,3 @@ def fit_linear(X, y, *, regularization=Regularization(), sample_weight=None):
         estimator = Ridge(alpha=n * regularization.strength)
     estimator.fit(X, y, sample_weight=weights)
     return LinearModel(np.asarray(estimator.coef_), float(estimator.intercept_))
-
-
-def fit_linear_cv(X, y, *, kind, alphas=None, cv=5, sample_weight=None):
-    """Pick alpha by k-fold CV on this window, then refit at that alpha.
-
-    Uses sklearn's native alpha scale (LassoCV/RidgeCV pick it by their own
-    CV objectives: LASSO MSE and Ridge default R-squared), not the Regularization.strength convention used for
-    a fixed, pre-chosen penalty.
-    """
-    X, y = _regression_inputs(X, y)
-    if kind not in {"lasso", "ridge"}:
-        raise ValueError("kind must be lasso or ridge")
-    n = len(y)
-    weights = normalize_sample_weights(sample_weight, n) * n
-    if np.count_nonzero(weights) < 2:
-        raise ValueError("At least two observations need positive sample weight")
-    if alphas is None:
-        alphas = np.logspace(-8, 8, 21)
-    if kind == "lasso":
-        estimator = LassoCV(alphas=alphas, cv=cv, max_iter=100000, tol=1e-8)
-    else:
-        estimator = RidgeCV(alphas=alphas, cv=cv)
-    estimator.fit(X, y, sample_weight=weights)
-    model = LinearModel(np.asarray(estimator.coef_), float(estimator.intercept_))
-    return model, float(estimator.alpha_)

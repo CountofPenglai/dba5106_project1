@@ -4,10 +4,10 @@ import numpy as np
 import pandas as pd
 from numpy.testing import assert_allclose
 
-from portfolio import splits
-from portfolio.evaluation import backtest
+from portfolio.data import history_windows as splits
+from portfolio.engine.rolling_backtest import backtest
 from portfolio.regularization import Regularization
-from portfolio.training import fit_portfolio
+from portfolio.engine.portfolio_fit import fit_portfolio
 
 
 class TrainingWindowTests(unittest.TestCase):

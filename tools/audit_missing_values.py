@@ -5,7 +5,7 @@ separately: it is not silently classified as an official missing marker.
 """
 
 from portfolio.paths import PROJECT_ROOT
-from portfolio.evaluation.artifact_store import configure_output, ensure_fresh_output
+from portfolio.evaluation.artifact_store import ensure_fresh_output
 from portfolio.evaluation.provenance import source_paths, file_digest, package_versions
 
 import argparse
@@ -111,16 +111,13 @@ def audit_file(path, *, start=None, end=None):
             "sections": sections, "columns": records}
 
 
-def main(argv=None, *, default_layout="flat"):
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--csv", type=Path, default=PROJECT_ROOT / "100_Portfolios_10x10_Daily.csv")
     parser.add_argument("--start", help="Optional inclusive YYYY-MM-DD")
     parser.add_argument("--end", help="Optional inclusive YYYY-MM-DD")
     parser.add_argument("--output", type=Path, help="New output directory for counts.csv and audit.json")
-    parser.add_argument("--layout", choices=("flat", "categorized"), default=default_layout,
-                        help="Categorized artifact folders or historical flat filenames")
     args = parser.parse_args(argv)
-    configure_output(parser, args, "audit_missing_values", optional_flat=True)
     if args.output is not None and args.output.exists():
         parser.error("--output must be a new directory")
     try:
@@ -140,17 +137,14 @@ def main(argv=None, *, default_layout="flat"):
         print(f"Rows with missing values after default exclusions: {stats['rows_with_missing_after_default_exclusions']}")
     if args.output is not None:
         args.output.mkdir(parents=True)
-        (args.artifacts.path("audit.json")).write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
-        with (args.artifacts.path("counts.csv")).open("w", encoding="utf-8", newline="") as target:
+        (args.output / "audit.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
+        with (args.output / "counts.csv").open("w", encoding="utf-8", newline="") as target:
             writer = csv.DictWriter(target, fieldnames=list(report["columns"][0]))
             writer.writeheader()
             writer.writerows(report["columns"])
-        print(f"\nAll columns, including zero counts: {args.artifacts.path('counts.csv')}")
+        print(f"\nAll columns, including zero counts: {args.output / 'counts.csv'}")
 
-    if args.artifacts is not None:
-        args.artifacts.finalize()
-        print(f"Saved artifacts to {args.output.resolve()}", flush=True)
 
 
 if __name__ == "__main__":
-    main(default_layout="categorized")
+    main()

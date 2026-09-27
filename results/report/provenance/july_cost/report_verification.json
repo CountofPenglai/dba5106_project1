@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "report_sha256": "98fe0cd9f127d185520e5d816e13f09be975c42e9ecf8ef0217a1fe7e8548f18",
+  "main_table_rows": 6,
+  "appendix_final_test_rows": 7,
+  "original_validation_appendix_preserved": true,
+  "all_report_performance_gross": true,
+  "independent_review": "No material findings; corrected description of original representative selection to include performance and control roles."
+}

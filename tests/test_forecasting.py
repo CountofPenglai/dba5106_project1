@@ -6,7 +6,7 @@ from sklearn.linear_model import Lasso
 from sklearn.preprocessing import StandardScaler
 
 from portfolio.config import TrainingConfig
-from portfolio.splits import TrainingWindow
+from portfolio.data.history_windows import TrainingWindow
 
 
 class ForecastingTests(unittest.TestCase):
@@ -16,7 +16,7 @@ class ForecastingTests(unittest.TestCase):
         return pd.DataFrame(values, index=dates, columns=[f"a{i}" for i in range(p)])
 
     def test_build_supervised_has_exact_causal_features(self):
-        from portfolio.forecasting import build_supervised
+        from portfolio.models.lasso_return_forecast import build_supervised
 
         returns = self._returns(65, 2)
         data = build_supervised(returns)
@@ -35,7 +35,7 @@ class ForecastingTests(unittest.TestCase):
         np.testing.assert_allclose(data.features[0, 0], expected, rtol=0, atol=1e-15)
 
     def test_build_supervised_rejects_malformed_or_incomplete_grid(self):
-        from portfolio.forecasting import build_supervised
+        from portfolio.models.lasso_return_forecast import build_supervised
 
         base = self._returns(70, 2)
         cases = [
@@ -51,7 +51,7 @@ class ForecastingTests(unittest.TestCase):
                     build_supervised(bad)
 
     def test_build_supervised_does_not_drop_missing_rows_after_warmup(self):
-        from portfolio.forecasting import build_supervised
+        from portfolio.models.lasso_return_forecast import build_supervised
 
         returns = self._returns(80, 2)
         returns.iloc[70, 0] = np.nan
@@ -59,7 +59,7 @@ class ForecastingTests(unittest.TestCase):
             build_supervised(returns)
 
     def test_forecast_matches_independent_sklearn_and_handles_constant_features(self):
-        from portfolio.forecasting import build_supervised, forecast_at
+        from portfolio.models.lasso_return_forecast import build_supervised, forecast_at
 
         returns = self._returns(340, 3)
         returns.iloc[:, 2] = 0.0
@@ -85,7 +85,7 @@ class ForecastingTests(unittest.TestCase):
         self.assertEqual(diagnostics["constant_feature_counts"]["a2"], 5)
 
     def test_calendar_window_includes_anniversary_and_excludes_forecast_date(self):
-        from portfolio.forecasting import build_supervised, forecast_at
+        from portfolio.models.lasso_return_forecast import build_supervised, forecast_at
 
         data = build_supervised(self._returns(900, 2, "2021-01-04"))
         date = data.targets.index[-1]
@@ -96,7 +96,7 @@ class ForecastingTests(unittest.TestCase):
         self.assertLess(diagnostics["train_end"], date)
 
     def test_future_perturbation_does_not_change_earlier_forecast(self):
-        from portfolio.forecasting import build_supervised, forecast_at
+        from portfolio.models.lasso_return_forecast import build_supervised, forecast_at
 
         returns = self._returns(400, 2)
         date = returns.index[350]
@@ -108,7 +108,7 @@ class ForecastingTests(unittest.TestCase):
         pd.testing.assert_series_equal(first, second)
 
     def test_calibration_scores_each_fold_and_alpha_and_uses_larger_tie(self):
-        from portfolio.forecasting import build_supervised, calibrate_alpha
+        from portfolio.models.lasso_return_forecast import build_supervised, calibrate_alpha
 
         returns = pd.DataFrame(
             0.0,
@@ -135,7 +135,7 @@ class ForecastingTests(unittest.TestCase):
         self.assertTrue((scores["validation_count"] == 10).all())
 
     def test_calibration_rejects_bad_end_alpha_and_fold_grid(self):
-        from portfolio.forecasting import build_supervised, calibrate_alpha
+        from portfolio.models.lasso_return_forecast import build_supervised, calibrate_alpha
 
         data = build_supervised(self._returns(120, 2))
         config = TrainingConfig(TrainingWindow(observations=30))

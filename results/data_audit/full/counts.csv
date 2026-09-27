@@ -1,0 +1,401 @@
+section,column_number,asset,observations,count_minus_99,count_minus_99_99,count_minus_999,blank_count,missing_marker_count,first_marker_date,last_marker_date,excluded_by_default,missing_percent
+Average Value Weighted Returns -- Daily,1,SMALL LoBM,26296,0,2548,0,0,2548,1926-07-01,1962-06-29,False,9.689686644356556
+Average Value Weighted Returns -- Daily,2,ME1 BM2,26296,0,3181,0,0,3181,1927-08-26,1961-02-09,False,12.096896866443565
+Average Value Weighted Returns -- Daily,3,ME1 BM3,26296,0,2902,0,0,2902,1926-07-01,1963-06-28,False,11.035898996045026
+Average Value Weighted Returns -- Daily,4,ME1 BM4,26296,0,1494,0,0,1494,1928-07-02,1944-05-06,False,5.681472467295406
+Average Value Weighted Returns -- Daily,5,ME1 BM5,26296,0,939,0,0,939,1929-12-16,1953-01-28,False,3.570885305749924
+Average Value Weighted Returns -- Daily,6,ME1 BM6,26296,0,305,0,0,305,1929-10-29,1932-03-22,False,1.1598722239123822
+Average Value Weighted Returns -- Daily,7,ME1 BM7,26296,0,297,0,0,297,1928-07-02,1929-06-29,False,1.129449345908123
+Average Value Weighted Returns -- Daily,8,ME1 BM8,26296,0,3,0,0,3,1929-08-30,1930-01-27,False,0.011408579251597202
+Average Value Weighted Returns -- Daily,9,ME1 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,10,SMALL HiBM,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,11,ME2 BM1,26296,0,2580,0,0,2580,1928-07-02,1958-03-17,False,9.811378156373593
+Average Value Weighted Returns -- Daily,12,ME2 BM2,26296,0,1485,0,0,1485,1928-02-17,1959-10-20,False,5.647246729540615
+Average Value Weighted Returns -- Daily,13,ME2 BM3,26296,0,689,0,0,689,1931-07-23,1944-02-05,False,2.620170368116824
+Average Value Weighted Returns -- Daily,14,ME2 BM4,26296,0,8,0,0,8,1929-01-30,1938-10-27,False,0.030422878004259205
+Average Value Weighted Returns -- Daily,15,ME2 BM5,26296,0,303,0,0,303,1926-07-01,1934-02-20,False,1.1522665044113174
+Average Value Weighted Returns -- Daily,16,ME2 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,17,ME2 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,18,ME2 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,19,ME2 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,20,ME2 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,21,ME3 BM1,26296,0,614,0,0,614,1926-07-30,1948-08-30,False,2.334955886826894
+Average Value Weighted Returns -- Daily,22,ME3 BM2,26296,0,604,0,0,604,1930-07-01,1936-06-30,False,2.29692728932157
+Average Value Weighted Returns -- Daily,23,ME3 BM3,26296,0,293,0,0,293,1931-08-26,1935-12-18,False,1.1142379069059933
+Average Value Weighted Returns -- Daily,24,ME3 BM4,26296,0,292,0,0,292,1929-07-01,1930-06-30,False,1.110435047155461
+Average Value Weighted Returns -- Daily,25,ME3 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,26,ME3 BM6,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Value Weighted Returns -- Daily,27,ME3 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,28,ME3 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,29,ME3 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,30,ME3 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,31,ME4 BM1,26296,0,317,0,0,317,1932-07-05,1958-06-26,False,1.2055065409187709
+Average Value Weighted Returns -- Daily,32,ME4 BM2,26296,0,5,0,0,5,1932-07-18,1933-08-04,False,0.019014298752662
+Average Value Weighted Returns -- Daily,33,ME4 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,34,ME4 BM4,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Value Weighted Returns -- Daily,35,ME4 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,36,ME4 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,37,ME4 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,38,ME4 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,39,ME4 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,40,ME4 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,41,ME5 BM1,26296,0,301,0,0,301,1930-07-01,1935-10-16,False,1.1446607849102526
+Average Value Weighted Returns -- Daily,42,ME5 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,43,ME5 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,44,ME5 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,45,ME5 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,46,ME5 BM6,26296,0,2,0,0,2,1930-04-23,1930-05-23,False,0.007605719501064801
+Average Value Weighted Returns -- Daily,47,ME5 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,48,ME5 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,49,ME5 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,50,ME5 BM10,26296,0,1,0,0,1,1927-04-30,1927-04-30,False,0.0038028597505324006
+Average Value Weighted Returns -- Daily,51,ME6 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,52,ME6 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,53,ME6 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,54,ME6 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,55,ME6 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,56,ME6 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,57,ME6 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,58,ME6 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,59,ME6 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,60,ME6 BM10,26296,0,395,0,0,395,1929-10-31,1936-05-07,False,1.502129601460298
+Average Value Weighted Returns -- Daily,61,ME7 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,62,ME7 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,63,ME7 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,64,ME7 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,65,ME7 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,66,ME7 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,67,ME7 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,68,ME7 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,69,ME7 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,70,ME7 BM10,26296,0,852,0,0,852,1930-07-01,2001-06-29,False,3.2400365074536053
+Average Value Weighted Returns -- Daily,71,ME8 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,72,ME8 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,73,ME8 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,74,ME8 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,75,ME8 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,76,ME8 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,77,ME8 BM7,26296,0,253,0,0,253,1954-07-01,1955-06-30,False,0.9621235168846973
+Average Value Weighted Returns -- Daily,78,ME8 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,79,ME8 BM9,26296,0,1,0,0,1,1931-03-12,1931-03-12,False,0.0038028597505324006
+Average Value Weighted Returns -- Daily,80,ME8 BM10,26296,0,1195,0,0,1195,1930-02-19,1940-06-29,False,4.544417401886219
+Average Value Weighted Returns -- Daily,81,ME9 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,82,ME9 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,83,ME9 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,84,ME9 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,85,ME9 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,86,ME9 BM6,26296,0,297,0,0,297,1927-07-01,1928-06-30,False,1.129449345908123
+Average Value Weighted Returns -- Daily,87,ME9 BM7,26296,0,2,0,0,2,1933-07-22,1933-08-04,False,0.007605719501064801
+Average Value Weighted Returns -- Daily,88,ME9 BM8,26296,0,251,0,0,251,1953-07-01,1954-06-30,False,0.9545177973836325
+Average Value Weighted Returns -- Daily,89,ME9 BM9,26296,0,253,0,0,253,1959-07-01,1960-06-30,False,0.9621235168846973
+Average Value Weighted Returns -- Daily,90,ME9 BM10,26296,0,2327,0,0,2327,1926-07-01,2025-06-30,True,8.849254639488896
+Average Value Weighted Returns -- Daily,91,BIG LoBM,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,92,ME10 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,93,ME10 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,94,ME10 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,95,ME10 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,96,ME10 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,97,ME10 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Value Weighted Returns -- Daily,98,ME10 BM8,26296,0,809,0,0,809,1931-07-01,2000-06-30,False,3.076513538180712
+Average Value Weighted Returns -- Daily,99,ME10 BM9,26296,0,2247,0,0,2247,1927-07-01,2001-06-29,False,8.545025859446303
+Average Value Weighted Returns -- Daily,100,BIG HiBM,26296,0,6603,0,0,6603,1926-07-01,2026-07-31,True,25.11028293276544
+Average Equal Weighted Returns -- Daily,1,SMALL LoBM,26296,0,2548,0,0,2548,1926-07-01,1962-06-29,False,9.689686644356556
+Average Equal Weighted Returns -- Daily,2,ME1 BM2,26296,0,3181,0,0,3181,1927-08-26,1961-02-09,False,12.096896866443565
+Average Equal Weighted Returns -- Daily,3,ME1 BM3,26296,0,2902,0,0,2902,1926-07-01,1963-06-28,False,11.035898996045026
+Average Equal Weighted Returns -- Daily,4,ME1 BM4,26296,0,1494,0,0,1494,1928-07-02,1944-05-06,False,5.681472467295406
+Average Equal Weighted Returns -- Daily,5,ME1 BM5,26296,0,939,0,0,939,1929-12-16,1953-01-28,False,3.570885305749924
+Average Equal Weighted Returns -- Daily,6,ME1 BM6,26296,0,305,0,0,305,1929-10-29,1932-03-22,False,1.1598722239123822
+Average Equal Weighted Returns -- Daily,7,ME1 BM7,26296,0,297,0,0,297,1928-07-02,1929-06-29,False,1.129449345908123
+Average Equal Weighted Returns -- Daily,8,ME1 BM8,26296,0,3,0,0,3,1929-08-30,1930-01-27,False,0.011408579251597202
+Average Equal Weighted Returns -- Daily,9,ME1 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,10,SMALL HiBM,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,11,ME2 BM1,26296,0,2580,0,0,2580,1928-07-02,1958-03-17,False,9.811378156373593
+Average Equal Weighted Returns -- Daily,12,ME2 BM2,26296,0,1485,0,0,1485,1928-02-17,1959-10-20,False,5.647246729540615
+Average Equal Weighted Returns -- Daily,13,ME2 BM3,26296,0,689,0,0,689,1931-07-23,1944-02-05,False,2.620170368116824
+Average Equal Weighted Returns -- Daily,14,ME2 BM4,26296,0,8,0,0,8,1929-01-30,1938-10-27,False,0.030422878004259205
+Average Equal Weighted Returns -- Daily,15,ME2 BM5,26296,0,303,0,0,303,1926-07-01,1934-02-20,False,1.1522665044113174
+Average Equal Weighted Returns -- Daily,16,ME2 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,17,ME2 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,18,ME2 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,19,ME2 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,20,ME2 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,21,ME3 BM1,26296,0,614,0,0,614,1926-07-30,1948-08-30,False,2.334955886826894
+Average Equal Weighted Returns -- Daily,22,ME3 BM2,26296,0,604,0,0,604,1930-07-01,1936-06-30,False,2.29692728932157
+Average Equal Weighted Returns -- Daily,23,ME3 BM3,26296,0,293,0,0,293,1931-08-26,1935-12-18,False,1.1142379069059933
+Average Equal Weighted Returns -- Daily,24,ME3 BM4,26296,0,292,0,0,292,1929-07-01,1930-06-30,False,1.110435047155461
+Average Equal Weighted Returns -- Daily,25,ME3 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,26,ME3 BM6,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Equal Weighted Returns -- Daily,27,ME3 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,28,ME3 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,29,ME3 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,30,ME3 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,31,ME4 BM1,26296,0,317,0,0,317,1932-07-05,1958-06-26,False,1.2055065409187709
+Average Equal Weighted Returns -- Daily,32,ME4 BM2,26296,0,5,0,0,5,1932-07-18,1933-08-04,False,0.019014298752662
+Average Equal Weighted Returns -- Daily,33,ME4 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,34,ME4 BM4,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Equal Weighted Returns -- Daily,35,ME4 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,36,ME4 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,37,ME4 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,38,ME4 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,39,ME4 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,40,ME4 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,41,ME5 BM1,26296,0,301,0,0,301,1930-07-01,1935-10-16,False,1.1446607849102526
+Average Equal Weighted Returns -- Daily,42,ME5 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,43,ME5 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,44,ME5 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,45,ME5 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,46,ME5 BM6,26296,0,2,0,0,2,1930-04-23,1930-05-23,False,0.007605719501064801
+Average Equal Weighted Returns -- Daily,47,ME5 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,48,ME5 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,49,ME5 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,50,ME5 BM10,26296,0,1,0,0,1,1927-04-30,1927-04-30,False,0.0038028597505324006
+Average Equal Weighted Returns -- Daily,51,ME6 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,52,ME6 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,53,ME6 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,54,ME6 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,55,ME6 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,56,ME6 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,57,ME6 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,58,ME6 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,59,ME6 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,60,ME6 BM10,26296,0,395,0,0,395,1929-10-31,1936-05-07,False,1.502129601460298
+Average Equal Weighted Returns -- Daily,61,ME7 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,62,ME7 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,63,ME7 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,64,ME7 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,65,ME7 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,66,ME7 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,67,ME7 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,68,ME7 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,69,ME7 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,70,ME7 BM10,26296,0,852,0,0,852,1930-07-01,2001-06-29,False,3.2400365074536053
+Average Equal Weighted Returns -- Daily,71,ME8 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,72,ME8 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,73,ME8 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,74,ME8 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,75,ME8 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,76,ME8 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,77,ME8 BM7,26296,0,253,0,0,253,1954-07-01,1955-06-30,False,0.9621235168846973
+Average Equal Weighted Returns -- Daily,78,ME8 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,79,ME8 BM9,26296,0,1,0,0,1,1931-03-12,1931-03-12,False,0.0038028597505324006
+Average Equal Weighted Returns -- Daily,80,ME8 BM10,26296,0,1195,0,0,1195,1930-02-19,1940-06-29,False,4.544417401886219
+Average Equal Weighted Returns -- Daily,81,ME9 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,82,ME9 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,83,ME9 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,84,ME9 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,85,ME9 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,86,ME9 BM6,26296,0,297,0,0,297,1927-07-01,1928-06-30,False,1.129449345908123
+Average Equal Weighted Returns -- Daily,87,ME9 BM7,26296,0,2,0,0,2,1933-07-22,1933-08-04,False,0.007605719501064801
+Average Equal Weighted Returns -- Daily,88,ME9 BM8,26296,0,251,0,0,251,1953-07-01,1954-06-30,False,0.9545177973836325
+Average Equal Weighted Returns -- Daily,89,ME9 BM9,26296,0,253,0,0,253,1959-07-01,1960-06-30,False,0.9621235168846973
+Average Equal Weighted Returns -- Daily,90,ME9 BM10,26296,0,2327,0,0,2327,1926-07-01,2025-06-30,True,8.849254639488896
+Average Equal Weighted Returns -- Daily,91,BIG LoBM,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,92,ME10 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,93,ME10 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,94,ME10 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,95,ME10 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,96,ME10 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,97,ME10 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Equal Weighted Returns -- Daily,98,ME10 BM8,26296,0,809,0,0,809,1931-07-01,2000-06-30,False,3.076513538180712
+Average Equal Weighted Returns -- Daily,99,ME10 BM9,26296,0,2247,0,0,2247,1927-07-01,2001-06-29,False,8.545025859446303
+Average Equal Weighted Returns -- Daily,100,BIG HiBM,26296,0,6603,0,0,6603,1926-07-01,2026-07-31,True,25.11028293276544
+Number of Firms in Portfolios,1,SMALL LoBM,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,2,ME1 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,3,ME1 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,4,ME1 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,5,ME1 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,6,ME1 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,7,ME1 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,8,ME1 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,9,ME1 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,10,SMALL HiBM,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,11,ME2 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,12,ME2 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,13,ME2 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,14,ME2 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,15,ME2 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,16,ME2 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,17,ME2 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,18,ME2 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,19,ME2 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,20,ME2 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,21,ME3 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,22,ME3 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,23,ME3 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,24,ME3 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,25,ME3 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,26,ME3 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,27,ME3 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,28,ME3 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,29,ME3 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,30,ME3 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,31,ME4 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,32,ME4 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,33,ME4 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,34,ME4 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,35,ME4 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,36,ME4 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,37,ME4 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,38,ME4 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,39,ME4 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,40,ME4 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,41,ME5 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,42,ME5 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,43,ME5 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,44,ME5 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,45,ME5 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,46,ME5 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,47,ME5 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,48,ME5 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,49,ME5 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,50,ME5 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,51,ME6 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,52,ME6 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,53,ME6 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,54,ME6 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,55,ME6 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,56,ME6 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,57,ME6 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,58,ME6 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,59,ME6 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,60,ME6 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,61,ME7 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,62,ME7 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,63,ME7 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,64,ME7 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,65,ME7 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,66,ME7 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,67,ME7 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,68,ME7 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,69,ME7 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,70,ME7 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,71,ME8 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,72,ME8 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,73,ME8 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,74,ME8 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,75,ME8 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,76,ME8 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,77,ME8 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,78,ME8 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,79,ME8 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,80,ME8 BM10,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,81,ME9 BM1,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,82,ME9 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,83,ME9 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,84,ME9 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,85,ME9 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,86,ME9 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,87,ME9 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,88,ME9 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,89,ME9 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,90,ME9 BM10,26296,0,0,0,0,0,,,True,0.0
+Number of Firms in Portfolios,91,BIG LoBM,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,92,ME10 BM2,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,93,ME10 BM3,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,94,ME10 BM4,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,95,ME10 BM5,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,96,ME10 BM6,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,97,ME10 BM7,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,98,ME10 BM8,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,99,ME10 BM9,26296,0,0,0,0,0,,,False,0.0
+Number of Firms in Portfolios,100,BIG HiBM,26296,0,0,0,0,0,,,True,0.0
+Average Firm Size,1,SMALL LoBM,26296,0,2545,0,0,2545,1926-07-01,1962-06-29,False,9.678278065104958
+Average Firm Size,2,ME1 BM2,26296,0,3150,0,0,3150,1927-11-11,1959-06-30,False,11.97900821417706
+Average Firm Size,3,ME1 BM3,26296,0,2897,0,0,2897,1926-07-01,1963-06-28,False,11.016884697292364
+Average Firm Size,4,ME1 BM4,26296,0,1491,0,0,1491,1928-07-02,1941-06-30,False,5.670063888043809
+Average Firm Size,5,ME1 BM5,26296,0,935,0,0,935,1931-05-15,1937-06-30,False,3.5556738667477945
+Average Firm Size,6,ME1 BM6,26296,0,317,0,0,317,1929-11-04,1931-06-30,False,1.2055065409187709
+Average Firm Size,7,ME1 BM7,26296,0,297,0,0,297,1928-07-02,1929-06-29,False,1.129449345908123
+Average Firm Size,8,ME1 BM8,26296,0,24,0,0,24,1929-09-03,1929-09-30,False,0.09126863401277761
+Average Firm Size,9,ME1 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,10,SMALL HiBM,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,11,ME2 BM1,26296,0,2575,0,0,2575,1928-07-02,1956-06-29,False,9.79236385762093
+Average Firm Size,12,ME2 BM2,26296,0,1479,0,0,1479,1929-07-01,1939-06-30,False,5.62442957103742
+Average Firm Size,13,ME2 BM3,26296,0,683,0,0,683,1932-03-26,1943-06-30,False,2.5973532096136296
+Average Firm Size,14,ME2 BM4,26296,0,23,0,0,23,1933-08-01,1933-08-31,False,0.08746577426224521
+Average Firm Size,15,ME2 BM5,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Firm Size,16,ME2 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,17,ME2 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,18,ME2 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,19,ME2 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,20,ME2 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,21,ME3 BM1,26296,0,628,0,0,628,1930-12-01,1943-06-30,False,2.3881959233343473
+Average Firm Size,22,ME3 BM2,26296,0,602,0,0,602,1930-07-01,1936-06-30,False,2.289321569820505
+Average Firm Size,23,ME3 BM3,26296,0,291,0,0,291,1932-07-01,1933-06-30,False,1.1066321874049285
+Average Firm Size,24,ME3 BM4,26296,0,292,0,0,292,1929-07-01,1930-06-30,False,1.110435047155461
+Average Firm Size,25,ME3 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,26,ME3 BM6,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Firm Size,27,ME3 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,28,ME3 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,29,ME3 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,30,ME3 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,31,ME4 BM1,26296,0,301,0,0,301,1942-07-01,1943-06-30,False,1.1446607849102526
+Average Firm Size,32,ME4 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,33,ME4 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,34,ME4 BM4,26296,0,299,0,0,299,1926-07-01,1927-06-30,False,1.1370550654091878
+Average Firm Size,35,ME4 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,36,ME4 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,37,ME4 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,38,ME4 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,39,ME4 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,40,ME4 BM10,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,41,ME5 BM1,26296,0,300,0,0,300,1930-07-01,1931-06-30,False,1.1408579251597202
+Average Firm Size,42,ME5 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,43,ME5 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,44,ME5 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,45,ME5 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,46,ME5 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,47,ME5 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,48,ME5 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,49,ME5 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,50,ME5 BM10,26296,0,25,0,0,25,1927-05-02,1927-05-31,False,0.09507149376331
+Average Firm Size,51,ME6 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,52,ME6 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,53,ME6 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,54,ME6 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,55,ME6 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,56,ME6 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,57,ME6 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,58,ME6 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,59,ME6 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,60,ME6 BM10,26296,0,394,0,0,394,1929-11-04,1936-03-31,False,1.4983267417097657
+Average Firm Size,61,ME7 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,62,ME7 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,63,ME7 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,64,ME7 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,65,ME7 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,66,ME7 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,67,ME7 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,68,ME7 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,69,ME7 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,70,ME7 BM10,26296,0,915,0,0,915,1930-07-01,2021-06-30,False,3.4796166717371464
+Average Firm Size,71,ME8 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,72,ME8 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,73,ME8 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,74,ME8 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,75,ME8 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,76,ME8 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,77,ME8 BM7,26296,0,253,0,0,253,1954-07-01,1955-06-30,False,0.9621235168846973
+Average Firm Size,78,ME8 BM8,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,79,ME8 BM9,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,80,ME8 BM10,26296,0,1193,0,0,1193,1930-07-01,1940-06-29,False,4.536811682385154
+Average Firm Size,81,ME9 BM1,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,82,ME9 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,83,ME9 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,84,ME9 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,85,ME9 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,86,ME9 BM6,26296,0,297,0,0,297,1927-07-01,1928-06-30,False,1.129449345908123
+Average Firm Size,87,ME9 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,88,ME9 BM8,26296,0,251,0,0,251,1953-07-01,1954-06-30,False,0.9545177973836325
+Average Firm Size,89,ME9 BM9,26296,0,253,0,0,253,1959-07-01,1960-06-30,False,0.9621235168846973
+Average Firm Size,90,ME9 BM10,26296,0,2327,0,0,2327,1926-07-01,2025-06-30,True,8.849254639488896
+Average Firm Size,91,BIG LoBM,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,92,ME10 BM2,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,93,ME10 BM3,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,94,ME10 BM4,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,95,ME10 BM5,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,96,ME10 BM6,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,97,ME10 BM7,26296,0,0,0,0,0,,,False,0.0
+Average Firm Size,98,ME10 BM8,26296,0,809,0,0,809,1931-07-01,2000-06-30,False,3.076513538180712
+Average Firm Size,99,ME10 BM9,26296,0,2245,0,0,2245,1927-07-01,2001-06-29,False,8.537420139945239
+Average Firm Size,100,BIG HiBM,26296,0,6602,0,0,6602,1926-07-01,2026-07-31,True,25.106480073014907

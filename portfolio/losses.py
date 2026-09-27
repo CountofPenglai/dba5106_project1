@@ -17,17 +17,20 @@ def weighted_mse(y, prediction, sample_weight=None):
 
 
 @dataclass(frozen=True)
-class LogGrowthLoss:
+class PortfolioLoss:
     """Portfolio variance minus a reward for average log growth.
 
     Inputs are actual decimal portfolio returns R@w, not centered residuals.
     Regularization is added separately. Sample weights sum to one.
     """
 
-    reward_strength: float = 0.01
+    reward_strength: float = 0.0
     exposure_strength: float = 0
+    turnover_strength: float = 0
 
     def __post_init__(self):
+        if not np.isfinite(self.turnover_strength) or self.turnover_strength < 0:
+            raise ValueError("Turnover strength must be finite and nonnegative")
         if not np.isfinite(self.reward_strength) or self.reward_strength < 0:
             raise ValueError("Reward strength must be finite and nonnegative")
         if not np.isfinite(self.exposure_strength) or self.exposure_strength < 0:

@@ -8,13 +8,14 @@ import pandas as pd
 from numpy.testing import assert_allclose
 
 from portfolio.data import load_returns, preprocess_returns
-from portfolio.splits import split_returns, rolling_windows
-from portfolio.model import fit_linear
+from portfolio.data.history_windows import split_returns, rolling_windows
+from portfolio.models.min_variance_regression import fit_linear
 from portfolio.losses import weighted_mse
 from portfolio.regularization import Regularization
-from portfolio.weights import exponential, shrink_to_equal
-from portfolio.training import fit_portfolio
-from portfolio.evaluation import backtest, summarize
+from portfolio.data.observation_weights import exponential
+from portfolio.engine.portfolio_fit import fit_portfolio
+from portfolio.engine.rolling_backtest import backtest
+from portfolio.evaluation.portfolio_metrics import summarize
 
 
 class DataTests(unittest.TestCase):
@@ -101,34 +102,29 @@ class ModelTests(unittest.TestCase):
         inv_one = np.linalg.solve(np.cov(r, rowvar=False), np.ones(4))
         assert_allclose(result.weights, inv_one / inv_one.sum(), atol=1e-10)
 
-    def test_sample_weighting_changes_the_fit_and_callbacks_compose(self):
+    def test_sample_weighting_changes_the_fit(self):
         r = pd.DataFrame([[0.1, 0], [-0.1, 0.05], [0.3, -0.1], [0.02, 0.1]], columns=["A", "B"])
         s = np.array([0.1, 0.2, 0.5, 1.0])
-        fitted = fit_portfolio(r, sample_weights=lambda n: s,
-                               adjust_weights=partial(shrink_to_equal, strength=0.25))
+        fitted = fit_portfolio(r, sample_weights=lambda n: s)
         # Independent weighted covariance solution in asset coordinates.
         centered = r.to_numpy() - np.average(r, axis=0, weights=s)
         cov = centered.T @ (s[:, None] * centered) / s.sum()
         inv_one = np.linalg.solve(cov, np.ones(2))
         expected = inv_one / inv_one.sum()
-        assert_allclose(fitted.raw_weights, expected)
-        assert_allclose(fitted.weights, 0.75 * expected + 0.125)
-        self.assertFalse(np.allclose(fitted.raw_weights, fit_portfolio(r).weights))
+        assert_allclose(fitted.weights, expected)
+        self.assertFalse(np.allclose(fitted.weights, fit_portfolio(r).weights))
 
     def test_loss_weighting_and_decay(self):
         self.assertAlmostEqual(weighted_mse([1, 3], [0, 0], [3, 1]), 3)
         assert_allclose(exponential(3, half_life=1), [0.25, 0.5, 1])
-        assert_allclose(shrink_to_equal(np.array([-0.2, 1.2]), 0.5), [0.15, 0.85])
 
-    def test_bad_data_and_weight_adjustment_are_rejected(self):
+    def test_bad_data_and_sample_weights_are_rejected(self):
         for value in [np.nan, np.inf]:
             with self.assertRaises(ValueError):
                 fit_portfolio(pd.DataFrame([[1, value], [2, 3]], columns=["A", "B"]))
         r = pd.DataFrame([[1, 2], [3, 1], [2, 4]], columns=["A", "B"])
         with self.assertRaises(ValueError):
             fit_portfolio(r, sample_weights=lambda n: np.zeros(n))
-        with self.assertRaises(ValueError):
-            fit_portfolio(r, adjust_weights=lambda w: w * 2)
         with self.assertRaises(ValueError):
             fit_linear(np.ones((3, 1)), np.ones(3), sample_weight=[1, -1, 1])
 

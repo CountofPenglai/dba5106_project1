@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "checked_lp_allocations": 22,
+  "checked_forecast_boundaries": 22,
+  "checked_cost_accounting_paths": 7,
+  "checked_portfolio_days": 154,
+  "all_assets": 98,
+  "forecast_and_risk_window": 252,
+  "parameter_search": false,
+  "maximum_errors": {
+    "gross_return": 1.734723475976807e-18,
+    "net_return": 0.0,
+    "cost": 0.0,
+    "metrics": 9.8879238130678e-17
+  },
+  "max_gross": 1.5000000000000004,
+  "max_position": 0.05,
+  "max_budget_error": 6.661338147750939e-16,
+  "original_result_sha256": {
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/weights/EW.csv": "3eb29c2e373cc641f7b7538f6d5c47c39a8708918beb7d00c5a104d6812627db",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/returns/EW.csv": "28e7f78519f33b2b4a6555fe86a000133d37168f889b3b77d90f767d4b888449",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/weights/LASSO_Selected.csv": "cc7051553c68e81afa544db8bdbda3b6ee0cb32e6a5c321900ceb143b8144946",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/returns/LASSO_Selected.csv": "1f98c0b676d1b4b2b84c75fba40da8cca61f110bc958f2f214a060bf372727e4",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/weights/LASSO_WeightCap_10pct.csv": "6be8ea8ced398388c6e6128809e02bcac1734c1aca8f0f64f82aced72abbc025",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/returns/LASSO_WeightCap_10pct.csv": "e5860aab1ef411e74f4fc20e6534ececb23674ab97b2c35d88597306ca464cfe",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/weights/Ridge_conservative_0.5_0.9.csv": "cb7a3f5cb910fe6deed825b5a3453d84d91bc751d44ec6a3e7083698475ba83c",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/returns/Ridge_conservative_0.5_0.9.csv": "f1099e8f2b6b2208a9833ba3a2b216512235aabf6f36bf1852da5eb3c8ae6f1c",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/weights/LASSO_market_like_0.8_1.2.csv": "8b55968cca7fc5e38685638f8aaa7d54de0a46b413b77b6ba432538cd04ee23b",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/returns/LASSO_market_like_0.8_1.2.csv": "22b7118216dffb21e2d2fb28d012cdba7769ba0889b30fab21b9aafb181a0fb5",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/weights/LP_LASSO_252d.csv": "7790e893b01aa5a05a1a1eea0fc1c74479e8f82ab7bd277210a076988fea0d95",
+    "/Users/zhengce/projects/fundation_ba/project1/results/final_test_july_2026_20260923/returns/LP_LASSO_252d.csv": "4efb120c87b71bc0ccbc43ff69066231b26e3aa4a1672dbde018400e4fda9320"
+  },
+  "old_models_refitted": false,
+  "accounting": "gross minus .0005 times full L1 trades; start from EW; gross holdings drift",
+  "interpretation": "July previously reviewed; no new untouched-test claim"
+}

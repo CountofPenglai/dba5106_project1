@@ -124,23 +124,30 @@ All columns have zero exact -99, zero -999, and zero blank values. This table th
 
 ## Current handling and impact
 
-- `portfolio/data.py` first drops `ME9 BM10` and `BIG HiBM`, then converts -99.99/-999 to NaN and divides returns by 100. It does not drop other assets or dates and does not impute values. Model fitting/backtesting rejects missing values in the actual training or evaluation window.
-- `elastic_net_test.py`, `pca_lasso_ridge_test.py`, and `market_beta_cvxpy_test.py` drop the same two assets, convert the same markers to NaN, then call `dropna()` to remove any row with remaining missing data. Across the complete history, this removes **8,601 dates**, leaving **17,695 rows**. On affected historical periods, 252 retained observations need not represent 252 consecutive original trading dates.
-- In the original equal-weighted table, **37 assets** have missing markers. After the two default exclusions, **35 retained assets** still contain **26,316 historical missing cells**. The latest missing observation among retained assets is **2001-06-29**.
-- The expanded recent audit period **2024-06-27 to 2026-07-31** covers the historical screening, validation and their 252-day lookbacks. All **525 dates × 98 retained assets** are complete. Before exclusions, this period contains 250 missing cells in `ME9 BM10` and 22 in `BIG HiBM`; all are removed by the existing default column exclusions. Thus these markers do not contaminate the current experiments' active data windows.
-- Exact -99 is not currently replaced by the preprocessing code; this file has no such values. Do not broaden the missing-value definition to every number beginning with -99.
+The active preprocessing module is `portfolio/data/preprocessing.py`. It drops
+the two excluded columns first, replaces official missing markers and converts
+percentage-point returns to decimals. It does not impute values or silently
+drop rows. Training rejects missing values in the used history.
+
+After exclusion, the full historical panel still has 26,316 missing cells
+across 35 retained assets; the last is June 29, 2001. Active report commands
+retain August 2, 2021–July 31, 2026: **1,255 dates × 98 assets, zero missing
+cells**. A daily fit uses only its specified trailing window. The earlier
+recent-period audit (June 27, 2024–July 31, 2026) also found no remaining
+missing cells. Exact -99 is distinct from the official markers and does not
+occur in this input file.
+
+The full, since-2000 and recent original audits are preserved under
+`results/data_audit/` with unchanged source fingerprints.
 
 ## Reproduce
 
-From the repository root, use a new output directory on each run:
-
 ```bash
-.venv/bin/python audit_missing_values.py --output results/missing_value_audit_new
-.venv/bin/python audit_missing_values.py --start 2024-06-27 --end 2026-07-31 --output results/missing_value_audit_recent_new
+.venv/bin/python audit_missing_values.py --start 2021-08-01 --end 2026-07-31
+.venv/bin/python audit_missing_values.py --output results/runs/new_missing_audit
 ```
 
-Each output directory contains `counts.csv` (all 400 section/asset records, including zero counts) and `audit.json` (counts, coverage, source hash and row-deletion impact). This audit does not modify the raw data or preprocessing policy.
-
-Verification: two focused unit tests passed; all 400 per-column records and whole-row missing counts were independently cross-checked using pandas.
+An output directory contains `counts.csv` (all 400 section/asset records) and
+`audit.json`. The audit does not modify the raw file or preprocessing policy.
 
 Source SHA-256: `11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23`.

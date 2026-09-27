@@ -5,9 +5,9 @@ import pandas as pd
 from numpy.testing import assert_allclose
 
 from portfolio.constraints import PortfolioConstraints
-from portfolio.losses import LogGrowthLoss
+from portfolio.losses import PortfolioLoss
 from portfolio.regularization import Regularization
-from portfolio.training import fit_portfolio_growth
+from portfolio.models.constrained_portfolio import fit_constrained_portfolio
 
 
 class ExposurePenaltyTests(unittest.TestCase):
@@ -22,17 +22,17 @@ class ExposurePenaltyTests(unittest.TestCase):
         for gamma in (-1, np.nan, np.inf):
             with self.subTest(gamma=gamma):
                 with self.assertRaises(ValueError):
-                    LogGrowthLoss(exposure_strength=gamma)
+                    PortfolioLoss(exposure_strength=gamma)
 
     def test_zero_exposure_strength_preserves_the_existing_objective(self):
         history = self.history()
-        baseline = fit_portfolio_growth(
+        baseline = fit_constrained_portfolio(
             history,
-            loss=LogGrowthLoss(reward_strength=.03),
+            loss=PortfolioLoss(reward_strength=.03),
         )
-        explicit_zero = fit_portfolio_growth(
+        explicit_zero = fit_constrained_portfolio(
             history,
-            loss=LogGrowthLoss(reward_strength=.03, exposure_strength=0),
+            loss=PortfolioLoss(reward_strength=.03, exposure_strength=0),
         )
 
         assert_allclose(explicit_zero.weights, baseline.weights, atol=1e-9)
@@ -48,10 +48,10 @@ class ExposurePenaltyTests(unittest.TestCase):
         history = self.history()
         returns = history.to_numpy()
         eta, gamma, lam = .03, .10, 1e-5
-        result = fit_portfolio_growth(
+        result = fit_constrained_portfolio(
             history,
             regularization=Regularization("lasso", lam),
-            loss=LogGrowthLoss(reward_strength=eta, exposure_strength=gamma),
+            loss=PortfolioLoss(reward_strength=eta, exposure_strength=gamma),
         )
 
         first_weight = np.linspace(-.25, 1.25, 100001)
@@ -87,22 +87,22 @@ class ExposurePenaltyTests(unittest.TestCase):
 
     def test_higher_exposure_strength_reduces_gross_exposure(self):
         history = self.history()
-        low = fit_portfolio_growth(
+        low = fit_constrained_portfolio(
             history,
-            loss=LogGrowthLoss(reward_strength=.03, exposure_strength=0),
+            loss=PortfolioLoss(reward_strength=.03, exposure_strength=0),
         )
-        high = fit_portfolio_growth(
+        high = fit_constrained_portfolio(
             history,
-            loss=LogGrowthLoss(reward_strength=.03, exposure_strength=1),
+            loss=PortfolioLoss(reward_strength=.03, exposure_strength=1),
         )
 
         self.assertGreater(low.weights.abs().sum(), high.weights.abs().sum() + .01)
 
     def test_unit_gross_limit_defines_zero_exposure_penalty(self):
         history = self.history()
-        result = fit_portfolio_growth(
+        result = fit_constrained_portfolio(
             history,
-            loss=LogGrowthLoss(reward_strength=.03, exposure_strength=3),
+            loss=PortfolioLoss(reward_strength=.03, exposure_strength=3),
             constraints=PortfolioConstraints(leverage_limit=1),
         )
 

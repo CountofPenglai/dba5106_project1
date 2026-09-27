@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from numpy.testing import assert_allclose
 
-from portfolio.linear_decision import (
+from portfolio.decisions.linear_program_allocation import (
     LPConstraints,
     LinearPortfolioError,
     build_lp_context,
