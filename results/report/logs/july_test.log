@@ -1,0 +1,12 @@
+Evaluated 1 days through 2026-07-01
+Evaluated 21 days through 2026-07-30
+                        cumulative_return    sharpe  volatility  max_drawdown
+model                                                                        
+EW                              -0.008405 -0.051861    0.006952     -0.021354
+LASSO_ExposurePenalty            0.020171  0.160730    0.005748     -0.012961
+LASSO_WeightCap_10pct            0.016671  0.155305    0.004915     -0.011026
+Ridge_BetaConservative           0.012887  0.106121    0.005629     -0.013311
+LASSO_BetaMarket                 0.004506  0.034509    0.006508     -0.015492
+LP_Original                      0.002004  0.016288    0.007043     -0.019257
+LP_TradingPenalty               -0.004096 -0.022636    0.007159     -0.017710
+Results: /private/tmp/project1-report-rerun-20260927/july_test

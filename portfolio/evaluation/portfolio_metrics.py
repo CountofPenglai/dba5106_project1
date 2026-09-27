@@ -1,6 +1,15 @@
 """Daily return and portfolio performance measurements."""
 import numpy as np
 
+
+def summarize_holdings(weights):
+    """Diversification uses absolute weight shares, including short positions."""
+    gross = weights.abs().sum(axis=1)
+    return {'average_gross_leverage': float(gross.mean()),
+            'max_gross_leverage': float(gross.max()),
+            'average_max_abs_weight': float(weights.abs().max(axis=1).mean()),
+            'average_effective_assets': float((gross**2 / weights.pow(2).sum(axis=1)).mean())}
+
 def summarize(returns):
     """Daily Sharpe = mean/std, ddof=1; max_drawdown is a negative fraction."""
     r = np.asarray(returns, dtype=float)

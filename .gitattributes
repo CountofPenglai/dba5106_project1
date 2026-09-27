@@ -1,2 +1,4 @@
 # Preserve archived artifact bytes and checksums across platforms.
 results/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Raw execution logs retain padding from printed tables.
+results/report/logs/*.log whitespace=-blank-at-eol

@@ -1,0 +1,24 @@
+{
+  "daily_portfolios_checked": 2491,
+  "maximum_positive_constraint_residuals": {
+    "unit_budget": 5.88418203051333e-15,
+    "coefficient_budget": 0,
+    "gross_limit": 4.440892098500626e-16,
+    "wealth_floor": 0,
+    "variance_limit": 0,
+    "position_limit": 0,
+    "lp_position_limit": 0,
+    "lp_mad_limit": 1.0408340855860843e-17,
+    "lp_drawdown_limit": 0,
+    "beta_bounds": 0
+  },
+  "all_constraints_within_numerical_tolerance": true,
+  "report_cells": 141,
+  "matching_original_report_cells": 139,
+  "original_report_not_modified": true,
+  "parameters_reselected": false,
+  "effective_asset_count_difference": "Report uses mean(1/sum(w**2)); current project uses mean(sum(abs(w))**2/sum(w**2)). Both reconstructed from the same fresh weights.",
+  "fit_code_commit": "2bc5ea5",
+  "data_sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23",
+  "execution_note": "Three NumPy invalid-reduce warnings occurred in the validation log. Repeated first-21-day checks with RuntimeWarning escalation did not reproduce them; all saved decisions are finite, solved optimally, and independently satisfy their constraints. No warning was suppressed or model setting changed."
+}

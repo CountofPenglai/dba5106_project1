@@ -40,6 +40,7 @@ non-LP models to experiment with other window lengths.
 - [Model architecture, formulas and report mapping](docs/architecture/report-models.md)
 - [Report validation and July results](docs/experiments/final-model-summary.md)
 - [Saved results, provenance and recovery](docs/results.md)
+- [Report reproduction discrepancies awaiting review](docs/report-reproduction-check.md)
 - [Missing-value audit](docs/data-quality/missing-values-2026-09-22.md)
 
 ## Verify

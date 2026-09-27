@@ -9,7 +9,7 @@ from portfolio.config import TrainingConfig
 from portfolio.data.history_windows import TrainingWindow, rolling_windows
 from portfolio.decisions.holding_weights import validate_portfolio_weights
 from portfolio.decisions.linear_program_allocation import LPConstraints, LPObjective, build_lp_context, solve_linear_portfolio
-from portfolio.evaluation.portfolio_metrics import summarize
+from portfolio.evaluation.portfolio_metrics import summarize, summarize_holdings
 from portfolio.evaluation.provenance import frame_digest
 from portfolio.model_catalog import fit_model
 from portfolio.models.lasso_return_forecast import build_supervised, forecast_at
@@ -109,10 +109,10 @@ def run_models(returns, models, *, start, end, window=252, forecast_alpha=None,
     rows = []
     for spec in models:
         name = spec.name
-        gross = weights[name].abs().sum(axis=1)
         rows.append({'model': name, **summarize(daily[name]['return']),
             **{'net_'+key: value for key, value in summarize(daily[name]['net_return']).items()},
-            'average_gross_leverage': float(gross.mean()), 'max_gross_leverage': float(gross.max()),
+            **summarize_holdings(weights[name]),
+            'average_beta': float(diagnostics[name]['market_beta'].mean()) if spec.market_beta else np.nan,
             'average_target_turnover': float(diagnostics[name].target_turnover.mean()),
             'average_trade_turnover': float(diagnostics[name].trade_turnover.mean()),
             'evaluation_days': len(index), 'start': str(index[0].date()), 'end': str(index[-1].date())})

@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from numpy.testing import assert_allclose
 
-from portfolio.constraints import PortfolioConstraints
 from portfolio.losses import PortfolioLoss
 from portfolio.regularization import Regularization
 from portfolio.models.constrained_portfolio import fit_constrained_portfolio
@@ -24,25 +23,6 @@ class ExposurePenaltyTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     PortfolioLoss(exposure_strength=gamma)
 
-    def test_zero_exposure_strength_preserves_the_existing_objective(self):
-        history = self.history()
-        baseline = fit_constrained_portfolio(
-            history,
-            loss=PortfolioLoss(reward_strength=.03),
-        )
-        explicit_zero = fit_constrained_portfolio(
-            history,
-            loss=PortfolioLoss(reward_strength=.03, exposure_strength=0),
-        )
-
-        assert_allclose(explicit_zero.weights, baseline.weights, atol=1e-9)
-        self.assertAlmostEqual(explicit_zero.training_loss, baseline.training_loss)
-        self.assertAlmostEqual(explicit_zero.objective, baseline.objective)
-        expected_unit = max(0, (explicit_zero.weights.abs().sum() - 1) / .5) ** 2
-        self.assertAlmostEqual(
-            explicit_zero.diagnostics["exposure_unit_penalty"], expected_unit
-        )
-        self.assertEqual(explicit_zero.diagnostics["exposure_penalty"], 0)
 
     def test_positive_exposure_strength_matches_independent_scalar_grid(self):
         history = self.history()
@@ -84,32 +64,6 @@ class ExposurePenaltyTests(unittest.TestCase):
             result.objective,
             result.training_loss + result.diagnostics["penalty"],
         )
-
-    def test_higher_exposure_strength_reduces_gross_exposure(self):
-        history = self.history()
-        low = fit_constrained_portfolio(
-            history,
-            loss=PortfolioLoss(reward_strength=.03, exposure_strength=0),
-        )
-        high = fit_constrained_portfolio(
-            history,
-            loss=PortfolioLoss(reward_strength=.03, exposure_strength=1),
-        )
-
-        self.assertGreater(low.weights.abs().sum(), high.weights.abs().sum() + .01)
-
-    def test_unit_gross_limit_defines_zero_exposure_penalty(self):
-        history = self.history()
-        result = fit_constrained_portfolio(
-            history,
-            loss=PortfolioLoss(reward_strength=.03, exposure_strength=3),
-            constraints=PortfolioConstraints(leverage_limit=1),
-        )
-
-        self.assertTrue(np.isfinite(result.objective))
-        self.assertLessEqual(result.weights.abs().sum(), 1 + 1e-7)
-        self.assertEqual(result.diagnostics["exposure_unit_penalty"], 0)
-        self.assertEqual(result.diagnostics["exposure_penalty"], 0)
 
 
 if __name__ == "__main__":

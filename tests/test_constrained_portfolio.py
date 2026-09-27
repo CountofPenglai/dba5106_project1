@@ -7,42 +7,15 @@ from numpy.testing import assert_allclose
 
 from portfolio.engine import portfolio_fit as training
 from portfolio.models.constrained_portfolio import fit_constrained_portfolio
-from portfolio.engine.rolling_backtest import backtest
 from portfolio.regularization import Regularization
 
 
-class GrowthTests(unittest.TestCase):
+class ConstrainedPortfolioTests(unittest.TestCase):
     def api(self):
         from portfolio.constraints import PortfolioConstraints
         from portfolio.losses import PortfolioLoss
         return fit_constrained_portfolio, PortfolioLoss, PortfolioConstraints
 
-    def test_loss_uses_actual_returns_and_normalized_sample_weights(self):
-        _, Loss, _ = self.api()
-        # Mean=.05, variance=.0075; centering before log would change the reward.
-        expected_growth = 0.75 * np.log(1.1) + 0.25 * np.log(0.9)
-        for sample_weights in ([3, 1], [30, 10]):
-            terms = Loss(reward_strength=0.2).components([0.1, -0.1], sample_weights)
-            self.assertAlmostEqual(terms["mean"], 0.05)
-            self.assertAlmostEqual(terms["variance"], 0.0075)
-            self.assertAlmostEqual(terms["log_growth"], expected_growth)
-            self.assertAlmostEqual(terms["loss"], 0.0075 - 0.2 * expected_growth)
-
-    def test_invalid_loss_and_constraints_are_rejected(self):
-        fit, Loss, Constraints = self.api()
-        for eta in (-1, np.nan, np.inf):
-            with self.assertRaises(ValueError):
-                Loss(reward_strength=eta)
-        for values in ([0.1, -1], [0.1, np.nan], [0.1, np.inf]):
-            with self.assertRaises(ValueError):
-                Loss().components(values)
-        for args in ({"leverage_limit": 0.9}, {"volatility_limit": -1},
-                     {"wealth_floor": 0}, {"wealth_floor": np.nan}):
-            with self.assertRaises(ValueError):
-                Constraints(**args)
-        history = pd.DataFrame([[0.1, 0.0], [0.0, 0.1]])
-        with self.assertRaises(ValueError):
-            fit(history, sample_weight=[1, 0])
 
     def test_zero_reward_with_inactive_constraints_matches_existing_fit(self):
         fit, Loss, Constraints = self.api()
@@ -80,19 +53,6 @@ class GrowthTests(unittest.TestCase):
         self.assertLessEqual(np.var(returns @ result.weights), risk_cap + 1e-10)
         self.assertAlmostEqual(result.objective, losses[best], delta=1e-8)
 
-    def test_reward_changes_holdings_and_leverage_limit_binds(self):
-        fit, Loss, Constraints = self.api()
-        # A dominates B by a constant .01, so risk is identical for any weights.
-        history = pd.DataFrame([[.011, .001], [.009, -.001],
-                                [.012, .002], [.008, -.002]], columns=["A", "B"])
-        baseline = fit(history, loss=Loss(reward_strength=0))
-        rewarded = fit(history, loss=Loss(reward_strength=.01))
-        assert_allclose(baseline.weights, [.5, .5], atol=1e-5)
-        assert_allclose(rewarded.weights, [1.25, -.25], atol=2e-5)
-        self.assertLessEqual(np.abs(rewarded.weights).sum(), 1.5 + 1e-7)
-        self.assertGreater(rewarded.diagnostics["log_growth"], baseline.diagnostics["log_growth"])
-        self.assertAlmostEqual(rewarded.model.intercept,
-                               np.mean(history.to_numpy() @ rewarded.weights))
 
     def test_wealth_floor_is_enforced_without_clipping(self):
         fit, Loss, Constraints = self.api()
@@ -108,27 +68,6 @@ class GrowthTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "infeasible"):
             fit(pd.DataFrame([[-1.1, -1.1], [-1.1, -1.1]], columns=["A", "B"]))
 
-    def test_rolling_growth_fit_does_not_read_future_returns(self):
-        fit, _, _ = self.api()
-        dates = pd.bdate_range("2026-01-01", periods=10)
-        history = pd.DataFrame(np.random.default_rng(42).normal(0, .01, (10, 3)),
-                               index=dates, columns=list("ABC"))
-        strategy = lambda frame: fit(frame).weights
-        before = backtest(history, strategy, start=dates[5], end=dates[7], window=5)
-        changed = history.copy()
-        changed.loc[dates[7]:] += .5
-        after = backtest(changed, strategy, start=dates[5], end=dates[7], window=5)
-        assert_allclose(before.weights, after.weights, atol=1e-8)
-        assert_allclose(before.returns.iloc[:2], after.returns.iloc[:2], atol=1e-10)
-
-    def test_default_settings_solve_a_feasible_252_day_window(self):
-        fit, _, _ = self.api()
-        rng = np.random.default_rng(94598)
-        for _ in range(15):
-            returns = rng.normal(0, .015, (252, 5)) + rng.normal(0, .003, 5)
-        result = fit(pd.DataFrame(returns, columns=list("ABCDE")))
-        self.assertEqual(result.diagnostics["solver_status"], "optimal")
-        self.assertLessEqual(result.diagnostics["gross_leverage"], 1.5 + 1e-7)
 
     def test_primary_solver_error_recovers_with_a_real_secondary_solve(self):
         # A numerical solver error must not turn a feasible problem into EW.

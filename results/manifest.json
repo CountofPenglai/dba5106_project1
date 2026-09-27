@@ -1,161 +1,23 @@
 {
-  "schema_version": 1,
-  "archive_branch": "backup/pre-report-refactor-20260927",
-  "archive_commit": "c0b1cc517dc3edeb205898aa4ff5b590ec74a62c",
-  "metric_basis": "gross before transaction costs; daily unannualized Sharpe",
+  "schema_version": 2,
+  "metric_basis": "gross",
+  "execution": "Full fixed-parameter rerun on 2026-09-27",
+  "fitting_source_commit": "2bc5ea5",
+  "history_backup_branch": "backup/pre-report-refactor-20260927",
   "records": [
     {
       "model": "EW",
       "report_section": "2",
       "period": "validation",
-      "window": 126,
-      "source_model": "EW",
-      "returns": "results/baselines/126d/returns/EW.csv",
-      "weights": "results/baselines/126d/weights/EW.csv",
-      "diagnostics": "results/baselines/126d/diagnostics/EW_trading.csv",
-      "historical_fit_diagnostics": null,
-      "reported_metrics": {
-        "cumulative_return": 0.1693283239998428,
-        "sharpe": 0.1325326097400444,
-        "volatility": 0.0099737843394845,
-        "max_drawdown": -0.0863195462201265
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/126d/metrics/summary.csv",
-        "sha256": "b6c07d0d60d86efbaae9e2ac16b9b81bbd9cf28cab690b0cf6a6c978ccea8656",
-        "row": "EW"
-      }
-    },
-    {
-      "model": "MinVar",
-      "report_section": "2",
-      "period": "validation",
-      "window": 126,
-      "source_model": "MinVar",
-      "returns": "results/baselines/126d/returns/MinVar.csv",
-      "weights": "results/baselines/126d/weights/MinVar.csv",
-      "diagnostics": "results/baselines/126d/diagnostics/MinVar_trading.csv",
-      "historical_fit_diagnostics": null,
-      "reported_metrics": {
-        "cumulative_return": -0.0229657605401146,
-        "sharpe": -0.0171868882994907,
-        "volatility": 0.0087702426818732,
-        "max_drawdown": -0.0898818622262741
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/126d/metrics/summary.csv",
-        "sha256": "b6c07d0d60d86efbaae9e2ac16b9b81bbd9cf28cab690b0cf6a6c978ccea8656",
-        "row": "MinVar"
-      }
-    },
-    {
-      "model": "LASSO_CoefficientConstraint",
-      "report_section": "2",
-      "period": "validation",
-      "window": 126,
-      "source_model": "LASSO_CoefficientConstraint",
-      "returns": "results/baselines/126d/returns/LASSO_CoefficientConstraint.csv",
-      "weights": "results/baselines/126d/weights/LASSO_CoefficientConstraint.csv",
-      "diagnostics": "results/baselines/126d/diagnostics/LASSO_CoefficientConstraint_trading.csv",
-      "historical_fit_diagnostics": "results/baselines/126d/diagnostics/LASSO_CoefficientConstraint_fit.csv",
-      "reported_metrics": {
-        "cumulative_return": 0.0937479667387228,
-        "sharpe": 0.1247300606424759,
-        "volatility": 0.0059853766939335,
-        "max_drawdown": -0.0456316647502186
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/126d/metrics/summary.csv",
-        "sha256": "b6c07d0d60d86efbaae9e2ac16b9b81bbd9cf28cab690b0cf6a6c978ccea8656",
-        "row": "LASSO_CoefficientConstraint"
-      }
-    },
-    {
-      "model": "Ridge_CoefficientConstraint",
-      "report_section": "2",
-      "period": "validation",
-      "window": 126,
-      "source_model": "Ridge_CoefficientConstraint",
-      "returns": "results/baselines/126d/returns/Ridge_CoefficientConstraint.csv",
-      "weights": "results/baselines/126d/weights/Ridge_CoefficientConstraint.csv",
-      "diagnostics": "results/baselines/126d/diagnostics/Ridge_CoefficientConstraint_trading.csv",
-      "historical_fit_diagnostics": "results/baselines/126d/diagnostics/Ridge_CoefficientConstraint_fit.csv",
-      "reported_metrics": {
-        "cumulative_return": -0.0253329677992475,
-        "sharpe": -0.0286925082553371,
-        "volatility": 0.0065316928113917,
-        "max_drawdown": -0.0742665016757452
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/126d/metrics/summary.csv",
-        "sha256": "b6c07d0d60d86efbaae9e2ac16b9b81bbd9cf28cab690b0cf6a6c978ccea8656",
-        "row": "Ridge_CoefficientConstraint"
-      }
-    },
-    {
-      "model": "LASSO_Penalty",
-      "report_section": "2",
-      "period": "validation",
-      "window": 126,
-      "source_model": "LASSO_Penalty",
-      "returns": "results/baselines/126d/returns/LASSO_Penalty.csv",
-      "weights": "results/baselines/126d/weights/LASSO_Penalty.csv",
-      "diagnostics": "results/baselines/126d/diagnostics/LASSO_Penalty_trading.csv",
-      "historical_fit_diagnostics": null,
-      "reported_metrics": {
-        "cumulative_return": 0.0445833780809399,
-        "sharpe": 0.0693370517649398,
-        "volatility": 0.0053175328992373,
-        "max_drawdown": -0.0502216015660504
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/126d/metrics/summary.csv",
-        "sha256": "b6c07d0d60d86efbaae9e2ac16b9b81bbd9cf28cab690b0cf6a6c978ccea8656",
-        "row": "LASSO_Penalty"
-      }
-    },
-    {
-      "model": "Ridge_Penalty",
-      "report_section": "2",
-      "period": "validation",
-      "window": 126,
-      "source_model": "Ridge_Penalty",
-      "returns": "results/baselines/126d/returns/Ridge_Penalty.csv",
-      "weights": "results/baselines/126d/weights/Ridge_Penalty.csv",
-      "diagnostics": "results/baselines/126d/diagnostics/Ridge_Penalty_trading.csv",
-      "historical_fit_diagnostics": null,
-      "reported_metrics": {
-        "cumulative_return": 0.0141659149362365,
-        "sharpe": 0.0227347536116071,
-        "volatility": 0.005753908858594,
-        "max_drawdown": -0.0613464507592744
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/126d/metrics/summary.csv",
-        "sha256": "b6c07d0d60d86efbaae9e2ac16b9b81bbd9cf28cab690b0cf6a6c978ccea8656",
-        "row": "Ridge_Penalty"
-      }
-    },
-    {
-      "model": "EW",
-      "report_section": "2",
-      "period": "validation",
       "window": 252,
-      "source_model": "EW",
-      "returns": "results/baselines/252d/returns/EW.csv",
-      "weights": "results/baselines/252d/weights/EW.csv",
-      "diagnostics": "results/baselines/252d/diagnostics/EW_trading.csv",
-      "historical_fit_diagnostics": null,
+      "returns": "results/report/validation/returns/EW.csv",
+      "weights": "results/report/validation/weights/EW.csv",
+      "diagnostics": "results/report/validation/diagnostics/EW.csv",
       "reported_metrics": {
         "cumulative_return": 0.1693283239998428,
         "sharpe": 0.1325326097400444,
         "volatility": 0.0099737843394845,
         "max_drawdown": -0.0863195462201265
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/252d/metrics/summary.csv",
-        "sha256": "894eac0dda8b9d9bd9b349e648441763dd44e0fdc39b031765e4b86d2f735f5d",
-        "row": "EW"
       }
     },
     {
@@ -163,21 +25,14 @@
       "report_section": "2",
       "period": "validation",
       "window": 252,
-      "source_model": "MinVar",
-      "returns": "results/baselines/252d/returns/MinVar.csv",
-      "weights": "results/baselines/252d/weights/MinVar.csv",
-      "diagnostics": "results/baselines/252d/diagnostics/MinVar_trading.csv",
-      "historical_fit_diagnostics": null,
+      "returns": "results/report/validation/returns/MinVar.csv",
+      "weights": "results/report/validation/weights/MinVar.csv",
+      "diagnostics": "results/report/validation/diagnostics/MinVar.csv",
       "reported_metrics": {
         "cumulative_return": 0.0293588784162648,
         "sharpe": 0.0367672773551192,
         "volatility": 0.0070735277741872,
         "max_drawdown": -0.0461166409934431
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/252d/metrics/summary.csv",
-        "sha256": "894eac0dda8b9d9bd9b349e648441763dd44e0fdc39b031765e4b86d2f735f5d",
-        "row": "MinVar"
       }
     },
     {
@@ -185,21 +40,14 @@
       "report_section": "2",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_CoefficientConstraint",
-      "returns": "results/baselines/252d/returns/LASSO_CoefficientConstraint.csv",
-      "weights": "results/baselines/252d/weights/LASSO_CoefficientConstraint.csv",
-      "diagnostics": "results/baselines/252d/diagnostics/LASSO_CoefficientConstraint_trading.csv",
-      "historical_fit_diagnostics": "results/baselines/252d/diagnostics/LASSO_CoefficientConstraint_fit.csv",
+      "returns": "results/report/validation/returns/LASSO_CoefficientConstraint.csv",
+      "weights": "results/report/validation/weights/LASSO_CoefficientConstraint.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_CoefficientConstraint.csv",
       "reported_metrics": {
         "cumulative_return": 0.0799323305990475,
         "sharpe": 0.1024085605924138,
         "volatility": 0.0062986380184922,
         "max_drawdown": -0.0632469466993602
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/252d/metrics/summary.csv",
-        "sha256": "894eac0dda8b9d9bd9b349e648441763dd44e0fdc39b031765e4b86d2f735f5d",
-        "row": "LASSO_CoefficientConstraint"
       }
     },
     {
@@ -207,21 +55,14 @@
       "report_section": "2",
       "period": "validation",
       "window": 252,
-      "source_model": "Ridge_CoefficientConstraint",
-      "returns": "results/baselines/252d/returns/Ridge_CoefficientConstraint.csv",
-      "weights": "results/baselines/252d/weights/Ridge_CoefficientConstraint.csv",
-      "diagnostics": "results/baselines/252d/diagnostics/Ridge_CoefficientConstraint_trading.csv",
-      "historical_fit_diagnostics": "results/baselines/252d/diagnostics/Ridge_CoefficientConstraint_fit.csv",
+      "returns": "results/report/validation/returns/Ridge_CoefficientConstraint.csv",
+      "weights": "results/report/validation/weights/Ridge_CoefficientConstraint.csv",
+      "diagnostics": "results/report/validation/diagnostics/Ridge_CoefficientConstraint.csv",
       "reported_metrics": {
         "cumulative_return": 0.0343539758743745,
         "sharpe": 0.0458643598451406,
         "volatility": 0.006435666679283,
         "max_drawdown": -0.0460981382857863
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/252d/metrics/summary.csv",
-        "sha256": "894eac0dda8b9d9bd9b349e648441763dd44e0fdc39b031765e4b86d2f735f5d",
-        "row": "Ridge_CoefficientConstraint"
       }
     },
     {
@@ -229,21 +70,14 @@
       "report_section": "2",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_Penalty",
-      "returns": "results/baselines/252d/returns/LASSO_Penalty.csv",
-      "weights": "results/baselines/252d/weights/LASSO_Penalty.csv",
-      "diagnostics": "results/baselines/252d/diagnostics/LASSO_Penalty_trading.csv",
-      "historical_fit_diagnostics": null,
+      "returns": "results/report/validation/returns/LASSO_Penalty.csv",
+      "weights": "results/report/validation/weights/LASSO_Penalty.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_Penalty.csv",
       "reported_metrics": {
         "cumulative_return": 0.0697866352049358,
         "sharpe": 0.0995144269257427,
         "volatility": 0.0056729945277893,
         "max_drawdown": -0.0482845179394463
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/252d/metrics/summary.csv",
-        "sha256": "894eac0dda8b9d9bd9b349e648441763dd44e0fdc39b031765e4b86d2f735f5d",
-        "row": "LASSO_Penalty"
       }
     },
     {
@@ -251,21 +85,14 @@
       "report_section": "2",
       "period": "validation",
       "window": 252,
-      "source_model": "Ridge_Penalty",
-      "returns": "results/baselines/252d/returns/Ridge_Penalty.csv",
-      "weights": "results/baselines/252d/weights/Ridge_Penalty.csv",
-      "diagnostics": "results/baselines/252d/diagnostics/Ridge_Penalty_trading.csv",
-      "historical_fit_diagnostics": null,
+      "returns": "results/report/validation/returns/Ridge_Penalty.csv",
+      "weights": "results/report/validation/weights/Ridge_Penalty.csv",
+      "diagnostics": "results/report/validation/diagnostics/Ridge_Penalty.csv",
       "reported_metrics": {
         "cumulative_return": 0.0510377652669939,
         "sharpe": 0.0777781718123875,
         "volatility": 0.0053894921532234,
         "max_drawdown": -0.0493308989851922
-      },
-      "source_summary": {
-        "path": "results/baselines/coefficient_constraints_20260926/252d/metrics/summary.csv",
-        "sha256": "894eac0dda8b9d9bd9b349e648441763dd44e0fdc39b031765e4b86d2f735f5d",
-        "row": "Ridge_Penalty"
       }
     },
     {
@@ -273,21 +100,14 @@
       "report_section": "3.1",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_Constrained",
       "returns": "results/report/validation/returns/LASSO_HardConstraints.csv",
       "weights": "results/report/validation/weights/LASSO_HardConstraints.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_HardConstraints_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_HardConstraints_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_HardConstraints.csv",
       "reported_metrics": {
         "cumulative_return": 0.0880356517026106,
         "sharpe": 0.1223298694203163,
         "volatility": 0.0057430157917511,
         "max_drawdown": -0.0439955410660042
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/loss_search/metrics/summary.csv",
-        "sha256": "6dca8d2ba1a88d5c58450a1b9c62a30f3428afd1bd4b0fd02ce706ec311c5a35",
-        "row": "LASSO_Constrained"
       }
     },
     {
@@ -295,21 +115,14 @@
       "report_section": "3.2",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_Selected",
       "returns": "results/report/validation/returns/LASSO_ExposurePenalty.csv",
       "weights": "results/report/validation/weights/LASSO_ExposurePenalty.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_ExposurePenalty_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_ExposurePenalty_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_ExposurePenalty.csv",
       "reported_metrics": {
         "cumulative_return": 0.1124816875911851,
         "sharpe": 0.1472307073132025,
         "volatility": 0.0060101559128499,
         "max_drawdown": -0.0419069044466469
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/loss_search/metrics/summary.csv",
-        "sha256": "6dca8d2ba1a88d5c58450a1b9c62a30f3428afd1bd4b0fd02ce706ec311c5a35",
-        "row": "LASSO_Selected"
       }
     },
     {
@@ -317,21 +130,14 @@
       "report_section": "3.3",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_Turnover_0p1",
       "returns": "results/report/validation/returns/LASSO_Turnover_0p1.csv",
       "weights": "results/report/validation/weights/LASSO_Turnover_0p1.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_Turnover_0p1_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_Turnover_0p1_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_Turnover_0p1.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1038004079675494,
-        "sharpe": 0.1324503534651687,
-        "volatility": 0.006208658196574,
-        "max_drawdown": -0.0507194154081406
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/turnover/metrics/summary.csv",
-        "sha256": "2fdd92b0a0b043930159df8f2979a5bca1c02c0835432e905c42e31333bf045e",
-        "row": "LASSO_Turnover_0p1"
+        "cumulative_return": 0.1038004079675496,
+        "sharpe": 0.1324503534651636,
+        "volatility": 0.0062086581965742,
+        "max_drawdown": -0.0507194154081398
       }
     },
     {
@@ -339,21 +145,14 @@
       "report_section": "3.3",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_Turnover_1",
       "returns": "results/report/validation/returns/LASSO_Turnover_1.csv",
       "weights": "results/report/validation/weights/LASSO_Turnover_1.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_Turnover_1_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_Turnover_1_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_Turnover_1.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1195595061082936,
-        "sharpe": 0.1131699321406561,
+        "cumulative_return": 0.1195595061082912,
+        "sharpe": 0.1131699321406557,
         "volatility": 0.0084277447446099,
-        "max_drawdown": -0.0740858327230137
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/turnover/metrics/summary.csv",
-        "sha256": "2fdd92b0a0b043930159df8f2979a5bca1c02c0835432e905c42e31333bf045e",
-        "row": "LASSO_Turnover_1"
+        "max_drawdown": -0.0740858327230127
       }
     },
     {
@@ -361,21 +160,14 @@
       "report_section": "5.1",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_WeightCap_10pct",
       "returns": "results/report/validation/returns/LASSO_WeightCap_10pct.csv",
       "weights": "results/report/validation/weights/LASSO_WeightCap_10pct.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_WeightCap_10pct_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_WeightCap_10pct_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_WeightCap_10pct.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1270213599121368,
-        "sharpe": 0.1561088926351901,
-        "volatility": 0.0063589898611076,
-        "max_drawdown": -0.0549357339889811
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/concentration/metrics/summary.csv",
-        "sha256": "eeebfa6e26a2da99cbf8e2c242a25dbc448b435beebccc958f4668de1d1fbd62",
-        "row": "LASSO_WeightCap_10pct"
+        "cumulative_return": 0.1270213599126042,
+        "sharpe": 0.1561088926357048,
+        "volatility": 0.0063589898611083,
+        "max_drawdown": -0.0549357339889787
       }
     },
     {
@@ -383,21 +175,14 @@
       "report_section": "4.1",
       "period": "validation",
       "window": 252,
-      "source_model": "LP_LASSO_252d",
       "returns": "results/report/validation/returns/LP_Original.csv",
       "weights": "results/report/validation/weights/LP_Original.csv",
-      "diagnostics": "results/report/validation/diagnostics/LP_Original_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LP_Original_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LP_Original.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1671854735464446,
+        "cumulative_return": 0.1671854735464448,
         "sharpe": 0.1284135403601869,
         "volatility": 0.0101952112960049,
         "max_drawdown": -0.0881968933544861
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/lp/metrics/validation_summary.csv",
-        "sha256": "36f72b6c82231777a768dde5100950804c8c2899d6aca38890e5b991f125d5da",
-        "row": "LP_LASSO_252d"
       }
     },
     {
@@ -405,21 +190,14 @@
       "report_section": "4.1",
       "period": "validation",
       "window": 252,
-      "source_model": "LP_Cost_Only",
       "returns": "results/report/validation/returns/LP_TradingPenalty.csv",
       "weights": "results/report/validation/weights/LP_TradingPenalty.csv",
-      "diagnostics": "results/report/validation/diagnostics/LP_TradingPenalty_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LP_TradingPenalty_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LP_TradingPenalty.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1965876149291874,
-        "sharpe": 0.1483429372424264,
+        "cumulative_return": 0.1965876149289689,
+        "sharpe": 0.1483429372422814,
         "volatility": 0.010190449668248,
-        "max_drawdown": -0.0959342362346817
-      },
-      "source_summary": {
-        "path": "results/lasso_forecast_lp_risk/20260924T073448Z/metrics/validation_summary.csv",
-        "sha256": "894d728c6ef116c901c85dd2a4b80c7e59cddf00e0af9aee91df2b4e10a61ece",
-        "row": "LP_Cost_Only"
+        "max_drawdown": -0.0959342362347249
       }
     },
     {
@@ -427,21 +205,14 @@
       "report_section": "5.2",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_unconstrained",
       "returns": "results/report/validation/returns/LASSO_BetaUnbounded.csv",
       "weights": "results/report/validation/weights/LASSO_BetaUnbounded.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_BetaUnbounded_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_BetaUnbounded_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_BetaUnbounded.csv",
       "reported_metrics": {
-        "cumulative_return": 0.0880728812811046,
-        "sharpe": 0.1223759189008054,
-        "volatility": 0.0057431349877323,
-        "max_drawdown": -0.043993165057527
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/market_beta/metrics/market_beta_results.csv",
-        "sha256": "30e17e420fef1bc5489c1ff949da78e05a539b9e3b30b3c1220cf16e1faaf537",
-        "row": "LASSO_unconstrained"
+        "cumulative_return": 0.0880728812798208,
+        "sharpe": 0.1223759188990527,
+        "volatility": 0.0057431349877363,
+        "max_drawdown": -0.043993165057412
       }
     },
     {
@@ -449,21 +220,14 @@
       "report_section": "5.2",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_market_like_0.8_1.2",
       "returns": "results/report/validation/returns/LASSO_BetaMarket.csv",
       "weights": "results/report/validation/weights/LASSO_BetaMarket.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_BetaMarket_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_BetaMarket_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_BetaMarket.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1402756982386006,
-        "sharpe": 0.1390130747112319,
-        "volatility": 0.0079038668085823,
-        "max_drawdown": -0.0643464383922907
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/market_beta/metrics/market_beta_results.csv",
-        "sha256": "30e17e420fef1bc5489c1ff949da78e05a539b9e3b30b3c1220cf16e1faaf537",
-        "row": "LASSO_market_like_0.8_1.2"
+        "cumulative_return": 0.1402756982390161,
+        "sharpe": 0.1390130747115798,
+        "volatility": 0.007903866808584,
+        "max_drawdown": -0.0643464383922909
       }
     },
     {
@@ -471,21 +235,14 @@
       "report_section": "5.2",
       "period": "validation",
       "window": 252,
-      "source_model": "LASSO_conservative_0.5_0.9",
       "returns": "results/report/validation/returns/LASSO_BetaConservative.csv",
       "weights": "results/report/validation/weights/LASSO_BetaConservative.csv",
-      "diagnostics": "results/report/validation/diagnostics/LASSO_BetaConservative_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/LASSO_BetaConservative_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/LASSO_BetaConservative.csv",
       "reported_metrics": {
-        "cumulative_return": 0.101598602219691,
-        "sharpe": 0.1372481970642831,
-        "volatility": 0.0058579495320365,
-        "max_drawdown": -0.046865176932034
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/market_beta/metrics/market_beta_results.csv",
-        "sha256": "30e17e420fef1bc5489c1ff949da78e05a539b9e3b30b3c1220cf16e1faaf537",
-        "row": "LASSO_conservative_0.5_0.9"
+        "cumulative_return": 0.101598602214479,
+        "sharpe": 0.1372481970578677,
+        "volatility": 0.0058579495320295,
+        "max_drawdown": -0.046865176937039
       }
     },
     {
@@ -493,21 +250,14 @@
       "report_section": "5.2",
       "period": "validation",
       "window": 252,
-      "source_model": "Ridge_unconstrained",
       "returns": "results/report/validation/returns/Ridge_BetaUnbounded.csv",
       "weights": "results/report/validation/weights/Ridge_BetaUnbounded.csv",
-      "diagnostics": "results/report/validation/diagnostics/Ridge_BetaUnbounded_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/Ridge_BetaUnbounded_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/Ridge_BetaUnbounded.csv",
       "reported_metrics": {
-        "cumulative_return": 0.0980620201943092,
-        "sharpe": 0.136193582294518,
-        "volatility": 0.0057048863675671,
-        "max_drawdown": -0.0542937830105888
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/market_beta/metrics/market_beta_results.csv",
-        "sha256": "30e17e420fef1bc5489c1ff949da78e05a539b9e3b30b3c1220cf16e1faaf537",
-        "row": "Ridge_unconstrained"
+        "cumulative_return": 0.0980620233723366,
+        "sharpe": 0.1361935853300235,
+        "volatility": 0.0057048864153127,
+        "max_drawdown": -0.0542937831125042
       }
     },
     {
@@ -515,21 +265,14 @@
       "report_section": "5.2",
       "period": "validation",
       "window": 252,
-      "source_model": "Ridge_market_like_0.8_1.2",
       "returns": "results/report/validation/returns/Ridge_BetaMarket.csv",
       "weights": "results/report/validation/weights/Ridge_BetaMarket.csv",
-      "diagnostics": "results/report/validation/diagnostics/Ridge_BetaMarket_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/Ridge_BetaMarket_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/Ridge_BetaMarket.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1343795415895992,
-        "sharpe": 0.1322448479867363,
-        "volatility": 0.0079948069480474,
-        "max_drawdown": -0.0626224516823593
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/market_beta/metrics/market_beta_results.csv",
-        "sha256": "30e17e420fef1bc5489c1ff949da78e05a539b9e3b30b3c1220cf16e1faaf537",
-        "row": "Ridge_market_like_0.8_1.2"
+        "cumulative_return": 0.1343795407759522,
+        "sharpe": 0.1322448475761636,
+        "volatility": 0.0079948069275121,
+        "max_drawdown": -0.0626224510970755
       }
     },
     {
@@ -537,21 +280,14 @@
       "report_section": "5.2",
       "period": "validation",
       "window": 252,
-      "source_model": "Ridge_conservative_0.5_0.9",
       "returns": "results/report/validation/returns/Ridge_BetaConservative.csv",
       "weights": "results/report/validation/weights/Ridge_BetaConservative.csv",
-      "diagnostics": "results/report/validation/diagnostics/Ridge_BetaConservative_trading.csv",
-      "historical_fit_diagnostics": "results/report/validation/diagnostics/Ridge_BetaConservative_fit.csv",
+      "diagnostics": "results/report/validation/diagnostics/Ridge_BetaConservative.csv",
       "reported_metrics": {
-        "cumulative_return": 0.1100067374523776,
-        "sharpe": 0.1511005756803174,
-        "volatility": 0.0057254227028034,
-        "max_drawdown": -0.0542888649137974
-      },
-      "source_summary": {
-        "path": "results/unified_252/20260922T122949.119118Z/market_beta/metrics/market_beta_results.csv",
-        "sha256": "30e17e420fef1bc5489c1ff949da78e05a539b9e3b30b3c1220cf16e1faaf537",
-        "row": "Ridge_conservative_0.5_0.9"
+        "cumulative_return": 0.1100067403009261,
+        "sharpe": 0.1511005792209584,
+        "volatility": 0.0057254227069969,
+        "max_drawdown": -0.0542888657004759
       }
     },
     {
@@ -559,21 +295,14 @@
       "report_section": "2",
       "period": "july_test",
       "window": 252,
-      "source_model": "EW",
       "returns": "results/report/july_test/returns/EW.csv",
       "weights": "results/report/july_test/weights/EW.csv",
-      "diagnostics": "results/report/july_test/diagnostics/EW_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/EW_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/EW.csv",
       "reported_metrics": {
         "cumulative_return": -0.0084054958382175,
         "sharpe": -0.0518605248075023,
         "volatility": 0.0069518917962274,
         "max_drawdown": -0.0213544821215394
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "EW"
       }
     },
     {
@@ -581,21 +310,14 @@
       "report_section": "3.2",
       "period": "july_test",
       "window": 252,
-      "source_model": "LASSO_Selected",
       "returns": "results/report/july_test/returns/LASSO_ExposurePenalty.csv",
       "weights": "results/report/july_test/weights/LASSO_ExposurePenalty.csv",
-      "diagnostics": "results/report/july_test/diagnostics/LASSO_ExposurePenalty_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/LASSO_ExposurePenalty_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/LASSO_ExposurePenalty.csv",
       "reported_metrics": {
         "cumulative_return": 0.0201705696987732,
         "sharpe": 0.1607303881845689,
         "volatility": 0.0057482805825771,
         "max_drawdown": -0.0129612450947413
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "LASSO_Selected"
       }
     },
     {
@@ -603,21 +325,14 @@
       "report_section": "5.1",
       "period": "july_test",
       "window": 252,
-      "source_model": "LASSO_WeightCap_10pct",
       "returns": "results/report/july_test/returns/LASSO_WeightCap_10pct.csv",
       "weights": "results/report/july_test/weights/LASSO_WeightCap_10pct.csv",
-      "diagnostics": "results/report/july_test/diagnostics/LASSO_WeightCap_10pct_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/LASSO_WeightCap_10pct_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/LASSO_WeightCap_10pct.csv",
       "reported_metrics": {
-        "cumulative_return": 0.0166714179832943,
-        "sharpe": 0.1553051531589757,
-        "volatility": 0.0049153184397269,
-        "max_drawdown": -0.0110256219111595
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "LASSO_WeightCap_10pct"
+        "cumulative_return": 0.0166714179832745,
+        "sharpe": 0.1553051531588079,
+        "volatility": 0.0049153184397265,
+        "max_drawdown": -0.0110256219111571
       }
     },
     {
@@ -625,21 +340,14 @@
       "report_section": "5.2",
       "period": "july_test",
       "window": 252,
-      "source_model": "Ridge_conservative_0.5_0.9",
       "returns": "results/report/july_test/returns/Ridge_BetaConservative.csv",
       "weights": "results/report/july_test/weights/Ridge_BetaConservative.csv",
-      "diagnostics": "results/report/july_test/diagnostics/Ridge_BetaConservative_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/Ridge_BetaConservative_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/Ridge_BetaConservative.csv",
       "reported_metrics": {
-        "cumulative_return": 0.0128868244935458,
-        "sharpe": 0.10612082005455,
-        "volatility": 0.0056287426181077,
-        "max_drawdown": -0.0133114694653658
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "Ridge_conservative_0.5_0.9"
+        "cumulative_return": 0.0128868233154344,
+        "sharpe": 0.1061208111981126,
+        "volatility": 0.0056287425879165,
+        "max_drawdown": -0.0133114698369126
       }
     },
     {
@@ -647,21 +355,14 @@
       "report_section": "5.2",
       "period": "july_test",
       "window": 252,
-      "source_model": "LASSO_market_like_0.8_1.2",
       "returns": "results/report/july_test/returns/LASSO_BetaMarket.csv",
       "weights": "results/report/july_test/weights/LASSO_BetaMarket.csv",
-      "diagnostics": "results/report/july_test/diagnostics/LASSO_BetaMarket_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/LASSO_BetaMarket_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/LASSO_BetaMarket.csv",
       "reported_metrics": {
-        "cumulative_return": 0.0045055336548829,
-        "sharpe": 0.0345085736776664,
-        "volatility": 0.0065083490467457,
+        "cumulative_return": 0.0045055336547998,
+        "sharpe": 0.0345085736771117,
+        "volatility": 0.00650834904674,
         "max_drawdown": -0.0154921458154283
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "LASSO_market_like_0.8_1.2"
       }
     },
     {
@@ -669,21 +370,14 @@
       "report_section": "4.1",
       "period": "july_test",
       "window": 252,
-      "source_model": "LP_LASSO_252d",
       "returns": "results/report/july_test/returns/LP_Original.csv",
       "weights": "results/report/july_test/weights/LP_Original.csv",
-      "diagnostics": "results/report/july_test/diagnostics/LP_Original_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/LP_Original_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/LP_Original.csv",
       "reported_metrics": {
         "cumulative_return": 0.002004131904475,
         "sharpe": 0.0162880169696569,
         "volatility": 0.0070428505417549,
         "max_drawdown": -0.0192565711692241
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "LP_LASSO_252d"
       }
     },
     {
@@ -691,1046 +385,120 @@
       "report_section": "4.1",
       "period": "july_test",
       "window": 252,
-      "source_model": "LP_Current",
       "returns": "results/report/july_test/returns/LP_TradingPenalty.csv",
       "weights": "results/report/july_test/weights/LP_TradingPenalty.csv",
-      "diagnostics": "results/report/july_test/diagnostics/LP_TradingPenalty_trading.csv",
-      "historical_fit_diagnostics": "results/report/july_test/diagnostics/LP_TradingPenalty_fit.csv",
+      "diagnostics": "results/report/july_test/diagnostics/LP_TradingPenalty.csv",
       "reported_metrics": {
-        "cumulative_return": -0.0040960342420484,
-        "sharpe": -0.0226364876751831,
-        "volatility": 0.0071587295771145,
-        "max_drawdown": -0.0177100776349292
-      },
-      "source_summary": {
-        "path": "results/final_test_july_2026_20260924/metrics/report_final_test_summary.csv",
-        "sha256": "02d17645a1d9471839544ca5489e84ff3190a061cf70f11e861884744b783379",
-        "row": "LP_Current"
+        "cumulative_return": -0.0040960342420519,
+        "sharpe": -0.0226364876752168,
+        "volatility": 0.0071587295771107,
+        "max_drawdown": -0.0177100776349017
       }
     }
   ],
-  "files": [
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/returns/EW_returns.csv",
-      "source_sha256": "961f8c85ea9c82468061a7345c929c1c788e86c737f4547de841e7d5924fcf89",
-      "target": "results/baselines/126d/returns/EW.csv",
-      "target_sha256": "d97b80ead0e4bb3271d58dc5b59773e244dd03c7e39ce330c0315e65fb075b29",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/weights/EW_weights.csv",
-      "source_sha256": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
-      "target": "results/baselines/126d/weights/EW.csv",
-      "target_sha256": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/returns/MinVar_returns.csv",
-      "source_sha256": "34086a4ed44a23174e82404e1b0f3e421dad490d4bc13be4f87464f87fa9a64e",
-      "target": "results/baselines/126d/returns/MinVar.csv",
-      "target_sha256": "cde9a180a847442b3ed41d6c82f70882273d155d1fc7fbda996886b1f975aadb",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/weights/MinVar_weights.csv",
-      "source_sha256": "3c43c88525ffacc6ac829351ff56dd4b35e8c54ce6e54e1c7f2d8b2555561382",
-      "target": "results/baselines/126d/weights/MinVar.csv",
-      "target_sha256": "3c43c88525ffacc6ac829351ff56dd4b35e8c54ce6e54e1c7f2d8b2555561382",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/returns/LASSO_CoefficientConstraint_returns.csv",
-      "source_sha256": "6129098358cb9bd6a5673427ecd8c25143af205ad0c52f04674defc2db306cee",
-      "target": "results/baselines/126d/returns/LASSO_CoefficientConstraint.csv",
-      "target_sha256": "d128d518b9ee7ecda50a47b20ed0c91519005f5896971f7aafc45399d3c9ad6b",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/weights/LASSO_CoefficientConstraint_weights.csv",
-      "source_sha256": "6e25e7fc495fe6f153645f6f76867bb0cd59b4ca3a6729aec56145deec902e79",
-      "target": "results/baselines/126d/weights/LASSO_CoefficientConstraint.csv",
-      "target_sha256": "6e25e7fc495fe6f153645f6f76867bb0cd59b4ca3a6729aec56145deec902e79",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/diagnostics/LASSO_CoefficientConstraint_diagnostics.csv",
-      "source_sha256": "1fba9278eeeedd170a98e9adf991b0fe8e4f29f4772ebde6ccac5fdac51662ad",
-      "target": "results/baselines/126d/diagnostics/LASSO_CoefficientConstraint_fit.csv",
-      "target_sha256": "1fba9278eeeedd170a98e9adf991b0fe8e4f29f4772ebde6ccac5fdac51662ad",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/returns/Ridge_CoefficientConstraint_returns.csv",
-      "source_sha256": "24d859caff8c581442ec5138a1f1130f79221e8f41011749c6d672d2cc455a29",
-      "target": "results/baselines/126d/returns/Ridge_CoefficientConstraint.csv",
-      "target_sha256": "108e02db9ee5f4263d0d664b6752167233391fdf5350843bf647cf66c674d01b",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/weights/Ridge_CoefficientConstraint_weights.csv",
-      "source_sha256": "d74d3e04d1fb67553df5174761298e41d6ab40ff593e235910920434711a0858",
-      "target": "results/baselines/126d/weights/Ridge_CoefficientConstraint.csv",
-      "target_sha256": "d74d3e04d1fb67553df5174761298e41d6ab40ff593e235910920434711a0858",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/diagnostics/Ridge_CoefficientConstraint_diagnostics.csv",
-      "source_sha256": "a6516059b2738bdc30d5db9c08e4227d5d78481aa29278c4db061839198b83cf",
-      "target": "results/baselines/126d/diagnostics/Ridge_CoefficientConstraint_fit.csv",
-      "target_sha256": "a6516059b2738bdc30d5db9c08e4227d5d78481aa29278c4db061839198b83cf",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/returns/LASSO_Penalty_returns.csv",
-      "source_sha256": "0f3e2a4e5a17c8eb0b4d04d5f73bcd7b9c5e72a024e4f49d6f5ca4517c46c7b6",
-      "target": "results/baselines/126d/returns/LASSO_Penalty.csv",
-      "target_sha256": "58677dd9d33c5fac149ac29955c073c0563825a8fdaeae9763948dcae79f6f85",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/weights/LASSO_Penalty_weights.csv",
-      "source_sha256": "bdb607b500d2fa6b303aea3b8446118cd5827442908030b72dadb2de8b66b4b9",
-      "target": "results/baselines/126d/weights/LASSO_Penalty.csv",
-      "target_sha256": "bdb607b500d2fa6b303aea3b8446118cd5827442908030b72dadb2de8b66b4b9",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/returns/Ridge_Penalty_returns.csv",
-      "source_sha256": "977e7ffe93f84051ddada97699c6dcf2af110bb544621d845f476b629a8f3d43",
-      "target": "results/baselines/126d/returns/Ridge_Penalty.csv",
-      "target_sha256": "557f4254161e6299559a1685536f172aa9f4b90ab7625ae7f5c0117640c3b84e",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/weights/Ridge_Penalty_weights.csv",
-      "source_sha256": "86be12f210508b3dc3d76e4b15dc6531d1da9ee3f745c751e652f2c1a1264c8a",
-      "target": "results/baselines/126d/weights/Ridge_Penalty.csv",
-      "target_sha256": "86be12f210508b3dc3d76e4b15dc6531d1da9ee3f745c751e652f2c1a1264c8a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/126d/config/run_metadata.json",
-      "source_sha256": "ff6ad3eb2e5e7717db3cf434515362d7aca5ffe5be9e6ac22faab9f5cf38f711",
-      "target": "results/report/provenance/baselines_126d/run_metadata.json",
-      "target_sha256": "ff6ad3eb2e5e7717db3cf434515362d7aca5ffe5be9e6ac22faab9f5cf38f711",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/returns/EW_returns.csv",
-      "source_sha256": "961f8c85ea9c82468061a7345c929c1c788e86c737f4547de841e7d5924fcf89",
-      "target": "results/baselines/252d/returns/EW.csv",
-      "target_sha256": "d97b80ead0e4bb3271d58dc5b59773e244dd03c7e39ce330c0315e65fb075b29",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/weights/EW_weights.csv",
-      "source_sha256": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
-      "target": "results/baselines/252d/weights/EW.csv",
-      "target_sha256": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/returns/MinVar_returns.csv",
-      "source_sha256": "cc334135779cc4b0b0186a5b1e9dc9670ccd5f1ea26db0eedcd681f0a1afd3b7",
-      "target": "results/baselines/252d/returns/MinVar.csv",
-      "target_sha256": "a629cc9f22af9f15381e4714d6d5d08f2061089cec04bdfa723fbb5929e3b0e8",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/weights/MinVar_weights.csv",
-      "source_sha256": "b9524e02b563ae9ff8edd36448873092a5ff6a5f9eb70c7572147cdfa6c3dfe7",
-      "target": "results/baselines/252d/weights/MinVar.csv",
-      "target_sha256": "b9524e02b563ae9ff8edd36448873092a5ff6a5f9eb70c7572147cdfa6c3dfe7",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/returns/LASSO_CoefficientConstraint_returns.csv",
-      "source_sha256": "322b30e95596b934355033dda15dd1c71e011ee45c32c8a48a6d733816872e03",
-      "target": "results/baselines/252d/returns/LASSO_CoefficientConstraint.csv",
-      "target_sha256": "f534748b4785fb9657b2fbf2871a26af369c628dba51cac8df8278c5242b691f",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/weights/LASSO_CoefficientConstraint_weights.csv",
-      "source_sha256": "75aa7280c9b70e91bf5f382278721c306c48e019963c42c2c08ddc047d66bbb2",
-      "target": "results/baselines/252d/weights/LASSO_CoefficientConstraint.csv",
-      "target_sha256": "75aa7280c9b70e91bf5f382278721c306c48e019963c42c2c08ddc047d66bbb2",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/diagnostics/LASSO_CoefficientConstraint_diagnostics.csv",
-      "source_sha256": "05584675349340c754786571a6eb8848243b66849ad949c042cb92e13a31f940",
-      "target": "results/baselines/252d/diagnostics/LASSO_CoefficientConstraint_fit.csv",
-      "target_sha256": "05584675349340c754786571a6eb8848243b66849ad949c042cb92e13a31f940",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/returns/Ridge_CoefficientConstraint_returns.csv",
-      "source_sha256": "0b7ec8836ba7906c2f665bea3768f3be4655a1cef7a107613f169489ce897e29",
-      "target": "results/baselines/252d/returns/Ridge_CoefficientConstraint.csv",
-      "target_sha256": "2949fe86526e877fd781b438278942c84f34923ee2a9b87609363b7e604443ee",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/weights/Ridge_CoefficientConstraint_weights.csv",
-      "source_sha256": "152cbfdeac3bcb335b04a732cc69a45d34de4089d94faf666cc2ea46ea89eab2",
-      "target": "results/baselines/252d/weights/Ridge_CoefficientConstraint.csv",
-      "target_sha256": "152cbfdeac3bcb335b04a732cc69a45d34de4089d94faf666cc2ea46ea89eab2",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/diagnostics/Ridge_CoefficientConstraint_diagnostics.csv",
-      "source_sha256": "1080163a8f15b9d8699ef4b12664581c3f63ab02d5ab42116037b9ff3f63803a",
-      "target": "results/baselines/252d/diagnostics/Ridge_CoefficientConstraint_fit.csv",
-      "target_sha256": "1080163a8f15b9d8699ef4b12664581c3f63ab02d5ab42116037b9ff3f63803a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/returns/LASSO_Penalty_returns.csv",
-      "source_sha256": "2e73b937be4111220bbe2fbb7ace0ac7ba658506a69617e1395ce1a1846f8cf9",
-      "target": "results/baselines/252d/returns/LASSO_Penalty.csv",
-      "target_sha256": "873d9f878cf82325907e45e93a7db3601f95830a99607e08f0d5532ae472505e",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/weights/LASSO_Penalty_weights.csv",
-      "source_sha256": "376746961be1774107419d3671ed6f7b0d41a7cb01026acafecec43f96b37e6a",
-      "target": "results/baselines/252d/weights/LASSO_Penalty.csv",
-      "target_sha256": "376746961be1774107419d3671ed6f7b0d41a7cb01026acafecec43f96b37e6a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/returns/Ridge_Penalty_returns.csv",
-      "source_sha256": "f6559f90d2b3afd3a810924de8b7c8343dcacde8f10f3c917ad43f9750ebdf80",
-      "target": "results/baselines/252d/returns/Ridge_Penalty.csv",
-      "target_sha256": "eba1a14a9c9483bf2e1cb6304be45eb688dc516bb5a81d3059520fd8325b6b7f",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/weights/Ridge_Penalty_weights.csv",
-      "source_sha256": "1f64a98efa426d34bf76b56db50b0febddab140c09eb0e03f51523d2d8d4fc7e",
-      "target": "results/baselines/252d/weights/Ridge_Penalty.csv",
-      "target_sha256": "1f64a98efa426d34bf76b56db50b0febddab140c09eb0e03f51523d2d8d4fc7e",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/252d/config/run_metadata.json",
-      "source_sha256": "2165f340a238d095ef72b84462b46cf77089b3557283675959147e6b3d175364",
-      "target": "results/report/provenance/baselines_252d/run_metadata.json",
-      "target_sha256": "2165f340a238d095ef72b84462b46cf77089b3557283675959147e6b3d175364",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/returns/LASSO_Constrained_returns.csv",
-      "source_sha256": "e5e7884ab727ae19e4cdbe20330ddf262df39de1b8fa8577b81b610779781a0f",
-      "target": "results/report/validation/returns/LASSO_HardConstraints.csv",
-      "target_sha256": "d540fcb63aa9035f988693baf9820d917a3a0ca812a0a68a2544f0e23f7f273e",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/weights/LASSO_Constrained_weights.csv",
-      "source_sha256": "fd53e691969713496a0646fc9e41a7a1788e598e4dd778cb98c68d748ea43fc6",
-      "target": "results/report/validation/weights/LASSO_HardConstraints.csv",
-      "target_sha256": "fd53e691969713496a0646fc9e41a7a1788e598e4dd778cb98c68d748ea43fc6",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/diagnostics/LASSO_Constrained_diagnostics.csv",
-      "source_sha256": "3efc6d9280ad613e04ffd7ea2343a7b681c7fd9b979e9a107cd71a8bdab491d8",
-      "target": "results/report/validation/diagnostics/LASSO_HardConstraints_fit.csv",
-      "target_sha256": "3efc6d9280ad613e04ffd7ea2343a7b681c7fd9b979e9a107cd71a8bdab491d8",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/config/run_metadata.json",
-      "source_sha256": "330ac4a5c9eb690e2d0b161b12f7898b9e92ab5e3b8aa62f1afd2b422275a486",
-      "target": "results/report/provenance/loss_search/run_metadata.json",
-      "target_sha256": "330ac4a5c9eb690e2d0b161b12f7898b9e92ab5e3b8aa62f1afd2b422275a486",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/returns/LASSO_Selected_returns.csv",
-      "source_sha256": "2b80ac5c0c74559477456fa84c4bd9dad3c8b5cd3154e3ab186e8671cb2cf737",
-      "target": "results/report/validation/returns/LASSO_ExposurePenalty.csv",
-      "target_sha256": "cd5de8ff3e895746a16e811fd76c405d31e4d435680a3a177348bd005a12eb89",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/weights/LASSO_Selected_weights.csv",
-      "source_sha256": "1a34756032d92444323168b2d5b0d202038cd39e8ad1dae30515f21e88873de3",
-      "target": "results/report/validation/weights/LASSO_ExposurePenalty.csv",
-      "target_sha256": "1a34756032d92444323168b2d5b0d202038cd39e8ad1dae30515f21e88873de3",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/diagnostics/LASSO_Selected_diagnostics.csv",
-      "source_sha256": "b20ca18a7f8522033275fc03764e08e5a1ee3c033472d60c7f7e39a99cb8d46e",
-      "target": "results/report/validation/diagnostics/LASSO_ExposurePenalty_fit.csv",
-      "target_sha256": "b20ca18a7f8522033275fc03764e08e5a1ee3c033472d60c7f7e39a99cb8d46e",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/returns/LASSO_Turnover_0p1_returns.csv",
-      "source_sha256": "fa5cc64bb2295404907c3cd45683e7ff13824c090d55b3ad658f8992b429f807",
-      "target": "results/report/validation/returns/LASSO_Turnover_0p1.csv",
-      "target_sha256": "9ac9d54a2463a10d10f6a8714815e3675c22338f71cfddabbe613195df40a769",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/weights/LASSO_Turnover_0p1_weights.csv",
-      "source_sha256": "4d04e70358b0a3501a67830491cfc73e9e89e84d00b0fb9f50c3837fa1319288",
-      "target": "results/report/validation/weights/LASSO_Turnover_0p1.csv",
-      "target_sha256": "4d04e70358b0a3501a67830491cfc73e9e89e84d00b0fb9f50c3837fa1319288",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/diagnostics/LASSO_Turnover_0p1_diagnostics.csv",
-      "source_sha256": "978013dbdb3a285157b1c7acd6042fed3976c70d5fbef9a0c3dcef61a18e2ab5",
-      "target": "results/report/validation/diagnostics/LASSO_Turnover_0p1_fit.csv",
-      "target_sha256": "978013dbdb3a285157b1c7acd6042fed3976c70d5fbef9a0c3dcef61a18e2ab5",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/config/run_metadata.json",
-      "source_sha256": "2318b03c4b18345257fefecc10a1470b9e56479cfc42335d1e1dc930d3b8739f",
-      "target": "results/report/provenance/turnover/run_metadata.json",
-      "target_sha256": "2318b03c4b18345257fefecc10a1470b9e56479cfc42335d1e1dc930d3b8739f",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/returns/LASSO_Turnover_1_returns.csv",
-      "source_sha256": "835488a6c04ea64d52c229685dde4bdc57089ffd8896f08433df6590eb2f1583",
-      "target": "results/report/validation/returns/LASSO_Turnover_1.csv",
-      "target_sha256": "519b87d4abb90811ee0b973197ad087af79855bf7a13d7dba887ff0abc8bf854",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/weights/LASSO_Turnover_1_weights.csv",
-      "source_sha256": "4d2bae491b3a7a36b04bc7e8c99e3b656e7c394e278dbd82b444403a89ca555c",
-      "target": "results/report/validation/weights/LASSO_Turnover_1.csv",
-      "target_sha256": "4d2bae491b3a7a36b04bc7e8c99e3b656e7c394e278dbd82b444403a89ca555c",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/turnover/diagnostics/LASSO_Turnover_1_diagnostics.csv",
-      "source_sha256": "3e6a060c5c9997136e16235a43dd83fe9e42260c0bc694060c2a04cd18b4787e",
-      "target": "results/report/validation/diagnostics/LASSO_Turnover_1_fit.csv",
-      "target_sha256": "3e6a060c5c9997136e16235a43dd83fe9e42260c0bc694060c2a04cd18b4787e",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/concentration/returns/LASSO_WeightCap_10pct_returns.csv",
-      "source_sha256": "5b3e78ba17f6d243ebdd57e62f274b7e3fdca799ac4af1e017e866b57123f2bd",
-      "target": "results/report/validation/returns/LASSO_WeightCap_10pct.csv",
-      "target_sha256": "7b35d7ade71b6f9f1f6a17fd8a7ae078cc37cc00f7a5148b0673ce4c288ab01b",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/concentration/weights/LASSO_WeightCap_10pct_weights.csv",
-      "source_sha256": "3fd5ac3cc4cbfe1cfe02262366182c18f4e2bbd90208c8926060da17669b49fa",
-      "target": "results/report/validation/weights/LASSO_WeightCap_10pct.csv",
-      "target_sha256": "3fd5ac3cc4cbfe1cfe02262366182c18f4e2bbd90208c8926060da17669b49fa",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/concentration/diagnostics/LASSO_WeightCap_10pct_diagnostics.csv",
-      "source_sha256": "15a283942bed7882412807bdb89ad2096aecbe0c62a63984416bd9ec741be02a",
-      "target": "results/report/validation/diagnostics/LASSO_WeightCap_10pct_fit.csv",
-      "target_sha256": "15a283942bed7882412807bdb89ad2096aecbe0c62a63984416bd9ec741be02a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/concentration/config/run_metadata.json",
-      "source_sha256": "8c3336947fcf397dac0d209f006406f6005fdf77ec2e4008a29bea523728b9ab",
-      "target": "results/report/provenance/concentration/run_metadata.json",
-      "target_sha256": "8c3336947fcf397dac0d209f006406f6005fdf77ec2e4008a29bea523728b9ab",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/returns/LP_LASSO_252d_returns.csv",
-      "source_sha256": "2ab25eaad2e272c477e9d10cf3fd069de37f88e7251a6ef0e726e0e989729d5e",
-      "target": "results/report/validation/returns/LP_Original.csv",
-      "target_sha256": "7e8ccf5f5894d1c46f9bd5264df0ca53a49d67987f839c61c479924d90411f76",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/weights/LP_LASSO_252d_weights.csv",
-      "source_sha256": "d8752540c2956ef6643ebc74368633995e967cc806cb9833630c6835db083aed",
-      "target": "results/report/validation/weights/LP_Original.csv",
-      "target_sha256": "d8752540c2956ef6643ebc74368633995e967cc806cb9833630c6835db083aed",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/diagnostics/LP_LASSO_252d_diagnostics.csv",
-      "source_sha256": "5a938f5c9cdc43eee2ce79c26b973af761c6915686343957a21183d197ff7e07",
-      "target": "results/report/validation/diagnostics/LP_Original_fit.csv",
-      "target_sha256": "5a938f5c9cdc43eee2ce79c26b973af761c6915686343957a21183d197ff7e07",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/config/run_metadata.json",
-      "source_sha256": "e248695068554fca965d07786de04be6f67158ce2e4215bb130c230633bdcba4",
-      "target": "results/report/provenance/lp/run_metadata.json",
-      "target_sha256": "e248695068554fca965d07786de04be6f67158ce2e4215bb130c230633bdcba4",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/config/frozen_decisions.json",
-      "source_sha256": "54ab69a64001844e6d336ea53ae12237bbbcbdf6151de7fcae51db3a88a25110",
-      "target": "results/report/provenance/lp/frozen_decisions.json",
-      "target_sha256": "54ab69a64001844e6d336ea53ae12237bbbcbdf6151de7fcae51db3a88a25110",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/returns/LP_Cost_Only_returns.csv",
-      "source_sha256": "ebdd144616d10156946467f75432854e547b7dd345c5bcd5454c65a40e67b408",
-      "target": "results/report/validation/returns/LP_TradingPenalty.csv",
-      "target_sha256": "d189750116cd5a5327dc7073795ee457f1670cf1cb5905097c4dd847f1a9d449",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/weights/LP_Cost_Only_weights.csv",
-      "source_sha256": "e90218f2bd7e5f1d22fc45e62c39cf4b910d7a7ec9a4a6cb4f43b1aa20c57cb1",
-      "target": "results/report/validation/weights/LP_TradingPenalty.csv",
-      "target_sha256": "e90218f2bd7e5f1d22fc45e62c39cf4b910d7a7ec9a4a6cb4f43b1aa20c57cb1",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/diagnostics/LP_Cost_Only_diagnostics.csv",
-      "source_sha256": "54aa1a9683def06994ee78f580129ba48d02b0a0946e4aaa64fc1e8d61009c6a",
-      "target": "results/report/validation/diagnostics/LP_TradingPenalty_fit.csv",
-      "target_sha256": "54aa1a9683def06994ee78f580129ba48d02b0a0946e4aaa64fc1e8d61009c6a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/config/run_metadata.json",
-      "source_sha256": "fd7f3da94aa061dd759fc7c85a1c5d9172544c155174d0005a58e7e870bec781",
-      "target": "results/report/provenance/lp_cost/run_metadata.json",
-      "target_sha256": "fd7f3da94aa061dd759fc7c85a1c5d9172544c155174d0005a58e7e870bec781",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/config/frozen_decisions.json",
-      "source_sha256": "714443f73ae7648cc43cb1251088d34901ffbd9469040b78c21494e998295646",
-      "target": "results/report/provenance/lp_cost/frozen_decisions.json",
-      "target_sha256": "714443f73ae7648cc43cb1251088d34901ffbd9469040b78c21494e998295646",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/config/independent_audit.json",
-      "source_sha256": "4cc97854eed9d490b5d40f20c30da7a21f3a0593a5a0a448f77dc0c90befbf98",
-      "target": "results/report/provenance/lp_cost/independent_audit.json",
-      "target_sha256": "4cc97854eed9d490b5d40f20c30da7a21f3a0593a5a0a448f77dc0c90befbf98",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/returns/LASSO_unconstrained_returns.csv",
-      "source_sha256": "bd89e886359639e2c0c3d4a6b1466f1ba798ac5adeae375a287319e97d2e1897",
-      "target": "results/report/validation/returns/LASSO_BetaUnbounded.csv",
-      "target_sha256": "7e6aca93902a8a6238f9f10bee45c52af320da4ebe7006ecb5b43f59af418442",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/weights/LASSO_unconstrained_weights.csv",
-      "source_sha256": "47c677fd393ce761c921ef7fb4dad1ffbeb25be27069ba6d5f653a9590303944",
-      "target": "results/report/validation/weights/LASSO_BetaUnbounded.csv",
-      "target_sha256": "47c677fd393ce761c921ef7fb4dad1ffbeb25be27069ba6d5f653a9590303944",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/diagnostics/LASSO_unconstrained_diagnostics.csv",
-      "source_sha256": "6edc55b7e79b32481bf7390dd0b929f873896393d0a8f0f537b6ddd97809f0db",
-      "target": "results/report/validation/diagnostics/LASSO_BetaUnbounded_fit.csv",
-      "target_sha256": "6edc55b7e79b32481bf7390dd0b929f873896393d0a8f0f537b6ddd97809f0db",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/config/run_metadata.json",
-      "source_sha256": "707fad87624fa904b23535388666c36db5936584aa9a35a88bbbd03113389fda",
-      "target": "results/report/provenance/market_beta/run_metadata.json",
-      "target_sha256": "707fad87624fa904b23535388666c36db5936584aa9a35a88bbbd03113389fda",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/returns/LASSO_market_like_0.8_1.2_returns.csv",
-      "source_sha256": "fba7d2f3024262f2497c46cbeae23c497c35a9fe320d6046bc9f54d65741434a",
-      "target": "results/report/validation/returns/LASSO_BetaMarket.csv",
-      "target_sha256": "96ab1ca104f2987baf47b5c5d5f341f7583fdfe6f6e4002cbe330f426dc372d6",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/weights/LASSO_market_like_0.8_1.2_weights.csv",
-      "source_sha256": "0099f2a7e372c6dc66812d59887255662c0eed083bc983f9140163f39822595e",
-      "target": "results/report/validation/weights/LASSO_BetaMarket.csv",
-      "target_sha256": "0099f2a7e372c6dc66812d59887255662c0eed083bc983f9140163f39822595e",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/diagnostics/LASSO_market_like_0.8_1.2_diagnostics.csv",
-      "source_sha256": "c73b7e24a40a6150dcd523eb094b208c78a7e3486fa72544e68dc6cae87e29c5",
-      "target": "results/report/validation/diagnostics/LASSO_BetaMarket_fit.csv",
-      "target_sha256": "c73b7e24a40a6150dcd523eb094b208c78a7e3486fa72544e68dc6cae87e29c5",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/returns/LASSO_conservative_0.5_0.9_returns.csv",
-      "source_sha256": "bf64bb5b5fcf6a2eb67ebcfb85eb3675955d28fe4734ce51d1bac5e03bb587ff",
-      "target": "results/report/validation/returns/LASSO_BetaConservative.csv",
-      "target_sha256": "2d2586b517fe5e88b0733a8012c5dcf2a2f5e5cb7eab7bb983da807fbdac230f",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/weights/LASSO_conservative_0.5_0.9_weights.csv",
-      "source_sha256": "7b24beb2a33f89e4beef13057300daa2e8535c7b301df503ecc2597a2f6ef05b",
-      "target": "results/report/validation/weights/LASSO_BetaConservative.csv",
-      "target_sha256": "7b24beb2a33f89e4beef13057300daa2e8535c7b301df503ecc2597a2f6ef05b",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/diagnostics/LASSO_conservative_0.5_0.9_diagnostics.csv",
-      "source_sha256": "002539373afbe41bc69b7ba4d1171c7aaf83bdfb4e686e115e1bd32d368fbfd4",
-      "target": "results/report/validation/diagnostics/LASSO_BetaConservative_fit.csv",
-      "target_sha256": "002539373afbe41bc69b7ba4d1171c7aaf83bdfb4e686e115e1bd32d368fbfd4",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/returns/Ridge_unconstrained_returns.csv",
-      "source_sha256": "d19147c08ae06cb850b33a1f522387d3cc0ae1b059a44b24ac7222944cb6746a",
-      "target": "results/report/validation/returns/Ridge_BetaUnbounded.csv",
-      "target_sha256": "29dec49a73e612c3ac628c5225a531d012871fc504dc1136c57a5baf2c496a2f",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/weights/Ridge_unconstrained_weights.csv",
-      "source_sha256": "34dd32c931c5122755ab95b053d760b0c0b0ac00d6c3237cafb927257a2c0195",
-      "target": "results/report/validation/weights/Ridge_BetaUnbounded.csv",
-      "target_sha256": "34dd32c931c5122755ab95b053d760b0c0b0ac00d6c3237cafb927257a2c0195",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/diagnostics/Ridge_unconstrained_diagnostics.csv",
-      "source_sha256": "682380549b0e082dd959d9558b460e1534d49202134da124989f5a76d08eafa7",
-      "target": "results/report/validation/diagnostics/Ridge_BetaUnbounded_fit.csv",
-      "target_sha256": "682380549b0e082dd959d9558b460e1534d49202134da124989f5a76d08eafa7",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/returns/Ridge_market_like_0.8_1.2_returns.csv",
-      "source_sha256": "2c49de4173e77b0000f0539f65739615688c979c6626a72d446e6dcc6ffe411f",
-      "target": "results/report/validation/returns/Ridge_BetaMarket.csv",
-      "target_sha256": "fb27b8ac7edb172d829b51613d65b43c34da11f7eed5cbc24e7f8e420455e746",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/weights/Ridge_market_like_0.8_1.2_weights.csv",
-      "source_sha256": "f705a3326f54027d2074a1288d54f3178c6f53c1c1001f02b88dfb73590e8c49",
-      "target": "results/report/validation/weights/Ridge_BetaMarket.csv",
-      "target_sha256": "f705a3326f54027d2074a1288d54f3178c6f53c1c1001f02b88dfb73590e8c49",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/diagnostics/Ridge_market_like_0.8_1.2_diagnostics.csv",
-      "source_sha256": "a7b0d1b24764c9176629cfc98948731e9848b0469ac3739871b0f4cbeed0e4b8",
-      "target": "results/report/validation/diagnostics/Ridge_BetaMarket_fit.csv",
-      "target_sha256": "a7b0d1b24764c9176629cfc98948731e9848b0469ac3739871b0f4cbeed0e4b8",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/returns/Ridge_conservative_0.5_0.9_returns.csv",
-      "source_sha256": "721610391f02e9cb704faa8ec1a2a29a2afadafcd02c32f91aae3ccd5cab074d",
-      "target": "results/report/validation/returns/Ridge_BetaConservative.csv",
-      "target_sha256": "45c1979dab53d6b7a83dacc52da60d29f3ff8362290795329ad45e13e10a42a6",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/weights/Ridge_conservative_0.5_0.9_weights.csv",
-      "source_sha256": "a390ef286f88dfcfcd437c018a8375199240d36686c15c65762068f669d9ff31",
-      "target": "results/report/validation/weights/Ridge_BetaConservative.csv",
-      "target_sha256": "a390ef286f88dfcfcd437c018a8375199240d36686c15c65762068f669d9ff31",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/market_beta/diagnostics/Ridge_conservative_0.5_0.9_diagnostics.csv",
-      "source_sha256": "4315a14cb162c83c548be81eabb9598423c095729d694b09f23e1991e8217875",
-      "target": "results/report/validation/diagnostics/Ridge_BetaConservative_fit.csv",
-      "target_sha256": "4315a14cb162c83c548be81eabb9598423c095729d694b09f23e1991e8217875",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/returns/EW.csv",
-      "source_sha256": "28e7f78519f33b2b4a6555fe86a000133d37168f889b3b77d90f767d4b888449",
-      "target": "results/report/july_test/returns/EW.csv",
-      "target_sha256": "2fd5359e20cd5c2ca1cc8869c47aac4593da96cf7dedaeb1079a6172baf45cd5",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/weights/EW.csv",
-      "source_sha256": "3eb29c2e373cc641f7b7538f6d5c47c39a8708918beb7d00c5a104d6812627db",
-      "target": "results/report/july_test/weights/EW.csv",
-      "target_sha256": "3eb29c2e373cc641f7b7538f6d5c47c39a8708918beb7d00c5a104d6812627db",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/diagnostics/EW.csv",
-      "source_sha256": "d6b01bcc953da899f23498088cbc04cfffc214e21afac3f70da821e03fe567e0",
-      "target": "results/report/july_test/diagnostics/EW_fit.csv",
-      "target_sha256": "d6b01bcc953da899f23498088cbc04cfffc214e21afac3f70da821e03fe567e0",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/returns/LASSO_Selected.csv",
-      "source_sha256": "1f98c0b676d1b4b2b84c75fba40da8cca61f110bc958f2f214a060bf372727e4",
-      "target": "results/report/july_test/returns/LASSO_ExposurePenalty.csv",
-      "target_sha256": "f6dda50967f8d32cd6bcb91c4453c1cc4e2ed6aa4e0758e5766a3bf2132387ce",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/weights/LASSO_Selected.csv",
-      "source_sha256": "cc7051553c68e81afa544db8bdbda3b6ee0cb32e6a5c321900ceb143b8144946",
-      "target": "results/report/july_test/weights/LASSO_ExposurePenalty.csv",
-      "target_sha256": "cc7051553c68e81afa544db8bdbda3b6ee0cb32e6a5c321900ceb143b8144946",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/diagnostics/LASSO_Selected.csv",
-      "source_sha256": "0acd634faf9caa7b31b488ac920b6e8446ffe65bdb41500bd4bf7c6ff7b215f6",
-      "target": "results/report/july_test/diagnostics/LASSO_ExposurePenalty_fit.csv",
-      "target_sha256": "0acd634faf9caa7b31b488ac920b6e8446ffe65bdb41500bd4bf7c6ff7b215f6",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/returns/LASSO_WeightCap_10pct.csv",
-      "source_sha256": "e5860aab1ef411e74f4fc20e6534ececb23674ab97b2c35d88597306ca464cfe",
-      "target": "results/report/july_test/returns/LASSO_WeightCap_10pct.csv",
-      "target_sha256": "dfc47e2f70aaea347ebbc4af658e0868aa2b1fb1c05d41d19543b4c9c440ad0a",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/weights/LASSO_WeightCap_10pct.csv",
-      "source_sha256": "6be8ea8ced398388c6e6128809e02bcac1734c1aca8f0f64f82aced72abbc025",
-      "target": "results/report/july_test/weights/LASSO_WeightCap_10pct.csv",
-      "target_sha256": "6be8ea8ced398388c6e6128809e02bcac1734c1aca8f0f64f82aced72abbc025",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/diagnostics/LASSO_WeightCap_10pct.csv",
-      "source_sha256": "c5cbe4079676bb6594e0516a311e3412d3d32e4297c0b07c5da3cb50138d224a",
-      "target": "results/report/july_test/diagnostics/LASSO_WeightCap_10pct_fit.csv",
-      "target_sha256": "c5cbe4079676bb6594e0516a311e3412d3d32e4297c0b07c5da3cb50138d224a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/returns/Ridge_conservative_0.5_0.9.csv",
-      "source_sha256": "f1099e8f2b6b2208a9833ba3a2b216512235aabf6f36bf1852da5eb3c8ae6f1c",
-      "target": "results/report/july_test/returns/Ridge_BetaConservative.csv",
-      "target_sha256": "6dd68438317b0bc40f1663f393a815c3099a1525de70d4cb27901590128d29c5",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/weights/Ridge_conservative_0.5_0.9.csv",
-      "source_sha256": "cb7a3f5cb910fe6deed825b5a3453d84d91bc751d44ec6a3e7083698475ba83c",
-      "target": "results/report/july_test/weights/Ridge_BetaConservative.csv",
-      "target_sha256": "cb7a3f5cb910fe6deed825b5a3453d84d91bc751d44ec6a3e7083698475ba83c",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/diagnostics/Ridge_conservative_0.5_0.9.csv",
-      "source_sha256": "c3a660ce84c6b59a56ade2a06b6bd23ab74909056ec04231a2ff9e4cfe5a6d82",
-      "target": "results/report/july_test/diagnostics/Ridge_BetaConservative_fit.csv",
-      "target_sha256": "c3a660ce84c6b59a56ade2a06b6bd23ab74909056ec04231a2ff9e4cfe5a6d82",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/returns/LASSO_market_like_0.8_1.2.csv",
-      "source_sha256": "22b7118216dffb21e2d2fb28d012cdba7769ba0889b30fab21b9aafb181a0fb5",
-      "target": "results/report/july_test/returns/LASSO_BetaMarket.csv",
-      "target_sha256": "752bf737ef77087c84934eb27bc8ddf95acab23be52c8575b5311ae00a20604e",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/weights/LASSO_market_like_0.8_1.2.csv",
-      "source_sha256": "8b55968cca7fc5e38685638f8aaa7d54de0a46b413b77b6ba432538cd04ee23b",
-      "target": "results/report/july_test/weights/LASSO_BetaMarket.csv",
-      "target_sha256": "8b55968cca7fc5e38685638f8aaa7d54de0a46b413b77b6ba432538cd04ee23b",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/diagnostics/LASSO_market_like_0.8_1.2.csv",
-      "source_sha256": "aab514355ae53b1fb088b50c60dce41a349375119ffcdecd9bb1509dc56fbdbe",
-      "target": "results/report/july_test/diagnostics/LASSO_BetaMarket_fit.csv",
-      "target_sha256": "aab514355ae53b1fb088b50c60dce41a349375119ffcdecd9bb1509dc56fbdbe",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/returns/LP_LASSO_252d.csv",
-      "source_sha256": "4efb120c87b71bc0ccbc43ff69066231b26e3aa4a1672dbde018400e4fda9320",
-      "target": "results/report/july_test/returns/LP_Original.csv",
-      "target_sha256": "d23cd3c13412dbbb8493a4fab6842c53febf31a4d6d8f107bc982c3b5fe55401",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/weights/LP_LASSO_252d.csv",
-      "source_sha256": "7790e893b01aa5a05a1a1eea0fc1c74479e8f82ab7bd277210a076988fea0d95",
-      "target": "results/report/july_test/weights/LP_Original.csv",
-      "target_sha256": "7790e893b01aa5a05a1a1eea0fc1c74479e8f82ab7bd277210a076988fea0d95",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/diagnostics/LP_LASSO_252d.csv",
-      "source_sha256": "a237f8644c4bd68274776ec39e9f1f1841983bd8780792ed573d4c791a6d1e7d",
-      "target": "results/report/july_test/diagnostics/LP_Original_fit.csv",
-      "target_sha256": "a237f8644c4bd68274776ec39e9f1f1841983bd8780792ed573d4c791a6d1e7d",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/returns/LP_Current_returns.csv",
-      "source_sha256": "d042ce44450c5d817649e226ad05a7573bd23bd5965487480e5ee0250d49fa69",
-      "target": "results/report/july_test/returns/LP_TradingPenalty.csv",
-      "target_sha256": "d59d61a5abc43989cbc3c9729ff966915ce86f31c280341e3a460ba9e76c5e68",
-      "operation": "normalize gross-return column names; values unchanged"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/weights/LP_Current_weights.csv",
-      "source_sha256": "3205733f529ae0bdcbd17335ee8061403a672159859fb51b4aa400b8c9ccc154",
-      "target": "results/report/july_test/weights/LP_TradingPenalty.csv",
-      "target_sha256": "3205733f529ae0bdcbd17335ee8061403a672159859fb51b4aa400b8c9ccc154",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/diagnostics/LP_Current_diagnostics.csv",
-      "source_sha256": "95634b1414e2e089ffea5ce83267f3613e665609904cc05cbf9b763c358286b7",
-      "target": "results/report/july_test/diagnostics/LP_TradingPenalty_fit.csv",
-      "target_sha256": "95634b1414e2e089ffea5ce83267f3613e665609904cc05cbf9b763c358286b7",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/run_metadata.json",
-      "source_sha256": "ec16dd39938884684b3b721d528074727e2c1bf2eec4b34a9d6badeaf90b27f8",
-      "target": "results/report/provenance/july_original/run_metadata.json",
-      "target_sha256": "ec16dd39938884684b3b721d528074727e2c1bf2eec4b34a9d6badeaf90b27f8",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/verification.json",
-      "source_sha256": "97778ea1e0184480bc08605b7152bd0905790ffadbae312923b11f1797e6c1db",
-      "target": "results/report/provenance/july_original/verification.json",
-      "target_sha256": "97778ea1e0184480bc08605b7152bd0905790ffadbae312923b11f1797e6c1db",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260923/selection.json",
-      "source_sha256": "437712870ec58e94904c277f36e61020429c999c4f335fa19ec56fbef308381a",
-      "target": "results/report/provenance/july_original/selection.json",
-      "target_sha256": "437712870ec58e94904c277f36e61020429c999c4f335fa19ec56fbef308381a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/config/run_metadata.json",
-      "source_sha256": "0bcab2752cedf168ea04a489463a5142387e63d732362e832ccd036754f63baa",
-      "target": "results/report/provenance/july_cost/run_metadata.json",
-      "target_sha256": "0bcab2752cedf168ea04a489463a5142387e63d732362e832ccd036754f63baa",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/config/frozen_decisions.json",
-      "source_sha256": "f630a236cadd42b0d4be95ac98306a156442efcdff80633d62d374663c10cbcc",
-      "target": "results/report/provenance/july_cost/frozen_decisions.json",
-      "target_sha256": "f630a236cadd42b0d4be95ac98306a156442efcdff80633d62d374663c10cbcc",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/config/verification.json",
-      "source_sha256": "3b90821d15c6b8fdd400bc4f8c5689b25063304d5b9372909e49c16761947256",
-      "target": "results/report/provenance/july_cost/verification.json",
-      "target_sha256": "3b90821d15c6b8fdd400bc4f8c5689b25063304d5b9372909e49c16761947256",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/config/pre_run_selection.json",
-      "source_sha256": "b89b030c8e84fce78f8612a93b3bee24fac3087a9ade10f6c4fda8602d6900e1",
-      "target": "results/report/provenance/july_cost/pre_run_selection.json",
-      "target_sha256": "b89b030c8e84fce78f8612a93b3bee24fac3087a9ade10f6c4fda8602d6900e1",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/config/report_verification.json",
-      "source_sha256": "825c930a5ca8506424de01728c41a11ab8dabb5425ea9b310a70c682c12e1adb",
-      "target": "results/report/provenance/july_cost/report_verification.json",
-      "target_sha256": "825c930a5ca8506424de01728c41a11ab8dabb5425ea9b310a70c682c12e1adb",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/predictions/LP_LASSO_252d_predictions.csv",
-      "source_sha256": "41c334bc28ba973651371f25639f88bca44787dfae557606e2337e87f636250c",
-      "target": "results/report/validation/predictions/lasso_forecast.csv",
-      "target_sha256": "41c334bc28ba973651371f25639f88bca44787dfae557606e2337e87f636250c",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/final_test_july_2026_20260924/predictions/forecast_predictions.csv",
-      "source_sha256": "960553326d819d6a52a4791ea3ade92fc59e1c315640012fd26daa54ce600a7a",
-      "target": "results/report/july_test/predictions/lasso_forecast.csv",
-      "target_sha256": "960553326d819d6a52a4791ea3ade92fc59e1c315640012fd26daa54ce600a7a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/search/screen_search.csv",
-      "source_sha256": "ed79240e77c0daf9b5132ad0eb16b4ae4075eb1d0ae5c36ce87e7b9ec1e93559",
-      "target": "results/report/selection/exposure/screen_search.csv",
-      "target_sha256": "ed79240e77c0daf9b5132ad0eb16b4ae4075eb1d0ae5c36ce87e7b9ec1e93559",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/search/validation_search.csv",
-      "source_sha256": "6f2294f022f8f9a4c9e0f658a4541ca08f533cc170a3dfc2af89b4df685b30fd",
-      "target": "results/report/selection/exposure/validation_search.csv",
-      "target_sha256": "6f2294f022f8f9a4c9e0f658a4541ca08f533cc170a3dfc2af89b4df685b30fd",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/search/screen/candidate_attempts.csv",
-      "source_sha256": "b5ed3d787368d58406fbf6756f3708c1bc622e2555c230298fc95863c76abdaa",
-      "target": "results/report/selection/exposure/screen_attempts.csv",
-      "target_sha256": "b5ed3d787368d58406fbf6756f3708c1bc622e2555c230298fc95863c76abdaa",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/loss_search/search/validation/candidate_attempts.csv",
-      "source_sha256": "73b3b4484b77d0bd7a8971a44a7fe61e8e36c292d4c90708038bcef12730b480",
-      "target": "results/report/selection/exposure/validation_attempts.csv",
-      "target_sha256": "73b3b4484b77d0bd7a8971a44a7fe61e8e36c292d4c90708038bcef12730b480",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/unified_252/20260922T122949.119118Z/lp/search/252d_alpha_cv.csv",
-      "source_sha256": "5063138f2cf4d0dcdbaba1f8c214186c742d8ea46c51ef31d3fb82380d7ecdcd",
-      "target": "results/report/selection/forecast/252d_alpha_cv.csv",
-      "target_sha256": "5063138f2cf4d0dcdbaba1f8c214186c742d8ea46c51ef31d3fb82380d7ecdcd",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/lasso_forecast_lp_risk/20260924T073448Z/search/gamma_search.csv",
-      "source_sha256": "8c6aa3671da0160f42a5b24123eac2a42a517ebce03f925bc8a472aeb22dd481",
-      "target": "results/report/selection/lp/gamma_search.csv",
-      "target_sha256": "8c6aa3671da0160f42a5b24123eac2a42a517ebce03f925bc8a472aeb22dd481",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/missing_value_audit_20260922/full/audit.json",
-      "source_sha256": "62577b749aa7c82dbb32d5cfe28fe8cc671245490da5376359066a2f3aaecb1a",
-      "target": "results/data_audit/full/audit.json",
-      "target_sha256": "62577b749aa7c82dbb32d5cfe28fe8cc671245490da5376359066a2f3aaecb1a",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/missing_value_audit_20260922/full/counts.csv",
-      "source_sha256": "337a710af75d303c5c2ba518d8cfd1f6c2681fbc9d602a9e30c54f41436e9180",
-      "target": "results/data_audit/full/counts.csv",
-      "target_sha256": "337a710af75d303c5c2ba518d8cfd1f6c2681fbc9d602a9e30c54f41436e9180",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/missing_value_audit_20260922/since_2000/audit.json",
-      "source_sha256": "151870f3c65239d22c86a9572b64596963d1f40667a8b569992d509069920d09",
-      "target": "results/data_audit/since_2000/audit.json",
-      "target_sha256": "151870f3c65239d22c86a9572b64596963d1f40667a8b569992d509069920d09",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/missing_value_audit_20260922/since_2000/counts.csv",
-      "source_sha256": "4a235393eda86a0b7d423483c5ed501491d04cda3701f5781f8f32c04da4539c",
-      "target": "results/data_audit/since_2000/counts.csv",
-      "target_sha256": "4a235393eda86a0b7d423483c5ed501491d04cda3701f5781f8f32c04da4539c",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/missing_value_audit_20260922/recent/audit.json",
-      "source_sha256": "70fa3e50ac98b06d4bede36102edf2d14c35db4d3e9a635cce6d6fe009137b26",
-      "target": "results/data_audit/recent/audit.json",
-      "target_sha256": "70fa3e50ac98b06d4bede36102edf2d14c35db4d3e9a635cce6d6fe009137b26",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/missing_value_audit_20260922/recent/counts.csv",
-      "source_sha256": "f478f9c0aaed5e5cd02e8436630ae7a98b928411173508af8e30e03139ff6a98",
-      "target": "results/data_audit/recent/counts.csv",
-      "target_sha256": "f478f9c0aaed5e5cd02e8436630ae7a98b928411173508af8e30e03139ff6a98",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/verification.json",
-      "source_sha256": "d7e0e2cb6a61cff7f292a3418980a88ea44eb62e0513e79ea5d5da3e60e70a90",
-      "target": "results/report/provenance/baselines/verification.json",
-      "target_sha256": "d7e0e2cb6a61cff7f292a3418980a88ea44eb62e0513e79ea5d5da3e60e70a90",
-      "operation": "byte-preserving copy"
-    },
-    {
-      "source": "results/baselines/coefficient_constraints_20260926/tests.log",
-      "source_sha256": "1ecc2331dabb247a53cd21b976a22009b1bae8b6e6d57ce12b9118d843a68b8e",
-      "target": "results/report/provenance/baselines/tests.log",
-      "target_sha256": "1ecc2331dabb247a53cd21b976a22009b1bae8b6e6d57ce12b9118d843a68b8e",
-      "operation": "byte-preserving copy"
-    }
-  ],
   "artifact_sha256": {
-    "results/baselines/126d/diagnostics/EW_trading.csv": "fb982fd1a4777a991fb4c138853cf463dfe147550d408ffeb28557463a7f514b",
-    "results/baselines/126d/diagnostics/LASSO_CoefficientConstraint_fit.csv": "1fba9278eeeedd170a98e9adf991b0fe8e4f29f4772ebde6ccac5fdac51662ad",
-    "results/baselines/126d/diagnostics/LASSO_CoefficientConstraint_trading.csv": "e0fe7e8429990a0dc013c5064635ca4a9b32c78a68856249a5e04829b695ccd7",
-    "results/baselines/126d/diagnostics/LASSO_Penalty_trading.csv": "f38683057c070575fd0ea2c14e15e2db8b2571ebd41f1a0b42914b423d50f7e0",
-    "results/baselines/126d/diagnostics/MinVar_trading.csv": "3e9b13a8cbdfb93e31a5055bc64de5ea783951e5ffcdde5eecabaf5a1c6d81ff",
-    "results/baselines/126d/diagnostics/Ridge_CoefficientConstraint_fit.csv": "a6516059b2738bdc30d5db9c08e4227d5d78481aa29278c4db061839198b83cf",
-    "results/baselines/126d/diagnostics/Ridge_CoefficientConstraint_trading.csv": "3a96e701717686dbfc59833268a795ad7031806ee3462d5eefda558dc375b9ab",
-    "results/baselines/126d/diagnostics/Ridge_Penalty_trading.csv": "4f3dc941de1729158f0c205a3ecf96889d74dfeaf2ab0ca7f77dd1c22c3d6fac",
-    "results/baselines/126d/metrics/summary.csv": "db26049b925ab90658380c337e708d7ed955d7506f1e4de7155958fb25c2d854",
-    "results/baselines/126d/returns/EW.csv": "d97b80ead0e4bb3271d58dc5b59773e244dd03c7e39ce330c0315e65fb075b29",
-    "results/baselines/126d/returns/LASSO_CoefficientConstraint.csv": "d128d518b9ee7ecda50a47b20ed0c91519005f5896971f7aafc45399d3c9ad6b",
-    "results/baselines/126d/returns/LASSO_Penalty.csv": "58677dd9d33c5fac149ac29955c073c0563825a8fdaeae9763948dcae79f6f85",
-    "results/baselines/126d/returns/MinVar.csv": "cde9a180a847442b3ed41d6c82f70882273d155d1fc7fbda996886b1f975aadb",
-    "results/baselines/126d/returns/Ridge_CoefficientConstraint.csv": "108e02db9ee5f4263d0d664b6752167233391fdf5350843bf647cf66c674d01b",
-    "results/baselines/126d/returns/Ridge_Penalty.csv": "557f4254161e6299559a1685536f172aa9f4b90ab7625ae7f5c0117640c3b84e",
-    "results/baselines/126d/weights/EW.csv": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
-    "results/baselines/126d/weights/LASSO_CoefficientConstraint.csv": "6e25e7fc495fe6f153645f6f76867bb0cd59b4ca3a6729aec56145deec902e79",
-    "results/baselines/126d/weights/LASSO_Penalty.csv": "bdb607b500d2fa6b303aea3b8446118cd5827442908030b72dadb2de8b66b4b9",
-    "results/baselines/126d/weights/MinVar.csv": "3c43c88525ffacc6ac829351ff56dd4b35e8c54ce6e54e1c7f2d8b2555561382",
-    "results/baselines/126d/weights/Ridge_CoefficientConstraint.csv": "d74d3e04d1fb67553df5174761298e41d6ab40ff593e235910920434711a0858",
-    "results/baselines/126d/weights/Ridge_Penalty.csv": "86be12f210508b3dc3d76e4b15dc6531d1da9ee3f745c751e652f2c1a1264c8a",
-    "results/baselines/252d/diagnostics/EW_trading.csv": "fb982fd1a4777a991fb4c138853cf463dfe147550d408ffeb28557463a7f514b",
-    "results/baselines/252d/diagnostics/LASSO_CoefficientConstraint_fit.csv": "05584675349340c754786571a6eb8848243b66849ad949c042cb92e13a31f940",
-    "results/baselines/252d/diagnostics/LASSO_CoefficientConstraint_trading.csv": "a1d5f18140002cfe60daf2faaeef4095a05171b010622a4ecdd74a71c4796fa1",
-    "results/baselines/252d/diagnostics/LASSO_Penalty_trading.csv": "d2a74074ec3b8da0c97167b23c25e2ed5ccfed377885a0a744846322fbacef0f",
-    "results/baselines/252d/diagnostics/MinVar_trading.csv": "b18263a1fe33363346ca5aa4fc2aa77eeb1396dfe1c2dea9d5185ff4cb6e39b4",
-    "results/baselines/252d/diagnostics/Ridge_CoefficientConstraint_fit.csv": "1080163a8f15b9d8699ef4b12664581c3f63ab02d5ab42116037b9ff3f63803a",
-    "results/baselines/252d/diagnostics/Ridge_CoefficientConstraint_trading.csv": "4e735eaa270390fc768a579b9c6643a23e9045e1bc9a2c30adb41e96bd9d34b4",
-    "results/baselines/252d/diagnostics/Ridge_Penalty_trading.csv": "b21ddb855bb42ea767b639a10a685327c32ffd886efe0616ebb3f957e86651bf",
-    "results/baselines/252d/metrics/summary.csv": "16675446f49dcb222e5a3904ec02c56c465f7f8c0cc5fd1d89e687d90f5f4113",
-    "results/baselines/252d/returns/EW.csv": "d97b80ead0e4bb3271d58dc5b59773e244dd03c7e39ce330c0315e65fb075b29",
-    "results/baselines/252d/returns/LASSO_CoefficientConstraint.csv": "f534748b4785fb9657b2fbf2871a26af369c628dba51cac8df8278c5242b691f",
-    "results/baselines/252d/returns/LASSO_Penalty.csv": "873d9f878cf82325907e45e93a7db3601f95830a99607e08f0d5532ae472505e",
-    "results/baselines/252d/returns/MinVar.csv": "a629cc9f22af9f15381e4714d6d5d08f2061089cec04bdfa723fbb5929e3b0e8",
-    "results/baselines/252d/returns/Ridge_CoefficientConstraint.csv": "2949fe86526e877fd781b438278942c84f34923ee2a9b87609363b7e604443ee",
-    "results/baselines/252d/returns/Ridge_Penalty.csv": "eba1a14a9c9483bf2e1cb6304be45eb688dc516bb5a81d3059520fd8325b6b7f",
-    "results/baselines/252d/weights/EW.csv": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
-    "results/baselines/252d/weights/LASSO_CoefficientConstraint.csv": "75aa7280c9b70e91bf5f382278721c306c48e019963c42c2c08ddc047d66bbb2",
-    "results/baselines/252d/weights/LASSO_Penalty.csv": "376746961be1774107419d3671ed6f7b0d41a7cb01026acafecec43f96b37e6a",
-    "results/baselines/252d/weights/MinVar.csv": "b9524e02b563ae9ff8edd36448873092a5ff6a5f9eb70c7572147cdfa6c3dfe7",
-    "results/baselines/252d/weights/Ridge_CoefficientConstraint.csv": "152cbfdeac3bcb335b04a732cc69a45d34de4089d94faf666cc2ea46ea89eab2",
-    "results/baselines/252d/weights/Ridge_Penalty.csv": "1f64a98efa426d34bf76b56db50b0febddab140c09eb0e03f51523d2d8d4fc7e",
-    "results/data_audit/full/audit.json": "62577b749aa7c82dbb32d5cfe28fe8cc671245490da5376359066a2f3aaecb1a",
-    "results/data_audit/full/counts.csv": "337a710af75d303c5c2ba518d8cfd1f6c2681fbc9d602a9e30c54f41436e9180",
     "results/data_audit/recent/audit.json": "70fa3e50ac98b06d4bede36102edf2d14c35db4d3e9a635cce6d6fe009137b26",
     "results/data_audit/recent/counts.csv": "f478f9c0aaed5e5cd02e8436630ae7a98b928411173508af8e30e03139ff6a98",
-    "results/data_audit/since_2000/audit.json": "151870f3c65239d22c86a9572b64596963d1f40667a8b569992d509069920d09",
-    "results/data_audit/since_2000/counts.csv": "4a235393eda86a0b7d423483c5ed501491d04cda3701f5781f8f32c04da4539c",
-    "results/report/july_test/diagnostics/EW_fit.csv": "d6b01bcc953da899f23498088cbc04cfffc214e21afac3f70da821e03fe567e0",
-    "results/report/july_test/diagnostics/EW_trading.csv": "186336b0fb168b689d4b6c330d156d85c8dda50ca3978d2b23191af521eb2b7e",
-    "results/report/july_test/diagnostics/LASSO_BetaMarket_fit.csv": "aab514355ae53b1fb088b50c60dce41a349375119ffcdecd9bb1509dc56fbdbe",
-    "results/report/july_test/diagnostics/LASSO_BetaMarket_trading.csv": "1e12e7aa3ba2d61aa1dbc2619fdad3fc495f1cd1e8a663e1f8f02cb8ccbfe734",
-    "results/report/july_test/diagnostics/LASSO_ExposurePenalty_fit.csv": "0acd634faf9caa7b31b488ac920b6e8446ffe65bdb41500bd4bf7c6ff7b215f6",
-    "results/report/july_test/diagnostics/LASSO_ExposurePenalty_trading.csv": "73a0b4603caf14dc9270982628301b101f8f91ff8fea86fcc9a3e58e96d6e45c",
-    "results/report/july_test/diagnostics/LASSO_WeightCap_10pct_fit.csv": "c5cbe4079676bb6594e0516a311e3412d3d32e4297c0b07c5da3cb50138d224a",
-    "results/report/july_test/diagnostics/LASSO_WeightCap_10pct_trading.csv": "97cfc955e19a3bf9355e968950f44fc38d2051a87172be0dbe2c745d48632db6",
-    "results/report/july_test/diagnostics/LP_Original_fit.csv": "a237f8644c4bd68274776ec39e9f1f1841983bd8780792ed573d4c791a6d1e7d",
-    "results/report/july_test/diagnostics/LP_Original_trading.csv": "fddc6a563bb8ec4effe76f9a025cf2efae2fa063e6a84e4c84f3c593e325881d",
-    "results/report/july_test/diagnostics/LP_TradingPenalty_fit.csv": "95634b1414e2e089ffea5ce83267f3613e665609904cc05cbf9b763c358286b7",
-    "results/report/july_test/diagnostics/LP_TradingPenalty_trading.csv": "975abae195494e55e309f31750ca991b60064ab3fed85b73fcca21d30554056d",
-    "results/report/july_test/diagnostics/Ridge_BetaConservative_fit.csv": "c3a660ce84c6b59a56ade2a06b6bd23ab74909056ec04231a2ff9e4cfe5a6d82",
-    "results/report/july_test/diagnostics/Ridge_BetaConservative_trading.csv": "1002efc77ef4be0ace6793457a1d653ec67dfeedf91e8bb39a7f4ae541e26a0c",
-    "results/report/july_test/metrics/summary.csv": "2e28ee401a752ea3451ae7b1067aa895e4ea24812d4db1992880f5e94f2f7e34",
-    "results/report/july_test/predictions/lasso_forecast.csv": "960553326d819d6a52a4791ea3ade92fc59e1c315640012fd26daa54ce600a7a",
-    "results/report/july_test/returns/EW.csv": "2fd5359e20cd5c2ca1cc8869c47aac4593da96cf7dedaeb1079a6172baf45cd5",
-    "results/report/july_test/returns/LASSO_BetaMarket.csv": "752bf737ef77087c84934eb27bc8ddf95acab23be52c8575b5311ae00a20604e",
-    "results/report/july_test/returns/LASSO_ExposurePenalty.csv": "f6dda50967f8d32cd6bcb91c4453c1cc4e2ed6aa4e0758e5766a3bf2132387ce",
-    "results/report/july_test/returns/LASSO_WeightCap_10pct.csv": "dfc47e2f70aaea347ebbc4af658e0868aa2b1fb1c05d41d19543b4c9c440ad0a",
-    "results/report/july_test/returns/LP_Original.csv": "d23cd3c13412dbbb8493a4fab6842c53febf31a4d6d8f107bc982c3b5fe55401",
-    "results/report/july_test/returns/LP_TradingPenalty.csv": "d59d61a5abc43989cbc3c9729ff966915ce86f31c280341e3a460ba9e76c5e68",
-    "results/report/july_test/returns/Ridge_BetaConservative.csv": "6dd68438317b0bc40f1663f393a815c3099a1525de70d4cb27901590128d29c5",
+    "results/report/historical_comparison.csv": "049dcb265177b08293a32ac1c84ae498ef6a386578108e2cc444bbe4a3d88a45",
+    "results/report/july_test/config/run_metadata.json": "f9cd346680a8789954414de2e07bdd1182d0aabd99dc2ec8be33a66a13280064",
+    "results/report/july_test/diagnostics/EW.csv": "b2f72ae646d6d6c18d03a3e3e79db60c914b413582bda51836710ac5a7bbd130",
+    "results/report/july_test/diagnostics/LASSO_BetaMarket.csv": "280aa693df976b7e8744232a1af1e703309d9ede8cda8545da0963019b6505b7",
+    "results/report/july_test/diagnostics/LASSO_ExposurePenalty.csv": "cd6ae6f0355cef07afdd5c1b3722fede756da4fcfd1fef348e1df2e8cf053575",
+    "results/report/july_test/diagnostics/LASSO_WeightCap_10pct.csv": "07cf5d8866950236b8ecef4b217f3f16403b34c52606bbbc79bd20cbd459bb13",
+    "results/report/july_test/diagnostics/LP_Original.csv": "39ab861f2facedb9a3623223cef51d61af55d14ead69e1c12fd9e4c01e8aa907",
+    "results/report/july_test/diagnostics/LP_TradingPenalty.csv": "f7ad217f2f8d04b71cdfa8e038e66e940125dcd7daec83836cc691890a936199",
+    "results/report/july_test/diagnostics/Ridge_BetaConservative.csv": "ed3fbb8d23f3b5885cfa900323aea17a1e766423deb9cb686bc8acdb60e2e3e1",
+    "results/report/july_test/diagnostics/lasso_forecast.csv": "17abdd07bc899907ab68a80c7bc76a8f61edc65ab800c0dfbec8f5a68d53afbb",
+    "results/report/july_test/metrics/summary.csv": "6d2b10c779b590a65144297f8c8600d6c6e0b1ce83234c4d94e9b021f0b8bd53",
+    "results/report/july_test/predictions/lasso_forecast.csv": "2fa7e5e2691ccf66fb022c0692d18f3a1a77958666938f943aaa532b31af85a9",
+    "results/report/july_test/returns/EW.csv": "0785873710ffa7f60b361ffa8dd0f790541ad2f61e88f79f539c986a21fe8966",
+    "results/report/july_test/returns/LASSO_BetaMarket.csv": "2bf715daa23774fda6d279021edc6f81108c8cb0c2193c40f8ccb3cb34780831",
+    "results/report/july_test/returns/LASSO_ExposurePenalty.csv": "f60652c8c11309149c497dad61aa44552440bc9269ad0a2f71b4e12659e6ab74",
+    "results/report/july_test/returns/LASSO_WeightCap_10pct.csv": "814fb0248bc849d72a4ef38d3a92fb988d77e1a5e6cfff1d4e2fbbf30a9294ce",
+    "results/report/july_test/returns/LP_Original.csv": "06796c146777d7725703c994640ff120544c033c8499b9dd5bace0d301127bc7",
+    "results/report/july_test/returns/LP_TradingPenalty.csv": "93535f45346cb7ddcabb4a730e8f1410bb097dca8d31ec9da8fa310cb833c4f5",
+    "results/report/july_test/returns/Ridge_BetaConservative.csv": "6b9b81147b004ec8c16d59343d3822cbde7cc8b42645e126e64636f0364fd3c9",
     "results/report/july_test/weights/EW.csv": "3eb29c2e373cc641f7b7538f6d5c47c39a8708918beb7d00c5a104d6812627db",
-    "results/report/july_test/weights/LASSO_BetaMarket.csv": "8b55968cca7fc5e38685638f8aaa7d54de0a46b413b77b6ba432538cd04ee23b",
+    "results/report/july_test/weights/LASSO_BetaMarket.csv": "9b8689eb10a54349a6ee720eda33d0712a2a565cce17a038b7cdde76fa440ece",
     "results/report/july_test/weights/LASSO_ExposurePenalty.csv": "cc7051553c68e81afa544db8bdbda3b6ee0cb32e6a5c321900ceb143b8144946",
-    "results/report/july_test/weights/LASSO_WeightCap_10pct.csv": "6be8ea8ced398388c6e6128809e02bcac1734c1aca8f0f64f82aced72abbc025",
+    "results/report/july_test/weights/LASSO_WeightCap_10pct.csv": "4c135746bf2828604a4d4b031affc47f32890f62218234c6ec0af1a955f27b33",
     "results/report/july_test/weights/LP_Original.csv": "7790e893b01aa5a05a1a1eea0fc1c74479e8f82ab7bd277210a076988fea0d95",
-    "results/report/july_test/weights/LP_TradingPenalty.csv": "3205733f529ae0bdcbd17335ee8061403a672159859fb51b4aa400b8c9ccc154",
-    "results/report/july_test/weights/Ridge_BetaConservative.csv": "cb7a3f5cb910fe6deed825b5a3453d84d91bc751d44ec6a3e7083698475ba83c",
-    "results/report/provenance/baselines/tests.log": "1ecc2331dabb247a53cd21b976a22009b1bae8b6e6d57ce12b9118d843a68b8e",
-    "results/report/provenance/baselines/verification.json": "d7e0e2cb6a61cff7f292a3418980a88ea44eb62e0513e79ea5d5da3e60e70a90",
-    "results/report/provenance/baselines_126d/run_metadata.json": "ff6ad3eb2e5e7717db3cf434515362d7aca5ffe5be9e6ac22faab9f5cf38f711",
-    "results/report/provenance/baselines_252d/run_metadata.json": "2165f340a238d095ef72b84462b46cf77089b3557283675959147e6b3d175364",
-    "results/report/provenance/concentration/run_metadata.json": "8c3336947fcf397dac0d209f006406f6005fdf77ec2e4008a29bea523728b9ab",
-    "results/report/provenance/july_cost/frozen_decisions.json": "f630a236cadd42b0d4be95ac98306a156442efcdff80633d62d374663c10cbcc",
-    "results/report/provenance/july_cost/pre_run_selection.json": "b89b030c8e84fce78f8612a93b3bee24fac3087a9ade10f6c4fda8602d6900e1",
-    "results/report/provenance/july_cost/report_verification.json": "825c930a5ca8506424de01728c41a11ab8dabb5425ea9b310a70c682c12e1adb",
-    "results/report/provenance/july_cost/run_metadata.json": "0bcab2752cedf168ea04a489463a5142387e63d732362e832ccd036754f63baa",
-    "results/report/provenance/july_cost/verification.json": "3b90821d15c6b8fdd400bc4f8c5689b25063304d5b9372909e49c16761947256",
-    "results/report/provenance/july_original/run_metadata.json": "ec16dd39938884684b3b721d528074727e2c1bf2eec4b34a9d6badeaf90b27f8",
-    "results/report/provenance/july_original/selection.json": "437712870ec58e94904c277f36e61020429c999c4f335fa19ec56fbef308381a",
-    "results/report/provenance/july_original/verification.json": "97778ea1e0184480bc08605b7152bd0905790ffadbae312923b11f1797e6c1db",
-    "results/report/provenance/loss_search/run_metadata.json": "330ac4a5c9eb690e2d0b161b12f7898b9e92ab5e3b8aa62f1afd2b422275a486",
-    "results/report/provenance/lp/frozen_decisions.json": "54ab69a64001844e6d336ea53ae12237bbbcbdf6151de7fcae51db3a88a25110",
-    "results/report/provenance/lp/run_metadata.json": "e248695068554fca965d07786de04be6f67158ce2e4215bb130c230633bdcba4",
-    "results/report/provenance/lp_cost/frozen_decisions.json": "714443f73ae7648cc43cb1251088d34901ffbd9469040b78c21494e998295646",
-    "results/report/provenance/lp_cost/independent_audit.json": "4cc97854eed9d490b5d40f20c30da7a21f3a0593a5a0a448f77dc0c90befbf98",
-    "results/report/provenance/lp_cost/run_metadata.json": "fd7f3da94aa061dd759fc7c85a1c5d9172544c155174d0005a58e7e870bec781",
-    "results/report/provenance/market_beta/run_metadata.json": "707fad87624fa904b23535388666c36db5936584aa9a35a88bbbd03113389fda",
-    "results/report/provenance/turnover/run_metadata.json": "2318b03c4b18345257fefecc10a1470b9e56479cfc42335d1e1dc930d3b8739f",
+    "results/report/july_test/weights/LP_TradingPenalty.csv": "41f46280ae36bb6dc7d5bc30313092d323734abac65cf7ba093fe7f4391f87db",
+    "results/report/july_test/weights/Ridge_BetaConservative.csv": "c448725ef0aa64f1b6a3e124bec16ef6c8cde3f5abb79137dc232f5d65a2f654",
+    "results/report/logs/july_test.log": "1034174e20107ad12cc47dc2b037ea064a95c31b7badbf8a134c31831344d131",
+    "results/report/logs/validation.log": "37c790648db755dcb72595ca27f071ff17d999c034bcc22f53b912e031048ffa",
+    "results/report/report_comparison.csv": "f3bc08ec8d9ac9776addc3ac88204b23ad88d69a6453712bc6e1552e9ebb6d11",
+    "results/report/report_reference.json": "dcca2758b93b9228b0bf2e23d78e82fee4021a29f652480874ae4554948baeb4",
+    "results/report/selection/exposure/run_metadata.json": "330ac4a5c9eb690e2d0b161b12f7898b9e92ab5e3b8aa62f1afd2b422275a486",
     "results/report/selection/exposure/screen_attempts.csv": "b5ed3d787368d58406fbf6756f3708c1bc622e2555c230298fc95863c76abdaa",
     "results/report/selection/exposure/screen_search.csv": "ed79240e77c0daf9b5132ad0eb16b4ae4075eb1d0ae5c36ce87e7b9ec1e93559",
     "results/report/selection/exposure/validation_attempts.csv": "73b3b4484b77d0bd7a8971a44a7fe61e8e36c292d4c90708038bcef12730b480",
     "results/report/selection/exposure/validation_search.csv": "6f2294f022f8f9a4c9e0f658a4541ca08f533cc170a3dfc2af89b4df685b30fd",
     "results/report/selection/forecast/252d_alpha_cv.csv": "5063138f2cf4d0dcdbaba1f8c214186c742d8ea46c51ef31d3fb82380d7ecdcd",
+    "results/report/selection/lp/frozen_decisions.json": "714443f73ae7648cc43cb1251088d34901ffbd9469040b78c21494e998295646",
     "results/report/selection/lp/gamma_search.csv": "8c6aa3671da0160f42a5b24123eac2a42a517ebce03f925bc8a472aeb22dd481",
-    "results/report/validation/diagnostics/LASSO_BetaConservative_fit.csv": "002539373afbe41bc69b7ba4d1171c7aaf83bdfb4e686e115e1bd32d368fbfd4",
-    "results/report/validation/diagnostics/LASSO_BetaConservative_trading.csv": "6414cd738dae998b8ac4920e0e1992b016fbc3de4aa2a3aa4aa667b1cf8d3590",
-    "results/report/validation/diagnostics/LASSO_BetaMarket_fit.csv": "c73b7e24a40a6150dcd523eb094b208c78a7e3486fa72544e68dc6cae87e29c5",
-    "results/report/validation/diagnostics/LASSO_BetaMarket_trading.csv": "89413ac3238d11217d5659026c99cb2801e9635548f3e922c7c668247bd95721",
-    "results/report/validation/diagnostics/LASSO_BetaUnbounded_fit.csv": "6edc55b7e79b32481bf7390dd0b929f873896393d0a8f0f537b6ddd97809f0db",
-    "results/report/validation/diagnostics/LASSO_BetaUnbounded_trading.csv": "08e3b8b6bf295464127cd18548c55fd1749ea6c8f66d4c818f41f971d60f759c",
-    "results/report/validation/diagnostics/LASSO_ExposurePenalty_fit.csv": "b20ca18a7f8522033275fc03764e08e5a1ee3c033472d60c7f7e39a99cb8d46e",
-    "results/report/validation/diagnostics/LASSO_ExposurePenalty_trading.csv": "25aece93e9cdb05b2014516b87152e07b241192810292d28fc8306e911ccd694",
-    "results/report/validation/diagnostics/LASSO_HardConstraints_fit.csv": "3efc6d9280ad613e04ffd7ea2343a7b681c7fd9b979e9a107cd71a8bdab491d8",
-    "results/report/validation/diagnostics/LASSO_HardConstraints_trading.csv": "05be3c25d1a272e62dd8feab3454772d8823897e46f5aeb40056ee6c1be84dc6",
-    "results/report/validation/diagnostics/LASSO_Turnover_0p1_fit.csv": "978013dbdb3a285157b1c7acd6042fed3976c70d5fbef9a0c3dcef61a18e2ab5",
-    "results/report/validation/diagnostics/LASSO_Turnover_0p1_trading.csv": "33f0af9ee8801f815ef012e4e2c34ae9cd22b62bf46cd985d4f4dffd1131d9a9",
-    "results/report/validation/diagnostics/LASSO_Turnover_1_fit.csv": "3e6a060c5c9997136e16235a43dd83fe9e42260c0bc694060c2a04cd18b4787e",
-    "results/report/validation/diagnostics/LASSO_Turnover_1_trading.csv": "2165f14d85fcad3d9d2a7b2417b7594dc92d4ab991907250c723c4101b356aa4",
-    "results/report/validation/diagnostics/LASSO_WeightCap_10pct_fit.csv": "15a283942bed7882412807bdb89ad2096aecbe0c62a63984416bd9ec741be02a",
-    "results/report/validation/diagnostics/LASSO_WeightCap_10pct_trading.csv": "b51f223300a956f2944718cc70ee4bf5428e4687868c9940db9c4e70719ed541",
-    "results/report/validation/diagnostics/LP_Original_fit.csv": "5a938f5c9cdc43eee2ce79c26b973af761c6915686343957a21183d197ff7e07",
-    "results/report/validation/diagnostics/LP_Original_trading.csv": "1c71fdba6971af0943ddd584192a96782d95b48ea77294999de52154b5666170",
-    "results/report/validation/diagnostics/LP_TradingPenalty_fit.csv": "54aa1a9683def06994ee78f580129ba48d02b0a0946e4aaa64fc1e8d61009c6a",
-    "results/report/validation/diagnostics/LP_TradingPenalty_trading.csv": "0d60f5e9471e98fccf41fa07a2940da74aa176f815c027db0bcb5ef178c77364",
-    "results/report/validation/diagnostics/Ridge_BetaConservative_fit.csv": "4315a14cb162c83c548be81eabb9598423c095729d694b09f23e1991e8217875",
-    "results/report/validation/diagnostics/Ridge_BetaConservative_trading.csv": "600192ca29dafcdbbfb6d4406501212036bba6041a5ce189986daefae3dbeae3",
-    "results/report/validation/diagnostics/Ridge_BetaMarket_fit.csv": "a7b0d1b24764c9176629cfc98948731e9848b0469ac3739871b0f4cbeed0e4b8",
-    "results/report/validation/diagnostics/Ridge_BetaMarket_trading.csv": "fa41d423a6a97178a1da4a2748ff83c8eee6ac0e8c78934de18b40faf5ff87a9",
-    "results/report/validation/diagnostics/Ridge_BetaUnbounded_fit.csv": "682380549b0e082dd959d9558b460e1534d49202134da124989f5a76d08eafa7",
-    "results/report/validation/diagnostics/Ridge_BetaUnbounded_trading.csv": "07fbe50cf019c33ac636d826126e632ce89bd244947742cf4d2f4ae0a203cd45",
-    "results/report/validation/metrics/summary.csv": "615a00c3f8a62c3e343cf9a8e3bb2f9e8d02f2ac2a0dfa3525da94d7f2dbad4f",
+    "results/report/selection/lp/run_metadata.json": "fd7f3da94aa061dd759fc7c85a1c5d9172544c155174d0005a58e7e870bec781",
+    "results/report/validation/config/run_metadata.json": "12f0b0c314a87ff51b16b9ea79dfbd15abd0514271c63f6824d078b4ecf388a7",
+    "results/report/validation/diagnostics/EW.csv": "b41ce20414ac2b5e9f19ee4c60b1d1f278691e7c729c91b9d32b35f29030d50c",
+    "results/report/validation/diagnostics/LASSO_BetaConservative.csv": "c19483bbab02de2a4c5e2a9691d16cc3cdc4d72611e3a652584bc9525439aa5e",
+    "results/report/validation/diagnostics/LASSO_BetaMarket.csv": "abde89309c8b47b90c50f450a240b7a66ef79b170302cda2387e231bf473b0a8",
+    "results/report/validation/diagnostics/LASSO_BetaUnbounded.csv": "76229f532d32d7ae2965b43c1dae14f905414ddc8f46009a816be9261eab93a8",
+    "results/report/validation/diagnostics/LASSO_CoefficientConstraint.csv": "3f3111e67cb31c4b4a9edaf56db526c527b2420b3ef1a1a017ee172e3caae21f",
+    "results/report/validation/diagnostics/LASSO_ExposurePenalty.csv": "fd237ff056d9531395473950e4b8abf2d182aa516a0e9d1a302dae83eb38903a",
+    "results/report/validation/diagnostics/LASSO_HardConstraints.csv": "53e0470f6c7353a9c84c41f22035fc605f78dc4fe7d5b84521705aa19b28118c",
+    "results/report/validation/diagnostics/LASSO_Penalty.csv": "3ba36f5487b965addaac656aa16ff11d356bf24f6fcc214243e3b6180ee85fe4",
+    "results/report/validation/diagnostics/LASSO_Turnover_0p1.csv": "cbc01817723b15c00a2eff803ee3b07db7dee6677af79a7a8251b708c96af334",
+    "results/report/validation/diagnostics/LASSO_Turnover_1.csv": "f845e851c01c0dd254f275e9b5ca6519b21e674d7e12138ecc5f8d7684f6a753",
+    "results/report/validation/diagnostics/LASSO_WeightCap_10pct.csv": "14143d03bfff08c8ea8160fddf406fa52fa506a5602e440f17f90e88ea022234",
+    "results/report/validation/diagnostics/LP_Original.csv": "c9ea7cae3befcc8511d6f9de8c4d52631a85f10914c54ab172231e3f073a7095",
+    "results/report/validation/diagnostics/LP_TradingPenalty.csv": "226ca7ed1b46fa99057d68d6236f09092634c367c2bfea3349c1b857861267c4",
+    "results/report/validation/diagnostics/MinVar.csv": "0fa4594b06dc6f16c4e929a53ed654ae5e223c069cc301e974327b10ecc5e7ff",
+    "results/report/validation/diagnostics/Ridge_BetaConservative.csv": "a05d8c8d950d762fd959263e392b3027321703ce21ed6bd0f60f5a2ecc240a6b",
+    "results/report/validation/diagnostics/Ridge_BetaMarket.csv": "f990752f2fb77d41b36ee9914bbda5782a4642ab7470a0ec989e79b82b164865",
+    "results/report/validation/diagnostics/Ridge_BetaUnbounded.csv": "1d300cf23003c08467c52ef0e66aee24a84246b54a284d23e8ba9276d855d191",
+    "results/report/validation/diagnostics/Ridge_CoefficientConstraint.csv": "259be61ca4bc9db8771d56fd8f1f3387e4eaf7d4e934792c15aff0aa6a68dd66",
+    "results/report/validation/diagnostics/Ridge_Penalty.csv": "b3f8e1022c1f244bdea82a95ddb4dae2901eb46fb4ac3f3d6a0341ef197c186e",
+    "results/report/validation/diagnostics/lasso_forecast.csv": "88e5c7b60510fa888fab6e7be073828eb90a665cbdbcd223b9ef5ddff1548eab",
+    "results/report/validation/metrics/summary.csv": "37dfe2717395f88e8125bead1cd5dc5b8c05549427b273aa2e6aeb6122d660e0",
     "results/report/validation/predictions/lasso_forecast.csv": "41c334bc28ba973651371f25639f88bca44787dfae557606e2337e87f636250c",
-    "results/report/validation/returns/LASSO_BetaConservative.csv": "2d2586b517fe5e88b0733a8012c5dcf2a2f5e5cb7eab7bb983da807fbdac230f",
-    "results/report/validation/returns/LASSO_BetaMarket.csv": "96ab1ca104f2987baf47b5c5d5f341f7583fdfe6f6e4002cbe330f426dc372d6",
-    "results/report/validation/returns/LASSO_BetaUnbounded.csv": "7e6aca93902a8a6238f9f10bee45c52af320da4ebe7006ecb5b43f59af418442",
-    "results/report/validation/returns/LASSO_ExposurePenalty.csv": "cd5de8ff3e895746a16e811fd76c405d31e4d435680a3a177348bd005a12eb89",
-    "results/report/validation/returns/LASSO_HardConstraints.csv": "d540fcb63aa9035f988693baf9820d917a3a0ca812a0a68a2544f0e23f7f273e",
-    "results/report/validation/returns/LASSO_Turnover_0p1.csv": "9ac9d54a2463a10d10f6a8714815e3675c22338f71cfddabbe613195df40a769",
-    "results/report/validation/returns/LASSO_Turnover_1.csv": "519b87d4abb90811ee0b973197ad087af79855bf7a13d7dba887ff0abc8bf854",
-    "results/report/validation/returns/LASSO_WeightCap_10pct.csv": "7b35d7ade71b6f9f1f6a17fd8a7ae078cc37cc00f7a5148b0673ce4c288ab01b",
-    "results/report/validation/returns/LP_Original.csv": "7e8ccf5f5894d1c46f9bd5264df0ca53a49d67987f839c61c479924d90411f76",
-    "results/report/validation/returns/LP_TradingPenalty.csv": "d189750116cd5a5327dc7073795ee457f1670cf1cb5905097c4dd847f1a9d449",
-    "results/report/validation/returns/Ridge_BetaConservative.csv": "45c1979dab53d6b7a83dacc52da60d29f3ff8362290795329ad45e13e10a42a6",
-    "results/report/validation/returns/Ridge_BetaMarket.csv": "fb27b8ac7edb172d829b51613d65b43c34da11f7eed5cbc24e7f8e420455e746",
-    "results/report/validation/returns/Ridge_BetaUnbounded.csv": "29dec49a73e612c3ac628c5225a531d012871fc504dc1136c57a5baf2c496a2f",
-    "results/report/validation/weights/LASSO_BetaConservative.csv": "7b24beb2a33f89e4beef13057300daa2e8535c7b301df503ecc2597a2f6ef05b",
-    "results/report/validation/weights/LASSO_BetaMarket.csv": "0099f2a7e372c6dc66812d59887255662c0eed083bc983f9140163f39822595e",
-    "results/report/validation/weights/LASSO_BetaUnbounded.csv": "47c677fd393ce761c921ef7fb4dad1ffbeb25be27069ba6d5f653a9590303944",
+    "results/report/validation/returns/EW.csv": "7754e0b6632d7bde007130b24456d12cea9fa62845ecb2ecef95a75c46e547a2",
+    "results/report/validation/returns/LASSO_BetaConservative.csv": "630af41ea2ca10cb219157af65f17a69b61dedd1b1e3655591449fa91d21dd5a",
+    "results/report/validation/returns/LASSO_BetaMarket.csv": "d834314c388d7bde17a88d60cb84304f68f73cd800b4d784ba893bdfc3459ee3",
+    "results/report/validation/returns/LASSO_BetaUnbounded.csv": "39eeebd44e8a503bd22654253367387344ac5ed8f48ce6d0ca46867ce7ae81c6",
+    "results/report/validation/returns/LASSO_CoefficientConstraint.csv": "8741c52e03ef4caa5713ff0b37aaac84c39543821e3038b106e80d422f5ec671",
+    "results/report/validation/returns/LASSO_ExposurePenalty.csv": "ccb3639448bdef01a4b1671b3983be867e0112619572d60bd64098cf0117444d",
+    "results/report/validation/returns/LASSO_HardConstraints.csv": "6b4788a8497a0cdf084535709f49f36d200178305a2609cbacdd4cec355e9661",
+    "results/report/validation/returns/LASSO_Penalty.csv": "ab38c29bfc0e694fd011b111fa49ff356ddeb43960ead4c143224565e430663a",
+    "results/report/validation/returns/LASSO_Turnover_0p1.csv": "45fc6c2823517a3ae701c7a8e07794f77b74124d17f002b4068fbe7984e88f53",
+    "results/report/validation/returns/LASSO_Turnover_1.csv": "6a6b3bcdd5e6368ef1d4c4b067776573f7af8313f81b07e4d51dae20bf034b9c",
+    "results/report/validation/returns/LASSO_WeightCap_10pct.csv": "1a5bf1304f2821dba2b1f6b6051425abce5fffa1757cd3c2c569237972d096f3",
+    "results/report/validation/returns/LP_Original.csv": "246bd7ce5016c6e994cfe68c35601d38d5e4e7808d333072a03b9004a7639510",
+    "results/report/validation/returns/LP_TradingPenalty.csv": "2616ff1b6637f2d58f78d99a6f512a6f1225c00684b6288c32cdb745a322c6fa",
+    "results/report/validation/returns/MinVar.csv": "292be66e188e1c0e8a453fd2de5a7587c29a4c69b243f8099e8d62230fd3ca90",
+    "results/report/validation/returns/Ridge_BetaConservative.csv": "1fdbfaeb9fa7df74facd22f5c638b876785e570f1fdde4ffcb1dfa9c120960ff",
+    "results/report/validation/returns/Ridge_BetaMarket.csv": "024ea60bc458e21575403d0928315ddd105d4b9d5c82dbe208cbc7672853ec07",
+    "results/report/validation/returns/Ridge_BetaUnbounded.csv": "1326c2570ebcda586b23e29918ceda53cd7b0c25a48d4915d8441794b91d28b9",
+    "results/report/validation/returns/Ridge_CoefficientConstraint.csv": "df85fcf345154e4480958998814d4e010336e160dd45faddd2aac14f4b7bd98f",
+    "results/report/validation/returns/Ridge_Penalty.csv": "98a2a7fc1a4bf275683c25a8f29af970ad9187fd26c5193f2110a1a10dce844e",
+    "results/report/validation/weights/EW.csv": "40e2c70bfdc59088642e33dc118588197e3df2434cb15d081909f2cc3be1777e",
+    "results/report/validation/weights/LASSO_BetaConservative.csv": "178c4a2fdd838dc56660ff5d2319005c2d5228c0e945ad843e2f4dde2eda5e91",
+    "results/report/validation/weights/LASSO_BetaMarket.csv": "c9bd0eace75cc608d4f07a0780d56475c2765c624574858778a36e04d60012dc",
+    "results/report/validation/weights/LASSO_BetaUnbounded.csv": "bcbfae6b5cd1467f7c70033f5e2a26f91cb80b5c92dd8c4313790b90628fa773",
+    "results/report/validation/weights/LASSO_CoefficientConstraint.csv": "75aa7280c9b70e91bf5f382278721c306c48e019963c42c2c08ddc047d66bbb2",
     "results/report/validation/weights/LASSO_ExposurePenalty.csv": "1a34756032d92444323168b2d5b0d202038cd39e8ad1dae30515f21e88873de3",
     "results/report/validation/weights/LASSO_HardConstraints.csv": "fd53e691969713496a0646fc9e41a7a1788e598e4dd778cb98c68d748ea43fc6",
-    "results/report/validation/weights/LASSO_Turnover_0p1.csv": "4d04e70358b0a3501a67830491cfc73e9e89e84d00b0fb9f50c3837fa1319288",
-    "results/report/validation/weights/LASSO_Turnover_1.csv": "4d2bae491b3a7a36b04bc7e8c99e3b656e7c394e278dbd82b444403a89ca555c",
-    "results/report/validation/weights/LASSO_WeightCap_10pct.csv": "3fd5ac3cc4cbfe1cfe02262366182c18f4e2bbd90208c8926060da17669b49fa",
+    "results/report/validation/weights/LASSO_Penalty.csv": "376746961be1774107419d3671ed6f7b0d41a7cb01026acafecec43f96b37e6a",
+    "results/report/validation/weights/LASSO_Turnover_0p1.csv": "1d78e1c822482d5157a4aa4a3a1da7f301c538717bbbbeafecf37e738e80753f",
+    "results/report/validation/weights/LASSO_Turnover_1.csv": "1b51eb6f1f120c372d263293667884b7d365c8c7064cdd6ec6ddbcfda0825616",
+    "results/report/validation/weights/LASSO_WeightCap_10pct.csv": "84ffa65b888aab29dfd9e5d369e5336153eeb6939576fa0882e67c5a546a0874",
     "results/report/validation/weights/LP_Original.csv": "d8752540c2956ef6643ebc74368633995e967cc806cb9833630c6835db083aed",
-    "results/report/validation/weights/LP_TradingPenalty.csv": "e90218f2bd7e5f1d22fc45e62c39cf4b910d7a7ec9a4a6cb4f43b1aa20c57cb1",
-    "results/report/validation/weights/Ridge_BetaConservative.csv": "a390ef286f88dfcfcd437c018a8375199240d36686c15c65762068f669d9ff31",
-    "results/report/validation/weights/Ridge_BetaMarket.csv": "f705a3326f54027d2074a1288d54f3178c6f53c1c1001f02b88dfb73590e8c49",
-    "results/report/validation/weights/Ridge_BetaUnbounded.csv": "34dd32c931c5122755ab95b053d760b0c0b0ac00d6c3237cafb927257a2c0195"
+    "results/report/validation/weights/LP_TradingPenalty.csv": "5f93735e86e646906654ff3ba8c4c401daa7765e62fd0b0db6ab0fa119001e97",
+    "results/report/validation/weights/MinVar.csv": "b9524e02b563ae9ff8edd36448873092a5ff6a5f9eb70c7572147cdfa6c3dfe7",
+    "results/report/validation/weights/Ridge_BetaConservative.csv": "7d7c615c537ac3b1c35e5a3d8f5b3e91437e124445121f7bfec3617096007a74",
+    "results/report/validation/weights/Ridge_BetaMarket.csv": "0ae42c333e3b1029621e9a91500d7b0cebe66d9345b243ba1035efbaa22702f8",
+    "results/report/validation/weights/Ridge_BetaUnbounded.csv": "0c0bff023405b40437ca976977f7d9c725a49f662e9773aaf858afcda1677a77",
+    "results/report/validation/weights/Ridge_CoefficientConstraint.csv": "152cbfdeac3bcb335b04a732cc69a45d34de4089d94faf666cc2ea46ea89eab2",
+    "results/report/validation/weights/Ridge_Penalty.csv": "1f64a98efa426d34bf76b56db50b0febddab140c09eb0e03f51523d2d8d4fc7e",
+    "results/report/verification.json": "c16a89893ca3b19213812539d10ffcaee3698fb894ed5264f90804e708258f3b"
   }
 }

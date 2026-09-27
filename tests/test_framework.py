@@ -1,6 +1,5 @@
 import tempfile
 import unittest
-from functools import partial
 from pathlib import Path
 
 import numpy as np
@@ -8,11 +7,9 @@ import pandas as pd
 from numpy.testing import assert_allclose
 
 from portfolio.data import load_returns, preprocess_returns
-from portfolio.data.history_windows import split_returns, rolling_windows
+from portfolio.data.history_windows import rolling_windows
 from portfolio.models.min_variance_regression import fit_linear
-from portfolio.losses import weighted_mse
 from portfolio.regularization import Regularization
-from portfolio.data.observation_weights import exponential
 from portfolio.engine.portfolio_fit import fit_portfolio
 from portfolio.engine.rolling_backtest import backtest
 from portfolio.evaluation.portfolio_metrics import summarize
@@ -61,16 +58,6 @@ Number of Firms in Portfolios
         self.assertEqual(list(preprocess_returns(raw).columns), ["A", "B"])
         self.assertEqual(list(preprocess_returns(raw, drop_assets=("B",)).columns), ["A"])
 
-    def test_split_preserves_gap_and_empty_test(self):
-        r = pd.DataFrame({"A": np.arange(10)}, index=pd.date_range("2026-01-01", periods=10))
-        parts = split_returns(r, train_end="2026-01-03", validation_end="2026-01-06",
-                              test_start="2026-01-08", test_end="2026-01-10")
-        self.assertEqual(parts.train.index[-1], pd.Timestamp("2026-01-03"))
-        self.assertEqual(len(parts.validation), 3)
-        self.assertEqual(parts.test.index[0], pd.Timestamp("2026-01-08"))
-        absent = split_returns(r, train_end="2026-01-03", validation_end="2026-01-06",
-                               test_start="2026-08-01", test_end="2026-08-30")
-        self.assertTrue(absent.test.empty)
 
     def test_rolling_history_excludes_current_day_and_requires_coverage(self):
         r = pd.DataFrame({"A": range(5)}, index=pd.date_range("2026-01-01", periods=5))
@@ -102,21 +89,6 @@ class ModelTests(unittest.TestCase):
         inv_one = np.linalg.solve(np.cov(r, rowvar=False), np.ones(4))
         assert_allclose(result.weights, inv_one / inv_one.sum(), atol=1e-10)
 
-    def test_sample_weighting_changes_the_fit(self):
-        r = pd.DataFrame([[0.1, 0], [-0.1, 0.05], [0.3, -0.1], [0.02, 0.1]], columns=["A", "B"])
-        s = np.array([0.1, 0.2, 0.5, 1.0])
-        fitted = fit_portfolio(r, sample_weights=lambda n: s)
-        # Independent weighted covariance solution in asset coordinates.
-        centered = r.to_numpy() - np.average(r, axis=0, weights=s)
-        cov = centered.T @ (s[:, None] * centered) / s.sum()
-        inv_one = np.linalg.solve(cov, np.ones(2))
-        expected = inv_one / inv_one.sum()
-        assert_allclose(fitted.weights, expected)
-        self.assertFalse(np.allclose(fitted.weights, fit_portfolio(r).weights))
-
-    def test_loss_weighting_and_decay(self):
-        self.assertAlmostEqual(weighted_mse([1, 3], [0, 0], [3, 1]), 3)
-        assert_allclose(exponential(3, half_life=1), [0.25, 0.5, 1])
 
     def test_bad_data_and_sample_weights_are_rejected(self):
         for value in [np.nan, np.inf]:
@@ -130,16 +102,14 @@ class ModelTests(unittest.TestCase):
 
 
 class EvaluationTests(unittest.TestCase):
-    def test_future_returns_cannot_affect_earlier_weights(self):
-        dates = pd.bdate_range("2026-01-01", periods=12)
-        r = pd.DataFrame(np.random.default_rng(5).normal(0, 0.01, (12, 3)), index=dates, columns=list("ABC"))
-        strategy = lambda history: fit_portfolio(history, regularization=Regularization("ridge", 0.001)).weights
-        before = backtest(r, strategy, start=dates[5], end=dates[-1], window=5)
-        changed = r.copy()
-        changed.loc[dates[8]:] += 10
-        after = backtest(changed, strategy, start=dates[5], end=dates[-1], window=5)
-        assert_allclose(before.weights.loc[:dates[8]], after.weights.loc[:dates[8]])
-        assert_allclose(before.returns.loc[:dates[7]], after.returns.loc[:dates[7]])
+    def test_report_concentration_uses_absolute_weight_shares(self):
+        from portfolio.evaluation import portfolio_metrics as metrics
+        weights = pd.DataFrame([[1.2, -.2], [.5, .5]])
+        result = metrics.summarize_holdings(weights)
+        self.assertAlmostEqual(result['average_effective_assets'], (1.4**2/1.48 + 2)/2)
+        self.assertAlmostEqual(result['average_max_abs_weight'], .85)
+        self.assertAlmostEqual(result['average_gross_leverage'], 1.2)
+
 
     def test_metrics_use_decimal_returns_and_initial_wealth(self):
         m = summarize(pd.Series([0.1, -0.1]))

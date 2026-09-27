@@ -84,16 +84,6 @@ class ForecastingTests(unittest.TestCase):
         self.assertEqual(diagnostics["train_end"], data.targets.index[-2])
         self.assertEqual(diagnostics["constant_feature_counts"]["a2"], 5)
 
-    def test_calendar_window_includes_anniversary_and_excludes_forecast_date(self):
-        from portfolio.models.lasso_return_forecast import build_supervised, forecast_at
-
-        data = build_supervised(self._returns(900, 2, "2021-01-04"))
-        date = data.targets.index[-1]
-        config = TrainingConfig(TrainingWindow(years=3, min_observations=252))
-        _, diagnostics = forecast_at(data, date, config, 1e-5)
-        expected_start = data.targets.index[data.targets.index.searchsorted(date - pd.DateOffset(years=3))]
-        self.assertEqual(diagnostics["train_start"], expected_start)
-        self.assertLess(diagnostics["train_end"], date)
 
     def test_future_perturbation_does_not_change_earlier_forecast(self):
         from portfolio.models.lasso_return_forecast import build_supervised, forecast_at

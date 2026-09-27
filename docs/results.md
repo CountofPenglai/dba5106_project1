@@ -1,66 +1,68 @@
 # Saved results and recovery
 
-The curated snapshot contains **32 model/period/window records**: six baselines
-at 126 and 252 days, thirteen additional report configurations at 252 days,
-and seven July evaluations. Existing report numbers are preserved, not rerun
-or replaced by new parameter choices.
+The active results are a complete fixed-parameter rerun on September 27, 2026:
+**26 model/period records**, all using 252 prior trading observations. Nineteen
+configurations cover validation and seven cover the previously evaluated July
+period. Daily fits, forecasts and decisions were recomputed; parameters were not
+reselected. No old performance stream is mixed into the new summaries.
 
 ```text
 results/
-  baselines/126d/           # Six baseline streams and their summary
-  baselines/252d/           # Six baseline streams and their summary
-  report/validation/       # 19-row summary; additional model streams
-  report/july_test/        # Seven previously evaluated final-test portfolios
-  report/selection/        # Exposure search, forecast CV and LP penalty evidence
-  report/provenance/       # Unmodified historical settings, hashes and audits
-  data_audit/              # Original missing-value checks
-  manifest.json           # Record-to-model/source mapping and file checksums
-  runs/                   # New timestamped executions; ignored by Git
+  report/validation/       # 19 models, 123 trading days
+  report/july_test/        # Seven models, 22 trading days
+  report/selection/        # Small historical selection records, not new searches
+  report/logs/             # Full rerun console logs
+  report/report_reference.json
+  report/report_comparison.csv
+  report/historical_comparison.csv
+  report/verification.json
+  data_audit/recent/       # Relevant historical missing-value audit
+  manifest.json           # Model-to-artifact mapping and SHA-256 checksums
+  runs/                   # Future timestamped executions; ignored by Git
 ```
 
-The six baseline streams are shared by the report validation table instead of
-being stored twice. The manifest points each row to its canonical daily
-holdings and gross-return stream. Repeated τ=0/selected-LASSO and cost-only LP
-labels have been consolidated. Mathematically equivalent beta-unbounded and
-hard LASSO retain distinct records because their numerical results differ.
+Both evaluation directories contain summary metrics, daily returns, holdings,
+diagnostics, predictions and run metadata. Each model is stored once per period;
+there is no duplicate baseline directory. The original fitting source fingerprints
+remain in each run's metadata. Added summary statistics have separate aggregation
+provenance. Historical search metadata are labeled and retained with selection
+records, rather than represented as results of this rerun.
 
-Historical LP files originally used unprefixed return/Sharpe fields for **net**
-performance. Their migrated `return` column and main summary now consistently
-mean **gross**. When available, `net_return` and `trading_cost` retain the
-supplementary accounting. Original source files are identified by SHA-256 in
-the manifest; original metadata are copied without changing their hashes.
+Main returns are **gross**. Supplementary net returns subtract the same assumed
+5 bps times full L1 traded weight for every model. Sharpe is daily and
+unannualized; volatility uses sample standard deviation and drawdown is compounded.
+`average_target_turnover` compares consecutive target weights, initially EW.
+`average_trade_turnover` compares targets with drift-adjusted pretrade weights.
+Both use half the L1 difference; report Tables 4 and 5 use different measures.
 
-`average_target_turnover` compares consecutive target weights, starting from
-EW. `average_trade_turnover` compares each target with drifted pretrade weights.
-Both use one-half of L1 change. Report Section 3.3 uses the former; Section 4.1
-uses the latter. They must not be interchanged.
+Effective asset count uses normalized absolute holdings: average over days of
+`(Σ|wᵢ|)² / Σwᵢ²`. The source report uses a different definition for two numbers;
+see [the discrepancy record](report-reproduction-check.md). The report has not
+been changed pending review. Numeric consistency and artifact integrity are
+reported separately, so a valid artifact audit does not mean every report cell
+matches.
 
-Parameter-selection evidence is retained, while daily holdings for discarded
-search candidates are in the external backup. The LP forecast freeze is now
-tracked under `configs/`; it no longer loads settings from the removed stability
-experiment. Its calibration-only fingerprint is derived after verifying the
-original complete-data fingerprint, which is also retained separately.
+## Verify
 
-## Historical interpretation
+`python -m tools.verify_report_results` checks hashes, coverage, metrics and report
+rounding. Add `--csv 100_Portfolios_10x10_Daily.csv` to reconstruct returns and
+actual trading from the original data. It currently reports 139/141 matching
+report cells and two definition differences, not model-performance failures.
 
-The exposure-penalty model had the strongest observed July return/Sharpe among
-the evaluated models. This observation is not a new selection on untouched
-data. The trading-penalized LP was developed after the first July results had
-already been reviewed. Reproduction commands perform no new hyperparameter
-search and do not change these historical limitations.
+July was already observed. In particular, the trading-penalized LP was developed
+after the first July results had been viewed. This run reproduces past experiments
+and is not a new independent test.
 
-## Verify and recover
-
-`python -m tools.verify_report_results` checks all curated file checksums,
-coverage and report metrics. Add `--csv 100_Portfolios_10x10_Daily.csv` to
-independently reconstruct every daily gross return from the saved holdings.
+## Recover earlier work
 
 The complete pre-refactor version is on branch
-`backup/pre-report-refactor-20260927`, commit
-`c0b1cc517dc3edeb205898aa4ff5b590ec74a62c`. It includes the input CSV and all old
-code/results. A verified external archive also exists at
-`../.cleanup-backups/project1/20260927-report-refactor/complete-pre-refactor.tar.gz`
-relative to the original project directory. Its SHA-256 is stored alongside it.
-Restore historical experiments into a **separate directory**, using their
-recorded package versions; their source fingerprints are intentionally not
-rewritten to match this refactor.
+`backup/pre-report-refactor-20260927`, commit `c0b1cc5`, including the input CSV,
+old code and research outputs. It also has a verified external archive at
+`../.cleanup-backups/project1/20260927-report-refactor/complete-pre-refactor.tar.gz`.
+
+The curated results immediately preceding this rerun, including 126-day baseline
+records and the broader data audits, are archived outside the project under
+`../.cleanup-backups/project1/20260927-report-rerun/previous-results/`. Their source
+code is available at local commit `2bc5ea5`. Only their active result files were
+removed; all six baseline implementations still support 126-day and 252-day
+execution through `--window`.

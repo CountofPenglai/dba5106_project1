@@ -6,7 +6,7 @@ All main figures use gross returns, daily unannualized Sharpe, sample daily vola
 
 ## Validation: January 2–June 30, 2026
 
-All 19 report configurations use the preceding 252 trading observations. The six baselines also have retained [126-day results](../../results/baselines/126d/metrics/summary.csv).
+All 19 report configurations use the preceding 252 trading observations. The six baselines also support 126-day execution; earlier results are in the external backup.
 
 | Report section | Model | Return | Daily Sharpe | Daily volatility | Max drawdown | Average gross |
 |---|---|---:|---:|---:|---:|---:|
@@ -59,7 +59,7 @@ The trading-penalized LP improved validation return and reduced trading, but its
 
 - [Validation summary](../../results/report/validation/metrics/summary.csv)
 - [July summary](../../results/report/july_test/metrics/summary.csv)
-- [Six baselines: 252 days](../../results/baselines/252d/metrics/summary.csv)
+- [Full rerun and report discrepancies awaiting review](../report-reproduction-check.md)
 - [Model/source/checksum manifest](../../results/manifest.json)
 - [Architecture and formulas](../architecture/report-models.md)
 - [Result conventions and backup](../results.md)
