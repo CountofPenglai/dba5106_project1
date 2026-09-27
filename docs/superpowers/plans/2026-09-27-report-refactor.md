@@ -31,23 +31,70 @@
 ## Tasks
 
 ### Task 1: Model catalog and shared constrained fitting
-- [ ] Add tests for all report models, coefficient-budget distinction, hard risk/position/beta limits and target-turnover state.
-- [ ] Implement portfolio/model_catalog.py and portfolio/models/constrained_portfolio.py; simplify baseline fitting and public exports.
-- [ ] Run targeted model/causality tests; preserve saved parity reference cases before cleanup.
+- [x] Add tests for all report models, coefficient-budget distinction, hard risk/position/beta limits and target-turnover state.
+- [x] Implement portfolio/model_catalog.py and portfolio/models/constrained_portfolio.py; simplify baseline fitting and public exports.
+- [x] Run targeted model/causality tests; preserve saved parity reference cases before cleanup.
 
 ### Task 2: Causal report execution and public commands
-- [ ] Test LP forecasts/allocation using frozen settings; gross/net and drifted trading accounting; CLI window/period defaults and output protection.
-- [ ] Implement portfolio/engine/report_runner.py and shared CLI, run_baselines.py/run_report.py. No dependencies on archived output directories.
-- [ ] Migrate forecast freeze into tracked configs, retain chronological calibration function.
-- [ ] Run CLI and numerical checks.
+- [x] Test LP forecasts/allocation using frozen settings; gross/net and drifted trading accounting; CLI window/period defaults and output protection.
+- [x] Implement portfolio/engine/report_runner.py and shared CLI, run_baselines.py/run_report.py. No dependencies on archived output directories.
+- [x] Migrate forecast freeze into tracked configs, retain chronological calibration function.
+- [x] Run CLI and numerical checks.
 
 ### Task 3: Canonical results and removal
-- [ ] Build a migration manifest mapping report rows to originals and verify daily holdings/returns before replacing outputs.
-- [ ] Keep six baseline results at 126/252; report validation/July, selection evidence and missing-data audit.
-- [ ] Remove unrelated implementations, launchers, tests and obsolete docs after verified external archive.
-- [ ] Update README, model/results guide and final summary links; add a report reproduction table.
+- [x] Build a migration manifest mapping report rows to originals and verify daily holdings/returns before replacing outputs.
+- [x] Keep six baseline results at 126/252; report validation/July, selection evidence and missing-data audit.
+- [x] Remove unrelated implementations, launchers, tests and obsolete docs after verified external archive.
+- [x] Update README, model/results guide and final summary links; add a report reproduction table.
 
 ### Task 4: Verification, independent review and integration
-- [ ] Run all retained tests, report-source audit and representative old/new numerical parity checks.
-- [ ] Independent whole-change review; fix material findings and verify.
-- [ ] Commit locally with English message, fast-forward original checkout, migrate cleaned ignored results, verify original checkout commands. Do not push.
+- [x] Run all retained tests, report-source audit and representative old/new numerical parity checks.
+- [x] Independent whole-change review; fix material findings and verify.
+- [x] Commit locally with English message, fast-forward original checkout, migrate cleaned ignored results, verify original checkout commands. Do not push.
+
+## Completion record — September 27, 2026
+
+Implemented in commit `b4c1901` and integrated into the original local `main`
+checkout. No remote push was performed for this refactor.
+
+- Production Python files: 98 to 37; lines: 6,146 to 2,168.
+- Retained: six baselines, both 126/252-day baseline records, 19 report
+  configurations, seven previously evaluated July portfolios.
+- Original-checkout verification: 75 tests passed; 32 result records and
+  159 artifact hashes passed; every saved gross return stream reconstructed
+  from holdings and the original dataset.
+- Numerical compatibility: 96 representative daily refits; maximum absolute
+  holding difference 6.04e-8 and daily return difference 1.43e-9. See
+  [the detailed verification record](../../architecture/refactor-verification.json).
+- Independent read-only review found no actionable issues. It checked report
+  coverage, causal execution, turnover/cost definitions, nine focused tests,
+  all saved return streams and artifact hashes, all 123 migration source
+  hashes against backup commit `c0b1cc5`, and both LP data fingerprints.
+- No new parameter selection or full historical backtest was performed.
+
+### Implementation decisions
+
+- The native worktree tool could not locate the repository from the chat's
+  working directory, so a manual isolated worktree was used. The original
+  checkout remained unchanged until final integration.
+- Hard LASSO and unbounded-beta LASSO share a fitter but retain distinct IDs
+  and their historical numerical formulations. Their mathematics agree, but
+  solver defaults produce slightly different saved results. Beta feasibility
+  tolerances remain explicit; changing them would require numerical revalidation.
+- The old LP field named `development_data_digest` actually includes data
+  through June 30, 2026. It remains unchanged as historical evidence. The new
+  frozen config adds a calibration-only fingerprint for causal reproduction.
+- Removed experimental entrypoints intentionally lose compatibility; their
+  code and results remain recoverable from the complete backup. No report
+  method or baseline was removed.
+- Historical selection quality was not reassessed. July was already observed,
+  and the later LP's development history is disclosed in the results guide.
+- Local integration and an English checkpoint commit implement the approved
+  plan; remote publication remains a separate action.
+
+The full snapshot is on `backup/pre-report-refactor-20260927`. Verified external
+archives are under `../.cleanup-backups/project1/20260927-report-refactor/`:
+`complete-pre-refactor.tar.gz`, `original-results/` (764 original result files),
+and `refactor-process/` (migration, review and verification working records).
+The user's raw dataset, local environment and untracked assignment PDF were
+preserved. The isolated worktree is retained for reuse.
