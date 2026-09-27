@@ -1,0 +1,22 @@
+{
+  "artifacts": {
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_CoefficientConstraint_diagnostics.csv": "diagnostics/LASSO_CoefficientConstraint_diagnostics.csv",
+    "LASSO_CoefficientConstraint_returns.csv": "returns/LASSO_CoefficientConstraint_returns.csv",
+    "LASSO_CoefficientConstraint_weights.csv": "weights/LASSO_CoefficientConstraint_weights.csv",
+    "LASSO_Penalty_returns.csv": "returns/LASSO_Penalty_returns.csv",
+    "LASSO_Penalty_weights.csv": "weights/LASSO_Penalty_weights.csv",
+    "MinVar_returns.csv": "returns/MinVar_returns.csv",
+    "MinVar_weights.csv": "weights/MinVar_weights.csv",
+    "Ridge_CoefficientConstraint_diagnostics.csv": "diagnostics/Ridge_CoefficientConstraint_diagnostics.csv",
+    "Ridge_CoefficientConstraint_returns.csv": "returns/Ridge_CoefficientConstraint_returns.csv",
+    "Ridge_CoefficientConstraint_weights.csv": "weights/Ridge_CoefficientConstraint_weights.csv",
+    "Ridge_Penalty_returns.csv": "returns/Ridge_Penalty_returns.csv",
+    "Ridge_Penalty_weights.csv": "weights/Ridge_Penalty_weights.csv",
+    "run_metadata.json": "config/run_metadata.json",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

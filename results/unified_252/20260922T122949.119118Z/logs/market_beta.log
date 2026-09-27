@@ -1,0 +1,20 @@
+Starting market_beta with all lookbacks = 252
+Running LASSO_unconstrained...
+Running Ridge_unconstrained...
+Running LASSO_market_like_0.8_1.2...
+Running Ridge_market_like_0.8_1.2...
+Running LASSO_conservative_0.5_0.9...
+Running Ridge_conservative_0.5_0.9...
+
+Final results:
+
+                            mean_daily_return  volatility     sharpe  cumulative_return  maximum_drawdown  average_beta  minimum_beta  maximum_beta  beta_constraint_binding_pct
+LASSO_unconstrained                0.00070282  0.00574313 0.12237592         0.08807288       -0.04399317    0.40945834    0.33671815    0.46893647                          NaN
+Ridge_unconstrained                0.00077697  0.00570489 0.13619358         0.09806202       -0.05429378    0.47024828    0.38093936    0.53737576                          NaN
+LASSO_market_like_0.8_1.2          0.00109874  0.00790387 0.13901307         0.14027570       -0.06434644    0.80000002    0.80000000    0.80000010                 100.00000000
+Ridge_market_like_0.8_1.2          0.00105727  0.00799481 0.13224485         0.13437954       -0.06262245    0.80000003    0.80000000    0.80000009                 100.00000000
+LASSO_conservative_0.5_0.9         0.00080399  0.00585795 0.13724820         0.10159860       -0.04686518    0.50000028    0.50000001    0.50000360                 100.00000000
+Ridge_conservative_0.5_0.9         0.00086511  0.00572542 0.15110058         0.11000674       -0.05428886    0.51414264    0.50000002    0.53737486                  45.52845528
+
+Saved artifacts to /Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/market_beta
+Completed market_beta

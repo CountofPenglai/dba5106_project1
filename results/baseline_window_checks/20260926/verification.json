@@ -1,0 +1,44 @@
+{
+  "dataset_sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23",
+  "assets": 98,
+  "evaluation_start": "2026-01-02",
+  "evaluation_end": "2026-06-30",
+  "evaluated_july": false,
+  "windows": {
+    "126": {
+      "evaluation_days": 123,
+      "first_training_start": "2025-07-03",
+      "first_training_end": "2025-12-31",
+      "last_training_start": "2025-12-26",
+      "last_training_end": "2026-06-29",
+      "observations_per_fit": [
+        126
+      ],
+      "nonfinite_values_in_used_panel": 0
+    },
+    "252": {
+      "evaluation_days": 123,
+      "first_training_start": "2024-12-30",
+      "first_training_end": "2025-12-31",
+      "last_training_start": "2025-06-27",
+      "last_training_end": "2026-06-29",
+      "observations_per_fit": [
+        252
+      ],
+      "nonfinite_values_in_used_panel": 0
+    }
+  },
+  "252d_matches_existing_unified_results": {
+    "max_abs_difference": 0.0,
+    "reference": "results/unified_252/20260922T122949.119118Z/baselines",
+    "absolute_tolerance": 1e-10,
+    "relative_tolerance": 1e-10
+  },
+  "regression_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "tests": 176,
+    "status": "passed",
+    "log": "tests.log"
+  },
+  "current_code_fingerprints_verified": true
+}

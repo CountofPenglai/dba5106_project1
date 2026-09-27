@@ -1,0 +1,156 @@
+{
+  "daily_artifacts": {
+    "assets": 98,
+    "budget_error": 5.88418203051333e-15,
+    "dates": 123,
+    "drawdown_excess": 4.996003610813204e-16,
+    "gross_excess": 4.440892098500626e-16,
+    "mad_excess": 1.9081958235744878e-17,
+    "position_excess": 0.0,
+    "projected_return_error": 7.37257477290143e-17,
+    "return_max_errors": {
+      "EW": 1.2836953722228372e-16,
+      "LP_LASSO_252d": 1.0061396160665481e-16,
+      "LP_LASSO_3y": 9.80118763926896e-17,
+      "LP_Mean_252d": 1.0061396160665481e-16,
+      "LP_Mean_3y": 1.0148132334464322e-16
+    },
+    "saved_diagnostic_error": 6.661338147750939e-16,
+    "secondary_gap_error": 7.35089073074419e-17,
+    "secondary_gap_maximum": 1.0000007375984832e-10,
+    "wealth_shortfall": 0.0
+  },
+  "independent_primary_solves": {
+    "formulation": "affine/absolute/running-peak LP",
+    "objective_tolerance": 5e-10,
+    "sample_count": 6,
+    "samples": [
+      {
+        "date": "2026-01-02",
+        "independent_objective": 0.0015113095631860193,
+        "primary_absolute_error": 4.998807357631252e-13,
+        "saved_final_return": 0.0015113094636859,
+        "saved_primary_minus_final": 1.0000000003410059e-10,
+        "saved_primary_return": 0.0015113095636859,
+        "status": "optimal",
+        "strategy": "LP_LASSO_252d"
+      },
+      {
+        "date": "2026-02-06",
+        "independent_objective": 0.0016295088763803281,
+        "primary_absolute_error": 8.837180119625199e-14,
+        "saved_final_return": 0.0016295087764687,
+        "saved_primary_minus_final": 9.999999981726015e-11,
+        "saved_primary_return": 0.0016295088764687,
+        "status": "optimal",
+        "strategy": "LP_Mean_252d"
+      },
+      {
+        "date": "2026-03-13",
+        "independent_objective": 0.001019127353488916,
+        "primary_absolute_error": 2.649839982854507e-13,
+        "saved_final_return": 0.0010191272537539,
+        "saved_primary_minus_final": 1.0000000003410059e-10,
+        "saved_primary_return": 0.0010191273537539,
+        "status": "optimal",
+        "strategy": "LP_LASSO_3y"
+      },
+      {
+        "date": "2026-04-20",
+        "independent_objective": 0.0011291416289052492,
+        "primary_absolute_error": 9.142506630227532e-13,
+        "saved_final_return": 0.0011291415298195,
+        "saved_primary_minus_final": 9.999999981726015e-11,
+        "saved_primary_return": 0.0011291416298195,
+        "status": "optimal",
+        "strategy": "LP_Mean_3y"
+      },
+      {
+        "date": "2026-05-22",
+        "independent_objective": 0.0020600410647436257,
+        "primary_absolute_error": 1.2738742352635946e-12,
+        "saved_final_return": 0.0020600409660175,
+        "saved_primary_minus_final": 1.0000000003410059e-10,
+        "saved_primary_return": 0.0020600410660175,
+        "status": "optimal",
+        "strategy": "LP_LASSO_252d"
+      },
+      {
+        "date": "2026-06-30",
+        "independent_objective": 0.0021880667044426824,
+        "primary_absolute_error": 9.271750034400839e-14,
+        "saved_final_return": 0.0021880666045354,
+        "saved_primary_minus_final": 1.0000000003410059e-10,
+        "saved_primary_return": 0.0021880667045354,
+        "status": "optimal",
+        "strategy": "LP_Mean_252d"
+      }
+    ],
+    "secondary_tolerance": 1e-10,
+    "solver": "CVXPY CLARABEL"
+  },
+  "period_summaries": {
+    "validation": {
+      "days": 123,
+      "maximum_absolute_metric_error": 8.43769498715119e-15,
+      "strategies": 5
+    }
+  },
+  "provenance": {
+    "current_code_files_checked": 25,
+    "development_frame_sha256": "c4ed186f7a7510cf5378d093583ada9c6c071ea8cc100cd5f08e7e64af2b518c",
+    "run_start_code_files_checked": 11,
+    "source_sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23"
+  },
+  "reference": {
+    "artifacts_checked": 20,
+    "directory": "/private/tmp/project1-two-stage-lasso/results/two_stage_lasso_20260922",
+    "maximum_absolute_error": 4.440892098500626e-15,
+    "numeric_tolerance": {
+      "atol": 1e-12,
+      "rtol": 1e-09
+    },
+    "strategies": 10
+  },
+  "scope": "validation_only",
+  "status": "passed",
+  "turnover": {
+    "maximum_absolute_error": 2.975050761300224e-15,
+    "strategies": 5
+  },
+  "validation_cost_sensitivity": {
+    "method": "daily gross return - 2 * drifted turnover * one-way rate; then compound",
+    "one_way_rates": {
+      "10bps": 0.001,
+      "5bps": 0.0005
+    },
+    "strategies": {
+      "EW": {
+        "10bps_cumulative_return": 0.16836699940882172,
+        "5bps_cumulative_return": 0.16884756373166465,
+        "gross_cumulative_return": 0.169328323999842
+      },
+      "LP_LASSO_252d": {
+        "10bps_cumulative_return": 0.1120476682829381,
+        "5bps_cumulative_return": 0.13711824911990877,
+        "gross_cumulative_return": 0.1627463055064693
+      },
+      "LP_LASSO_3y": {
+        "10bps_cumulative_return": 0.0966578094330941,
+        "5bps_cumulative_return": 0.10772478279056852,
+        "gross_cumulative_return": 0.11890134787283957
+      },
+      "LP_Mean_252d": {
+        "10bps_cumulative_return": 0.145014011934671,
+        "5bps_cumulative_return": 0.15732275419127317,
+        "gross_cumulative_return": 0.16976153048444975
+      },
+      "LP_Mean_3y": {
+        "10bps_cumulative_return": 0.09414880860497998,
+        "5bps_cumulative_return": 0.10435545805923829,
+        "gross_cumulative_return": 0.11465538883568316
+      }
+    },
+    "used_for_selection": false
+  }
+}

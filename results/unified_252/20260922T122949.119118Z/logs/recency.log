@@ -1,0 +1,9 @@
+Starting recency with all lookbacks = 252
+Running LASSO_252d_Weighted_HL252
+Running LASSO_252d_HL126_Constrained
+  Fitted 63 days; history through 2026-04-01
+Running LASSO_252d_HL252_Constrained
+  Fitted 63 days; history through 2026-04-01
+Running LASSO_252d_HL504_Constrained
+  Fitted 63 days; history through 2026-04-01
+Completed recency

@@ -1,0 +1,33 @@
+{
+  "LASSO_252d": {
+    "dates": 479,
+    "min_training_rows": 252,
+    "max_training_rows": 252,
+    "first_training_start": "2023-08-01",
+    "first_training_end": "2024-07-31",
+    "last_training_start": "2025-06-27",
+    "last_training_end": "2026-06-29",
+    "max_return_reconstruction_error": 2.914335439641036e-16
+  },
+  "LASSO_3y": {
+    "dates": 479,
+    "min_training_rows": 750,
+    "max_training_rows": 755,
+    "first_training_start": "2021-08-02",
+    "first_training_end": "2024-07-31",
+    "last_training_start": "2023-06-30",
+    "last_training_end": "2026-06-29",
+    "max_return_reconstruction_error": 2.636779683484747e-16
+  },
+  "LASSO_3y_weighted": {
+    "dates": 479,
+    "min_training_rows": 750,
+    "max_training_rows": 755,
+    "first_training_start": "2021-08-02",
+    "first_training_end": "2024-07-31",
+    "last_training_start": "2023-06-30",
+    "last_training_end": "2026-06-29",
+    "max_return_reconstruction_error": 3.2612801348363973e-16
+  },
+  "legacy_252_max_weight_difference": 9.974659986866641e-17
+}

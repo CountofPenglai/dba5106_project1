@@ -1,0 +1,33 @@
+{
+  "artifacts": {
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_CV_Weighted_returns.csv": "returns/LASSO_CV_Weighted_returns.csv",
+    "LASSO_CV_Weighted_weights.csv": "weights/LASSO_CV_Weighted_weights.csv",
+    "LASSO_CV_returns.csv": "returns/LASSO_CV_returns.csv",
+    "LASSO_CV_weights.csv": "weights/LASSO_CV_weights.csv",
+    "LASSO_Constrained_diagnostics.csv": "diagnostics/LASSO_Constrained_diagnostics.csv",
+    "LASSO_Constrained_returns.csv": "returns/LASSO_Constrained_returns.csv",
+    "LASSO_Constrained_weights.csv": "weights/LASSO_Constrained_weights.csv",
+    "LASSO_LogGrowth_diagnostics.csv": "diagnostics/LASSO_LogGrowth_diagnostics.csv",
+    "LASSO_LogGrowth_returns.csv": "returns/LASSO_LogGrowth_returns.csv",
+    "LASSO_LogGrowth_weights.csv": "weights/LASSO_LogGrowth_weights.csv",
+    "LASSO_returns.csv": "returns/LASSO_returns.csv",
+    "LASSO_weights.csv": "weights/LASSO_weights.csv",
+    "MinVar_returns.csv": "returns/MinVar_returns.csv",
+    "MinVar_weights.csv": "weights/MinVar_weights.csv",
+    "RidgeWeighted_returns.csv": "returns/RidgeWeighted_returns.csv",
+    "RidgeWeighted_weights.csv": "weights/RidgeWeighted_weights.csv",
+    "Ridge_CV_Weighted_returns.csv": "returns/Ridge_CV_Weighted_returns.csv",
+    "Ridge_CV_Weighted_weights.csv": "weights/Ridge_CV_Weighted_weights.csv",
+    "Ridge_CV_returns.csv": "returns/Ridge_CV_returns.csv",
+    "Ridge_CV_weights.csv": "weights/Ridge_CV_weights.csv",
+    "Ridge_returns.csv": "returns/Ridge_returns.csv",
+    "Ridge_weights.csv": "weights/Ridge_weights.csv",
+    "benchmark_runner.json": "config/benchmark_runner.json",
+    "run_metadata.json": "config/run_metadata.json",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "LASSO_conservative_0.5_0.9_diagnostics.csv": "diagnostics/LASSO_conservative_0.5_0.9_diagnostics.csv",
+    "LASSO_conservative_0.5_0.9_returns.csv": "returns/LASSO_conservative_0.5_0.9_returns.csv",
+    "LASSO_conservative_0.5_0.9_weights.csv": "weights/LASSO_conservative_0.5_0.9_weights.csv",
+    "LASSO_market_like_0.8_1.2_diagnostics.csv": "diagnostics/LASSO_market_like_0.8_1.2_diagnostics.csv",
+    "LASSO_market_like_0.8_1.2_returns.csv": "returns/LASSO_market_like_0.8_1.2_returns.csv",
+    "LASSO_market_like_0.8_1.2_weights.csv": "weights/LASSO_market_like_0.8_1.2_weights.csv",
+    "LASSO_unconstrained_diagnostics.csv": "diagnostics/LASSO_unconstrained_diagnostics.csv",
+    "LASSO_unconstrained_returns.csv": "returns/LASSO_unconstrained_returns.csv",
+    "LASSO_unconstrained_weights.csv": "weights/LASSO_unconstrained_weights.csv",
+    "Ridge_conservative_0.5_0.9_diagnostics.csv": "diagnostics/Ridge_conservative_0.5_0.9_diagnostics.csv",
+    "Ridge_conservative_0.5_0.9_returns.csv": "returns/Ridge_conservative_0.5_0.9_returns.csv",
+    "Ridge_conservative_0.5_0.9_weights.csv": "weights/Ridge_conservative_0.5_0.9_weights.csv",
+    "Ridge_market_like_0.8_1.2_diagnostics.csv": "diagnostics/Ridge_market_like_0.8_1.2_diagnostics.csv",
+    "Ridge_market_like_0.8_1.2_returns.csv": "returns/Ridge_market_like_0.8_1.2_returns.csv",
+    "Ridge_market_like_0.8_1.2_weights.csv": "weights/Ridge_market_like_0.8_1.2_weights.csv",
+    "Ridge_unconstrained_diagnostics.csv": "diagnostics/Ridge_unconstrained_diagnostics.csv",
+    "Ridge_unconstrained_returns.csv": "returns/Ridge_unconstrained_returns.csv",
+    "Ridge_unconstrained_weights.csv": "weights/Ridge_unconstrained_weights.csv",
+    "benchmark_runner.json": "config/benchmark_runner.json",
+    "market_beta_results.csv": "metrics/market_beta_results.csv",
+    "run_metadata.json": "config/run_metadata.json"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

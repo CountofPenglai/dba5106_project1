@@ -1,0 +1,122 @@
+{
+  "baselines": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 136.82,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "baselines",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/baselines"
+    ]
+  },
+  "loss_search": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 727.5,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "loss_search",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/loss_search"
+    ]
+  },
+  "mixture": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 124.71,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "mixture",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/mixture"
+    ]
+  },
+  "lp": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 58.89,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "lp",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/lp"
+    ]
+  },
+  "elastic_net": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 5.38,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "elastic_net",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/elastic_net"
+    ]
+  },
+  "pca": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 4.46,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "pca",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/pca"
+    ]
+  },
+  "market_beta": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 186.13,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "market_beta",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/market_beta"
+    ]
+  },
+  "recency": {
+    "status": "complete",
+    "exit_code": 0,
+    "seconds": 93.46,
+    "command": [
+      "/Users/zhengce/projects/fundation_ba/project1/.venv/bin/python",
+      "/private/tmp/project1-unified252/run_family.py",
+      "--project",
+      "/Users/zhengce/projects/fundation_ba/project1",
+      "--family",
+      "recency",
+      "--output",
+      "/Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/recency"
+    ]
+  }
+}

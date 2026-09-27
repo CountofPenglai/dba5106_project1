@@ -1,0 +1,16 @@
+{
+  "artifacts": {
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_returns.csv": "returns/LASSO_returns.csv",
+    "LASSO_weights.csv": "weights/LASSO_weights.csv",
+    "MinVar_returns.csv": "returns/MinVar_returns.csv",
+    "MinVar_weights.csv": "weights/MinVar_weights.csv",
+    "Ridge_returns.csv": "returns/Ridge_returns.csv",
+    "Ridge_weights.csv": "weights/Ridge_weights.csv",
+    "run_metadata.json": "config/run_metadata.json",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

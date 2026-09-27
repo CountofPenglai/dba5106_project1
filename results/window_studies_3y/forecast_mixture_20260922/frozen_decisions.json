@@ -1,0 +1,260 @@
+{
+  "alphas": {
+    "252d": 0.002511886431509582,
+    "3y": 0.001584893192461114
+  },
+  "assets": [
+    "SMALL LoBM",
+    "ME1 BM2",
+    "ME1 BM3",
+    "ME1 BM4",
+    "ME1 BM5",
+    "ME1 BM6",
+    "ME1 BM7",
+    "ME1 BM8",
+    "ME1 BM9",
+    "SMALL HiBM",
+    "ME2 BM1",
+    "ME2 BM2",
+    "ME2 BM3",
+    "ME2 BM4",
+    "ME2 BM5",
+    "ME2 BM6",
+    "ME2 BM7",
+    "ME2 BM8",
+    "ME2 BM9",
+    "ME2 BM10",
+    "ME3 BM1",
+    "ME3 BM2",
+    "ME3 BM3",
+    "ME3 BM4",
+    "ME3 BM5",
+    "ME3 BM6",
+    "ME3 BM7",
+    "ME3 BM8",
+    "ME3 BM9",
+    "ME3 BM10",
+    "ME4 BM1",
+    "ME4 BM2",
+    "ME4 BM3",
+    "ME4 BM4",
+    "ME4 BM5",
+    "ME4 BM6",
+    "ME4 BM7",
+    "ME4 BM8",
+    "ME4 BM9",
+    "ME4 BM10",
+    "ME5 BM1",
+    "ME5 BM2",
+    "ME5 BM3",
+    "ME5 BM4",
+    "ME5 BM5",
+    "ME5 BM6",
+    "ME5 BM7",
+    "ME5 BM8",
+    "ME5 BM9",
+    "ME5 BM10",
+    "ME6 BM1",
+    "ME6 BM2",
+    "ME6 BM3",
+    "ME6 BM4",
+    "ME6 BM5",
+    "ME6 BM6",
+    "ME6 BM7",
+    "ME6 BM8",
+    "ME6 BM9",
+    "ME6 BM10",
+    "ME7 BM1",
+    "ME7 BM2",
+    "ME7 BM3",
+    "ME7 BM4",
+    "ME7 BM5",
+    "ME7 BM6",
+    "ME7 BM7",
+    "ME7 BM8",
+    "ME7 BM9",
+    "ME7 BM10",
+    "ME8 BM1",
+    "ME8 BM2",
+    "ME8 BM3",
+    "ME8 BM4",
+    "ME8 BM5",
+    "ME8 BM6",
+    "ME8 BM7",
+    "ME8 BM8",
+    "ME8 BM9",
+    "ME8 BM10",
+    "ME9 BM1",
+    "ME9 BM2",
+    "ME9 BM3",
+    "ME9 BM4",
+    "ME9 BM5",
+    "ME9 BM6",
+    "ME9 BM7",
+    "ME9 BM8",
+    "ME9 BM9",
+    "BIG LoBM",
+    "ME10 BM2",
+    "ME10 BM3",
+    "ME10 BM4",
+    "ME10 BM5",
+    "ME10 BM6",
+    "ME10 BM7",
+    "ME10 BM8",
+    "ME10 BM9"
+  ],
+  "config": {
+    "alphas": [
+      1e-06,
+      1.584893192461114e-06,
+      2.5118864315095823e-06,
+      3.981071705534969e-06,
+      6.30957344480193e-06,
+      1e-05,
+      1.584893192461114e-05,
+      2.5118864315095822e-05,
+      3.9810717055349695e-05,
+      6.309573444801929e-05,
+      0.0001,
+      0.00015848931924611142,
+      0.0002511886431509582,
+      0.00039810717055349735,
+      0.0006309573444801936,
+      0.001,
+      0.001584893192461114,
+      0.002511886431509582,
+      0.003981071705534973,
+      0.006309573444801936,
+      0.01
+    ],
+    "calibration_end": "2024-07-31",
+    "decision_end": "2025-12-31",
+    "decision_start": "2024-08-01",
+    "gammas": [
+      0.0,
+      0.025,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "history_start": "2021-08-01",
+    "n_splits": 3,
+    "test_size": 21,
+    "validation_end": "2026-06-30",
+    "validation_start": "2026-01-02"
+  },
+  "constraints": {
+    "leverage_limit": 1.5,
+    "volatility_limit": 1.0,
+    "wealth_floor": 1e-06
+  },
+  "decision_fit_end": "2025-12-31",
+  "development_data_digest": "c4ed186f7a7510cf5378d093583ada9c6c071ea8cc100cd5f08e7e64af2b518c",
+  "evaluation_role": "development_validation_used_for_selection",
+  "forecast_configs": {
+    "252d": {
+      "half_life": null,
+      "window": {
+        "min_observations": 2,
+        "observations": 252,
+        "years": null
+      }
+    },
+    "3y": {
+      "half_life": null,
+      "window": {
+        "min_observations": 252,
+        "observations": null,
+        "years": 3
+      }
+    }
+  },
+  "models": {
+    "LASSO_252d_ReturnVolatility": {
+      "forecast_key": "LASSO_252d",
+      "gamma": 0.0,
+      "objective": "return_volatility",
+      "theta": [
+        3.9047355096161193e-13,
+        0.9999965987222471,
+        3.4012773624739964e-06
+      ]
+    },
+    "LASSO_252d_Sharpe": {
+      "forecast_key": "LASSO_252d",
+      "gamma": 0.0,
+      "objective": "sharpe",
+      "theta": [
+        0.0,
+        0.9999995272308926,
+        4.7276910746494947e-07
+      ]
+    },
+    "LASSO_3y_ReturnVolatility": {
+      "forecast_key": "LASSO_3y",
+      "gamma": 0.05,
+      "objective": "return_volatility",
+      "theta": [
+        0.9999997884684284,
+        7.30473222365978e-12,
+        2.115242668751502e-07
+      ]
+    },
+    "LASSO_3y_Sharpe": {
+      "forecast_key": "LASSO_3y",
+      "gamma": 0.0,
+      "objective": "sharpe",
+      "theta": [
+        0.9999982610805406,
+        1.7388969979356307e-06,
+        2.2461486933259202e-11
+      ]
+    },
+    "Mean_252d_ReturnVolatility": {
+      "forecast_key": "Mean_252d",
+      "gamma": 0.0,
+      "objective": "return_volatility",
+      "theta": [
+        0.0,
+        0.9999965210410648,
+        3.4789589351565993e-06
+      ]
+    },
+    "Mean_252d_Sharpe": {
+      "forecast_key": "Mean_252d",
+      "gamma": 0.0,
+      "objective": "sharpe",
+      "theta": [
+        6.747103000709627e-11,
+        0.9999995260108372,
+        4.739216917476426e-07
+      ]
+    },
+    "Mean_3y_ReturnVolatility": {
+      "forecast_key": "Mean_3y",
+      "gamma": 0.0,
+      "objective": "return_volatility",
+      "theta": [
+        4.241727387359799e-12,
+        0.9999967103360556,
+        3.2896597026793646e-06
+      ]
+    },
+    "Mean_3y_Sharpe": {
+      "forecast_key": "Mean_3y",
+      "gamma": 0.0,
+      "objective": "sharpe",
+      "theta": [
+        1.1762859223503876e-11,
+        0.9999995272158557,
+        4.7277238149811707e-07
+      ]
+    }
+  },
+  "risk_window": {
+    "min_observations": 252,
+    "observations": null,
+    "years": 3
+  },
+  "schema_version": 1
+}

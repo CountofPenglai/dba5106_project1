@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "EW_neighbor_gap.csv": "diagnostics/EW_neighbor_gap.csv",
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_Selected_diagnostics.csv": "diagnostics/LASSO_Selected_diagnostics.csv",
+    "LASSO_Selected_neighbor_gap.csv": "diagnostics/LASSO_Selected_neighbor_gap.csv",
+    "LASSO_Selected_returns.csv": "returns/LASSO_Selected_returns.csv",
+    "LASSO_Selected_weights.csv": "weights/LASSO_Selected_weights.csv",
+    "LASSO_Smooth_0p1_diagnostics.csv": "diagnostics/LASSO_Smooth_0p1_diagnostics.csv",
+    "LASSO_Smooth_0p1_neighbor_gap.csv": "diagnostics/LASSO_Smooth_0p1_neighbor_gap.csv",
+    "LASSO_Smooth_0p1_returns.csv": "returns/LASSO_Smooth_0p1_returns.csv",
+    "LASSO_Smooth_0p1_weights.csv": "weights/LASSO_Smooth_0p1_weights.csv",
+    "LASSO_Smooth_1_diagnostics.csv": "diagnostics/LASSO_Smooth_1_diagnostics.csv",
+    "LASSO_Smooth_1_neighbor_gap.csv": "diagnostics/LASSO_Smooth_1_neighbor_gap.csv",
+    "LASSO_Smooth_1_returns.csv": "returns/LASSO_Smooth_1_returns.csv",
+    "LASSO_Smooth_1_weights.csv": "weights/LASSO_Smooth_1_weights.csv",
+    "run_metadata.json": "config/run_metadata.json",
+    "smoothness_comparison.png": "figures/smoothness_comparison.png",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "EW_concentration.csv": "diagnostics/EW_concentration.csv",
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_Selected_concentration.csv": "diagnostics/LASSO_Selected_concentration.csv",
+    "LASSO_Selected_diagnostics.csv": "diagnostics/LASSO_Selected_diagnostics.csv",
+    "LASSO_Selected_returns.csv": "returns/LASSO_Selected_returns.csv",
+    "LASSO_Selected_weights.csv": "weights/LASSO_Selected_weights.csv",
+    "LASSO_WeightCap_10pct_concentration.csv": "diagnostics/LASSO_WeightCap_10pct_concentration.csv",
+    "LASSO_WeightCap_10pct_diagnostics.csv": "diagnostics/LASSO_WeightCap_10pct_diagnostics.csv",
+    "LASSO_WeightCap_10pct_returns.csv": "returns/LASSO_WeightCap_10pct_returns.csv",
+    "LASSO_WeightCap_10pct_weights.csv": "weights/LASSO_WeightCap_10pct_weights.csv",
+    "concentration_comparison.png": "figures/concentration_comparison.png",
+    "run_metadata.json": "config/run_metadata.json",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

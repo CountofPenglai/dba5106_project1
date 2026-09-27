@@ -1,0 +1,9 @@
+{
+  "selected_half_life": 504,
+  "scores": {
+    "126": 0.0773311972285271,
+    "252": 0.08277010548402597,
+    "504": 0.08508038885447222
+  },
+  "selection_metric": "validation cumulative return"
+}

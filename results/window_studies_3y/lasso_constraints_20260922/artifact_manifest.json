@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "LASSO_3y_Constrained_diagnostics.csv": "LASSO_3y_Constrained_diagnostics.csv",
+    "LASSO_3y_Constrained_returns.csv": "LASSO_3y_Constrained_returns.csv",
+    "LASSO_3y_Constrained_weights.csv": "LASSO_3y_Constrained_weights.csv",
+    "LASSO_3y_diagnostics.csv": "LASSO_3y_diagnostics.csv",
+    "LASSO_3y_returns.csv": "LASSO_3y_returns.csv",
+    "LASSO_3y_weights.csv": "LASSO_3y_weights.csv",
+    "retention_metadata.json": "retention_metadata.json",
+    "run_metadata.json": "run_metadata.json",
+    "summary.csv": "summary.csv",
+    "validation_summary.csv": "validation_summary.csv",
+    "verification.json": "verification.json"
+  },
+  "layout": "flat",
+  "layout_version": 1
+}

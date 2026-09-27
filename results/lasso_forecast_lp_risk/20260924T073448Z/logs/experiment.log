@@ -1,0 +1,35 @@
+Reusing LASSO alpha=0.00251188643; 252-day forecast/risk windows; July excluded.
+Forecasts through 2025-07-01 (1/128)
+Forecasts through 2025-07-30 (21/128)
+Forecasts through 2025-08-28 (42/128)
+Forecasts through 2025-09-29 (63/128)
+Forecasts through 2025-10-28 (84/128)
+Forecasts through 2025-11-26 (105/128)
+Forecasts through 2025-12-29 (126/128)
+LP decisions through 2025-07-01 (1/128)
+LP decisions through 2025-07-30 (21/128)
+LP decisions through 2025-08-28 (42/128)
+LP decisions through 2025-09-29 (63/128)
+LP decisions through 2025-10-28 (84/128)
+LP decisions through 2025-11-26 (105/128)
+LP decisions through 2025-12-29 (126/128)
+Frozen MAD penalty: 0; training net daily Sharpe: 0.083795
+Forecasts through 2026-01-02 (1/123)
+Forecasts through 2026-02-02 (21/123)
+Forecasts through 2026-03-04 (42/123)
+Forecasts through 2026-04-02 (63/123)
+Forecasts through 2026-05-04 (84/123)
+Forecasts through 2026-06-03 (105/123)
+LP decisions through 2026-01-02 (1/123)
+LP decisions through 2026-02-02 (21/123)
+LP decisions through 2026-03-04 (42/123)
+LP decisions through 2026-04-02 (63/123)
+LP decisions through 2026-05-04 (84/123)
+LP decisions through 2026-06-03 (105/123)
+                     mean  volatility    sharpe  negative_sharpe  cumulative_return  max_drawdown  gross_mean  gross_volatility  gross_sharpe  gross_negative_sharpe  gross_cumulative_return  gross_max_drawdown  average_turnover  average_gross_leverage  max_gross_leverage  mean_daily_cost  evaluation_days       start         end
+model                                                                                                                                                                                                                                                                                                                                    
+LP_MAD_Selected  0.001487    0.010188  0.145985        -0.145985           0.193018     -0.096538    0.001512          0.010190      0.148343              -0.148343                 0.196588           -0.095934          0.024343                     1.5                 1.5         0.000024              123  2026-01-02  2026-06-30
+LP_Cost_Only     0.001487    0.010188  0.145985        -0.145985           0.193018     -0.096538    0.001512          0.010190      0.148343              -0.148343                 0.196588           -0.095934          0.024343                     1.5                 1.5         0.000024              123  2026-01-02  2026-06-30
+LP_Return_Only   0.001126    0.010199  0.110424        -0.110424           0.141230     -0.094640    0.001309          0.010195      0.128414              -0.128414                 0.167185           -0.088197          0.183004                     1.5                 1.5         0.000183              123  2026-01-02  2026-06-30
+EW               0.001319    0.009974  0.132197        -0.132197           0.168848     -0.086463    0.001322          0.009974      0.132533              -0.132533                 0.169328           -0.086320          0.003347                     1.0                 1.0         0.000003              123  2026-01-02  2026-06-30
+Saved artifacts to /private/tmp/lp-risk-change/experiment

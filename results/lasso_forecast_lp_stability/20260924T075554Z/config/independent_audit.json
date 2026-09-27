@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checked_lp_allocations": 1619,
+  "forecasts_checked": 373,
+  "prediction_sensitivity_probes": 90,
+  "max_utility_reconstruction_error": 7.827939685345342e-17,
+  "baseline_max_weight_difference": 0.0,
+  "forecast_max_difference": 0.0,
+  "no_test_evaluation": true,
+  "saved_blocks_recomputed": true,
+  "fees_and_metrics_recomputed": true,
+  "selection_verified": true
+}

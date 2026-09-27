@@ -1,0 +1,209 @@
+test_categories_round_trip_and_preserve_exact_run_root (test_artifact_layout.ArtifactLayoutTests.test_categories_round_trip_and_preserve_exact_run_root) ... ok
+test_default_root_is_repository_relative_and_unique (test_artifact_layout.ArtifactLayoutTests.test_default_root_is_repository_relative_and_unique) ... ok
+test_flat_output_and_historical_directory_remain_readable (test_artifact_layout.ArtifactLayoutTests.test_flat_output_and_historical_directory_remain_readable) ... ok
+test_inventory_includes_nested_implementations_with_unique_paths (test_artifact_layout.ArtifactLayoutTests.test_inventory_includes_nested_implementations_with_unique_paths) ... ok
+test_reject_nonempty_and_unsafe_paths (test_artifact_layout.ArtifactLayoutTests.test_reject_nonempty_and_unsafe_paths) ... ok
+test_candidates_match_independent_two_asset_feasible_grid (test_candidates.CandidateTests.test_candidates_match_independent_two_asset_feasible_grid) ... ok
+test_equal_forecasts_tie_break_to_ew_and_mixtures_feasible (test_candidates.CandidateTests.test_equal_forecasts_tie_break_to_ew_and_mixtures_feasible) ... ok
+test_invalid_history_and_infeasible_equal_weight_raise (test_candidates.CandidateTests.test_invalid_history_and_infeasible_equal_weight_raise) ... ok
+test_isotropic_risk_budget_has_unique_equal_weight_solution (test_candidates.CandidateTests.test_isotropic_risk_budget_has_unique_equal_weight_solution) ... ok
+test_positive_risk_multiplier_certifies_unique_return_optimum (test_candidates.CandidateTests.test_positive_risk_multiplier_certifies_unique_return_optimum) ... ok
+test_risk_cap_does_not_disappear_for_small_returns (test_candidates.CandidateTests.test_risk_cap_does_not_disappear_for_small_returns) ... ok
+test_duplicate_candidates_prefer_equal_weight_component (test_decision.DecisionTests.test_duplicate_candidates_prefer_equal_weight_component) ... ok
+test_invalid_and_zero_risk_are_explicit (test_decision.DecisionTests.test_invalid_and_zero_risk_are_explicit) ... ok
+test_nonpositive_means_choose_best_vertex (test_decision.DecisionTests.test_nonpositive_means_choose_best_vertex) ... ok
+test_sharpe_scale_invariance_above_degenerate_threshold (test_decision.DecisionTests.test_sharpe_scale_invariance_above_degenerate_threshold) ... ok
+test_two_objectives_match_independent_simplex_grid (test_decision.DecisionTests.test_two_objectives_match_independent_simplex_grid) ... ok
+test_weight_mixing_reconstructs_realized_returns (test_decision.DecisionTests.test_weight_mixing_reconstructs_realized_returns) ... ok
+test_default_evaluates_only_validation_and_optional_history_preserves_weights (test_direct_lp.DirectLPTests.test_default_evaluates_only_validation_and_optional_history_preserves_weights) ... ok
+test_direct_weights_are_causal_and_returns_are_realized (test_direct_lp.DirectLPTests.test_direct_weights_are_causal_and_returns_are_realized) ... ok
+test_future_exclusion_and_frozen_final_test (test_direct_lp.DirectLPTests.test_future_exclusion_and_frozen_final_test) ... ok
+test_invalid_config_and_missing_history_fail (test_direct_lp.DirectLPTests.test_invalid_config_and_missing_history_fail) ... ok
+test_development_crops_future_and_exports_real_provenance (test_direct_lp_cli.DirectLPCliTests.test_development_crops_future_and_exports_real_provenance) ... Direct LP validation only; August excluded; no decision-model training.
+Saved artifacts to /private/var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmpb3bwgd82/out
+usage: python -m unittest [-h] [--csv CSV] [--output OUTPUT]
+                          [--reference REFERENCE] [--frozen FROZEN]
+                          [--include-development]
+                          [--position-limit POSITION_LIMIT]
+                          [--mad-ratio MAD_RATIO]
+                          [--drawdown-ratio DRAWDOWN_RATIO]
+                          [--layout {flat,categorized}]
+python -m unittest: error: output must be an empty or new directory
+Direct LP development and validation; August excluded; no decision-model training.
+Saved artifacts to /private/var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmpb3bwgd82/full
+ok
+test_missing_august_fails_before_artifact_export (test_direct_lp_cli.DirectLPCliTests.test_missing_august_fails_before_artifact_export) ... usage: python -m unittest [-h] [--csv CSV] [--output OUTPUT]
+                          [--reference REFERENCE] [--frozen FROZEN]
+                          [--include-development]
+                          [--position-limit POSITION_LIMIT]
+                          [--mad-ratio MAD_RATIO]
+                          [--drawdown-ratio DRAWDOWN_RATIO]
+                          [--layout {flat,categorized}]
+python -m unittest: error: Complete August final-test data are unavailable
+ok
+test_reference_reconstructs_returns_and_rejects_tampering (test_direct_lp_cli.LPReferenceTests.test_reference_reconstructs_returns_and_rejects_tampering) ... ok
+test_reference_rejects_wrong_data_code_and_dates (test_direct_lp_cli.LPReferenceTests.test_reference_rejects_wrong_data_code_and_dates) ... ok
+test_all_recipe_loaders_drop_rows_missing_a_retained_asset (test_exploratory_models.ExploratoryModelTests.test_all_recipe_loaders_drop_rows_missing_a_retained_asset) ... ok
+test_elastic_net_cli_writes_categorized_artifacts (test_exploratory_models.ExploratoryModelTests.test_elastic_net_cli_writes_categorized_artifacts) ... ok
+test_elastic_net_preserves_legacy_sklearn_strength_and_budget (test_exploratory_models.ExploratoryModelTests.test_elastic_net_preserves_legacy_sklearn_strength_and_budget) ... ok
+test_legacy_import_alias_keeps_constants_patchable (test_exploratory_models.ExploratoryModelTests.test_legacy_import_alias_keeps_constants_patchable) ... ok
+test_market_beta_falls_back_only_for_solver_errors (test_exploratory_models.ExploratoryModelTests.test_market_beta_falls_back_only_for_solver_errors) ... ok
+test_market_beta_fit_preserves_constraints_and_status_policy (test_exploratory_models.ExploratoryModelTests.test_market_beta_fit_preserves_constraints_and_status_policy) ... ok
+test_market_beta_matches_covariance_definition (test_exploratory_models.ExploratoryModelTests.test_market_beta_matches_covariance_definition) ... ok
+test_new_experiment_modules_expose_complete_help (test_exploratory_models.ExploratoryModelTests.test_new_experiment_modules_expose_complete_help) ... ok
+test_pca_and_market_beta_clis_write_categorized_artifacts (test_exploratory_models.ExploratoryModelTests.test_pca_and_market_beta_clis_write_categorized_artifacts) ... ok
+test_pca_regularized_models_preserve_legacy_projection (test_exploratory_models.ExploratoryModelTests.test_pca_regularized_models_preserve_legacy_projection) ... ok
+test_pca_rejects_unknown_regularizer (test_exploratory_models.ExploratoryModelTests.test_pca_rejects_unknown_regularizer) ... ok
+test_higher_exposure_strength_reduces_gross_exposure (test_exposure.ExposurePenaltyTests.test_higher_exposure_strength_reduces_gross_exposure) ... ok
+test_invalid_exposure_strength_is_rejected (test_exposure.ExposurePenaltyTests.test_invalid_exposure_strength_is_rejected) ... ok
+test_positive_exposure_strength_matches_independent_scalar_grid (test_exposure.ExposurePenaltyTests.test_positive_exposure_strength_matches_independent_scalar_grid) ... ok
+test_unit_gross_limit_defines_zero_exposure_penalty (test_exposure.ExposurePenaltyTests.test_unit_gross_limit_defines_zero_exposure_penalty) ... ok
+test_zero_exposure_strength_preserves_the_existing_objective (test_exposure.ExposurePenaltyTests.test_zero_exposure_strength_preserves_the_existing_objective) ... ok
+test_build_supervised_does_not_drop_missing_rows_after_warmup (test_forecasting.ForecastingTests.test_build_supervised_does_not_drop_missing_rows_after_warmup) ... ok
+test_build_supervised_has_exact_causal_features (test_forecasting.ForecastingTests.test_build_supervised_has_exact_causal_features) ... ok
+test_build_supervised_rejects_malformed_or_incomplete_grid (test_forecasting.ForecastingTests.test_build_supervised_rejects_malformed_or_incomplete_grid) ... ok
+test_calendar_window_includes_anniversary_and_excludes_forecast_date (test_forecasting.ForecastingTests.test_calendar_window_includes_anniversary_and_excludes_forecast_date) ... ok
+test_calibration_rejects_bad_end_alpha_and_fold_grid (test_forecasting.ForecastingTests.test_calibration_rejects_bad_end_alpha_and_fold_grid) ... ok
+test_calibration_scores_each_fold_and_alpha_and_uses_larger_tie (test_forecasting.ForecastingTests.test_calibration_scores_each_fold_and_alpha_and_uses_larger_tie) ... ok
+test_forecast_matches_independent_sklearn_and_handles_constant_features (test_forecasting.ForecastingTests.test_forecast_matches_independent_sklearn_and_handles_constant_features) ... ok
+test_future_perturbation_does_not_change_earlier_forecast (test_forecasting.ForecastingTests.test_future_perturbation_does_not_change_earlier_forecast) ... ok
+test_preprocessing_accepts_already_removed_assets_and_custom_exclusions (test_framework.DataTests.test_preprocessing_accepts_already_removed_assets_and_custom_exclusions) ... ok
+test_preprocessing_drops_named_assets_before_numeric_conversion (test_framework.DataTests.test_preprocessing_drops_named_assets_before_numeric_conversion) ... ok
+test_rolling_history_excludes_current_day_and_requires_coverage (test_framework.DataTests.test_rolling_history_excludes_current_day_and_requires_coverage) ... ok
+test_section_selection_units_and_missing (test_framework.DataTests.test_section_selection_units_and_missing) ... ok
+test_split_preserves_gap_and_empty_test (test_framework.DataTests.test_split_preserves_gap_and_empty_test) ... ok
+test_constant_nonzero_returns_have_undefined_sharpe (test_framework.EvaluationTests.test_constant_nonzero_returns_have_undefined_sharpe) ... ok
+test_custom_strategy_assets_align_and_invalid_weights_fail (test_framework.EvaluationTests.test_custom_strategy_assets_align_and_invalid_weights_fail) ... ok
+test_future_returns_cannot_affect_earlier_weights (test_framework.EvaluationTests.test_future_returns_cannot_affect_earlier_weights) ... ok
+test_metrics_use_decimal_returns_and_initial_wealth (test_framework.EvaluationTests.test_metrics_use_decimal_returns_and_initial_wealth) ... ok
+test_small_nonzero_volatility_is_not_treated_as_constant (test_framework.EvaluationTests.test_small_nonzero_volatility_is_not_treated_as_constant) ... ok
+test_bad_data_and_weight_adjustment_are_rejected (test_framework.ModelTests.test_bad_data_and_weight_adjustment_are_rejected) ... ok
+test_loss_weighting_and_decay (test_framework.ModelTests.test_loss_weighting_and_decay) ... ok
+test_ols_portfolio_matches_covariance_solution (test_framework.ModelTests.test_ols_portfolio_matches_covariance_solution) ... ok
+test_regularized_weighted_solutions_match_analytic_minima (test_framework.ModelTests.test_regularized_weighted_solutions_match_analytic_minima) ... ok
+test_sample_weighting_changes_the_fit_and_callbacks_compose (test_framework.ModelTests.test_sample_weighting_changes_the_fit_and_callbacks_compose) ... ok
+test_negative_rho_raises (test_grid_smoothness.FitGrowthSmoothTests.test_negative_rho_raises) ... ok
+test_positive_rho_shrinks_neighbor_gap_on_a_chain (test_grid_smoothness.FitGrowthSmoothTests.test_positive_rho_shrinks_neighbor_gap_on_a_chain) ... ok
+test_rho_requires_incidence (test_grid_smoothness.FitGrowthSmoothTests.test_rho_requires_incidence) ... ok
+test_rho_zero_matches_fit_growth_exactly (test_grid_smoothness.FitGrowthSmoothTests.test_rho_zero_matches_fit_growth_exactly) ... ok
+test_rho_zero_reproduces_selected_lasso_via_backtest (test_grid_smoothness.GridSmoothnessCliTests.test_rho_zero_reproduces_selected_lasso_via_backtest) ... ok
+test_duplicate_grid_position_raises (test_grid_smoothness.SizeBmIncidenceTests.test_duplicate_grid_position_raises) ... ok
+test_duplicate_names_raise (test_grid_smoothness.SizeBmIncidenceTests.test_duplicate_names_raise) ... ok
+test_no_edge_drawn_across_a_missing_grid_position (test_grid_smoothness.SizeBmIncidenceTests.test_no_edge_drawn_across_a_missing_grid_position) ... ok
+test_real_grid_has_176_edges_and_zero_row_sums (test_grid_smoothness.SizeBmIncidenceTests.test_real_grid_has_176_edges_and_zero_row_sums) ... ok
+test_unrecognized_name_raises (test_grid_smoothness.SizeBmIncidenceTests.test_unrecognized_name_raises) ... ok
+test_default_settings_solve_a_feasible_252_day_window (test_growth.GrowthTests.test_default_settings_solve_a_feasible_252_day_window) ... ok
+test_infeasible_history_fails_instead_of_substituting_ew (test_growth.GrowthTests.test_infeasible_history_fails_instead_of_substituting_ew) ... ok
+test_invalid_loss_and_constraints_are_rejected (test_growth.GrowthTests.test_invalid_loss_and_constraints_are_rejected) ... ok
+test_loss_uses_actual_returns_and_normalized_sample_weights (test_growth.GrowthTests.test_loss_uses_actual_returns_and_normalized_sample_weights) ... ok
+test_primary_solver_error_recovers_with_a_real_secondary_solve (test_growth.GrowthTests.test_primary_solver_error_recovers_with_a_real_secondary_solve) ... ok
+test_reward_changes_holdings_and_leverage_limit_binds (test_growth.GrowthTests.test_reward_changes_holdings_and_leverage_limit_binds) ... ok
+test_rolling_growth_fit_does_not_read_future_returns (test_growth.GrowthTests.test_rolling_growth_fit_does_not_read_future_returns) ... ok
+test_solution_matches_independent_two_asset_grid_with_risk_cap (test_growth.GrowthTests.test_solution_matches_independent_two_asset_grid_with_risk_cap) ... ok
+test_wealth_floor_is_enforced_without_clipping (test_growth.GrowthTests.test_wealth_floor_is_enforced_without_clipping) ... ok
+test_zero_reward_with_inactive_constraints_matches_existing_fit (test_growth.GrowthTests.test_zero_reward_with_inactive_constraints_matches_existing_fit) ... ok
+test_growth_experiment_exports_matched_controls_and_diagnostics (test_growth_cli.GrowthCliTests.test_growth_experiment_exports_matched_controls_and_diagnostics) ... ok
+test_constrained_variants_use_existing_limits_without_rewards (test_lasso_windows_cli.LassoWindowsCliTests.test_constrained_variants_use_existing_limits_without_rewards) ... ok
+test_fixed_lasso_presets_export_reproducible_history_only_comparison (test_lasso_windows_cli.LassoWindowsCliTests.test_fixed_lasso_presets_export_reproducible_history_only_comparison) ... ok
+test_test_dates_and_partial_dates_are_rejected_before_loading (test_lasso_windows_cli.LassoWindowsCliTests.test_test_dates_and_partial_dates_are_rejected_before_loading) ... ok
+test_drawdown_limit_can_bind_without_mad_limit (test_linear_decision.LinearDecisionTests.test_drawdown_limit_can_bind_without_mad_limit) ... ok
+test_drawdown_uses_zero_as_the_initial_peak (test_linear_decision.LinearDecisionTests.test_drawdown_uses_zero_as_the_initial_peak) ... ok
+test_equal_forecasts_tie_break_exactly_to_equal_weights (test_linear_decision.LinearDecisionTests.test_equal_forecasts_tie_break_exactly_to_equal_weights) ... ok
+test_infeasible_history_raises_instead_of_falling_back (test_linear_decision.LinearDecisionTests.test_infeasible_history_raises_instead_of_falling_back) ... ok
+test_invalid_expected_returns_and_weights_are_rejected (test_linear_decision.LinearDecisionTests.test_invalid_expected_returns_and_weights_are_rejected) ... ok
+test_invalid_history_and_configuration_are_rejected (test_linear_decision.LinearDecisionTests.test_invalid_history_and_configuration_are_rejected) ... ok
+test_mad_limit_can_bind_without_drawdown_limit (test_linear_decision.LinearDecisionTests.test_mad_limit_can_bind_without_drawdown_limit) ... ok
+test_matches_independent_two_asset_enumeration (test_linear_decision.LinearDecisionTests.test_matches_independent_two_asset_enumeration) ... ok
+test_position_limit_is_active (test_linear_decision.LinearDecisionTests.test_position_limit_is_active) ... ok
+test_short_position_is_allowed_and_leverage_limit_is_active (test_linear_decision.LinearDecisionTests.test_short_position_is_allowed_and_leverage_limit_is_active) ... ok
+test_tiny_drawdown_cap_is_enforced (test_linear_decision.LinearDecisionTests.test_tiny_drawdown_cap_is_enforced) ... ok
+test_zero_and_tiny_equal_weight_risk_caps_are_enforced (test_linear_decision.LinearDecisionTests.test_zero_and_tiny_equal_weight_risk_caps_are_enforced) ... ok
+test_reference_requires_matching_data_forecaster_and_early_calibration (test_lp_risk_tuning.ForecastReuseTests.test_reference_requires_matching_data_forecaster_and_early_calibration) ... ok
+test_cost_discourages_small_trades_and_charges_both_sides (test_lp_risk_tuning.RiskObjectiveTests.test_cost_discourages_small_trades_and_charges_both_sides) ... ok
+test_invalid_penalties_and_missing_pretrade_holdings_fail (test_lp_risk_tuning.RiskObjectiveTests.test_invalid_penalties_and_missing_pretrade_holdings_fail) ... ok
+test_mad_is_measured_on_the_combined_portfolio (test_lp_risk_tuning.RiskObjectiveTests.test_mad_is_measured_on_the_combined_portfolio) ... ok
+test_mad_penalty_selects_the_less_volatile_asset (test_lp_risk_tuning.RiskObjectiveTests.test_mad_penalty_selects_the_less_volatile_asset) ... ok
+test_zero_penalties_preserve_the_original_solution (test_lp_risk_tuning.RiskObjectiveTests.test_zero_penalties_preserve_the_original_solution) ... ok
+test_future_data_are_excluded_and_net_returns_use_drifted_holdings (test_lp_risk_tuning.TuningWorkflowTests.test_future_data_are_excluded_and_net_returns_use_drifted_holdings) ... ok
+test_tuning_validation_overlap_and_test_period_are_rejected (test_lp_risk_tuning.TuningWorkflowTests.test_tuning_validation_overlap_and_test_period_are_rejected) ... ok
+test_validation_does_not_select_gamma_and_each_decision_is_causal (test_lp_risk_tuning.TuningWorkflowTests.test_validation_does_not_select_gamma_and_each_decision_is_causal) ... ok
+test_ew_penalty_is_distinct_from_cost_and_preserves_combined_utility (test_lp_stability.EWPenaltyTests.test_ew_penalty_is_distinct_from_cost_and_preserves_combined_utility) ... ok
+test_invalid_ew_penalties_are_rejected (test_lp_stability.EWPenaltyTests.test_invalid_ew_penalties_are_rejected) ... ok
+test_primary_ew_penalty_changes_the_optimum_not_only_a_tie (test_lp_stability.EWPenaltyTests.test_primary_ew_penalty_changes_the_optimum_not_only_a_tie) ... ok
+test_shared_rollout_applies_each_models_own_leverage_constraint (test_lp_stability.EWPenaltyTests.test_shared_rollout_applies_each_models_own_leverage_constraint) ... ok
+test_selection_favors_lower_drawdown_with_return_and_volatility_guardrails (test_lp_stability.StabilityWorkflowTests.test_selection_favors_lower_drawdown_with_return_and_volatility_guardrails) ... ok
+test_selection_is_frozen_before_validation_and_future_is_excluded (test_lp_stability.StabilityWorkflowTests.test_selection_is_frozen_before_validation_and_future_is_excluded) ... ok
+test_stress_fees_and_predictions_do_not_change_main_holdings (test_lp_stability.StabilityWorkflowTests.test_stress_fees_and_predictions_do_not_change_main_holdings) ... ok
+test_missing_section_and_malformed_rows_fail (test_missing_audit.MissingValueAuditTests.test_missing_section_and_malformed_rows_fail) ... ok
+test_raw_markers_are_distinguished_and_excluded_columns_are_counted (test_missing_audit.MissingValueAuditTests.test_raw_markers_are_distinguished_and_excluded_columns_are_counted) ... ok
+test_four_entrypoints_use_causal_dates_and_categorized_artifacts (test_portfolio_sensitivity.PortfolioSensitivityCliTests.test_four_entrypoints_use_causal_dates_and_categorized_artifacts) ... ok
+test_grid_edges_penalty_reduces_neighbor_gap (test_portfolio_variants.PortfolioVariantTests.test_grid_edges_penalty_reduces_neighbor_gap) ... ok
+test_ledoit_wolf_uses_training_covariance (test_portfolio_variants.PortfolioVariantTests.test_ledoit_wolf_uses_training_covariance) ... ok
+test_size_bm_grid_edges_keeps_only_adjacent_available_assets (test_portfolio_variants.PortfolioVariantTests.test_size_bm_grid_edges_keeps_only_adjacent_available_assets) ... ok
+test_turnover_penalty_reduces_distance_to_previous_holdings (test_portfolio_variants.PortfolioVariantTests.test_turnover_penalty_reduces_distance_to_previous_holdings) ... ok
+test_weight_cap_applies_to_fitted_portfolio (test_portfolio_variants.PortfolioVariantTests.test_weight_cap_applies_to_fitted_portfolio) ... ok
+test_zero_overlays_match_selected_lasso (test_portfolio_variants.PortfolioVariantTests.test_zero_overlays_match_selected_lasso) ... ok
+test_baseline_module_categories_match_legacy_numeric_outputs (test_refactored_experiment_outputs.RefactoredOutputTests.test_baseline_module_categories_match_legacy_numeric_outputs) ... ok
+test_nested_code_fingerprints_are_portable_and_tampering_is_rejected (test_refactored_experiment_outputs.RefactoredOutputTests.test_nested_code_fingerprints_are_portable_and_tampering_is_rejected) ... ok
+test_new_entrypoints_all_have_help (test_refactored_experiment_outputs.RefactoredOutputTests.test_new_entrypoints_all_have_help) ... ok
+test_reference_comparison_reads_categorized_run (test_refactored_experiment_outputs.RefactoredOutputTests.test_reference_comparison_reads_categorized_run) ... ok
+test_all_initial_numerical_failures_raise_after_the_complete_batch (test_selection.SelectionTests.test_all_initial_numerical_failures_raise_after_the_complete_batch) ... ok
+test_budget_never_starts_a_partial_neighbor_batch (test_selection.SelectionTests.test_budget_never_starts_a_partial_neighbor_batch) ... ok
+test_complete_coarse_batch_has_callback_order_ids_and_metrics (test_selection.SelectionTests.test_complete_coarse_batch_has_callback_order_ids_and_metrics) ... ok
+test_configuration_parameters_and_initial_batch_are_validated (test_selection.SelectionTests.test_configuration_parameters_and_initial_batch_are_validated) ... ok
+test_duplicate_initial_parameters_are_evaluated_once (test_selection.SelectionTests.test_duplicate_initial_parameters_are_evaluated_once) ... ok
+test_exact_decimal_threshold_resets_patience_for_the_next_round (test_selection.SelectionTests.test_exact_decimal_threshold_resets_patience_for_the_next_round) ... ok
+test_final_selection_uses_conservative_ties_and_restores_recorded_best (test_selection.SelectionTests.test_final_selection_uses_conservative_ties_and_restores_recorded_best) ... ok
+test_numerical_failures_and_invalid_metrics_are_recorded (test_selection.SelectionTests.test_numerical_failures_and_invalid_metrics_are_recorded) ... ok
+test_plateau_stops_only_after_the_complete_neighbor_batch (test_selection.SelectionTests.test_plateau_stops_only_after_the_complete_neighbor_batch) ... ok
+test_small_gains_accumulate_against_the_last_significant_anchor (test_selection.SelectionTests.test_small_gains_accumulate_against_the_last_significant_anchor) ... ok
+test_unexpected_callback_exceptions_propagate (test_selection.SelectionTests.test_unexpected_callback_exceptions_propagate) ... ok
+test_zero_and_upper_bound_neighbors_follow_the_fixed_search_space (test_selection.SelectionTests.test_zero_and_upper_bound_neighbors_follow_the_fixed_search_space) ... ok
+test_zero_threshold_still_requires_an_actual_improvement (test_selection.SelectionTests.test_zero_threshold_still_requires_an_actual_improvement) ... ok
+test_invalid_config_fails_before_training (test_training_config.TrainingConfigTests.test_invalid_config_fails_before_training) ... ok
+test_uniform_presets_preserve_unweighted_fit (test_training_config.TrainingConfigTests.test_uniform_presets_preserve_unweighted_fit) ... ok
+test_weighted_preset_reaches_the_actual_fit (test_training_config.TrainingConfigTests.test_weighted_preset_reaches_the_actual_fit) ... ok
+test_calendar_backtest_cannot_see_current_or_future_returns (test_training_windows.TrainingWindowTests.test_calendar_backtest_cannot_see_current_or_future_returns) ... ok
+test_calendar_cutoff_includes_anniversary_and_handles_leap_day (test_training_windows.TrainingWindowTests.test_calendar_cutoff_includes_anniversary_and_handles_leap_day) ... ok
+test_calendar_minimum_prevents_silent_short_training (test_training_windows.TrainingWindowTests.test_calendar_minimum_prevents_silent_short_training) ... ok
+test_invalid_or_ambiguous_window_settings_are_rejected (test_training_windows.TrainingWindowTests.test_invalid_or_ambiguous_window_settings_are_rejected) ... ok
+test_observation_windows_preserve_126_and_252_histories (test_training_windows.TrainingWindowTests.test_observation_windows_preserve_126_and_252_histories) ... ok
+test_all_failed_candidates_are_logged_and_failed_fits_are_not_retried (test_tuning_cli.TuningCliTests.test_all_failed_candidates_are_logged_and_failed_fits_are_not_retried) ... ok
+test_complete_search_exports_and_future_data_cannot_change_selection (test_tuning_cli.TuningCliTests.test_complete_search_exports_and_future_data_cannot_change_selection) ... ok
+test_failed_control_does_not_discard_successful_selection (test_tuning_cli.TuningCliTests.test_failed_control_does_not_discard_successful_selection) ... ok
+test_partial_dates_are_rejected_before_loading_data (test_tuning_cli.TuningCliTests.test_partial_dates_are_rejected_before_loading_data) ... ok
+test_reserved_final_test_dates_cannot_enter_parameter_selection (test_tuning_cli.TuningCliTests.test_reserved_final_test_dates_cannot_enter_parameter_selection) ... ok
+test_chronology_freezing_and_realized_reconstruction (test_two_stage.TwoStageTests.test_chronology_freezing_and_realized_reconstruction) ... ok
+test_invalid_boundaries_and_missing_values_are_rejected (test_two_stage.TwoStageTests.test_invalid_boundaries_and_missing_values_are_rejected) ... ok
+test_reserved_test_uses_frozen_parameters_without_fitting_decisions (test_two_stage.TwoStageTests.test_reserved_test_uses_frozen_parameters_without_fitting_decisions) ... ok
+test_development_excludes_future_csv_rows_and_enables_baselines (test_two_stage_cli.TwoStageCliTests.test_development_excludes_future_csv_rows_and_enables_baselines) ... Running development experiment through 2026-06-30; August is excluded.
+Saved artifacts to /private/var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmpbet_9gzm/out
+ok
+test_frozen_mode_loads_decisions_and_august_history (test_two_stage_cli.TwoStageCliTests.test_frozen_mode_loads_decisions_and_august_history) ... Running explicit frozen August final-test evaluation.
+Saved artifacts to /private/var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmpk3cs0llv/out
+ok
+test_frozen_mode_rejects_missing_final_coverage_before_core (test_two_stage_cli.TwoStageCliTests.test_frozen_mode_rejects_missing_final_coverage_before_core) ... usage: python -m unittest [-h] [--csv CSV] [--output OUTPUT] [--frozen FROZEN]
+                          [--layout {flat,categorized}]
+python -m unittest: error: returns do not cover the required period through 2026-08-28
+ok
+test_missing_default_csv_fails_without_creating_artifacts (test_two_stage_cli.TwoStageCliTests.test_missing_default_csv_fails_without_creating_artifacts) ... usage: python -m unittest [-h] [--csv CSV] [--output OUTPUT] [--frozen FROZEN]
+                          [--layout {flat,categorized}]
+python -m unittest: error: CSV file does not exist: /var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmp95ay1kbp/missing.csv
+ok
+test_nonempty_output_is_rejected_before_core (test_two_stage_cli.TwoStageCliTests.test_nonempty_output_is_rejected_before_core) ... usage: python -m unittest [-h] [--csv CSV] [--output OUTPUT] [--frozen FROZEN]
+                          [--layout {flat,categorized}]
+python -m unittest: error: output must be an empty or new directory
+ok
+test_export_allows_diagnostic_rows_to_share_a_date (test_two_stage_cli.TwoStageIoTests.test_export_allows_diagnostic_rows_to_share_a_date) ... ok
+test_export_rejects_nonfinite_diagnostics_before_writing (test_two_stage_cli.TwoStageIoTests.test_export_rejects_nonfinite_diagnostics_before_writing) ... ok
+test_export_rejects_unsafe_or_duplicate_artifact_names (test_two_stage_cli.TwoStageIoTests.test_export_rejects_unsafe_or_duplicate_artifact_names) ... ok
+test_export_round_trips_frames_metadata_frozen_and_provenance (test_two_stage_cli.TwoStageIoTests.test_export_round_trips_frames_metadata_frozen_and_provenance) ... ok
+test_rejects_invalid_scores_instead_of_silently_selecting (test_weight_tuning.WeightSelectionTests.test_rejects_invalid_scores_instead_of_silently_selecting) ... ok
+test_selects_highest_return_and_prefers_slower_decay_on_a_tie (test_weight_tuning.WeightSelectionTests.test_selects_highest_return_and_prefers_slower_decay_on_a_tie) ... ok
+test_bad_dates_and_grids_are_rejected_before_reading_data (test_weight_tuning.WeightTuningCliTests.test_bad_dates_and_grids_are_rejected_before_reading_data) ... ok
+test_validation_selects_weights_and_excludes_later_data (test_weight_tuning.WeightTuningCliTests.test_validation_selects_weights_and_excludes_later_data) ... ok
+
+----------------------------------------------------------------------
+Ran 171 tests in 101.262s
+
+OK

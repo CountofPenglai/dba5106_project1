@@ -1,0 +1,10 @@
+Starting lp with all lookbacks = 252
+Calibrating forecast alpha: 252d
+252d: alpha=0.00251188643
+Solved direct LP portfolios through 2026-01-02 (1 days)
+Solved direct LP portfolios through 2026-02-02 (21 days)
+Solved direct LP portfolios through 2026-03-04 (42 days)
+Solved direct LP portfolios through 2026-04-02 (63 days)
+Solved direct LP portfolios through 2026-05-04 (84 days)
+Solved direct LP portfolios through 2026-06-03 (105 days)
+Completed lp

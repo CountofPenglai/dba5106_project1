@@ -1,0 +1,27 @@
+Starting loss_search with all lookbacks = 252
+screen candidate 1: eta=0, gamma=0
+screen candidate 2: eta=0, gamma=0.1
+screen candidate 3: eta=0, gamma=1
+screen candidate 4: eta=0.003, gamma=0
+screen candidate 5: eta=0.003, gamma=0.1
+screen candidate 6: eta=0.003, gamma=1
+screen candidate 7: eta=0.01, gamma=0
+screen candidate 8: eta=0.01, gamma=0.1
+screen candidate 9: eta=0.01, gamma=1
+validation candidate 1: eta=0, gamma=0
+validation candidate 2: eta=0.01, gamma=0
+validation candidate 3: eta=0, gamma=1
+validation candidate 4: eta=0.0015, gamma=1
+validation candidate 5: eta=0, gamma=0.5
+validation candidate 6: eta=0, gamma=2
+Selected eta=0, gamma=2; stop=patience
+                      status error     mean  volatility   sharpe  negative_sharpe  cumulative_return  max_drawdown  average_gross_leverage  max_gross_leverage
+EW                        ok       0.001322    0.009974 0.132533        -0.132533           0.169328     -0.086320                1.000000            1.000000
+LASSO                     ok       0.000565    0.005673 0.099514        -0.099514           0.069787     -0.048285                3.035765            3.541950
+LASSO_Constrained         ok       0.000703    0.005743 0.122330        -0.122330           0.088036     -0.043996                1.499997            1.500000
+LASSO_LogGrowth           ok       0.000648    0.005716 0.113304        -0.113304           0.080732     -0.045123                1.499996            1.500000
+Selected_RewardOnly       ok       0.000703    0.005743 0.122330        -0.122330           0.088036     -0.043996                1.499997            1.500000
+Selected_ExposureOnly     ok       0.000885    0.006010 0.147231        -0.147231           0.112482     -0.041907                1.015357            1.016551
+LASSO_Selected            ok       0.000885    0.006010 0.147231        -0.147231           0.112482     -0.041907                1.015357            1.016551
+Saved artifacts to /Users/zhengce/projects/fundation_ba/project1/results/unified_252/20260922T122949.119118Z/loss_search
+Completed loss_search

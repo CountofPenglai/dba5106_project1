@@ -1,0 +1,12 @@
+{
+  "assets": 98,
+  "validation_days": 123,
+  "history_rows": 1233,
+  "first_date": "2021-08-02",
+  "last_date": "2026-06-30",
+  "missing": 0,
+  "sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23",
+  "decision_start": "2024-12-30",
+  "decision_end": "2025-12-31",
+  "decision_days": 252
+}

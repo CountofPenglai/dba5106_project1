@@ -1,0 +1,27 @@
+{
+  "selected_strategy": "LASSO_3y_HL252_Constrained",
+  "selected_half_life": 252,
+  "training": {
+    "window": {
+      "observations": null,
+      "years": 3,
+      "min_observations": 252
+    },
+    "half_life": 252
+  },
+  "constraints": {
+    "leverage_limit": 1.5,
+    "volatility_limit": 1.0,
+    "wealth_floor": 1e-06
+  },
+  "lasso_strength": 1e-05,
+  "reward_strength": 0,
+  "exposure_strength": 0,
+  "selection_metric": "cumulative_return",
+  "selected_score": 0.08106077530715505,
+  "tie_break": "longer half-life on exactly equal cumulative returns",
+  "validation_start": "2026-01-02",
+  "validation_end": "2026-06-30",
+  "evaluation_role": "validation_used_for_selection",
+  "deployment_note": "Freeze this setting after validation; its validation returns are not an independent test."
+}

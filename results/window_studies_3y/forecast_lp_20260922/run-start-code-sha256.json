@@ -1,0 +1,13 @@
+{
+  "run_direct_lp.py": "6b70007a4e61e6162440d5084e5c6f958bc6efe738794e4df385ac0376b7f14a",
+  "requirements.txt": "b200e1716bd8459e8968452a130d9af31f0bfa070fc9e8d1a31629c1d4a92b2b",
+  "portfolio/direct_lp.py": "cde3de50da75686462459de7bd46ad8ef815b0c6a56cc32acd77bee6cde81601",
+  "portfolio/linear_decision.py": "72d50f185e95499cf5ccd072c5392fb5c1a00bc845d97857f25e9190496ca95d",
+  "portfolio/forecasting.py": "3c57bd66c59e62122c0850d5d123abe62eadcc154c56418424a65582224d42a9",
+  "portfolio/config.py": "0d7ef90bd579ddaece7e75a4360752a10678a5c3450b14b8ec12cbdb7c1cd2c7",
+  "portfolio/splits.py": "ec743ed39c394e333010724b1760cf7292d70e574723c59bc59de2f364f03f09",
+  "portfolio/weights.py": "9407b8188c5391ceb748818808301c83428fa81f638a9591279c09c9722affe1",
+  "portfolio/data.py": "7fb099e86dbda2a43df287ed7811812133105dd667dcf8fc3d981385969b655e",
+  "portfolio/evaluation.py": "8b5da7a1618def933e24e9c673141fcf34448aa7966168afc3494391526a86f1",
+  "portfolio/two_stage.py": "6e381708eec4063a49817fee567dbe03a617b6174ee893fbc8bbe18c3d38f027"
+}

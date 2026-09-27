@@ -1,0 +1,10 @@
+Evaluating frozen LP_Current and EW on July 1–31; no parameter search.
+Forecasts through 2026-07-01 (1/22)
+Forecasts through 2026-07-30 (21/22)
+LP decisions through 2026-07-01 (1/22)
+LP decisions through 2026-07-30 (21/22)
+                mean  volatility    sharpe  negative_sharpe  cumulative_return  max_drawdown  gross_mean  gross_volatility  gross_sharpe  gross_negative_sharpe  gross_cumulative_return  gross_max_drawdown  average_turnover  average_gross_leverage  max_gross_leverage  mean_daily_cost  evaluation_days       start         end
+model                                                                                                                                                                                                                                                                                                                               
+LP_Current -0.000196    0.007147 -0.027478         0.027478          -0.004847     -0.017797   -0.000162          0.007159     -0.022636               0.022636                -0.004096           -0.017710          0.034343                     1.5                 1.5         0.000034               22  2026-07-01  2026-07-31
+EW         -0.000364    0.006952 -0.052331         0.052331          -0.008477     -0.021394   -0.000361          0.006952     -0.051861               0.051861                -0.008405           -0.021354          0.003278                     1.0                 1.0         0.000003               22  2026-07-01  2026-07-31
+Saved /private/tmp/lp-july-final/result

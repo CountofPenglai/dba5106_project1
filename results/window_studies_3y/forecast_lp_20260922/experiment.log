@@ -1,0 +1,12 @@
+Direct LP validation only; August excluded; no decision-model training.
+Calibrating forecast alpha: 252d
+252d: alpha=0.00251188643
+Calibrating forecast alpha: 3y
+3y: alpha=0.00158489319
+Solved direct LP portfolios through 2026-01-02 (1 days)
+Solved direct LP portfolios through 2026-02-02 (21 days)
+Solved direct LP portfolios through 2026-03-04 (42 days)
+Solved direct LP portfolios through 2026-04-02 (63 days)
+Solved direct LP portfolios through 2026-05-04 (84 days)
+Solved direct LP portfolios through 2026-06-03 (105 days)
+Saved artifacts to /private/tmp/project1-two-stage-lasso/results/direct_lp_20260922

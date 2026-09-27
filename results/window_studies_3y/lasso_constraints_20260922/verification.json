@@ -1,0 +1,37 @@
+{
+  "LASSO_252d": {
+    "evaluation_days": 479,
+    "max_return_reconstruction_error": 2.914335439641036e-16,
+    "max_previous_weight_difference": 0.0
+  },
+  "LASSO_252d_Constrained": {
+    "evaluation_days": 479,
+    "max_return_reconstruction_error": 1.1535911115245767e-16,
+    "max_gross_leverage": 1.4999999312822048,
+    "max_training_volatility_ratio": 0.6028216052379013,
+    "minimum_training_wealth": 0.9461317899872704,
+    "max_objective_difference": 2.439454888092385e-19,
+    "leverage_binding_fraction": 0.964509394572025,
+    "solver_counts": {
+      "CLARABEL": 479
+    }
+  },
+  "LASSO_3y": {
+    "evaluation_days": 479,
+    "max_return_reconstruction_error": 2.636779683484747e-16,
+    "max_previous_weight_difference": 0.0
+  },
+  "LASSO_3y_Constrained": {
+    "evaluation_days": 479,
+    "max_return_reconstruction_error": 1.1145598333150986e-16,
+    "max_gross_leverage": 1.4999999516608897,
+    "max_training_volatility_ratio": 0.6044524225897138,
+    "minimum_training_wealth": 0.939080481065288,
+    "max_objective_difference": 2.303929616531697e-19,
+    "leverage_binding_fraction": 1.0,
+    "solver_counts": {
+      "CLARABEL": 479
+    }
+  },
+  "legacy_constrained_max_weight_difference": 0.0
+}

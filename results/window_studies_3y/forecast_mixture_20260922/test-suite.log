@@ -1,0 +1,14 @@
+Running development experiment through 2026-06-30; August is excluded.
+Saved artifacts to /private/var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmpr8uwn2v_/out
+Running explicit frozen August final-test evaluation.
+Saved artifacts to /private/var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmplo93qr4o/out
+usage: python -m unittest [-h] [--csv CSV] --output OUTPUT [--frozen FROZEN]
+python -m unittest: error: returns do not cover the required period through 2026-08-28
+usage: python -m unittest [-h] [--csv CSV] --output OUTPUT [--frozen FROZEN]
+python -m unittest: error: CSV file does not exist: /var/folders/xp/_tctl0_j1_30zzbnspzsdb300000gn/T/tmpx4bf8kqv/missing.csv
+usage: python -m unittest [-h] [--csv CSV] --output OUTPUT [--frozen FROZEN]
+python -m unittest: error: --output must be an empty or new directory
+----------------------------------------------------------------------
+Ran 98 tests in 24.623s
+
+OK

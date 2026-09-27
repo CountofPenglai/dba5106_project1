@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_turnover.csv": "diagnostics/EW_turnover.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_LedoitWolf_diagnostics.csv": "diagnostics/LASSO_LedoitWolf_diagnostics.csv",
+    "LASSO_LedoitWolf_returns.csv": "returns/LASSO_LedoitWolf_returns.csv",
+    "LASSO_LedoitWolf_turnover.csv": "diagnostics/LASSO_LedoitWolf_turnover.csv",
+    "LASSO_LedoitWolf_weights.csv": "weights/LASSO_LedoitWolf_weights.csv",
+    "LASSO_Selected_diagnostics.csv": "diagnostics/LASSO_Selected_diagnostics.csv",
+    "LASSO_Selected_returns.csv": "returns/LASSO_Selected_returns.csv",
+    "LASSO_Selected_turnover.csv": "diagnostics/LASSO_Selected_turnover.csv",
+    "LASSO_Selected_weights.csv": "weights/LASSO_Selected_weights.csv",
+    "run_metadata.json": "config/run_metadata.json",
+    "shrinkage_comparison.png": "figures/shrinkage_comparison.png",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

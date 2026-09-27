@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "LASSO_252d_HL126_Constrained_diagnostics.csv": "diagnostics/LASSO_252d_HL126_Constrained_diagnostics.csv",
+    "LASSO_252d_HL126_Constrained_returns.csv": "returns/LASSO_252d_HL126_Constrained_returns.csv",
+    "LASSO_252d_HL126_Constrained_weights.csv": "weights/LASSO_252d_HL126_Constrained_weights.csv",
+    "LASSO_252d_HL252_Constrained_diagnostics.csv": "diagnostics/LASSO_252d_HL252_Constrained_diagnostics.csv",
+    "LASSO_252d_HL252_Constrained_returns.csv": "returns/LASSO_252d_HL252_Constrained_returns.csv",
+    "LASSO_252d_HL252_Constrained_weights.csv": "weights/LASSO_252d_HL252_Constrained_weights.csv",
+    "LASSO_252d_HL504_Constrained_diagnostics.csv": "diagnostics/LASSO_252d_HL504_Constrained_diagnostics.csv",
+    "LASSO_252d_HL504_Constrained_returns.csv": "returns/LASSO_252d_HL504_Constrained_returns.csv",
+    "LASSO_252d_HL504_Constrained_weights.csv": "weights/LASSO_252d_HL504_Constrained_weights.csv",
+    "LASSO_252d_Weighted_HL252_diagnostics.csv": "diagnostics/LASSO_252d_Weighted_HL252_diagnostics.csv",
+    "LASSO_252d_Weighted_HL252_returns.csv": "returns/LASSO_252d_Weighted_HL252_returns.csv",
+    "LASSO_252d_Weighted_HL252_weights.csv": "weights/LASSO_252d_Weighted_HL252_weights.csv",
+    "LASSO_252d_Weighted_Selected_diagnostics.csv": "diagnostics/LASSO_252d_Weighted_Selected_diagnostics.csv",
+    "LASSO_252d_Weighted_Selected_returns.csv": "returns/LASSO_252d_Weighted_Selected_returns.csv",
+    "LASSO_252d_Weighted_Selected_weights.csv": "weights/LASSO_252d_Weighted_Selected_weights.csv",
+    "benchmark_runner.json": "config/benchmark_runner.json",
+    "run_metadata.json": "config/run_metadata.json",
+    "selection.json": "config/selection.json",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

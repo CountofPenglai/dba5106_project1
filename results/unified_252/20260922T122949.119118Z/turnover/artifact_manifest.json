@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_turnover.csv": "diagnostics/EW_turnover.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LASSO_Selected_diagnostics.csv": "diagnostics/LASSO_Selected_diagnostics.csv",
+    "LASSO_Selected_returns.csv": "returns/LASSO_Selected_returns.csv",
+    "LASSO_Selected_turnover.csv": "diagnostics/LASSO_Selected_turnover.csv",
+    "LASSO_Selected_weights.csv": "weights/LASSO_Selected_weights.csv",
+    "LASSO_Turnover_0p1_diagnostics.csv": "diagnostics/LASSO_Turnover_0p1_diagnostics.csv",
+    "LASSO_Turnover_0p1_returns.csv": "returns/LASSO_Turnover_0p1_returns.csv",
+    "LASSO_Turnover_0p1_turnover.csv": "diagnostics/LASSO_Turnover_0p1_turnover.csv",
+    "LASSO_Turnover_0p1_weights.csv": "weights/LASSO_Turnover_0p1_weights.csv",
+    "LASSO_Turnover_1_diagnostics.csv": "diagnostics/LASSO_Turnover_1_diagnostics.csv",
+    "LASSO_Turnover_1_returns.csv": "returns/LASSO_Turnover_1_returns.csv",
+    "LASSO_Turnover_1_turnover.csv": "diagnostics/LASSO_Turnover_1_turnover.csv",
+    "LASSO_Turnover_1_weights.csv": "weights/LASSO_Turnover_1_weights.csv",
+    "run_metadata.json": "config/run_metadata.json",
+    "summary.csv": "metrics/summary.csv",
+    "turnover_comparison.png": "figures/turnover_comparison.png"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

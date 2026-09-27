@@ -1,0 +1,14 @@
+family,artifact,column,rows,minimum,maximum
+recency,LASSO_252d_HL126_Constrained_diagnostics.csv,observations,123,252,252
+recency,LASSO_252d_HL252_Constrained_diagnostics.csv,observations,123,252,252
+recency,LASSO_252d_HL504_Constrained_diagnostics.csv,observations,123,252,252
+recency,LASSO_252d_Weighted_HL252_diagnostics.csv,observations,123,252,252
+recency,LASSO_252d_Weighted_Selected_diagnostics.csv,observations,123,252,252
+mixture,252d_alpha_cv.csv,train_count,63,252,252
+mixture,LASSO_252d_forecast_diagnostics.csv,train_count,375,252,252
+mixture,risk_diagnostics.csv,observations,375,252,252
+lp,252d_alpha_cv.csv,train_count,63,252,252
+lp,252d_forecast_diagnostics.csv,train_count,123,252,252
+lp,EW_diagnostics.csv,history_count,123,252,252
+lp,LP_LASSO_252d_diagnostics.csv,history_count,123,252,252
+lp,LP_Mean_252d_diagnostics.csv,history_count,123,252,252

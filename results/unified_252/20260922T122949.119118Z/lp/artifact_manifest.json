@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "252d_alpha_cv.csv": "search/252d_alpha_cv.csv",
+    "252d_forecast_diagnostics.csv": "diagnostics/252d_forecast_diagnostics.csv",
+    "EW_diagnostics.csv": "diagnostics/EW_diagnostics.csv",
+    "EW_returns.csv": "returns/EW_returns.csv",
+    "EW_weights.csv": "weights/EW_weights.csv",
+    "LP_LASSO_252d_diagnostics.csv": "diagnostics/LP_LASSO_252d_diagnostics.csv",
+    "LP_LASSO_252d_predictions.csv": "predictions/LP_LASSO_252d_predictions.csv",
+    "LP_LASSO_252d_returns.csv": "returns/LP_LASSO_252d_returns.csv",
+    "LP_LASSO_252d_weights.csv": "weights/LP_LASSO_252d_weights.csv",
+    "LP_Mean_252d_diagnostics.csv": "diagnostics/LP_Mean_252d_diagnostics.csv",
+    "LP_Mean_252d_predictions.csv": "predictions/LP_Mean_252d_predictions.csv",
+    "LP_Mean_252d_returns.csv": "returns/LP_Mean_252d_returns.csv",
+    "LP_Mean_252d_weights.csv": "weights/LP_Mean_252d_weights.csv",
+    "benchmark_runner.json": "config/benchmark_runner.json",
+    "comparison.csv": "metrics/comparison.csv",
+    "frozen_decisions.json": "config/frozen_decisions.json",
+    "prediction_validation.csv": "metrics/prediction_validation.csv",
+    "run_metadata.json": "config/run_metadata.json",
+    "validation_summary.csv": "metrics/validation_summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

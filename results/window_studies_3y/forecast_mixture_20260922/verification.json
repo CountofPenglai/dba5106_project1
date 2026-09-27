@@ -1,0 +1,131 @@
+{
+  "baseline_comparison": {
+    "artifacts_checked": 8,
+    "available": true,
+    "maximum_absolute_error": 0.0
+  },
+  "constraint_checks": {
+    "budget_error": 4.32720526077901e-12,
+    "frames": 20,
+    "gross_excess": 4.6797037356327564e-09,
+    "risk_ratio": 1.0000000001174834,
+    "wealth_shortfall": 0.0
+  },
+  "counts": {
+    "models": 8,
+    "return_days": 3832
+  },
+  "decision_objective_checks": {
+    "maximum_absolute_error": 9.204876444401933e-17,
+    "rows": 24
+  },
+  "forecast_checks": {
+    "252d": {
+      "absolute_error": 0.0,
+      "asset": "SMALL LoBM",
+      "date": "2026-01-02"
+    },
+    "3y": {
+      "absolute_error": 0.0,
+      "asset": "SMALL LoBM",
+      "date": "2026-01-02"
+    }
+  },
+  "gamma_checks": {
+    "LASSO_252d": {
+      "cumulative_return": 0.0856787164966565,
+      "selected": 0.0
+    },
+    "LASSO_3y": {
+      "cumulative_return": 0.0887717011293265,
+      "selected": 0.05
+    },
+    "Mean_252d": {
+      "cumulative_return": 0.0856787230074329,
+      "selected": 0.0
+    },
+    "Mean_3y": {
+      "cumulative_return": 0.0856787071415585,
+      "selected": 0.0
+    }
+  },
+  "metric_checks": {
+    "LASSO_252d_ReturnVolatility": 9.159339953157541e-16,
+    "LASSO_252d_Sharpe": 3.885780586188048e-16,
+    "LASSO_3y_ReturnVolatility": 4.649058915617843e-16,
+    "LASSO_3y_Sharpe": 1.249000902703301e-16,
+    "Mean_252d_ReturnVolatility": 1.0269562977782698e-15,
+    "Mean_252d_Sharpe": 2.220446049250313e-16,
+    "Mean_3y_ReturnVolatility": 6.938893903907228e-16,
+    "Mean_3y_Sharpe": 1.2906342661267445e-15
+  },
+  "mixture_checks": {
+    "LASSO_252d_ReturnVolatility": {
+      "minimum_theta": 3.9047355096161193e-13,
+      "return_error": 9.71445146547012e-17,
+      "theta_sum_error": 0.0,
+      "weight_error": 1.1102230246251565e-16
+    },
+    "LASSO_252d_Sharpe": {
+      "minimum_theta": 0.0,
+      "return_error": 1.1102230246251565e-16,
+      "theta_sum_error": 0.0,
+      "weight_error": 9.8879238130678e-17
+    },
+    "LASSO_3y_ReturnVolatility": {
+      "minimum_theta": 7.30473222365978e-12,
+      "return_error": 1.0061396160665481e-16,
+      "theta_sum_error": 0.0,
+      "weight_error": 4.440892098500626e-16
+    },
+    "LASSO_3y_Sharpe": {
+      "minimum_theta": 2.2461486933259202e-11,
+      "return_error": 1.0408340855860843e-16,
+      "theta_sum_error": 0.0,
+      "weight_error": 4.440892098500626e-16
+    },
+    "Mean_252d_ReturnVolatility": {
+      "minimum_theta": 0.0,
+      "return_error": 1.0018028073766061e-16,
+      "theta_sum_error": 0.0,
+      "weight_error": 9.71445146547012e-17
+    },
+    "Mean_252d_Sharpe": {
+      "minimum_theta": 6.747103000709627e-11,
+      "return_error": 9.540979117872439e-17,
+      "theta_sum_error": 0.0,
+      "weight_error": 1.1102230246251565e-16
+    },
+    "Mean_3y_ReturnVolatility": {
+      "minimum_theta": 4.241727387359799e-12,
+      "return_error": 9.508453052697874e-17,
+      "theta_sum_error": 0.0,
+      "weight_error": 1.1102230246251565e-16
+    },
+    "Mean_3y_Sharpe": {
+      "minimum_theta": 1.1762859223503876e-11,
+      "return_error": 9.974659986866641e-17,
+      "theta_sum_error": 0.0,
+      "weight_error": 1.1102230246251565e-16
+    }
+  },
+  "return_checks": {
+    "LASSO_252d_ReturnVolatility": 1.0408340855860843e-16,
+    "LASSO_252d_Sharpe": 1.0451708942760263e-16,
+    "LASSO_3y_ReturnVolatility": 1.0755285551056204e-16,
+    "LASSO_3y_Sharpe": 1.0408340855860843e-16,
+    "Mean_252d_ReturnVolatility": 1.0928757898653885e-16,
+    "Mean_252d_Sharpe": 1.0234868508263162e-16,
+    "Mean_3y_ReturnVolatility": 1.0581813203458523e-16,
+    "Mean_3y_Sharpe": 1.0928757898653885e-16
+  },
+  "source_checks": {
+    "development_prefix_sha256": "c4ed186f7a7510cf5378d093583ada9c6c071ea8cc100cd5f08e7e64af2b518c",
+    "file_sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23"
+  },
+  "status": "passed",
+  "turnover_checks": {
+    "maximum_absolute_error": 2.975050761300224e-15,
+    "strategies": 20
+  }
+}

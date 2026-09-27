@@ -1,0 +1,17 @@
+{
+  "model_rows": 65,
+  "unique_holdings": 53,
+  "same_holdings_tolerance": 1e-10,
+  "families": 8,
+  "validation_days": 123,
+  "assets": 98,
+  "data_sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23",
+  "max_return_reconstruction_error": 1.713039432527097e-16,
+  "max_metric_reconstruction_error": 1.915134717478395e-15,
+  "max_budget_error": 3.197442310920451e-13,
+  "source_hashes_verified": true,
+  "decision_training_days": 252,
+  "first_validation_day_initial_holdings": "EW for all turnover calculations",
+  "checks": "dates, columns, finite holdings/returns, full investment, saved returns/metrics, source/data identity, training counts, chronology, hard constraints",
+  "final_test_evaluated": false
+}

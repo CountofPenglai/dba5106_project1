@@ -1,0 +1,31 @@
+{
+  "artifacts": {
+    "ElasticNet_l1ratio_0.25_returns.csv": "returns/ElasticNet_l1ratio_0.25_returns.csv",
+    "ElasticNet_l1ratio_0.25_weights.csv": "weights/ElasticNet_l1ratio_0.25_weights.csv",
+    "ElasticNet_l1ratio_0.5_returns.csv": "returns/ElasticNet_l1ratio_0.5_returns.csv",
+    "ElasticNet_l1ratio_0.5_weights.csv": "weights/ElasticNet_l1ratio_0.5_weights.csv",
+    "ElasticNet_l1ratio_0.75_returns.csv": "returns/ElasticNet_l1ratio_0.75_returns.csv",
+    "ElasticNet_l1ratio_0.75_weights.csv": "weights/ElasticNet_l1ratio_0.75_weights.csv",
+    "ElasticNet_l1ratio_0.85_returns.csv": "returns/ElasticNet_l1ratio_0.85_returns.csv",
+    "ElasticNet_l1ratio_0.85_weights.csv": "weights/ElasticNet_l1ratio_0.85_weights.csv",
+    "ElasticNet_l1ratio_0.8_returns.csv": "returns/ElasticNet_l1ratio_0.8_returns.csv",
+    "ElasticNet_l1ratio_0.8_weights.csv": "weights/ElasticNet_l1ratio_0.8_weights.csv",
+    "ElasticNet_l1ratio_0.95_returns.csv": "returns/ElasticNet_l1ratio_0.95_returns.csv",
+    "ElasticNet_l1ratio_0.95_weights.csv": "weights/ElasticNet_l1ratio_0.95_weights.csv",
+    "ElasticNet_l1ratio_0.975_returns.csv": "returns/ElasticNet_l1ratio_0.975_returns.csv",
+    "ElasticNet_l1ratio_0.975_weights.csv": "weights/ElasticNet_l1ratio_0.975_weights.csv",
+    "ElasticNet_l1ratio_0.995_returns.csv": "returns/ElasticNet_l1ratio_0.995_returns.csv",
+    "ElasticNet_l1ratio_0.995_weights.csv": "weights/ElasticNet_l1ratio_0.995_weights.csv",
+    "ElasticNet_l1ratio_0.99_returns.csv": "returns/ElasticNet_l1ratio_0.99_returns.csv",
+    "ElasticNet_l1ratio_0.99_weights.csv": "weights/ElasticNet_l1ratio_0.99_weights.csv",
+    "ElasticNet_l1ratio_0.9_returns.csv": "returns/ElasticNet_l1ratio_0.9_returns.csv",
+    "ElasticNet_l1ratio_0.9_weights.csv": "weights/ElasticNet_l1ratio_0.9_weights.csv",
+    "ElasticNet_l1ratio_1_returns.csv": "returns/ElasticNet_l1ratio_1_returns.csv",
+    "ElasticNet_l1ratio_1_weights.csv": "weights/ElasticNet_l1ratio_1_weights.csv",
+    "benchmark_runner.json": "config/benchmark_runner.json",
+    "run_metadata.json": "config/run_metadata.json",
+    "summary.csv": "metrics/summary.csv"
+  },
+  "layout": "categorized",
+  "layout_version": 1
+}

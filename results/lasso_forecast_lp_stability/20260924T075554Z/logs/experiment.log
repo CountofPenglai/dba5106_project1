@@ -1,0 +1,51 @@
+252-day LP stability comparison; reused forecast alpha=0.00251188643; July excluded.
+Forecasts through 2025-01-02 (1/250)
+Forecasts through 2025-02-03 (21/250)
+Forecasts through 2025-03-05 (42/250)
+Forecasts through 2025-04-03 (63/250)
+Forecasts through 2025-05-05 (84/250)
+Forecasts through 2025-06-04 (105/250)
+Forecasts through 2025-07-07 (126/250)
+Forecasts through 2025-08-05 (147/250)
+Forecasts through 2025-09-04 (168/250)
+Forecasts through 2025-10-03 (189/250)
+Forecasts through 2025-11-03 (210/250)
+Forecasts through 2025-12-03 (231/250)
+LP decisions through 2025-01-02 (1/250)
+LP decisions through 2025-02-03 (21/250)
+LP decisions through 2025-03-05 (42/250)
+LP decisions through 2025-04-03 (63/250)
+LP decisions through 2025-05-05 (84/250)
+LP decisions through 2025-06-04 (105/250)
+LP decisions through 2025-07-07 (126/250)
+LP decisions through 2025-08-05 (147/250)
+LP decisions through 2025-09-04 (168/250)
+LP decisions through 2025-10-03 (189/250)
+LP decisions through 2025-11-03 (210/250)
+LP decisions through 2025-12-03 (231/250)
+Frozen EW penalty: 0.0001; qualified=True
+Forecasts through 2026-01-02 (1/123)
+Forecasts through 2026-02-02 (21/123)
+Forecasts through 2026-03-04 (42/123)
+Forecasts through 2026-04-02 (63/123)
+Forecasts through 2026-05-04 (84/123)
+Forecasts through 2026-06-03 (105/123)
+LP decisions through 2026-01-02 (1/123)
+LP decisions through 2026-02-02 (21/123)
+LP decisions through 2026-03-04 (42/123)
+LP decisions through 2026-04-02 (63/123)
+LP decisions through 2026-05-04 (84/123)
+LP decisions through 2026-06-03 (105/123)
+Prediction sensitivity checked: 2026-01-02
+Prediction sensitivity checked: 2026-02-02
+Prediction sensitivity checked: 2026-03-02
+Prediction sensitivity checked: 2026-04-01
+Prediction sensitivity checked: 2026-05-01
+Prediction sensitivity checked: 2026-06-01
+                       mean  volatility    sharpe  negative_sharpe  cumulative_return  max_drawdown  gross_mean  gross_volatility  gross_sharpe  gross_negative_sharpe  gross_cumulative_return  gross_max_drawdown  average_turnover  average_gross_leverage  max_gross_leverage  mean_daily_cost  evaluation_days       start         end  average_ew_distance
+model                                                                                                                                                                                                                                                                                                                                                           
+LP_Current         0.001487    0.010188  0.145985        -0.145985           0.193018     -0.096538    0.001512          0.010190      0.148343              -0.148343                 0.196588           -0.095934          0.024343                     1.5                 1.5         0.000024              123  2026-01-02  2026-06-30             1.675079
+LP_Lower_Leverage  0.001343    0.010052  0.133626        -0.133626           0.172290     -0.090681    0.001365          0.010054      0.135746              -0.135746                 0.175398           -0.090125          0.021574                     1.2                 1.2         0.000022              123  2026-01-02  2026-06-30             1.465234
+LP_EW_Anchored     0.001411    0.010203  0.138271        -0.138271           0.181837     -0.099349    0.001435          0.010205      0.140590              -0.140590                 0.185308           -0.098709          0.023895                     1.5                 1.5         0.000024              123  2026-01-02  2026-06-30             1.514157
+EW                 0.001319    0.009974  0.132197        -0.132197           0.168848     -0.086463    0.001322          0.009974      0.132533              -0.132533                 0.169328           -0.086320          0.003347                     1.0                 1.0         0.000003              123  2026-01-02  2026-06-30             0.000000
+Saved artifacts to /private/tmp/lp-stability-change/experiment

@@ -1,0 +1,8 @@
+{
+  "family": "lp",
+  "window": 252,
+  "validation_start": "2026-01-02",
+  "validation_end": "2026-06-30",
+  "runner_sha256": "679e899cf14a0eca80af7b17a89cf05133deb976478af4c1c5242847ad87919a",
+  "random_seed": 0
+}

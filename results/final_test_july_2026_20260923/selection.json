@@ -1,0 +1,61 @@
+{
+  "selected_before_holdout": true,
+  "selection_source": "docs/experiments/unified-252-expanded-2026-09-23.csv",
+  "selection_rule": "Validation daily Sharpe within each idea; EW, LP near-EW return, and selected-LASSO control retained",
+  "holdout_role": "July 2026 final test, designated by the user before execution",
+  "window": 252,
+  "start": "2026-07-01",
+  "end": "2026-07-31",
+  "models": {
+    "EW": "baselines/EW",
+    "LASSO_Selected": "loss_search/LASSO_Selected",
+    "LASSO_WeightCap_10pct": "concentration/LASSO_WeightCap_10pct",
+    "Ridge_conservative_0.5_0.9": "market_beta/Ridge_conservative_0.5_0.9",
+    "LASSO_market_like_0.8_1.2": "market_beta/LASSO_market_like_0.8_1.2",
+    "LP_LASSO_252d": "lp/LP_LASSO_252d"
+  },
+  "validation_metrics": {
+    "EW": {
+      "cumulative_return": 0.169328323999842,
+      "sharpe": 0.1325326097400444,
+      "volatility": 0.0099737843394844,
+      "max_drawdown": -0.0863195462201258,
+      "average_gross_leverage": 0.9999999999999926
+    },
+    "LASSO_Selected": {
+      "cumulative_return": 0.1124816875911847,
+      "sharpe": 0.1472307073132024,
+      "volatility": 0.0060101559128499,
+      "max_drawdown": -0.0419069044466466,
+      "average_gross_leverage": 1.0153569834301273
+    },
+    "LASSO_WeightCap_10pct": {
+      "cumulative_return": 0.1270213599121366,
+      "sharpe": 0.15610889263519,
+      "volatility": 0.0063589898611076,
+      "max_drawdown": -0.0549357339889811,
+      "average_gross_leverage": 1.0163518998570924
+    },
+    "Ridge_conservative_0.5_0.9": {
+      "cumulative_return": 0.1100067374523778,
+      "sharpe": 0.1511005756803175,
+      "volatility": 0.0057254227028034,
+      "max_drawdown": -0.0542888649137974,
+      "average_gross_leverage": 1.4999077646730834
+    },
+    "LASSO_market_like_0.8_1.2": {
+      "cumulative_return": 0.1402756982386004,
+      "sharpe": 0.139013074711232,
+      "volatility": 0.0079038668085822,
+      "max_drawdown": -0.0643464383922904,
+      "average_gross_leverage": 1.3280311571754122
+    },
+    "LP_LASSO_252d": {
+      "cumulative_return": 0.1671854735464446,
+      "sharpe": 0.1284135403601869,
+      "volatility": 0.0101952112960049,
+      "max_drawdown": -0.0881968933544861,
+      "average_gross_leverage": 1.5
+    }
+  }
+}

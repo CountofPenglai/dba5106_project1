@@ -1,0 +1,39 @@
+{
+  "record_type": "retained_historical_study_subset",
+  "source_directory": "results/two_stage_lasso_20260922",
+  "retained_reason": "Three-year forecast/training or risk window",
+  "data_refitted": false,
+  "original_metadata_unchanged": true,
+  "removed_strategy_files": [
+    "Baseline_252d_Constrained_returns.csv",
+    "Baseline_252d_Constrained_weights.csv",
+    "Baseline_252d_returns.csv",
+    "Baseline_252d_weights.csv"
+  ],
+  "filtered_summary_rows": {
+    "baseline_summary.csv": [
+      "Baseline_252d",
+      "Baseline_252d_Constrained"
+    ],
+    "comparison.csv": [
+      "Baseline_252d",
+      "Baseline_252d_Constrained"
+    ]
+  },
+  "replacements": {
+    "Baseline_252d": {
+      "run": "results/unified_252/20260922T122949.119118Z/baselines",
+      "strategy": "LASSO",
+      "available_start": "2026-01-02",
+      "available_end": "2026-06-30"
+    },
+    "Baseline_252d_Constrained": {
+      "run": "results/unified_252/20260922T122949.119118Z/baselines",
+      "strategy": "LASSO_Constrained",
+      "available_start": "2026-01-02",
+      "available_end": "2026-06-30"
+    }
+  },
+  "historical_audit_scope": "Original full run; removed controls are recoverable from the external backup. Current retained holdings are separately rechecked.",
+  "external_backup": "/Users/zhengce/projects/fundation_ba/.cleanup-backups/project1/20260922T130708Z/before-cleanup.tar.gz"
+}
