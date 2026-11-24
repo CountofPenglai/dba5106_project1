@@ -47,6 +47,8 @@ python3 -m venv .venv
 
 The original dataset is included in the `main` branch at the repository root as `100_Portfolios_10x10_Daily.csv`. Alternatively, supply a different dataset path with `--csv`.
 
+A separate file, `100_Portfolios_10x10_Daily_Test_Aug_Sep_2026.csv`, is provided for **test-set use only**. Use only observations dated August 1, 2026 through September 30, 2026 from this file for the out-of-sample test. Do not use it to alter the training or validation sets. The original `100_Portfolios_10x10_Daily.csv` remains the source for the original training and validation analysis.
+
 The loader selects **Average Equal Weighted Returns -- Daily**, drops `ME9 BM10` and `BIG HiBM`, converts percentage returns to decimals, and treats `-99.99` and `-999` as missing values without filling them. The remaining 98 columns are portfolio return series, not stock prices. History starts on the first trading day on or after August 1, 2021; each fit uses only its configured rolling window.
 
 ## Running Models
