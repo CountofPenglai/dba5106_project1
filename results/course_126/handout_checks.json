@@ -1,0 +1,64 @@
+{
+  "sha256": "11399a830c7b2a192d652b39e866a74c05d7380dd6edf1573ce1c40f9d271c23",
+  "section": "Average Equal Weighted Returns -- Daily",
+  "excluded": [
+    "ME9 BM10",
+    "BIG HiBM"
+  ],
+  "history_first": "2021-08-02",
+  "history_last": "2026-06-30",
+  "eval_days": 123,
+  "retained_assets": 98,
+  "missing_retained_cells": 0,
+  "row_number": 26152,
+  "first_window_dates": [
+    "2025-07-03",
+    "2025-12-31"
+  ],
+  "first_window_days": 126,
+  "first_six_weights": {
+    "SMALL LoBM": -0.1108209285318,
+    "ME1 BM2": -0.19930801598889056,
+    "ME1 BM3": 0.3478407009756862,
+    "ME1 BM4": 0.46011529923482,
+    "ME1 BM5": 0.005875117502892824,
+    "ME1 BM6": 0.4962978268072914
+  },
+  "first_day_return_pct": 1.393062414371629,
+  "first_day_checks": {
+    "row_number_is_26152": true,
+    "first_window": true,
+    "six_weights_match_handout_at_3_decimals": true,
+    "return_matches_handout_at_3_decimals_percent": true
+  },
+  "sharpe_comparison": [
+    {
+      "assets": 100,
+      "model": "EW",
+      "sharpe": 0.13607077454579847,
+      "handout_100_asset_reference": 0.111,
+      "matches_at_3_decimals": false
+    },
+    {
+      "assets": 100,
+      "model": "MinVar",
+      "sharpe": 0.01146512957699996,
+      "handout_100_asset_reference": 0.021,
+      "matches_at_3_decimals": false
+    },
+    {
+      "assets": 98,
+      "model": "EW",
+      "sharpe": 0.13253260974004444,
+      "handout_100_asset_reference": null,
+      "matches_at_3_decimals": null
+    },
+    {
+      "assets": 98,
+      "model": "MinVar",
+      "sharpe": -0.017186888299490777,
+      "handout_100_asset_reference": null,
+      "matches_at_3_decimals": null
+    }
+  ]
+}

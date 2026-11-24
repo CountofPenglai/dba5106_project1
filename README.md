@@ -1,6 +1,6 @@
 # DBA5106 Portfolio Optimization
 
-A shared framework for the six baseline portfolios and the models retained in the final report. Data preparation, rolling evaluation, metrics and result storage are reused across models; model names and fixed settings are defined in [`portfolio/model_catalog.py`](portfolio/model_catalog.py).
+The course benchmark uses four portfolios and a 126-trading-day window. The same framework reproduces the original 252-day report. Data preparation, rolling evaluation, metrics and result storage are reused across models; model names and fixed settings are defined in [`portfolio/model_catalog.py`](portfolio/model_catalog.py).
 
 ## Project Framework
 
@@ -16,7 +16,7 @@ There are two modeling paths:
 - **Portfolio regression:** MinVar, LASSO and Ridge estimate regression coefficients and convert them into fully invested portfolio weights. Variants add coefficient budgets, loss penalties or portfolio constraints. EW uses equal weights without fitting.
 - **Forecasting + LP:** LASSO predicts each asset's next-day return, then linear programming chooses portfolio weights subject to allocation and historical risk limits.
 
-Each daily fit uses only observations available before that day's return. The run commands reuse fixed hyperparameters; they refit coefficients and weights without performing a new parameter search.
+Each daily fit uses only observations available before that day's return. Course LASSO and Ridge select their penalty inside each historical window. The archived report configurations reuse their fixed settings.
 
 | Location | Responsibility |
 | --- | --- |
@@ -56,17 +56,31 @@ The loader selects **Average Equal Weighted Returns -- Daily**, drops `ME9 BM10`
 
 ## Running Models
 
-### Baselines
+### Course benchmark
 
-The six baseline IDs are `EW`, `MinVar`, `LASSO_CoefficientConstraint`, `Ridge_CoefficientConstraint`, `LASSO_Penalty` and `Ridge_Penalty`.
+Run the following from the project root:
 
 ```bash
-# Run all six baselines; only --window changes the training history.
-.venv/bin/python run_baselines.py --window 126
-.venv/bin/python run_baselines.py --window 252
+.venv/bin/python -m tools.verify_course_benchmark
+.venv/bin/python run_baselines.py
+```
 
-# Run only the penalty-based LASSO and Ridge baselines.
-.venv/bin/python run_baselines.py --window 252 --models LASSO_Penalty Ridge_Penalty
+The course run uses EW, MinVar, LASSO_CV and Ridge_CV. January 2 through June 30, 2026 supplies 123 validation returns. The target weights for a trading day use exactly the previous **126 trading observations**, equally weighted. The first window runs from July 3 through December 31, 2025. Short positions are allowed and the portfolio weights sum to one. The daily gross return is the dot product of that day's target weights and realized returns. The reported daily Sharpe divides the arithmetic mean by the sample standard deviation (ddof=1), using a zero risk-free rate.
+
+All four portfolios use the same 98 columns in source order. The file contains several tables; the equal-weighted daily table describes how stocks are combined **within** each asset. EW also weights the 98 resulting assets equally. Missing markers and blank cells stay missing. An exact raw value of -99 represents -99%, while -99.99 and -999 are the file's missing markers. The July 2026 data release has zero missing cells in the retained panel from August 2, 2021 through June 30, 2026.
+
+For each day, course LASSO and Ridge use the handout's 21-point native sklearn alpha grid from 1e-8 to 1e8. Both regress EW returns on the return differences against the final retained asset, with an intercept and decimal-return inputs. We chose three expanding chronological folds with 21 validation days each. At a 126-day window the fold training lengths are 63, 84 and 105. The criterion is mean squared error. The winning estimator is refitted on the full window before forming the next day's holdings. Each selected alpha is saved in the daily diagnostics.
+
+**Reference checks.** January 2, 2026 is observation 26,152 in the full equal-weighted panel. On the first six assets, the six MinVar weights match the handout to three decimals and the first return is **1.393062%**. The handout also quotes full-period 100-asset Sharpe ratios of 0.111 (EW) and 0.021 (MinVar). On this file and the stated dates, the 100-asset diagnostic gives 0.13607 and 0.01147; the required 98-asset panel gives 0.13253 and −0.01719. An independent covariance solve gives the same daily MinVar returns. The cause of the remaining reference discrepancy is unresolved. Keep the 100-asset figures as a diagnostic only.
+
+See the [handout checks and input fingerprint](results/course_126/handout_checks.json) and the [four-model validation results](results/course_126/validation/metrics/summary.csv).
+
+### Archived baseline alternatives
+
+The fixed-penalty and coefficient-budget baselines used in the submitted report can still be selected by name. Use an explicit window to reproduce that report or compare history lengths.
+
+```bash
+.venv/bin/python run_baselines.py --window 252 --models EW MinVar LASSO_Penalty Ridge_Penalty LASSO_CoefficientConstraint Ridge_CoefficientConstraint
 ```
 
 Coefficient-constrained LASSO uses `sum(abs(beta)) <= budget`; coefficient-constrained Ridge uses `sum(beta**2) <= budget`. Both budgets default to 1 and can be changed with `--lasso-coefficient-budget` and `--ridge-coefficient-budget`. They constrain model coefficients, rather than portfolio gross exposure. The penalty versions retain fixed strengths of `1e-5` and `1e-4`, respectively.
@@ -92,9 +106,9 @@ The report models cover hard constraints, exposure and turnover penalties, a sin
 
 | Option | Behavior |
 | --- | --- |
-| `--window N` | Number of prior trading observations; default `252`. Non-LP models also support `126` and other feasible lengths. |
+| `--window N` | Prior trading observations. Course baselines default to `126`. Archived report runs default to `252`. Including a course CV model in a mixed run defaults it to `126`. |
 | `--period validation` | Default evaluation period: January 2–June 30, 2026. |
-| `--period july_test` | July 1–31, 2026. `run_report.py` defaults to the seven selected portfolios; `run_baselines.py` still runs all six baselines. |
+| `--period july_test` | July 1–31, 2026. `run_report.py` defaults to the seven selected portfolios; `run_baselines.py` runs the four course baselines by default. |
 | `--models ID ...` | Override the default model selection; use `--list` to see available IDs. |
 | `--start YYYY-MM-DD`, `--end YYYY-MM-DD` | Override the evaluation dates while retaining earlier data for training. |
 | `--csv PATH` | Use an input CSV at another location. |
@@ -125,7 +139,7 @@ predictions/lasso_forecast.csv  Asset return forecasts, for LP runs
 
 LP runs also save `diagnostics/lasso_forecast.csv`. Main performance metrics use **gross returns before transaction costs**, daily unannualized Sharpe with zero risk-free rate, sample volatility and compounded maximum drawdown.
 
-Curated report results are stored separately in `results/report/validation/` and `results/report/july_test/`; historical parameter-selection evidence is in `results/report/selection/`. Normal runs leave these records unchanged and reject nonempty output directories.
+The 126-day benchmark is stored in `results/course_126/`. Curated 252-day report results are stored separately in `results/report/validation/` and `results/report/july_test/`; historical parameter-selection evidence is in `results/report/selection/`. Normal runs leave these records unchanged and reject nonempty output directories.
 
 ## Checks and Further Reading
 

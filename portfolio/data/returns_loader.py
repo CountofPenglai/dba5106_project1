@@ -9,15 +9,17 @@ import pandas as pd
 from portfolio.data.preprocessing import DEFAULT_DROP_ASSETS, preprocess_returns
 
 
+MODEL_SECTION = "Average Equal Weighted Returns -- Daily"
+
+
 def load_returns(path, *, drop_assets=DEFAULT_DROP_ASSETS, start=None, end=None):
     """Find the table by its heading, so updated files need no row offsets."""
-    heading = "Average Equal Weighted Returns -- Daily"
     with Path(path).open(encoding="utf-8-sig") as source:
         for line in source:
-            if line.strip() == heading:
+            if line.strip() == MODEL_SECTION:
                 break
         else:
-            raise ValueError(f"Missing CSV section: {heading}")
+            raise ValueError(f"Missing CSV section: {MODEL_SECTION}")
         lines = []
         for line in source:
             if not line.strip():

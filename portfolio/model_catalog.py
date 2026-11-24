@@ -9,6 +9,7 @@ import pandas as pd
 from portfolio.constraints import CoefficientConstraint, PortfolioConstraints
 from portfolio.engine.portfolio_fit import fit_portfolio, fit_portfolio_coefficient_constrained
 from portfolio.losses import PortfolioLoss
+from portfolio.models.course_cross_validation import fit_course_cv
 from portfolio.models.constrained_portfolio import fit_constrained_portfolio
 from portfolio.models.fit_result import FitResult
 from portfolio.models.min_variance_regression import LinearModel, RegressionProblem
@@ -59,6 +60,11 @@ for kind, regularization in (('LASSO', LASSO), ('Ridge', RIDGE)):
                                constraints=PortfolioConstraints(beta_bounds=bounds), market_beta=True))
 MODELS = {spec.name: spec for spec in _specs}
 BASELINE_NAMES = tuple(spec.name for spec in _specs if spec.family == 'baseline')
+COURSE_MODELS = {
+    'EW': MODELS['EW'], 'MinVar': MODELS['MinVar'],
+    'LASSO_CV': ModelSpec('LASSO_CV', 'LASSO with chronological CV', 'Course', 'cv', Regularization('lasso')),
+    'Ridge_CV': ModelSpec('Ridge_CV', 'Ridge with chronological CV', 'Course', 'cv', Regularization('ridge')),
+}
 JULY_MODELS = ('EW', 'LASSO_ExposurePenalty', 'LASSO_WeightCap_10pct',
                'Ridge_BetaConservative', 'LASSO_BetaMarket', 'LP_Original', 'LP_TradingPenalty')
 
@@ -72,6 +78,8 @@ def baseline_models(*, lasso_budget=1., ridge_budget=1.):
 
 def fit_model(history, spec, *, previous_weights=None):
     """Fit one single-stage model; the LP runner owns forecasting and allocation."""
+    if spec.family == 'cv':
+        return fit_course_cv(history, spec.regularization.kind)
     if spec.name == 'EW':
         problem = RegressionProblem.from_returns(history)
         model = LinearModel(np.zeros(history.shape[1]-1), float(problem.y.mean()))

@@ -1,4 +1,4 @@
-"""Run EW, MinVar and coefficient-constrained/penalized LASSO and Ridge."""
+"""Run 126-day course baselines; archived fixed baselines can be selected explicitly."""
 from portfolio.cli import main
 
 if __name__ == '__main__':

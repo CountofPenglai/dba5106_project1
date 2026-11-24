@@ -16,16 +16,16 @@ import json
 import math
 from pathlib import Path
 
-from portfolio.data.returns_loader import DEFAULT_DROP_ASSETS
+from portfolio.data.preprocessing import DEFAULT_DROP_ASSETS, MISSING_MARKERS
+from portfolio.data.returns_loader import MODEL_SECTION
 
 
 SECTIONS = (
     "Average Value Weighted Returns -- Daily",
-    "Average Equal Weighted Returns -- Daily",
+    MODEL_SECTION,
     "Number of Firms in Portfolios",
     "Average Firm Size",
 )
-MODEL_SECTION = SECTIONS[1]
 MARKERS = {-99.0: "count_minus_99", -99.99: "count_minus_99_99", -999.0: "count_minus_999"}
 
 
@@ -82,7 +82,7 @@ def audit_file(path, *, start=None, end=None):
             for record, cell in zip(columns, cells[1:]):
                 record["observations"] += 1
                 value = float(cell) if cell.strip() else math.nan
-                missing = math.isnan(value) or value in (-99.99, -999.0)
+                missing = math.isnan(value) or value in MISSING_MARKERS
                 if math.isnan(value):
                     record["blank_count"] += 1
                 elif not math.isfinite(value):

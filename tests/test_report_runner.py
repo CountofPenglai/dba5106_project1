@@ -62,18 +62,46 @@ class ReportRunnerTests(unittest.TestCase):
             for count in (126, 252):
                 output = Path(temp)/str(count)
                 command = [sys.executable, str(ROOT/'run_baselines.py'), '--csv', str(source),
-                           '--window', str(count), '--start', str(frame.index[-2].date()),
+                           *(['--window', str(count)] if count != 126 else []), '--start', str(frame.index[-2].date()),
                            '--end', str(frame.index[-1].date()), '--output', str(output)]
                 run = subprocess.run(command, capture_output=True, text=True)
                 self.assertEqual(run.returncode, 0, run.stderr)
                 summary = pd.read_csv(output/'metrics/summary.csv')
-                self.assertEqual(len(summary), 6)
+                self.assertEqual(summary.model.tolist(), ['EW', 'MinVar', 'LASSO_CV', 'Ridge_CV'])
+                for name in ('LASSO_CV', 'Ridge_CV'):
+                    diagnostics = pd.read_csv(output / 'diagnostics' / f'{name}.csv')
+                    self.assertTrue((diagnostics.history_count == count).all())
+                    self.assertTrue((diagnostics.history_end < diagnostics.date).all())
+                    self.assertTrue((diagnostics.selected_sklearn_alpha > 0).all())
                 metadata = json.loads((output/'config/run_metadata.json').read_text())
                 self.assertEqual(metadata['window'], count)
                 self.assertEqual(metadata['metric_convention']['primary_returns'], 'gross')
                 repeat = subprocess.run(command, capture_output=True, text=True)
                 self.assertNotEqual(repeat.returncode, 0)
                 self.assertIn('empty or new', repeat.stderr)
+
+    def test_course_cv_matches_explicit_chronological_search(self):
+        from sklearn.linear_model import Lasso, Ridge
+        from portfolio.model_catalog import COURSE_MODELS, fit_model
+        from portfolio.models.course_cross_validation import COURSE_ALPHAS
+        from portfolio.models.min_variance_regression import RegressionProblem
+        history = self.frame().iloc[:126, :5]
+        problem = RegressionProblem.from_returns(history)
+        for model, estimator in [('LASSO_CV', Lasso), ('Ridge_CV', Ridge)]:
+            def fit(alpha, n):
+                kwargs = {'tol': 1e-9, 'max_iter': 100000} if model == 'LASSO_CV' else {}
+                return estimator(alpha=alpha, **kwargs).fit(problem.X[:n], problem.y[:n])
+            errors = []
+            for alpha in COURSE_ALPHAS:
+                mse = []
+                for end in (63, 84, 105):
+                    pred = fit(alpha, end).predict(problem.X[end:end+21])
+                    mse.append(np.mean((pred - problem.y[end:end+21])**2))
+                errors.append(np.mean(mse))
+            fitted = fit_model(history, COURSE_MODELS[model])
+            alpha = fitted.diagnostics['selected_sklearn_alpha']
+            self.assertAlmostEqual(errors[list(COURSE_ALPHAS).index(alpha)], min(errors), places=11)
+            assert_allclose(fitted.weights, problem.portfolio_weights(fit(alpha, 126).coef_), atol=2e-5)
 
     def test_report_defaults_and_frozen_alpha_do_not_depend_on_results(self):
         from portfolio.engine.report_runner import load_forecast_settings

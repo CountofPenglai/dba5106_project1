@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 
+MISSING_MARKERS = (-99.99, -999.0)
 DEFAULT_DROP_ASSETS = ("ME9 BM10", "BIG HiBM")
 
 def preprocess_returns(raw, *, drop_assets=DEFAULT_DROP_ASSETS, start=None, end=None):
@@ -21,7 +22,7 @@ def preprocess_returns(raw, *, drop_assets=DEFAULT_DROP_ASSETS, start=None, end=
     if frame.index.has_duplicates or frame.index.hasnans:
         raise ValueError("Dates must be unique and valid")
     frame = frame.sort_index()
-    frame = frame.loc[start:end].astype(float).replace([-99.99, -999], np.nan) / 100.0
+    frame = frame.loc[start:end].astype(float).replace(list(MISSING_MARKERS), np.nan) / 100.0
     if frame.empty:
         raise ValueError("No returns in the requested date range")
     frame.index.name = "date"
