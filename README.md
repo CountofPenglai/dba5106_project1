@@ -45,12 +45,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 ```
 
-Place `100_Portfolios_10x10_Daily.csv` in the repository root, or supply its path with `--csv`. If it is missing in a fresh clone, recover the archived input file with:
-
-```bash
-git fetch origin backup/pre-report-refactor-20260927
-git restore --source=FETCH_HEAD -- 100_Portfolios_10x10_Daily.csv
-```
+The original dataset is included in the `main` branch at the repository root as `100_Portfolios_10x10_Daily.csv`. Alternatively, supply a different dataset path with `--csv`.
 
 The loader selects **Average Equal Weighted Returns -- Daily**, drops `ME9 BM10` and `BIG HiBM`, converts percentage returns to decimals, and treats `-99.99` and `-999` as missing values without filling them. The remaining 98 columns are portfolio return series, not stock prices. History starts on the first trading day on or after August 1, 2021; each fit uses only its configured rolling window.
 
