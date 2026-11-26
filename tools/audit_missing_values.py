@@ -5,8 +5,6 @@ separately: it is not silently classified as an official missing marker.
 """
 
 from portfolio.paths import PROJECT_ROOT
-from portfolio.evaluation.artifact_store import ensure_fresh_output
-from portfolio.evaluation.provenance import source_paths, file_digest, package_versions
 
 import argparse
 import csv

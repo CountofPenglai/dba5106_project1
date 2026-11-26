@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from portfolio.config import EVALUATION_PERIODS, HISTORY_START
+from portfolio.config import VALIDATION, HISTORY_START
 from portfolio.data.history_windows import rolling_windows
 from portfolio.data.preprocessing import DEFAULT_DROP_ASSETS
 from portfolio.data.returns_loader import MODEL_SECTION, load_returns
@@ -18,7 +18,7 @@ from portfolio.paths import DEFAULT_CSV
 
 
 def verify(csv):
-    start, end = EVALUATION_PERIODS['validation']
+    start, end = VALIDATION
     all_assets = load_returns(csv, drop_assets=(), end=end)
     official = load_returns(csv, start=HISTORY_START, end=end)
     if len(all_assets.columns) != 100 or tuple(all_assets.columns[[89, 99]]) != DEFAULT_DROP_ASSETS:

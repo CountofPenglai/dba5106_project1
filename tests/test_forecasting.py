@@ -65,13 +65,13 @@ class ForecastingTests(unittest.TestCase):
         returns.iloc[:, 2] = 0.0
         data = build_supervised(returns)
         date = data.targets.index[-1]
-        config = TrainingConfig(TrainingWindow(observations=252))
+        config = TrainingConfig(TrainingWindow(observations=126))
         alpha = 1e-5
         got, diagnostics = forecast_at(data, date, config, alpha)
 
         position = data.targets.index.get_loc(date)
-        X = data.features[position - 252:position]
-        y = data.targets.iloc[position - 252:position]
+        X = data.features[position - 126:position]
+        y = data.targets.iloc[position - 126:position]
         expected = []
         for asset in range(3):
             scaler = StandardScaler().fit(X[:, asset, :])
@@ -80,7 +80,7 @@ class ForecastingTests(unittest.TestCase):
             )
             expected.append(model.predict(scaler.transform(data.features[position, asset, :][None]))[0])
         np.testing.assert_allclose(got.to_numpy(), expected, rtol=0, atol=1e-14)
-        self.assertEqual(diagnostics["train_count"], 252)
+        self.assertEqual(diagnostics["train_count"], 126)
         self.assertEqual(diagnostics["train_end"], data.targets.index[-2])
         self.assertEqual(diagnostics["constant_feature_counts"]["a2"], 5)
 
@@ -90,7 +90,7 @@ class ForecastingTests(unittest.TestCase):
 
         returns = self._returns(400, 2)
         date = returns.index[350]
-        config = TrainingConfig(TrainingWindow(observations=252))
+        config = TrainingConfig(TrainingWindow(observations=126))
         first = forecast_at(build_supervised(returns), date, config, 1e-5)[0]
         changed = returns.copy()
         changed.loc[changed.index >= date] += 100.0

@@ -3,10 +3,6 @@
 from dataclasses import dataclass
 
 import numpy as np
-from sklearn.linear_model import Lasso, LinearRegression, Ridge
-
-from portfolio.regularization import Regularization
-from portfolio.data.observation_weights import normalize_sample_weights
 
 
 @dataclass
@@ -37,32 +33,3 @@ class RegressionProblem:
 
     def portfolio_weights(self, coefficients):
         return self.equal_weights - self.basis @ coefficients
-
-
-def _regression_inputs(X, y):
-    X, y = np.asarray(X, dtype=float), np.asarray(y, dtype=float)
-    if (X.ndim != 2 or X.shape[0] < 2 or X.shape[1] < 1
-            or y.shape != (X.shape[0],) or not np.isfinite(X).all() or not np.isfinite(y).all()):
-        raise ValueError("X and y must be finite and aligned, with at least two observations")
-    return X, y
-
-
-def fit_linear(X, y, *, regularization=Regularization(), sample_weight=None):
-    """Minimize weighted MSE + strength*penalty, with an unpenalized intercept.
-
-    sklearn's native objective conventions differ. Normalizing sample weights
-    to sum n requires Lasso alpha=strength/2 and Ridge alpha=n*strength.
-    """
-    X, y = _regression_inputs(X, y)
-    n = len(y)
-    weights = normalize_sample_weights(sample_weight, n) * n
-    if np.count_nonzero(weights) < 2:
-        raise ValueError("At least two observations need positive sample weight")
-    if regularization.kind == "none" or regularization.strength == 0:
-        estimator = LinearRegression()
-    elif regularization.kind == "lasso":
-        estimator = Lasso(alpha=regularization.strength / 2, max_iter=100000, tol=1e-8)
-    else:
-        estimator = Ridge(alpha=n * regularization.strength)
-    estimator.fit(X, y, sample_weight=weights)
-    return LinearModel(np.asarray(estimator.coef_), float(estimator.intercept_))

@@ -137,9 +137,7 @@ recent-period audit (June 27, 2024–July 31, 2026) also found no remaining
 missing cells. Exact -99 is distinct from the official markers and does not
 occur in this input file.
 
-The recent original audit is preserved under `results/data_audit/recent/` with
-unchanged source fingerprints. Full-history and since-2000 audit files are in the
-external backup described in [the results guide](../results.md).
+The [course benchmark check](../../results/course_126/handout_checks.json) records the number of missing retained cells over the history used for validation.
 
 ## Reproduce
 

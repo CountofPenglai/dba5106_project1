@@ -31,12 +31,13 @@ def fit_course_cv(history, kind):
     with warnings.catch_warnings():
         warnings.simplefilter("error", ConvergenceWarning)
         estimator.fit(problem.X, problem.y)
+    alpha = float(estimator.alpha_)
+    diagnostics = {"selected_sklearn_alpha": alpha}
     model = LinearModel(estimator.coef_, float(estimator.intercept_))
     weights = validate_portfolio_weights(problem.portfolio_weights(model.coefficients), history.shape[1])
     mse = float(np.mean((problem.y - model.predict(problem.X)) ** 2))
     # Express the native estimator's penalty on the project's mean-squared-error scale.
-    alpha = float(estimator.alpha_)
     penalty = (2 * alpha * np.abs(model.coefficients).sum() if kind == "lasso"
                else alpha * (model.coefficients @ model.coefficients) / len(history))
     return FitResult(model, pd.Series(weights, index=history.columns, name="weight"), mse, mse + penalty,
-                     {"selected_sklearn_alpha": alpha})
+                     diagnostics)

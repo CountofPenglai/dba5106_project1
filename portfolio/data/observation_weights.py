@@ -9,13 +9,3 @@ def normalize_sample_weights(sample_weight, n):
             or (weights < 0).any() or not np.isfinite(total) or total <= 0):
         raise ValueError("Sample weights must be finite, nonnegative, aligned, and have positive sum")
     return weights / total
-
-def uniform(n):
-    """One weight per training observation, in chronological order."""
-    return np.ones(n)
-
-def exponential(n, half_life=63):
-    """Trading-observation half-life; newest observation has weight one."""
-    if not np.isfinite(half_life) or half_life <= 0 or n < 1:
-        raise ValueError("half_life and observation count must be positive")
-    return np.exp2((np.arange(n) - n + 1) / half_life)

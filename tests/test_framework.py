@@ -8,8 +8,6 @@ from numpy.testing import assert_allclose
 
 from portfolio.data import load_returns, preprocess_returns
 from portfolio.data.history_windows import rolling_windows
-from portfolio.models.min_variance_regression import fit_linear
-from portfolio.regularization import Regularization
 from portfolio.engine.portfolio_fit import fit_portfolio
 from portfolio.engine.rolling_backtest import backtest
 from portfolio.evaluation.portfolio_metrics import summarize
@@ -71,17 +69,6 @@ Number of Firms in Portfolios
 
 
 class ModelTests(unittest.TestCase):
-    def test_regularized_weighted_solutions_match_analytic_minima(self):
-        X = np.array([[-1.0], [0.0], [1.0]])
-        y = np.array([-2.0, 0.0, 2.0])
-        # Weighted variance(X)=1/2. Objectives yield ridge=1, lasso=1.5.
-        for kind, expected in [("ridge", 1.0), ("lasso", 1.5)]:
-            for scale in [1, 17]:
-                result = fit_linear(X, y + 7, regularization=Regularization(kind, 0.5),
-                                    sample_weight=np.array([1, 2, 1]) * scale)
-                assert_allclose(result.coefficients, [expected], atol=1e-7)
-                self.assertAlmostEqual(result.intercept, 7)
-
     def test_ols_portfolio_matches_covariance_solution(self):
         r = pd.DataFrame(np.random.default_rng(7).normal(size=(80, 4)) + [1, 3, 2, 4],
                          columns=list("ABCD"))
@@ -90,17 +77,10 @@ class ModelTests(unittest.TestCase):
         assert_allclose(result.weights, inv_one / inv_one.sum(), atol=1e-10)
 
 
-    def test_bad_data_and_sample_weights_are_rejected(self):
+    def test_nonfinite_returns_are_rejected(self):
         for value in [np.nan, np.inf]:
             with self.assertRaises(ValueError):
                 fit_portfolio(pd.DataFrame([[1, value], [2, 3]], columns=["A", "B"]))
-        r = pd.DataFrame([[1, 2], [3, 1], [2, 4]], columns=["A", "B"])
-        with self.assertRaises(ValueError):
-            fit_portfolio(r, sample_weights=lambda n: np.zeros(n))
-        with self.assertRaises(ValueError):
-            fit_linear(np.ones((3, 1)), np.ones(3), sample_weight=[1, -1, 1])
-
-
 class EvaluationTests(unittest.TestCase):
     def test_report_concentration_uses_absolute_weight_shares(self):
         from portfolio.evaluation import portfolio_metrics as metrics

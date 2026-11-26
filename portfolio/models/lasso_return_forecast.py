@@ -79,26 +79,13 @@ def _validate_data(data):
 def _validate_config(config):
     if not isinstance(config, TrainingConfig):
         raise ValueError("config must be a TrainingConfig")
-    if config.half_life is not None:
-        raise ValueError("forecast training requires equal observation weights")
 
 
 def _training_positions(index, prediction_position, config):
-    window = config.window
-    if window.observations is not None:
-        if prediction_position < window.observations:
-            raise ValueError(
-                f"Need {window.observations} complete targets before {index[prediction_position].date()}"
-            )
-        return np.arange(prediction_position - window.observations, prediction_position)
-    cutoff = index[prediction_position] - pd.DateOffset(years=window.years)
-    left = index.searchsorted(cutoff, side="left")
-    positions = np.arange(left, prediction_position)
-    if len(positions) < window.min_observations:
-        raise ValueError(
-            f"Need {window.min_observations} complete targets before {index[prediction_position].date()}"
-        )
-    return positions
+    count = config.window.observations
+    if prediction_position < count:
+        raise ValueError(f"Need {count} complete targets before {index[prediction_position].date()}")
+    return np.arange(prediction_position - count, prediction_position)
 
 
 def _fit_predict(features, targets, prediction_features, alpha):

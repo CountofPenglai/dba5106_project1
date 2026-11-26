@@ -13,52 +13,54 @@
   },
   "code_sha256": {
     "audit_missing_values.py": "fa7cc8deed06668463e5b3b1709afce7175aef8783532b50cbb44aeb14ea1019",
-    "configs/lasso_forecast.json": "a7bcb8971fb77f25a636e6bef426611901c6ae1f943cd5ff6199e2d014efc52f",
+    "configs/final_test_126.json": "0089fdf209f4947023fd8dd40869477dea0ceee362c6302e0861970e405ffcd6",
     "portfolio/__init__.py": "04cf9cd8a1f0d501fc22f7b0341362b597bf6ee1484c8b74e0bc9828ef56607a",
-    "portfolio/cli.py": "8d3229c26bdf7f3134eac3c9985e8c4981e182ccc13254035ef1e5ae708b508d",
-    "portfolio/config.py": "20a0cd32450a14659d4198878c50922f4737bc1db5077e0e694eab37f604ba14",
-    "portfolio/constraints.py": "fdb8db3233aa6352140ef49165af6a09ce371a350f5af2fb8c4ed7ad91ff2c8f",
+    "portfolio/cli.py": "41f7429beb45340a680664cbe322e146d65f8445170d3dafbcd49647633de0f0",
+    "portfolio/config.py": "6df29071535383cd066d1ab5b2901fecc2385a89312901f3f0b434138320bac3",
+    "portfolio/constraints.py": "44f4bd7ad2814f0ecca91ef89fde31bff5cf126ad698dc3c1c31ae3e3d02308e",
     "portfolio/data/__init__.py": "ea7bd526c1b73aea4e67ec521b2c786d4a4627127d3d6f582d54d58fc526cf26",
-    "portfolio/data/history_windows.py": "ec743ed39c394e333010724b1760cf7292d70e574723c59bc59de2f364f03f09",
-    "portfolio/data/observation_weights.py": "5e4b270bd7d4f6b2d8ecc98ff6698867427f6fed96c7d253d559ce9889da9777",
+    "portfolio/data/history_windows.py": "7ed0d1ead428e12faf35f2eb9f78ca398ed522704d0c9d23dd58678bec33aed6",
+    "portfolio/data/observation_weights.py": "c0e37af7392ebdf1fd9869b47f8767735c98b8269416889bbe10deb314f99301",
     "portfolio/data/preprocessing.py": "2d792341b7594488bf485d5205648bf63952f16ddda09e3b3b2e526d465e9005",
     "portfolio/data/returns_loader.py": "ad880e9b65a1f686277d53d48cf89ce1bc0586228dc61e1959828ce543243f1e",
     "portfolio/decisions/__init__.py": "c6a5a9a6c7dee4d7df6ad6a3540d6999a5ad55dbff1cb03f357af6c25cde32c7",
     "portfolio/decisions/holding_weights.py": "2c02c5c380e6f074e72d357180e752912a9c7e6e407d3c4c229ed3cbb132a34a",
-    "portfolio/decisions/linear_program_allocation.py": "06c4f07557bbca21cb5bd2b9a1425f4378ab42c6f106fc91bcc8aec215d76161",
+    "portfolio/decisions/linear_program_allocation.py": "bc763fefe426bca13aa53672ac7585f132562edde48aa87396ee89b76e1ac6e5",
     "portfolio/engine/__init__.py": "7c3e9c8e175d3a85dd3b4d52935bda9437caf9468aa965db424140e04e0c8846",
     "portfolio/engine/convex_solver.py": "0c202c8f52269d506e8b3992c2846d036b912506745aad556680bdb29d4a029c",
-    "portfolio/engine/portfolio_fit.py": "6e4a02115b94c14c05778b52aa75e762fb159cc04c21e7b72225875e7381179d",
-    "portfolio/engine/report_runner.py": "6a40e2b385404630081825d961920d58bdbf185f2cbd82ba4a7e22c0edabce52",
+    "portfolio/engine/portfolio_fit.py": "bcc2a87a744cf082b2d56adfc5f17dc5a1b35d155f1f34f1b5a6514cc39121e9",
+    "portfolio/engine/report_runner.py": "7824c6a3dbc4c5871fffa42e697f4982e12ed49d994fe62e69d852d51b14e802",
     "portfolio/engine/rolling_backtest.py": "362bb197bb67eb777187407a5483433915676a5c73724adb90e5dce6a50b01d8",
     "portfolio/evaluation/__init__.py": "509d7b338ef80f08c72957cd9d6cd1f4d357d7df8297126e1362aea7464c2023",
-    "portfolio/evaluation/artifact_store.py": "1c5389e997389a7f94e173337a0251c30c5338a0f8fcb5809bfd5beec9eb2bd8",
+    "portfolio/evaluation/artifact_store.py": "669a8b0d15ce3a982dd27d6e565b111e68f89afac5a99ada385859ffc5748f06",
+    "portfolio/evaluation/attribution.py": "810996fcd38202e6af48d5b19d210f328ceb5404c6ad8b3d4cf8e01fbb96696b",
+    "portfolio/evaluation/final_test.py": "a14e87c03ecefb8599c533367b0a318f66fcab22204bc034f8ab884430719719",
+    "portfolio/evaluation/forecast_metrics.py": "31fe7f784851b72133724f25f5ce3422a067692e09492149834301b5feff8c6d",
     "portfolio/evaluation/portfolio_metrics.py": "8359f56e9cd5c5934e50cb23beeffa7b5aea3524d6f7fcbd4e8e25ee1d8574cf",
     "portfolio/evaluation/provenance.py": "db90341c01fd3c123e26bb0550ef67aed546f9dbf9b85242f745a46fafd31218",
-    "portfolio/losses.py": "92362bb2614fd68233f3fc00da40bfee863bc2782063dc949b2a39fbf632a7c8",
-    "portfolio/model_catalog.py": "3af2158360fb1ca9c9e380c1f355a358f5aabf1b4fd61b95dd76a62fe1415d54",
+    "portfolio/evaluation/validation.py": "e4dd0d732826b418d7d1b7bc8b0745c25ed1521cceadddf0a3a6cfa7d0a526d8",
+    "portfolio/losses.py": "94940db7a503ac93ac1e8608dbfd5c7315e1fc6077e967eb0662cbac1edc1944",
+    "portfolio/model_catalog.py": "eff7e48f384d032012943594e8e26b54d7639a0f8cd7dc128f3dc186f5f7ba45",
     "portfolio/models/__init__.py": "7e85af173262ba2b763e873f5a0588a0278c15ca05f00c7c8f678b676c1d02b6",
-    "portfolio/models/coefficient_constrained_regression.py": "7410152c4ca470b12d5affda10cd43cf89f6882d13bf01e62c1c33afb5ac85ea",
-    "portfolio/models/constrained_portfolio.py": "3ffe9a36e319233c00ffeb84f8206ec5210e1ec4888533f49c71e41f26abc46c",
-    "portfolio/models/course_cross_validation.py": "795fe5464d67348509e9a77cccff75d580092992effcb0a4810c61d490488280",
+    "portfolio/models/constrained_portfolio.py": "bb23cf2944bc6956fab7ca41e1a85045ed8877f8ffce29ba4fa703b68d210ef0",
+    "portfolio/models/course_cross_validation.py": "dd4d3e2e06a2db3f91ee0925c29600c6ef706884e5021a7bf8380ada4513f22b",
     "portfolio/models/fit_result.py": "beb18db3a5bfa9806c9b7d8946bb59a8d00f3b88bd1b9af619de36357f8058fd",
-    "portfolio/models/lasso_return_forecast.py": "25bfa5522bb4c9e8e5f972019697d0d9f964f280697efe9b11b2528a22cccc41",
-    "portfolio/models/min_variance_regression.py": "a4dcb7614732f795d1f5a4adab5883dfb4f244702acd88db839434e82f783075",
-    "portfolio/paths.py": "f6533c6b16c3ebcab47c2a3d8f42318a062fbcfd8b4283ad9ffb03a34f90c732",
+    "portfolio/models/lasso_return_forecast.py": "8519934f912a8e6238c61f5bd26035a6067a388a045dbbeb0ee6585353c8d75f",
+    "portfolio/models/min_variance_regression.py": "03de8af51c93d75d6b2ad70b492bca55f7894de570c22b2db05e6341ff11a7e3",
+    "portfolio/paths.py": "98289baa19d3aa46228c92d66a0454a87e956fb1d0321b4759e1d99e0c84b0d2",
     "portfolio/regularization.py": "f1ad5b811801fc92b0715ea977349b635487c01fd0d09d5559991e163b7f722d",
     "requirements.txt": "b200e1716bd8459e8968452a130d9af31f0bfa070fc9e8d1a31629c1d4a92b2b",
-    "run_baselines.py": "b9489faf5877ddba0d7ffb4e996756bc9935bb125e318b88fd8a02ca0b62f825",
+    "run_baselines.py": "8c45ae1fb1179baf890cdd37f034d080b7ed3795194c9abe03a81fabbc2ebc4b",
     "run_report.py": "339fae1a1aba3fdde9465f42ef896835d873463f4dc86b602557cb69e7660d50",
     "tools/__init__.py": "316431ef4dcb3df64611a4e7874545dc0401ad9a7b489aea986b66d020039819",
-    "tools/audit_missing_values.py": "4779c3b7f86cee9eda7ba500c25399cc0cd25d0ef3cf945b6bba4c8c6ac6ad69",
-    "tools/verify_course_benchmark.py": "04f01de91296afa09ade6ed8e35586508558dd7490a863347d62746b4944602a",
-    "tools/verify_report_results.py": "ee7bd24769ee46c7b22da04ce5d54ca2e4cf5faaaea8fb1923411615902be213"
+    "tools/audit_missing_values.py": "b53952b63aab81a967145807f24bbc10a392346931e86fe882e3054554d2f736",
+    "tools/evaluate_final_test.py": "4a5615c7f9f9dcaef0cb0d49ab4635e15e8cc9d65c48c41d7f3467d6c92bac5c",
+    "tools/verify_course_benchmark.py": "f4f99df9e9e45db15e82181f6259d4d9bc1b0863655f82602131a4d0126c806a",
+    "tools/verify_report_results.py": "be7a1ea22ed2960c8ead1537844263819a7eaf205475857a60bb87ec76cfd646"
   },
   "window": 126,
-  "period": "validation",
   "start": "2026-01-02",
   "end": "2026-06-30",
-  "history_start": "2021-08-01",
   "assets": [
     "SMALL LoBM",
     "ME1 BM2",
@@ -163,113 +165,152 @@
     {
       "name": "EW",
       "title": "Equal Weight",
-      "section": "2",
       "family": "baseline",
       "regularization": {
         "kind": "none",
         "strength": 0.0
       },
-      "coefficient_constraint": null,
       "constraints": {
         "leverage_limit": 1.5,
         "volatility_limit": 1.0,
         "wealth_floor": 1e-06,
-        "weight_limit": null,
-        "beta_bounds": null
+        "weight_limit": null
       },
       "loss": {
-        "reward_strength": 0.0,
-        "exposure_strength": 0,
-        "turnover_strength": 0
-      },
-      "market_beta": false,
-      "transaction_cost": 0.0
+        "exposure_strength": 0
+      }
     },
     {
       "name": "MinVar",
       "title": "Minimum Variance",
-      "section": "2",
       "family": "baseline",
       "regularization": {
         "kind": "none",
         "strength": 0.0
       },
-      "coefficient_constraint": null,
       "constraints": {
         "leverage_limit": 1.5,
         "volatility_limit": 1.0,
         "wealth_floor": 1e-06,
-        "weight_limit": null,
-        "beta_bounds": null
+        "weight_limit": null
       },
       "loss": {
-        "reward_strength": 0.0,
-        "exposure_strength": 0,
-        "turnover_strength": 0
-      },
-      "market_beta": false,
-      "transaction_cost": 0.0
+        "exposure_strength": 0
+      }
     },
     {
       "name": "LASSO_CV",
-      "title": "LASSO with chronological CV",
-      "section": "Course",
+      "title": "Course LASSO",
       "family": "cv",
       "regularization": {
         "kind": "lasso",
         "strength": 0.0
       },
-      "coefficient_constraint": null,
       "constraints": {
         "leverage_limit": 1.5,
         "volatility_limit": 1.0,
         "wealth_floor": 1e-06,
-        "weight_limit": null,
-        "beta_bounds": null
+        "weight_limit": null
       },
       "loss": {
-        "reward_strength": 0.0,
-        "exposure_strength": 0,
-        "turnover_strength": 0
-      },
-      "market_beta": false,
-      "transaction_cost": 0.0
+        "exposure_strength": 0
+      }
     },
     {
       "name": "Ridge_CV",
-      "title": "Ridge with chronological CV",
-      "section": "Course",
+      "title": "Course Ridge",
       "family": "cv",
       "regularization": {
         "kind": "ridge",
         "strength": 0.0
       },
-      "coefficient_constraint": null,
       "constraints": {
         "leverage_limit": 1.5,
         "volatility_limit": 1.0,
         "wealth_floor": 1e-06,
-        "weight_limit": null,
-        "beta_bounds": null
+        "weight_limit": null
       },
       "loss": {
-        "reward_strength": 0.0,
-        "exposure_strength": 0,
-        "turnover_strength": 0
+        "exposure_strength": 0
+      }
+    },
+    {
+      "name": "LASSO_ExposurePenalty",
+      "title": "Exposure-penalized LASSO",
+      "family": "constrained",
+      "regularization": {
+        "kind": "lasso",
+        "strength": 1e-05
       },
-      "market_beta": false,
-      "transaction_cost": 0.0
+      "constraints": {
+        "leverage_limit": 1.5,
+        "volatility_limit": 1.0,
+        "wealth_floor": 1e-06,
+        "weight_limit": null
+      },
+      "loss": {
+        "exposure_strength": 2
+      }
+    },
+    {
+      "name": "LASSO_WeightCap_10pct",
+      "title": "LASSO with a 10% asset cap",
+      "family": "constrained",
+      "regularization": {
+        "kind": "lasso",
+        "strength": 1e-05
+      },
+      "constraints": {
+        "leverage_limit": 1.5,
+        "volatility_limit": 1.0,
+        "wealth_floor": 1e-06,
+        "weight_limit": 0.1
+      },
+      "loss": {
+        "exposure_strength": 2
+      }
+    },
+    {
+      "name": "HistoricalTop20_EW",
+      "title": "Historical top 20 in equal weights",
+      "family": "ranking",
+      "regularization": {
+        "kind": "none",
+        "strength": 0.0
+      },
+      "constraints": {
+        "leverage_limit": 1.5,
+        "volatility_limit": 1.0,
+        "wealth_floor": 1e-06,
+        "weight_limit": null
+      },
+      "loss": {
+        "exposure_strength": 0
+      }
+    },
+    {
+      "name": "LP_Return",
+      "title": "LASSO forecast with risk-constrained LP",
+      "family": "lp",
+      "regularization": {
+        "kind": "none",
+        "strength": 0.0
+      },
+      "constraints": {
+        "leverage_limit": 1.5,
+        "volatility_limit": 1.0,
+        "wealth_floor": 1e-06,
+        "weight_limit": null
+      },
+      "loss": {
+        "exposure_strength": 0
+      }
     }
   ],
-  "forecast_settings": null,
-  "parameters_reselected": true,
-  "window_cv": {
-    "models": [
-      "LASSO_CV",
-      "Ridge_CV"
-    ],
-    "criterion": "mean squared error",
-    "alphas_sklearn": [
+  "forecast_alpha": 0.01,
+  "forecast_calibration_end": "2024-07-31",
+  "cv": {
+    "alphas": [
       1e-08,
       6.30957344480193e-08,
       3.981071705534969e-07,
@@ -292,16 +333,8 @@
       15848931.924611174,
       100000000.0
     ],
-    "expanding_folds": 3,
+    "folds": 3,
     "days_per_fold": 21
   },
-  "independent_untouched_test": null,
-  "metric_convention": {
-    "primary_returns": "gross",
-    "sharpe": "daily mean/std(ddof=1), risk-free rate=0",
-    "target_turnover": "0.5 * L1(target - previous target)",
-    "trade_turnover": "0.5 * L1(target - drifted pretrade)",
-    "supplementary_cost_rate": 0.0005,
-    "initial_holdings": "EW at each evaluation start"
-  }
+  "metric_convention": "Gross daily returns, sample SD, unannualized zero-rate Sharpe"
 }
